@@ -1,0 +1,84 @@
+---
+import "../styles/site.css";
+import Mark from "../components/Mark.astro";
+import { LANGS, TITLES, REPO, CONTACT, SITE, pathFor, urlFor, type Lang } from "../config";
+import { T, stripTags } from "../i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = T[lang];
+const title = TITLES[lang];
+const ids = ["how", "install", "faq"];
+
+const app = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "xomtra",
+  url: urlFor(lang),
+  inLanguage: lang,
+  description: t.lead,
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Home Assistant OS, Linux (Docker), Proxmox VE, VMware",
+  license: "https://www.apache.org/licenses/LICENSE-2.0",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  codeRepository: REPO,
+  sameAs: [REPO],
+  image: `${SITE}/og.png`,
+};
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  inLanguage: lang,
+  mainEntity: t.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: stripTags(a) } })),
+};
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{title}</title>
+<meta name="description" content={t.lead}>
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href={urlFor(lang)}>
+{LANGS.map((l) => <link rel="alternate" hreflang={l} href={urlFor(l)}>)}
+<link rel="alternate" hreflang="x-default" href={urlFor("en")}>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="xomtra">
+<meta property="og:url" content={urlFor(lang)}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={t.lead}>
+<meta property="og:image" content={`${SITE}/og.png`}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0c0f">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<script type="application/ld+json" set:html={JSON.stringify(app)} />
+<script type="application/ld+json" set:html={JSON.stringify(faq)} />
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href={pathFor(lang)} aria-label="xomtra"><Mark /><span>xomtra</span></a>
+  <nav class="sec" aria-label="Sections">
+    {t.nav.map((n, i) => <a href={`#${ids[i]}-${lang}`}>{n}</a>)}
+    <a href={REPO}>GitHub ↗</a>
+  </nav>
+  <nav class="lang" aria-label="Language">
+    {LANGS.map((l) => <a href={pathFor(l)} data-l={l} hreflang={l} aria-current={l === lang ? "true" : "false"}>{l.toUpperCase()}</a>)}
+  </nav>
+</div></header>
+
+<main id="app"><slot /></main>
+
+<footer><div class="wrap">
+  <span class="brand"><Mark /><span>xomtra</span></span>
+  <p id="foot">{t.foot}</p>
+  <span style="font-family:var(--mono)"><a href={REPO} style="text-decoration:none">GitHub</a> · Apache 2.0 · {CONTACT}</span>
+</div></footer>
+</body>
+</html>

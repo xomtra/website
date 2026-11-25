@@ -1,0 +1,721 @@
+{
+ "T": {
+  "en": {
+   "pre_eyebrow": "Public beta coming soon · for Home Assistant",
+   "pre_cta": "Get notified",
+   "pre_inst": "Available at the public beta. Write to support@xomtra.com and we will let you know.",
+   "nav": [
+    "How it works",
+    "Install",
+    "FAQ"
+   ],
+   "st_h": "Running in three steps",
+   "st_s": "Usually under 15 minutes from download to your first answer.",
+   "steps": [
+    [
+     "Install",
+     "Add-on, Proxmox, VMware or Docker. No domain, no port forwarding, no cloud account."
+    ],
+    [
+     "Connect",
+     "Create a token on the admin page and add xomtra to Claude Desktop with one file."
+    ],
+    [
+     "Ask",
+     "History imports in the background. Ask your first question right away."
+    ]
+   ],
+   "eyebrow": "Open source · for Home Assistant",
+   "h1": "Ask your house what really happened.",
+   "lead": "xomtra keeps years of your Home Assistant history, finds patterns and anomalies, and lets Claude or any MCP client answer questions about your home. Read-only, running on your own hardware.",
+   "cta1": "Install free",
+   "cta2": "See how it works",
+   "note": "Apache 2.0 · no account needed · data stays at home",
+   "q": "Why did the heat pump use more energy in October than last year?",
+   "a": "October used <span class='data'>412 kWh</span> vs <span class='data'>349 kWh</span> (+18 %). Most of the difference follows outside temperature (<span class='data'>r = 0.71</span>, 2 h lag). On 9 days the defrost cycle ran twice as often as usual, starting after the firmware update on 14 Oct.",
+   "you": "You",
+   "hm": "Claude with xomtra",
+   "f_h": "What xomtra adds to Home Assistant",
+   "f_s": "Home Assistant shows you the present. xomtra turns its history into answers.",
+   "feats": [
+    [
+     "years",
+     "Years of history",
+     "States and statistics kept for months or years in compressed Parquet files, without loading the Home Assistant database."
+    ],
+    [
+     "daily",
+     "Findings every day",
+     "Entity catalog, data quality checks, correlations between devices and anomalies, ready before you ask."
+    ],
+    [
+     "read-only",
+     "Safe by design",
+     "AI can read, never switch anything. Roles for family members, and every query is logged."
+    ]
+   ],
+   "qs_h": "Questions people ask",
+   "qs": [
+    "Which devices use power at night when nobody is home?",
+    "Has the bedroom humidity changed since we got the new windows?",
+    "How much did the solar panels cover of last month's consumption?",
+    "Which sensors stopped reporting this week?"
+   ],
+   "in_h": "Install where Home Assistant already runs",
+   "in_s": "Pick the option that fits your setup. All of them are free.",
+   "inst": [
+    [
+     "Home Assistant add-on",
+     "For Home Assistant OS on an SSD with 4 GB RAM or more.",
+     "Settings → Add-ons → Add repository"
+    ],
+    [
+     "Proxmox VE",
+     "Ready virtual machine, created by one command on the host.",
+     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
+    ],
+    [
+     "VMware",
+     "OVA appliance for ESXi, vSphere or Workstation.",
+     "Deploy OVF Template → xomtra.ova"
+    ],
+    [
+     "Docker Compose",
+     "For your own Linux server or NAS.",
+     "docker compose up -d"
+    ]
+   ],
+   "c_h": "How it compares",
+   "c_cols": [
+    "",
+    "Built-in HA MCP server",
+    "xomtra"
+   ],
+   "c_rows": [
+    [
+     "History",
+     "Recorder window (typically 10 days)",
+     "Months to years"
+    ],
+    [
+     "Analysis",
+     "Raw data only",
+     "Correlations, anomalies, weekly summary"
+    ],
+    [
+     "Can control devices",
+     "Yes (admin)",
+     "No, read-only"
+    ],
+    [
+     "Roles and audit",
+     "Admins only",
+     "Reader / Admin, full audit log"
+    ],
+    [
+     "Load on Home Assistant",
+     "Queries hit the HA database",
+     "Separate storage"
+    ]
+   ],
+   "faq_h": "Questions",
+   "faq": [
+    [
+     "Do I need Claude?",
+     "No. xomtra works with Claude Desktop, Claude.ai and any client that speaks MCP. Your AI subscription is your own; xomtra never pays or sees it."
+    ],
+    [
+     "Does my data leave the house?",
+     "Only the answers your AI client asks for, under your account. xomtra itself sends nothing anywhere unless you turn on anonymous install counting."
+    ],
+    [
+     "How much disk does it need?",
+     "A typical home needs 2–5 GB for 90 days of states and 5 years of hourly statistics. Large setups with years of states should use the Proxmox or VMware appliance."
+    ],
+    [
+     "Is it affiliated with Home Assistant?",
+     "No. xomtra is an independent open source project built for Home Assistant."
+    ]
+   ],
+   "foot": "xomtra is an independent open source project, not affiliated with the Open Home Foundation or Nabu Casa. Home Assistant is a trademark of its owners."
+  },
+  "de": {
+   "pre_eyebrow": "Öffentliche Beta bald verfügbar · für Home Assistant",
+   "pre_cta": "Benachrichtigen",
+   "pre_inst": "Verfügbar mit der öffentlichen Beta. Schreib an support@xomtra.com, wir melden uns.",
+   "nav": [
+    "Funktionsweise",
+    "Installation",
+    "FAQ"
+   ],
+   "st_h": "In drei Schritten startklar",
+   "st_s": "Meist unter 15 Minuten vom Download bis zur ersten Antwort.",
+   "steps": [
+    [
+     "Installieren",
+     "Add-on, Proxmox, VMware oder Docker. Keine Domain, keine Portfreigabe, kein Cloud-Konto."
+    ],
+    [
+     "Verbinden",
+     "Token auf der Admin-Seite erstellen und xomtra mit einer Datei zu Claude Desktop hinzufügen."
+    ],
+    [
+     "Fragen",
+     "Die Historie wird im Hintergrund importiert. Stell sofort deine erste Frage."
+    ]
+   ],
+   "eyebrow": "Open Source · für Home Assistant",
+   "h1": "Frag dein Haus, was wirklich passiert ist.",
+   "lead": "xomtra speichert jahrelang die Historie deines Home Assistant, findet Muster und Anomalien und lässt Claude oder jeden MCP-Client Fragen zu deinem Zuhause beantworten. Nur lesend, auf deiner eigenen Hardware.",
+   "cta1": "Kostenlos installieren",
+   "cta2": "So funktioniert es",
+   "note": "Apache 2.0 · kein Konto nötig · Daten bleiben zu Hause",
+   "q": "Warum hat die Wärmepumpe im Oktober mehr verbraucht als letztes Jahr?",
+   "a": "Im Oktober <span class='data'>412 kWh</span> statt <span class='data'>349 kWh</span> (+18 %). Der größte Teil folgt der Außentemperatur (<span class='data'>r = 0,71</span>, 2 h Verzug). An 9 Tagen lief die Abtauung doppelt so oft wie üblich, seit dem Firmware-Update am 14. Okt.",
+   "you": "Du",
+   "hm": "Claude mit xomtra",
+   "f_h": "Was xomtra zu Home Assistant hinzufügt",
+   "f_s": "Home Assistant zeigt dir die Gegenwart. xomtra macht aus der Historie Antworten.",
+   "feats": [
+    [
+     "jahre",
+     "Jahre an Historie",
+     "Zustände und Statistiken über Monate oder Jahre in komprimierten Parquet-Dateien, ohne die Datenbank von Home Assistant zu belasten."
+    ],
+    [
+     "täglich",
+     "Täglich neue Erkenntnisse",
+     "Entitätskatalog, Datenqualität, Zusammenhänge zwischen Geräten und Anomalien, fertig bevor du fragst."
+    ],
+    [
+     "nur lesen",
+     "Sicher by Design",
+     "Die KI kann lesen, aber nichts schalten. Rollen für Familienmitglieder, jede Abfrage wird protokolliert."
+    ]
+   ],
+   "qs_h": "Typische Fragen",
+   "qs": [
+    "Welche Geräte verbrauchen nachts Strom, wenn niemand zu Hause ist?",
+    "Hat sich die Luftfeuchte im Schlafzimmer seit den neuen Fenstern verändert?",
+    "Wie viel vom Verbrauch im letzten Monat hat die PV-Anlage gedeckt?",
+    "Welche Sensoren melden sich diese Woche nicht mehr?"
+   ],
+   "in_h": "Installieren, wo Home Assistant schon läuft",
+   "in_s": "Wähle die passende Variante. Alle sind kostenlos.",
+   "inst": [
+    [
+     "Home Assistant Add-on",
+     "Für Home Assistant OS auf SSD mit mindestens 4 GB RAM.",
+     "Einstellungen → Add-ons → Repository hinzufügen"
+    ],
+    [
+     "Proxmox VE",
+     "Fertige VM, mit einem Befehl auf dem Host angelegt.",
+     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
+    ],
+    [
+     "VMware",
+     "OVA-Appliance für ESXi, vSphere oder Workstation.",
+     "OVF-Vorlage bereitstellen → xomtra.ova"
+    ],
+    [
+     "Docker Compose",
+     "Für deinen eigenen Linux-Server oder NAS.",
+     "docker compose up -d"
+    ]
+   ],
+   "c_h": "Im Vergleich",
+   "c_cols": [
+    "",
+    "Eingebauter MCP-Server von HA",
+    "xomtra"
+   ],
+   "c_rows": [
+    [
+     "Historie",
+     "Recorder-Zeitraum (meist 10 Tage)",
+     "Monate bis Jahre"
+    ],
+    [
+     "Analyse",
+     "Nur Rohdaten",
+     "Zusammenhänge, Anomalien, Wochenbericht"
+    ],
+    [
+     "Kann Geräte schalten",
+     "Ja (Admin)",
+     "Nein, nur lesend"
+    ],
+    [
+     "Rollen und Audit",
+     "Nur Admins",
+     "Reader / Admin, vollständiges Protokoll"
+    ],
+    [
+     "Last auf Home Assistant",
+     "Abfragen gehen an die HA-Datenbank",
+     "Eigener Speicher"
+    ]
+   ],
+   "faq_h": "Fragen",
+   "faq": [
+    [
+     "Brauche ich Claude?",
+     "Nein. xomtra funktioniert mit Claude Desktop, Claude.ai und jedem MCP-Client. Dein KI-Abo gehört dir, xomtra bezahlt oder sieht es nicht."
+    ],
+    [
+     "Verlassen meine Daten das Haus?",
+     "Nur die Antworten, die dein KI-Client unter deinem Konto anfragt. xomtra selbst sendet nichts, außer du aktivierst die anonyme Installationszählung."
+    ],
+    [
+     "Wie viel Speicher braucht es?",
+     "Ein typischer Haushalt braucht 2–5 GB für 90 Tage Zustände und 5 Jahre Stundenstatistiken. Große Installationen mit jahrelangen Zuständen nutzen besser die Proxmox- oder VMware-Appliance."
+    ],
+    [
+     "Gehört xomtra zu Home Assistant?",
+     "Nein. xomtra ist ein unabhängiges Open-Source-Projekt für Home Assistant."
+    ]
+   ],
+   "foot": "xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zur Open Home Foundation oder zu Nabu Casa. Home Assistant ist eine Marke ihrer Inhaber."
+  },
+  "cs": {
+   "pre_eyebrow": "Veřejná beta již brzy · pro Home Assistant",
+   "pre_cta": "Dejte mi vědět",
+   "pre_inst": "K dispozici s veřejnou betou. Napište na support@xomtra.com a ozveme se.",
+   "nav": [
+    "Jak to funguje",
+    "Instalace",
+    "Otázky"
+   ],
+   "st_h": "Spuštěno ve třech krocích",
+   "st_s": "Od stažení k první odpovědi obvykle do 15 minut.",
+   "steps": [
+    [
+     "Instalace",
+     "Doplněk, Proxmox, VMware nebo Docker. Bez domény, bez přesměrování portů, bez cloudového účtu."
+    ],
+    [
+     "Připojení",
+     "V administraci vytvořte token a jedním souborem přidejte xomtru do Claude Desktop."
+    ],
+    [
+     "Ptejte se",
+     "Historie se načítá na pozadí. První otázku můžete položit hned."
+    ]
+   ],
+   "eyebrow": "Open source · pro Home Assistant",
+   "h1": "Zeptejte se domu, co se doopravdy stalo.",
+   "lead": "xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.",
+   "cta1": "Nainstalovat zdarma",
+   "cta2": "Jak to funguje",
+   "note": "Apache 2.0 · bez registrace · data zůstávají doma",
+   "q": "Proč tepelné čerpadlo v říjnu spotřebovalo víc než loni?",
+   "a": "V říjnu <span class='data'>412 kWh</span> proti <span class='data'>349 kWh</span> (+18 %). Většina rozdílu odpovídá venkovní teplotě (<span class='data'>r = 0,71</span>, zpoždění 2 h). V 9 dnech běželo odmrazování dvakrát častěji než obvykle, od aktualizace firmwaru 14. 10.",
+   "you": "Vy",
+   "hm": "Claude s xomtrou",
+   "f_h": "Co xomtra přidává k Home Assistantu",
+   "f_s": "Home Assistant ukazuje přítomnost. xomtra z historie dělá odpovědi.",
+   "feats": [
+    [
+     "roky",
+     "Roky historie",
+     "Stavy a statistiky na měsíce i roky v komprimovaných Parquet souborech, bez zátěže databáze Home Assistantu."
+    ],
+    [
+     "denně",
+     "Nálezy každý den",
+     "Katalog entit, kvalita dat, souvislosti mezi zařízeními a anomálie, připravené dřív, než se zeptáte."
+    ],
+    [
+     "jen čtení",
+     "Bezpečný z principu",
+     "AI může číst, ale nic nesepne. Role pro členy rodiny a záznam každého dotazu."
+    ]
+   ],
+   "qs_h": "Na co se lidé ptají",
+   "qs": [
+    "Která zařízení berou v noci proud, když nikdo není doma?",
+    "Změnila se vlhkost v ložnici od výměny oken?",
+    "Kolik ze spotřeby minulého měsíce pokryla fotovoltaika?",
+    "Které senzory tento týden přestaly hlásit?"
+   ],
+   "in_h": "Nainstalujte tam, kde už Home Assistant běží",
+   "in_s": "Vyberte variantu, která vám sedí. Všechny jsou zdarma.",
+   "inst": [
+    [
+     "Doplněk Home Assistantu",
+     "Pro Home Assistant OS na SSD se 4 GB RAM a více.",
+     "Nastavení → Doplňky → Přidat repozitář"
+    ],
+    [
+     "Proxmox VE",
+     "Hotový virtuální stroj, vytvoří ho jeden příkaz na hostiteli.",
+     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
+    ],
+    [
+     "VMware",
+     "OVA appliance pro ESXi, vSphere nebo Workstation.",
+     "Deploy OVF Template → xomtra.ova"
+    ],
+    [
+     "Docker Compose",
+     "Pro vlastní linuxový server nebo NAS.",
+     "docker compose up -d"
+    ]
+   ],
+   "c_h": "Srovnání",
+   "c_cols": [
+    "",
+    "Vestavěný MCP server HA",
+    "xomtra"
+   ],
+   "c_rows": [
+    [
+     "Historie",
+     "Okno recorderu (typicky 10 dní)",
+     "Měsíce až roky"
+    ],
+    [
+     "Analýzy",
+     "Jen surová data",
+     "Souvislosti, anomálie, týdenní shrnutí"
+    ],
+    [
+     "Může ovládat zařízení",
+     "Ano (admin)",
+     "Ne, jen čte"
+    ],
+    [
+     "Role a audit",
+     "Jen admini",
+     "Reader / Admin, úplný záznam"
+    ],
+    [
+     "Zátěž Home Assistantu",
+     "Dotazy jdou do databáze HA",
+     "Vlastní úložiště"
+    ]
+   ],
+   "faq_h": "Otázky",
+   "faq": [
+    [
+     "Potřebuji Clauda?",
+     "Ne. xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
+    ],
+    [
+     "Odcházejí moje data z domu?",
+     "Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. xomtra sama nic neodesílá, pokud nezapnete anonymní počítání instalací."
+    ],
+    [
+     "Kolik potřebuje místa na disku?",
+     "Typická domácnost 2–5 GB na 90 dní stavů a 5 let hodinových statistik. Velké instalace s roky stavů patří na appliance pro Proxmox nebo VMware."
+    ],
+    [
+     "Je to součást Home Assistantu?",
+     "Ne. xomtra je nezávislý open source projekt pro Home Assistant."
+    ]
+   ],
+   "foot": "xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků."
+  },
+  "pl": {
+   "pre_eyebrow": "Publiczna beta już wkrótce · dla Home Assistant",
+   "pre_cta": "Powiadom mnie",
+   "pre_inst": "Dostępne w publicznej becie. Napisz na support@xomtra.com, damy znać.",
+   "nav": [
+    "Jak to działa",
+    "Instalacja",
+    "Pytania"
+   ],
+   "st_h": "Gotowe w trzech krokach",
+   "st_s": "Zwykle poniżej 15 minut od pobrania do pierwszej odpowiedzi.",
+   "steps": [
+    [
+     "Instalacja",
+     "Dodatek, Proxmox, VMware lub Docker. Bez domeny, bez przekierowania portów, bez konta w chmurze."
+    ],
+    [
+     "Połączenie",
+     "Utwórz token w panelu administracyjnym i dodaj xomtrę do Claude Desktop jednym plikiem."
+    ],
+    [
+     "Pytaj",
+     "Historia importuje się w tle. Zadaj pierwsze pytanie od razu."
+    ]
+   ],
+   "eyebrow": "Open source · dla Home Assistant",
+   "h1": "Zapytaj swój dom, co naprawdę się wydarzyło.",
+   "lead": "xomtra przechowuje lata historii Twojego Home Assistanta, znajduje w niej zależności i anomalie, a Claude lub dowolny klient MCP odpowiada na pytania o Twój dom. Tylko do odczytu, na Twoim własnym sprzęcie.",
+   "cta1": "Zainstaluj za darmo",
+   "cta2": "Jak to działa",
+   "note": "Apache 2.0 · bez zakładania konta · dane zostają w domu",
+   "q": "Dlaczego pompa ciepła zużyła w październiku więcej niż rok temu?",
+   "a": "W październiku <span class='data'>412 kWh</span> wobec <span class='data'>349 kWh</span> (+18 %). Większość różnicy wynika z temperatury zewnętrznej (<span class='data'>r = 0,71</span>, opóźnienie 2 h). Przez 9 dni odszranianie włączało się dwa razy częściej niż zwykle, od aktualizacji firmware 14.10.",
+   "you": "Ty",
+   "hm": "Claude z xomtrą",
+   "f_h": "Co xomtra dodaje do Home Assistanta",
+   "f_s": "Home Assistant pokazuje teraźniejszość. xomtra zamienia historię w odpowiedzi.",
+   "feats": [
+    [
+     "lata",
+     "Lata historii",
+     "Stany i statystyki przez miesiące lub lata w skompresowanych plikach Parquet, bez obciążania bazy Home Assistanta."
+    ],
+    [
+     "codziennie",
+     "Wnioski każdego dnia",
+     "Katalog encji, jakość danych, zależności między urządzeniami i anomalie, gotowe zanim zapytasz."
+    ],
+    [
+     "tylko odczyt",
+     "Bezpieczny z założenia",
+     "AI może czytać, ale niczego nie przełączy. Role dla domowników i zapis każdego zapytania."
+    ]
+   ],
+   "qs_h": "O co pytają użytkownicy",
+   "qs": [
+    "Które urządzenia pobierają prąd w nocy, gdy nikogo nie ma w domu?",
+    "Czy wilgotność w sypialni zmieniła się od wymiany okien?",
+    "Jaką część zużycia z zeszłego miesiąca pokryła fotowoltaika?",
+    "Które czujniki przestały raportować w tym tygodniu?"
+   ],
+   "in_h": "Zainstaluj tam, gdzie już działa Home Assistant",
+   "in_s": "Wybierz wariant, który pasuje do Twojej instalacji. Wszystkie są darmowe.",
+   "inst": [
+    [
+     "Dodatek Home Assistant",
+     "Dla Home Assistant OS na dysku SSD z co najmniej 4 GB RAM.",
+     "Ustawienia → Dodatki → Dodaj repozytorium"
+    ],
+    [
+     "Proxmox VE",
+     "Gotowa maszyna wirtualna, tworzona jednym poleceniem na hoście.",
+     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
+    ],
+    [
+     "VMware",
+     "Appliance OVA dla ESXi, vSphere lub Workstation.",
+     "Deploy OVF Template → xomtra.ova"
+    ],
+    [
+     "Docker Compose",
+     "Dla własnego serwera Linux lub NAS.",
+     "docker compose up -d"
+    ]
+   ],
+   "c_h": "Porównanie",
+   "c_cols": [
+    "",
+    "Wbudowany serwer MCP w HA",
+    "xomtra"
+   ],
+   "c_rows": [
+    [
+     "Historia",
+     "Okno recordera (zwykle 10 dni)",
+     "Od miesięcy do lat"
+    ],
+    [
+     "Analiza",
+     "Tylko surowe dane",
+     "Zależności, anomalie, podsumowanie tygodnia"
+    ],
+    [
+     "Może sterować urządzeniami",
+     "Tak (admin)",
+     "Nie, tylko odczyt"
+    ],
+    [
+     "Role i audyt",
+     "Tylko administratorzy",
+     "Reader / Admin, pełny dziennik"
+    ],
+    [
+     "Obciążenie Home Assistanta",
+     "Zapytania trafiają do bazy HA",
+     "Osobny magazyn danych"
+    ]
+   ],
+   "faq_h": "Pytania",
+   "faq": [
+    [
+     "Czy potrzebuję Claude?",
+     "Nie. xomtra działa z Claude Desktop, Claude.ai i każdym klientem MCP. Subskrypcja AI jest Twoja, xomtra za nią nie płaci i jej nie widzi."
+    ],
+    [
+     "Czy moje dane opuszczają dom?",
+     "Tylko odpowiedzi, o które prosi Twój klient AI w ramach Twojego konta. Sama xomtra niczego nie wysyła, chyba że włączysz anonimowe liczenie instalacji."
+    ],
+    [
+     "Ile miejsca na dysku potrzebuje?",
+     "Typowy dom potrzebuje 2–5 GB na 90 dni stanów i 5 lat statystyk godzinowych. Duże instalacje z wieloletnią historią stanów powinny użyć appliance dla Proxmox lub VMware."
+    ],
+    [
+     "Czy to część Home Assistanta?",
+     "Nie. xomtra to niezależny projekt open source dla Home Assistanta."
+    ]
+   ],
+   "foot": "xomtra to niezależny projekt open source, niezwiązany z Open Home Foundation ani Nabu Casa. Home Assistant jest znakiem towarowym jego właścicieli."
+  },
+  "nl": {
+   "pre_eyebrow": "Publieke bèta binnenkort · voor Home Assistant",
+   "pre_cta": "Houd me op de hoogte",
+   "pre_inst": "Beschikbaar bij de publieke bèta. Mail naar support@xomtra.com en we laten het je weten.",
+   "nav": [
+    "Zo werkt het",
+    "Installeren",
+    "FAQ"
+   ],
+   "st_h": "Draait in drie stappen",
+   "st_s": "Meestal binnen 15 minuten van download tot je eerste antwoord.",
+   "steps": [
+    [
+     "Installeren",
+     "Add-on, Proxmox, VMware of Docker. Geen domein, geen port forwarding, geen cloudaccount."
+    ],
+    [
+     "Verbinden",
+     "Maak een token aan op de beheerpagina en voeg xomtra met één bestand toe aan Claude Desktop."
+    ],
+    [
+     "Vragen",
+     "De geschiedenis wordt op de achtergrond ingelezen. Stel meteen je eerste vraag."
+    ]
+   ],
+   "eyebrow": "Open source · voor Home Assistant",
+   "h1": "Vraag je huis wat er echt gebeurd is.",
+   "lead": "xomtra bewaart jarenlang de geschiedenis van je Home Assistant, vindt verbanden en afwijkingen en laat Claude of een andere MCP-client vragen over je huis beantwoorden. Alleen-lezen, op je eigen hardware.",
+   "cta1": "Gratis installeren",
+   "cta2": "Zo werkt het",
+   "note": "Apache 2.0 · geen account nodig · data blijft thuis",
+   "q": "Waarom verbruikte de warmtepomp in oktober meer dan vorig jaar?",
+   "a": "In oktober <span class='data'>412 kWh</span> tegenover <span class='data'>349 kWh</span> (+18 %). Het grootste deel van het verschil volgt de buitentemperatuur (<span class='data'>r = 0,71</span>, 2 u vertraging). Op 9 dagen ontdooide de pomp twee keer zo vaak als normaal, sinds de firmware-update van 14 okt.",
+   "you": "Jij",
+   "hm": "Claude met xomtra",
+   "f_h": "Wat xomtra toevoegt aan Home Assistant",
+   "f_s": "Home Assistant laat je het heden zien. xomtra maakt van de geschiedenis antwoorden.",
+   "feats": [
+    [
+     "jaren",
+     "Jaren aan geschiedenis",
+     "Statussen en statistieken maanden of jaren bewaard in gecomprimeerde Parquet-bestanden, zonder de database van Home Assistant te belasten."
+    ],
+    [
+     "dagelijks",
+     "Elke dag bevindingen",
+     "Entiteitencatalogus, controle van datakwaliteit, verbanden tussen apparaten en afwijkingen, klaar voordat je het vraagt."
+    ],
+    [
+     "alleen-lezen",
+     "Veilig ontworpen",
+     "AI kan lezen, maar schakelt nooit iets. Rollen voor gezinsleden en elke vraag wordt gelogd."
+    ]
+   ],
+   "qs_h": "Wat mensen vragen",
+   "qs": [
+    "Welke apparaten verbruiken 's nachts stroom als er niemand thuis is?",
+    "Is de luchtvochtigheid in de slaapkamer veranderd sinds de nieuwe ramen?",
+    "Hoeveel van het verbruik van vorige maand dekten de zonnepanelen?",
+    "Welke sensoren zijn deze week gestopt met rapporteren?"
+   ],
+   "in_h": "Installeer waar Home Assistant al draait",
+   "in_s": "Kies de variant die bij je opstelling past. Ze zijn allemaal gratis.",
+   "inst": [
+    [
+     "Home Assistant add-on",
+     "Voor Home Assistant OS op een SSD met minstens 4 GB RAM.",
+     "Instellingen → Add-ons → Repository toevoegen"
+    ],
+    [
+     "Proxmox VE",
+     "Kant-en-klare virtuele machine, aangemaakt met één commando op de host.",
+     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
+    ],
+    [
+     "VMware",
+     "OVA-appliance voor ESXi, vSphere of Workstation.",
+     "Deploy OVF Template → xomtra.ova"
+    ],
+    [
+     "Docker Compose",
+     "Voor je eigen Linux-server of NAS.",
+     "docker compose up -d"
+    ]
+   ],
+   "c_h": "Vergelijking",
+   "c_cols": [
+    "",
+    "Ingebouwde MCP-server van HA",
+    "xomtra"
+   ],
+   "c_rows": [
+    [
+     "Geschiedenis",
+     "Recorder-venster (meestal 10 dagen)",
+     "Maanden tot jaren"
+    ],
+    [
+     "Analyse",
+     "Alleen ruwe data",
+     "Verbanden, afwijkingen, weekoverzicht"
+    ],
+    [
+     "Kan apparaten bedienen",
+     "Ja (admin)",
+     "Nee, alleen-lezen"
+    ],
+    [
+     "Rollen en audit",
+     "Alleen admins",
+     "Reader / Admin, volledig auditlog"
+    ],
+    [
+     "Belasting van Home Assistant",
+     "Vragen gaan naar de HA-database",
+     "Eigen opslag"
+    ]
+   ],
+   "faq_h": "Vragen",
+   "faq": [
+    [
+     "Heb ik Claude nodig?",
+     "Nee. xomtra werkt met Claude Desktop, Claude.ai en elke client die MCP spreekt. Je AI-abonnement is van jou; xomtra betaalt of ziet het niet."
+    ],
+    [
+     "Verlaat mijn data het huis?",
+     "Alleen de antwoorden die je AI-client onder jouw account opvraagt. xomtra zelf verstuurt niets, tenzij je het anoniem tellen van installaties aanzet."
+    ],
+    [
+     "Hoeveel schijfruimte is nodig?",
+     "Een gemiddeld huis heeft 2–5 GB nodig voor 90 dagen statussen en 5 jaar uurstatistieken. Grote installaties met jaren aan statussen kunnen beter de Proxmox- of VMware-appliance gebruiken."
+    ],
+    [
+     "Hoort het bij Home Assistant?",
+     "Nee. xomtra is een onafhankelijk open-sourceproject voor Home Assistant."
+    ]
+   ],
+   "foot": "xomtra is een onafhankelijk open-sourceproject en niet verbonden aan de Open Home Foundation of Nabu Casa. Home Assistant is een handelsmerk van de eigenaren."
+  }
+ },
+ "LEG": {
+  "en": [
+   "this year",
+   "last year"
+  ],
+  "de": [
+   "dieses Jahr",
+   "letztes Jahr"
+  ],
+  "cs": [
+   "letos",
+   "loni"
+  ],
+  "pl": [
+   "w tym roku",
+   "w zeszłym roku"
+  ],
+  "nl": [
+   "dit jaar",
+   "vorig jaar"
+  ]
+ }
+}

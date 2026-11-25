@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 40" role="img" aria-label="Xomtra" xmlns:c2pa="http://c2pa.org/manifest">
-  <!-- Light-background variant of the Xomtra logo. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 40" role="img" aria-label="xomtra" xmlns:c2pa="http://c2pa.org/manifest">
+  <!-- Light-background variant of the xomtra logo. -->
   <rect x="0" y="0" width="40" height="40" rx="10" fill="#0d0e12"/>
   <path d="M7 30 C16 30 24 10 33 10" fill="none" stroke="#7d8bff" stroke-width="4" stroke-linecap="round"/>
   <path d="M7 10 C16 10 24 30 33 30" fill="none" stroke="#eceef3" stroke-width="4" stroke-linecap="round"/>
