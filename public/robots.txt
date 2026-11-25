@@ -1,4 +1,4 @@
-# Xomtra welcomes search engines and AI crawlers.
+# xomtra welcomes search engines and AI crawlers.
 User-agent: *
 Allow: /
 

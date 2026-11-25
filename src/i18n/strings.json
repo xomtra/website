@@ -18,7 +18,7 @@
     ],
     [
      "Connect",
-     "Create a token on the admin page and add Xomtra to Claude Desktop with one file."
+     "Create a token on the admin page and add xomtra to Claude Desktop with one file."
     ],
     [
      "Ask",
@@ -27,16 +27,16 @@
    ],
    "eyebrow": "Open source · for Home Assistant",
    "h1": "Ask your house what really happened.",
-   "lead": "Xomtra keeps years of your Home Assistant history, finds patterns and anomalies, and lets Claude or any MCP client answer questions about your home. Read-only, running on your own hardware.",
+   "lead": "xomtra keeps years of your Home Assistant history, finds patterns and anomalies, and lets Claude or any MCP client answer questions about your home. Read-only, running on your own hardware.",
    "cta1": "Install free",
    "cta2": "See how it works",
    "note": "Apache 2.0 · no account needed · data stays at home",
    "q": "Why did the heat pump use more energy in October than last year?",
    "a": "October used <span class='data'>412 kWh</span> vs <span class='data'>349 kWh</span> (+18 %). Most of the difference follows outside temperature (<span class='data'>r = 0.71</span>, 2 h lag). On 9 days the defrost cycle ran twice as often as usual, starting after the firmware update on 14 Oct.",
    "you": "You",
-   "hm": "Claude with Xomtra",
-   "f_h": "What Xomtra adds to Home Assistant",
-   "f_s": "Home Assistant shows you the present. Xomtra turns its history into answers.",
+   "hm": "Claude with xomtra",
+   "f_h": "What xomtra adds to Home Assistant",
+   "f_s": "Home Assistant shows you the present. xomtra turns its history into answers.",
    "feats": [
     [
      "years",
@@ -89,7 +89,7 @@
    "c_cols": [
     "",
     "Built-in HA MCP server",
-    "Xomtra"
+    "xomtra"
    ],
    "c_rows": [
     [
@@ -122,11 +122,11 @@
    "faq": [
     [
      "Do I need Claude?",
-     "No. Xomtra works with Claude Desktop, Claude.ai and any client that speaks MCP. Your AI subscription is your own; Xomtra never pays or sees it."
+     "No. xomtra works with Claude Desktop, Claude.ai and any client that speaks MCP. Your AI subscription is your own; xomtra never pays or sees it."
     ],
     [
      "Does my data leave the house?",
-     "Only the answers your AI client asks for, under your account. Xomtra itself sends nothing anywhere unless you turn on anonymous install counting."
+     "Only the answers your AI client asks for, under your account. xomtra itself sends nothing anywhere unless you turn on anonymous install counting."
     ],
     [
      "How much disk does it need?",
@@ -134,10 +134,10 @@
     ],
     [
      "Is it affiliated with Home Assistant?",
-     "No. Xomtra is an independent open source project built for Home Assistant."
+     "No. xomtra is an independent open source project built for Home Assistant."
     ]
    ],
-   "foot": "Xomtra is an independent open source project, not affiliated with the Open Home Foundation or Nabu Casa. Home Assistant is a trademark of its owners."
+   "foot": "xomtra is an independent open source project, not affiliated with the Open Home Foundation or Nabu Casa. Home Assistant is a trademark of its owners."
   },
   "de": {
    "pre_eyebrow": "Öffentliche Beta bald verfügbar · für Home Assistant",
@@ -157,7 +157,7 @@
     ],
     [
      "Verbinden",
-     "Token auf der Admin-Seite erstellen und Xomtra mit einer Datei zu Claude Desktop hinzufügen."
+     "Token auf der Admin-Seite erstellen und xomtra mit einer Datei zu Claude Desktop hinzufügen."
     ],
     [
      "Fragen",
@@ -166,16 +166,16 @@
    ],
    "eyebrow": "Open Source · für Home Assistant",
    "h1": "Frag dein Haus, was wirklich passiert ist.",
-   "lead": "Xomtra speichert jahrelang die Historie deines Home Assistant, findet Muster und Anomalien und lässt Claude oder jeden MCP-Client Fragen zu deinem Zuhause beantworten. Nur lesend, auf deiner eigenen Hardware.",
+   "lead": "xomtra speichert jahrelang die Historie deines Home Assistant, findet Muster und Anomalien und lässt Claude oder jeden MCP-Client Fragen zu deinem Zuhause beantworten. Nur lesend, auf deiner eigenen Hardware.",
    "cta1": "Kostenlos installieren",
    "cta2": "So funktioniert es",
    "note": "Apache 2.0 · kein Konto nötig · Daten bleiben zu Hause",
    "q": "Warum hat die Wärmepumpe im Oktober mehr verbraucht als letztes Jahr?",
    "a": "Im Oktober <span class='data'>412 kWh</span> statt <span class='data'>349 kWh</span> (+18 %). Der größte Teil folgt der Außentemperatur (<span class='data'>r = 0,71</span>, 2 h Verzug). An 9 Tagen lief die Abtauung doppelt so oft wie üblich, seit dem Firmware-Update am 14. Okt.",
    "you": "Du",
-   "hm": "Claude mit Xomtra",
-   "f_h": "Was Xomtra zu Home Assistant hinzufügt",
-   "f_s": "Home Assistant zeigt dir die Gegenwart. Xomtra macht aus der Historie Antworten.",
+   "hm": "Claude mit xomtra",
+   "f_h": "Was xomtra zu Home Assistant hinzufügt",
+   "f_s": "Home Assistant zeigt dir die Gegenwart. xomtra macht aus der Historie Antworten.",
    "feats": [
     [
      "jahre",
@@ -228,7 +228,7 @@
    "c_cols": [
     "",
     "Eingebauter MCP-Server von HA",
-    "Xomtra"
+    "xomtra"
    ],
    "c_rows": [
     [
@@ -261,22 +261,22 @@
    "faq": [
     [
      "Brauche ich Claude?",
-     "Nein. Xomtra funktioniert mit Claude Desktop, Claude.ai und jedem MCP-Client. Dein KI-Abo gehört dir, Xomtra bezahlt oder sieht es nicht."
+     "Nein. xomtra funktioniert mit Claude Desktop, Claude.ai und jedem MCP-Client. Dein KI-Abo gehört dir, xomtra bezahlt oder sieht es nicht."
     ],
     [
      "Verlassen meine Daten das Haus?",
-     "Nur die Antworten, die dein KI-Client unter deinem Konto anfragt. Xomtra selbst sendet nichts, außer du aktivierst die anonyme Installationszählung."
+     "Nur die Antworten, die dein KI-Client unter deinem Konto anfragt. xomtra selbst sendet nichts, außer du aktivierst die anonyme Installationszählung."
     ],
     [
      "Wie viel Speicher braucht es?",
      "Ein typischer Haushalt braucht 2–5 GB für 90 Tage Zustände und 5 Jahre Stundenstatistiken. Große Installationen mit jahrelangen Zuständen nutzen besser die Proxmox- oder VMware-Appliance."
     ],
     [
-     "Gehört Xomtra zu Home Assistant?",
-     "Nein. Xomtra ist ein unabhängiges Open-Source-Projekt für Home Assistant."
+     "Gehört xomtra zu Home Assistant?",
+     "Nein. xomtra ist ein unabhängiges Open-Source-Projekt für Home Assistant."
     ]
    ],
-   "foot": "Xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zur Open Home Foundation oder zu Nabu Casa. Home Assistant ist eine Marke ihrer Inhaber."
+   "foot": "xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zur Open Home Foundation oder zu Nabu Casa. Home Assistant ist eine Marke ihrer Inhaber."
   },
   "cs": {
    "pre_eyebrow": "Veřejná beta již brzy · pro Home Assistant",
@@ -296,7 +296,7 @@
     ],
     [
      "Připojení",
-     "V administraci vytvořte token a jedním souborem přidejte Xomtru do Claude Desktop."
+     "V administraci vytvořte token a jedním souborem přidejte xomtru do Claude Desktop."
     ],
     [
      "Ptejte se",
@@ -305,16 +305,16 @@
    ],
    "eyebrow": "Open source · pro Home Assistant",
    "h1": "Zeptejte se domu, co se doopravdy stalo.",
-   "lead": "Xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.",
+   "lead": "xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.",
    "cta1": "Nainstalovat zdarma",
    "cta2": "Jak to funguje",
    "note": "Apache 2.0 · bez registrace · data zůstávají doma",
    "q": "Proč tepelné čerpadlo v říjnu spotřebovalo víc než loni?",
    "a": "V říjnu <span class='data'>412 kWh</span> proti <span class='data'>349 kWh</span> (+18 %). Většina rozdílu odpovídá venkovní teplotě (<span class='data'>r = 0,71</span>, zpoždění 2 h). V 9 dnech běželo odmrazování dvakrát častěji než obvykle, od aktualizace firmwaru 14. 10.",
    "you": "Vy",
-   "hm": "Claude s Xomtrou",
-   "f_h": "Co Xomtra přidává k Home Assistantu",
-   "f_s": "Home Assistant ukazuje přítomnost. Xomtra z historie dělá odpovědi.",
+   "hm": "Claude s xomtrou",
+   "f_h": "Co xomtra přidává k Home Assistantu",
+   "f_s": "Home Assistant ukazuje přítomnost. xomtra z historie dělá odpovědi.",
    "feats": [
     [
      "roky",
@@ -367,7 +367,7 @@
    "c_cols": [
     "",
     "Vestavěný MCP server HA",
-    "Xomtra"
+    "xomtra"
    ],
    "c_rows": [
     [
@@ -400,11 +400,11 @@
    "faq": [
     [
      "Potřebuji Clauda?",
-     "Ne. Xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, Xomtra ho neplatí ani nevidí."
+     "Ne. xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
     ],
     [
      "Odcházejí moje data z domu?",
-     "Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. Xomtra sama nic neodesílá, pokud nezapnete anonymní počítání instalací."
+     "Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. xomtra sama nic neodesílá, pokud nezapnete anonymní počítání instalací."
     ],
     [
      "Kolik potřebuje místa na disku?",
@@ -412,10 +412,10 @@
     ],
     [
      "Je to součást Home Assistantu?",
-     "Ne. Xomtra je nezávislý open source projekt pro Home Assistant."
+     "Ne. xomtra je nezávislý open source projekt pro Home Assistant."
     ]
    ],
-   "foot": "Xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků."
+   "foot": "xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků."
   },
   "pl": {
    "pre_eyebrow": "Publiczna beta już wkrótce · dla Home Assistant",
@@ -435,7 +435,7 @@
     ],
     [
      "Połączenie",
-     "Utwórz token w panelu administracyjnym i dodaj Xomtrę do Claude Desktop jednym plikiem."
+     "Utwórz token w panelu administracyjnym i dodaj xomtrę do Claude Desktop jednym plikiem."
     ],
     [
      "Pytaj",
@@ -444,16 +444,16 @@
    ],
    "eyebrow": "Open source · dla Home Assistant",
    "h1": "Zapytaj swój dom, co naprawdę się wydarzyło.",
-   "lead": "Xomtra przechowuje lata historii Twojego Home Assistanta, znajduje w niej zależności i anomalie, a Claude lub dowolny klient MCP odpowiada na pytania o Twój dom. Tylko do odczytu, na Twoim własnym sprzęcie.",
+   "lead": "xomtra przechowuje lata historii Twojego Home Assistanta, znajduje w niej zależności i anomalie, a Claude lub dowolny klient MCP odpowiada na pytania o Twój dom. Tylko do odczytu, na Twoim własnym sprzęcie.",
    "cta1": "Zainstaluj za darmo",
    "cta2": "Jak to działa",
    "note": "Apache 2.0 · bez zakładania konta · dane zostają w domu",
    "q": "Dlaczego pompa ciepła zużyła w październiku więcej niż rok temu?",
    "a": "W październiku <span class='data'>412 kWh</span> wobec <span class='data'>349 kWh</span> (+18 %). Większość różnicy wynika z temperatury zewnętrznej (<span class='data'>r = 0,71</span>, opóźnienie 2 h). Przez 9 dni odszranianie włączało się dwa razy częściej niż zwykle, od aktualizacji firmware 14.10.",
    "you": "Ty",
-   "hm": "Claude z Xomtrą",
-   "f_h": "Co Xomtra dodaje do Home Assistanta",
-   "f_s": "Home Assistant pokazuje teraźniejszość. Xomtra zamienia historię w odpowiedzi.",
+   "hm": "Claude z xomtrą",
+   "f_h": "Co xomtra dodaje do Home Assistanta",
+   "f_s": "Home Assistant pokazuje teraźniejszość. xomtra zamienia historię w odpowiedzi.",
    "feats": [
     [
      "lata",
@@ -506,7 +506,7 @@
    "c_cols": [
     "",
     "Wbudowany serwer MCP w HA",
-    "Xomtra"
+    "xomtra"
    ],
    "c_rows": [
     [
@@ -539,11 +539,11 @@
    "faq": [
     [
      "Czy potrzebuję Claude?",
-     "Nie. Xomtra działa z Claude Desktop, Claude.ai i każdym klientem MCP. Subskrypcja AI jest Twoja, Xomtra za nią nie płaci i jej nie widzi."
+     "Nie. xomtra działa z Claude Desktop, Claude.ai i każdym klientem MCP. Subskrypcja AI jest Twoja, xomtra za nią nie płaci i jej nie widzi."
     ],
     [
      "Czy moje dane opuszczają dom?",
-     "Tylko odpowiedzi, o które prosi Twój klient AI w ramach Twojego konta. Sama Xomtra niczego nie wysyła, chyba że włączysz anonimowe liczenie instalacji."
+     "Tylko odpowiedzi, o które prosi Twój klient AI w ramach Twojego konta. Sama xomtra niczego nie wysyła, chyba że włączysz anonimowe liczenie instalacji."
     ],
     [
      "Ile miejsca na dysku potrzebuje?",
@@ -551,10 +551,10 @@
     ],
     [
      "Czy to część Home Assistanta?",
-     "Nie. Xomtra to niezależny projekt open source dla Home Assistanta."
+     "Nie. xomtra to niezależny projekt open source dla Home Assistanta."
     ]
    ],
-   "foot": "Xomtra to niezależny projekt open source, niezwiązany z Open Home Foundation ani Nabu Casa. Home Assistant jest znakiem towarowym jego właścicieli."
+   "foot": "xomtra to niezależny projekt open source, niezwiązany z Open Home Foundation ani Nabu Casa. Home Assistant jest znakiem towarowym jego właścicieli."
   },
   "nl": {
    "pre_eyebrow": "Publieke bèta binnenkort · voor Home Assistant",
@@ -574,7 +574,7 @@
     ],
     [
      "Verbinden",
-     "Maak een token aan op de beheerpagina en voeg Xomtra met één bestand toe aan Claude Desktop."
+     "Maak een token aan op de beheerpagina en voeg xomtra met één bestand toe aan Claude Desktop."
     ],
     [
      "Vragen",
@@ -583,16 +583,16 @@
    ],
    "eyebrow": "Open source · voor Home Assistant",
    "h1": "Vraag je huis wat er echt gebeurd is.",
-   "lead": "Xomtra bewaart jarenlang de geschiedenis van je Home Assistant, vindt verbanden en afwijkingen en laat Claude of een andere MCP-client vragen over je huis beantwoorden. Alleen-lezen, op je eigen hardware.",
+   "lead": "xomtra bewaart jarenlang de geschiedenis van je Home Assistant, vindt verbanden en afwijkingen en laat Claude of een andere MCP-client vragen over je huis beantwoorden. Alleen-lezen, op je eigen hardware.",
    "cta1": "Gratis installeren",
    "cta2": "Zo werkt het",
    "note": "Apache 2.0 · geen account nodig · data blijft thuis",
    "q": "Waarom verbruikte de warmtepomp in oktober meer dan vorig jaar?",
    "a": "In oktober <span class='data'>412 kWh</span> tegenover <span class='data'>349 kWh</span> (+18 %). Het grootste deel van het verschil volgt de buitentemperatuur (<span class='data'>r = 0,71</span>, 2 u vertraging). Op 9 dagen ontdooide de pomp twee keer zo vaak als normaal, sinds de firmware-update van 14 okt.",
    "you": "Jij",
-   "hm": "Claude met Xomtra",
-   "f_h": "Wat Xomtra toevoegt aan Home Assistant",
-   "f_s": "Home Assistant laat je het heden zien. Xomtra maakt van de geschiedenis antwoorden.",
+   "hm": "Claude met xomtra",
+   "f_h": "Wat xomtra toevoegt aan Home Assistant",
+   "f_s": "Home Assistant laat je het heden zien. xomtra maakt van de geschiedenis antwoorden.",
    "feats": [
     [
      "jaren",
@@ -645,7 +645,7 @@
    "c_cols": [
     "",
     "Ingebouwde MCP-server van HA",
-    "Xomtra"
+    "xomtra"
    ],
    "c_rows": [
     [
@@ -678,11 +678,11 @@
    "faq": [
     [
      "Heb ik Claude nodig?",
-     "Nee. Xomtra werkt met Claude Desktop, Claude.ai en elke client die MCP spreekt. Je AI-abonnement is van jou; Xomtra betaalt of ziet het niet."
+     "Nee. xomtra werkt met Claude Desktop, Claude.ai en elke client die MCP spreekt. Je AI-abonnement is van jou; xomtra betaalt of ziet het niet."
     ],
     [
      "Verlaat mijn data het huis?",
-     "Alleen de antwoorden die je AI-client onder jouw account opvraagt. Xomtra zelf verstuurt niets, tenzij je het anoniem tellen van installaties aanzet."
+     "Alleen de antwoorden die je AI-client onder jouw account opvraagt. xomtra zelf verstuurt niets, tenzij je het anoniem tellen van installaties aanzet."
     ],
     [
      "Hoeveel schijfruimte is nodig?",
@@ -690,10 +690,10 @@
     ],
     [
      "Hoort het bij Home Assistant?",
-     "Nee. Xomtra is een onafhankelijk open-sourceproject voor Home Assistant."
+     "Nee. xomtra is een onafhankelijk open-sourceproject voor Home Assistant."
     ]
    ],
-   "foot": "Xomtra is een onafhankelijk open-sourceproject en niet verbonden aan de Open Home Foundation of Nabu Casa. Home Assistant is een handelsmerk van de eigenaren."
+   "foot": "xomtra is een onafhankelijk open-sourceproject en niet verbonden aan de Open Home Foundation of Nabu Casa. Home Assistant is een handelsmerk van de eigenaren."
   }
  },
  "LEG": {

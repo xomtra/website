@@ -1,6 +1,6 @@
 # xomtra.com
 
-Static website for [Xomtra](https://github.com/xomtra/xomtra), long-term memory for Home Assistant. Built with [Astro](https://astro.build); the output is plain HTML with no JavaScript.
+Static website for [xomtra](https://github.com/xomtra/xomtra), long-term memory for Home Assistant. Built with [Astro](https://astro.build); the output is plain HTML with no JavaScript.
 
 | Path | What |
 |---|---|

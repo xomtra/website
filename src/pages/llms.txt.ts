@@ -6,13 +6,13 @@ import { T, stripTags } from "../i18n";
 export const GET: APIRoute = () => {
   const en = T.en;
   const L: string[] = [
-    "# Xomtra", "", "> " + en.lead, "",
-    "Xomtra is an independent open source project (Apache 2.0) for Home Assistant. It is not affiliated with the Open Home Foundation or Nabu Casa.", "",
+    "# xomtra", "", "> " + en.lead, "",
+    "xomtra is an independent open source project (Apache 2.0) for Home Assistant. It is not affiliated with the Open Home Foundation or Nabu Casa.", "",
     "Status: " + (LAUNCHED ? "public beta." : `public beta coming soon. Contact ${CONTACT} to be notified.`), "",
     "## What it does", "",
     ...en.feats.map((f) => `- **${f[1]}:** ${f[2]}`),
     "", "## Compared with the built-in Home Assistant MCP server", "",
-    "| | Built-in HA MCP server | Xomtra |", "|---|---|---|",
+    "| | Built-in HA MCP server | xomtra |", "|---|---|---|",
     ...en.c_rows.map((r) => `| ${r[0]} | ${r[1]} | ${r[2]} |`),
     "", "## Install", "",
     ...en.inst.map((i) => `- **${i[0]}:** ${i[1]}`),

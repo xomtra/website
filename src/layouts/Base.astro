@@ -13,7 +13,7 @@ const ids = ["how", "install", "faq"];
 const app = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Xomtra",
+  name: "xomtra",
   url: urlFor(lang),
   inLanguage: lang,
   description: t.lead,
@@ -47,7 +47,7 @@ const faq = {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Xomtra">
+<meta property="og:site_name" content="xomtra">
 <meta property="og:url" content={urlFor(lang)}>
 <meta property="og:title" content={title}>
 <meta property="og:description" content={t.lead}>
@@ -63,7 +63,7 @@ const faq = {
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href={pathFor(lang)} aria-label="Xomtra"><Mark /><span>xomtra</span></a>
+  <a class="brand" href={pathFor(lang)} aria-label="xomtra"><Mark /><span>xomtra</span></a>
   <nav class="sec" aria-label="Sections">
     {t.nav.map((n, i) => <a href={`#${ids[i]}-${lang}`}>{n}</a>)}
     <a href={REPO}>GitHub ↗</a>
