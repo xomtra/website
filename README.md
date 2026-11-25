@@ -28,8 +28,8 @@ Needs Node.js 22. The output goes to `dist/` and is not committed.
 - One URL per language with `hreflang`, `canonical`, Open Graph and JSON-LD (`SoftwareApplication`, `FAQPage`).
 - `robots.txt` allows all crawlers, `sitemap.xml` lists all languages, `llms.txt` is a Markdown summary for AI assistants.
 
-## Cloudflare Pages settings
+## Cloudflare
 
-Framework preset: Astro · Build command: `npm run build` · Build output directory: `dist` · Production branch: `main` · Environment variable `NODE_VERSION=22`. On launch day add `PUBLIC_LAUNCHED=1` and redeploy.
+The site is a Cloudflare Worker with static assets (`wrangler.jsonc` serves `dist/`). Workers Builds settings: Build command `npm run build` · Deploy command `npx wrangler deploy` · Production branch `main` · Build variable `NODE_VERSION=22`. On launch day add the build variable `PUBLIC_LAUNCHED=1` and redeploy.
 
 Contact: support@xomtra.com
