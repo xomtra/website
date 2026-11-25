@@ -1,22 +1,26 @@
 # xomtra.com
 
-Static website for [Xomtra](https://github.com/xomtra/xomtra), long-term memory for Home Assistant.
+Static website for [Xomtra](https://github.com/xomtra/xomtra), long-term memory for Home Assistant. Built with [Astro](https://astro.build); the output is plain HTML with no JavaScript.
 
 | Path | What |
 |---|---|
-| `src/template.html` | Source: all texts (EN, DE, CS, PL, NL) and the page design |
-| `tools/build.py` | Builds `public/` from the source |
-| `tools/prerender.mjs` | Renders each page in headless Chromium and saves plain HTML (no JavaScript in the output) |
-| `public/` | The built site. **Cloudflare Pages serves this folder.** |
+| `src/i18n/strings.json` | All texts (EN, DE, CS, PL, NL) |
+| `src/components/`, `src/layouts/` | Page markup |
+| `src/styles/site.css` | Design |
+| `src/pages/` | One page per language (`/`, `/de/`, `/cs/`, `/pl/`, `/nl/`), `sitemap.xml`, `llms.txt` |
+| `src/config.ts` | Site URL, repository, contact, launch switch |
+| `public/` | Static files copied as they are (logo, favicon, `og.png`, `robots.txt`, `_headers`) |
 
 ## Build
 
 ```sh
-python3 tools/build.py                    # pre-launch: "public beta coming soon"
-XOMTRA_LAUNCHED=1 python3 tools/build.py  # launch day
+npm ci
+npm run dev                         # local preview at http://localhost:4321
+npm run build                       # pre-launch: "public beta coming soon"
+PUBLIC_LAUNCHED=1 npm run build     # launch day
 ```
 
-Needs Python 3, Node.js and the `playwright` npm package with Chromium. Commit the changed `public/` together with the source.
+Needs Node.js 22. The output goes to `dist/` and is not committed.
 
 ## Search engines and AI assistants
 
@@ -26,6 +30,6 @@ Needs Python 3, Node.js and the `playwright` npm package with Chromium. Commit t
 
 ## Cloudflare Pages settings
 
-Framework preset: None · Build command: empty · Build output directory: `public` · Production branch: `main`.
+Framework preset: Astro · Build command: `npm run build` · Build output directory: `dist` · Production branch: `main` · Environment variable `NODE_VERSION=22`. On launch day add `PUBLIC_LAUNCHED=1` and redeploy.
 
 Contact: support@xomtra.com

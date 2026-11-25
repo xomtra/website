@@ -1,0 +1,67 @@
+---
+import { LAUNCHED, NOTIFY, type Lang } from "../config";
+import { T, LEG } from "../i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = T[lang];
+const pts = "0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 250,20 275,13 300,15";
+---
+<div class="hero" id="top">
+  <svg class="art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-40 520 C 380 520, 760 90, 1240 80" stroke="var(--accent)" stroke-opacity=".28"/><path d="M-40 90 C 380 90, 760 520, 1240 520" stroke="var(--ink)" stroke-opacity=".12"/></svg>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><i></i>{LAUNCHED ? t.eyebrow : t.pre_eyebrow}</span>
+      <h1>{t.h1}</h1>
+      <p class="lead">{t.lead}</p>
+      <div class="ctas">
+        <a class="btn primary" href={LAUNCHED ? `#install-${lang}` : NOTIFY}>{LAUNCHED ? t.cta1 : t.pre_cta} →</a>
+        <a class="btn" href={`#how-${lang}`}>{t.cta2}</a>
+      </div>
+      <p class="note">{t.note}</p>
+    </div>
+    <div class="console" aria-label="Example">
+      <div class="bar"><b></b><b></b><b></b><span>xomtra · example</span><em>● read-only</em></div>
+      <div class="body">
+        <div class="msg q"><span class="who">{t.you}</span>{t.q}</div>
+        <div class="msg a"><span class="who">{t.hm}</span><Fragment set:html={t.a} />
+          <svg class="spark" viewBox="0 0 300 64" preserveAspectRatio="none" role="img" aria-label="kWh"><g stroke="var(--line)" stroke-width="1"><line x1="0" y1="16" x2="300" y2="16"/><line x1="0" y1="40" x2="300" y2="40"/><line x1="0" y1="63" x2="300" y2="63"/></g><polyline fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-dasharray="3 3" points="0,44 25,42 50,45 75,40 100,43 125,39 150,41 175,37 200,40 225,38 250,36 275,39 300,37"/><polygon fill="var(--signal)" fill-opacity=".12" points={`${pts} 300,64 0,64`}/><polyline fill="none" stroke="var(--signal)" stroke-width="2.2" points={pts}/><circle cx="296" cy="15" r="3.5" fill="var(--signal)"/></svg>
+          <div class="legend"><span style="--c:var(--signal)">{LEG[lang][0]}</span><span style="--c:var(--muted)">{LEG[lang][1]}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id={`steps-${lang}`}><div class="wrap">
+  <h2>{t.st_h}</h2><p class="sub">{t.st_s}</p>
+  <div class="steps">{t.steps.map((s, i) => <div class="step"><span class="n">0{i + 1}</span><h3>{s[0]}</h3><p>{s[1]}</p></div>)}</div>
+</div></section>
+
+<section id={`how-${lang}`}><div class="wrap">
+  <h2>{t.f_h}</h2><p class="sub">{t.f_s}</p>
+  <div class="grid">{t.feats.map((f) => <div class="feat"><span class="k">{f[0]}</span><h3>{f[1]}</h3><p>{f[2]}</p></div>)}</div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>{t.qs_h}</h2><div style="height:20px"></div>
+  <ul class="qs">{t.qs.map((q) => <li>{q}</li>)}</ul>
+</div></section>
+
+<section id={`install-${lang}`}><div class="wrap">
+  <h2>{t.in_h}</h2><p class="sub">{LAUNCHED ? t.in_s : t.pre_inst}</p>
+  <div class="install">{t.inst.map((i) => <div class="inst"><h3>{i[0]}</h3><p>{i[1]}</p><code>{i[2]}</code></div>)}</div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>{t.c_h}</h2><div style="height:20px"></div>
+  <div class="cmp"><table>
+    <thead><tr>{t.c_cols.map((c) => <th>{c}</th>)}</tr></thead>
+    <tbody>{t.c_rows.map((r) => <tr><td>{r[0]}</td><td class="n">{r[1]}</td><td class="y">{r[2]}</td></tr>)}</tbody>
+  </table></div>
+</div></section>
+
+<section id={`faq-${lang}`}><div class="wrap faq">
+  <h2>{t.faq_h}</h2><div style="height:12px"></div>
+  {t.faq.map((f) => <details><summary>{f[0]}</summary><p>{f[1]}</p></details>)}
+</div></section>
