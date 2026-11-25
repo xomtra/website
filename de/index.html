@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Xomtra · Langzeitgedächtnis für Home Assistant</title>
+<meta name="description" content="Xomtra speichert jahrelang die Historie deines Home Assistant, findet Muster und Anomalien und lässt Claude oder jeden MCP-Client Fragen zu deinem Zuhause beantworten. Nur lesend, auf deiner eigenen Hardware.">
+<link rel="canonical" href="https://xomtra.com/de/">
+<link rel="alternate" hreflang="en" href="https://xomtra.com/">
+<link rel="alternate" hreflang="de" href="https://xomtra.com/de/">
+<link rel="alternate" hreflang="cs" href="https://xomtra.com/cs/">
+<link rel="alternate" hreflang="pl" href="https://xomtra.com/pl/">
+<link rel="alternate" hreflang="nl" href="https://xomtra.com/nl/">
+<link rel="alternate" hreflang="x-default" href="https://xomtra.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xomtra.com/de/">
+<meta property="og:title" content="Xomtra · Langzeitgedächtnis für Home Assistant">
+<meta property="og:description" content="Xomtra speichert jahrelang die Historie deines Home Assistant, findet Muster und Anomalien und lässt Claude oder jeden MCP-Client Fragen zu deinem Zuhause beantworten. Nur lesend, auf deiner eigenen Hardware.">
+<meta property="og:image" content="https://xomtra.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0c0f">
+<style>body{margin:0}</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: graphite single-column bands; hero = pitch + console-style answer panel over faint crossing-series line art; data and commands in mono */
+:root{
+  --bg:#0b0c0f; --surface:#121419; --raise:#181b21; --line:#252932; --ink:#eceef3; --muted:#959cab;
+  --accent:#7d8bff; --accent-ink:#0b0c0f; --signal:#ffb547; --ok:#5fd4a0;
+  --sans:"Geist","Segoe UI",system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:30px;height:30px;flex:none}
+.brand span{font:600 21px/1 var(--sans);letter-spacing:-.045em}
+nav.sec{display:flex;gap:18px;margin-left:auto}
+nav.sec a{color:var(--muted);text-decoration:none;font-size:14px}
+nav.sec a:hover{color:var(--ink)}
+nav.lang{display:flex;gap:2px;border:1px solid var(--line);border-radius:8px;padding:2px}
+nav.lang a{font:500 12px/1 var(--mono);color:var(--muted);text-decoration:none;padding:6px 8px;border-radius:6px;letter-spacing:.06em}
+nav.lang a[aria-current="true"]{background:var(--raise);color:var(--ink)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero .art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .art path{fill:none;stroke-width:1.4;stroke-linecap:round}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;padding-block:72px 64px;align-items:center}
+.hero .wrap>*{min-width:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:7px 11px}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 22%,transparent)}
+h1{font:600 clamp(36px,5.4vw,60px)/1.02 var(--sans);letter-spacing:-.045em;margin:20px 0 20px;text-wrap:balance}
+.lead{font-size:18px;color:var(--muted);max-width:33em;margin:0 0 28px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 15px/1 var(--sans);padding:13px 18px;border-radius:9px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn:hover{border-color:var(--muted)}
+.note{font:400 12.5px/1.5 var(--mono);color:var(--muted);margin-top:18px;letter-spacing:.01em}
+
+.console{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.console .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font:500 12px/1 var(--mono);color:var(--muted)}
+.console .bar b{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.console .bar em{margin-left:auto;font-style:normal;color:var(--ok)}
+.console .body{padding:16px;display:flex;flex-direction:column;gap:12px}
+.msg{border-radius:10px;padding:12px 14px;font-size:15px}
+.msg.q{background:var(--raise);align-self:flex-end;max-width:88%}
+.msg.a{border:1px solid var(--line)}
+.who{display:block;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:7px}
+.data{font-family:var(--mono);font-size:13.5px;color:var(--signal);font-variant-numeric:tabular-nums}
+.spark{width:100%;height:64px;margin-top:10px;display:block}
+.legend{display:flex;gap:14px;font:400 11px/1 var(--mono);color:var(--muted);margin-top:6px}
+.legend span::before{content:"";display:inline-block;width:12px;height:2px;vertical-align:middle;margin-right:6px;background:var(--c)}
+
+section{padding-block:72px;border-bottom:1px solid var(--line)}
+.kick{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+h2{font:600 clamp(28px,3.6vw,40px)/1.08 var(--sans);letter-spacing:-.035em;margin:0 0 12px;text-wrap:balance}
+.sub{color:var(--muted);max-width:40em;margin:0 0 36px}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.step{padding:26px 24px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.step+.step{border-left:1px solid var(--line)}
+.step .n{font:500 13px/1 var(--mono);color:var(--accent);display:flex;align-items:center;gap:10px}
+.step .n::after{content:"";flex:1;height:1px;background:var(--line)}
+.step h3{font:600 20px/1.2 var(--sans);letter-spacing:-.02em;margin:0}
+.step p{margin:0;color:var(--muted);font-size:15px}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}
+.feat{border-top:1px solid var(--line);padding-top:20px}
+.feat .k{font:500 12px/1 var(--mono);color:var(--signal);display:block;margin-bottom:12px;letter-spacing:.04em}
+.feat h3{font:600 18px/1.3 var(--sans);letter-spacing:-.015em;margin:0 0 8px}
+.feat p{margin:0;color:var(--muted);font-size:15px}
+
+.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;padding:0;margin:0}
+.qs li{border:1px solid var(--line);border-radius:10px;padding:14px 16px 14px 40px;font-size:15px;position:relative;background:var(--surface)}
+.qs li::before{content:"›";position:absolute;left:16px;top:12px;font:500 17px/1.2 var(--mono);color:var(--accent)}
+
+.install{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.inst{border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--surface);display:flex;flex-direction:column;gap:8px;min-width:0}
+.inst h3{font:600 16px/1.3 var(--sans);margin:0}
+.inst p{margin:0;font-size:14px;color:var(--muted);flex:1}
+.inst code{font:400 12px/1.5 var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:8px 10px;border-radius:7px;overflow-x:auto;display:block;white-space:nowrap;margin-top:6px}
+.inst code::before{content:"$ ";color:var(--muted)}
+
+.cmp{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:500 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:var(--surface)}
+th:last-child{color:var(--accent)}
+td.n{color:var(--muted)} td.y{color:var(--ink);font-weight:500}
+
+.faq{max-width:760px}
+details{border-bottom:1px solid var(--line);padding-block:16px}
+summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 18px/1 var(--mono);color:var(--muted)}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin:10px 0 0;max-width:46em}
+
+footer .wrap{display:flex;gap:16px 28px;flex-wrap:wrap;align-items:center;padding-block:32px;color:var(--muted);font-size:13px}
+footer .brand span{font-size:17px}
+footer .brand svg{width:24px;height:24px}
+footer p{margin:0;flex:1;min-width:240px}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero .art path{stroke-dasharray:1600;animation:draw 2.4s ease-out both}
+  .hero .art path+path{animation-delay:.25s}
+  @keyframes draw{from{stroke-dashoffset:1600}to{stroke-dashoffset:0}}
+}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px;padding-block:48px}
+  .grid,.steps{grid-template-columns:1fr}
+  .step+.step{border-left:0;border-top:1px solid var(--line)}
+  .install{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .qs{grid-template-columns:1fr}
+  nav.sec{display:none}
+  nav.lang{margin-left:auto}
+}
+@media (max-width:520px){.install{grid-template-columns:1fr} section{padding-block:52px}}
+</style>
+
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#top" aria-label="Xomtra">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><rect x=".5" y=".5" width="39" height="39" rx="10" fill="var(--surface)" stroke="var(--line)"/><path d="M7 30 C16 30 24 10 33 10" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><path d="M7 10 C16 10 24 30 33 30" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="20" cy="20" r="4.2" fill="var(--signal)" stroke="var(--surface)" stroke-width="2"/></svg>
+    <span>xomtra</span>
+  </a>
+  <nav class="sec" aria-label="Sections"><span id="sec" style="display:contents"></span><a href="https://github.com/xomtra/xomtra">GitHub ↗</a></nav>
+  <nav class="lang" aria-label="Language">
+    <a href="/" data-l="en">EN</a><a href="/de/" data-l="de">DE</a><a href="/cs/" data-l="cs">CS</a><a href="/pl/" data-l="pl">PL</a><a href="/nl/" data-l="nl">NL</a>
+  </nav>
+</div></header>
+
+<main id="app"></main>
+
+<footer><div class="wrap">
+  <span class="brand"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x=".5" y=".5" width="39" height="39" rx="10" fill="var(--surface)" stroke="var(--line)"/><path d="M7 30 C16 30 24 10 33 10" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><path d="M7 10 C16 10 24 30 33 30" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="20" cy="20" r="4.2" fill="var(--signal)" stroke="var(--surface)" stroke-width="2"/></svg><span>xomtra</span></span>
+  <p id="foot"></p>
+  <span style="font-family:var(--mono)"><a href="https://github.com/xomtra/xomtra" style="text-decoration:none">GitHub</a> · Apache 2.0 · support@xomtra.com</span>
+</div></footer>
+
+<script>
+const T = {
+en:{
+ pre_eyebrow:"Public beta coming soon · for Home Assistant", pre_cta:"Get notified", pre_inst:"Available at the public beta. Write to support@xomtra.com and we will let you know.",
+ nav:["How it works","Install","FAQ"],
+ st_h:"Running in three steps", st_s:"Usually under 15 minutes from download to your first answer.",
+ steps:[["Install","Add-on, Proxmox, VMware or Docker. No domain, no port forwarding, no cloud account."],["Connect","Create a token on the admin page and add Xomtra to Claude Desktop with one file."],["Ask","History imports in the background. Ask your first question right away."]],
+ eyebrow:"Open source · for Home Assistant",
+ h1:"Ask your house what really happened.",
+ lead:"Xomtra keeps years of your Home Assistant history, finds patterns and anomalies, and lets Claude or any MCP client answer questions about your home. Read-only, running on your own hardware.",
+ cta1:"Install free", cta2:"See how it works",
+ note:"Apache 2.0 · no account needed · data stays at home",
+ q:"Why did the heat pump use more energy in October than last year?",
+ a:"October used <span class='data'>412 kWh</span> vs <span class='data'>349 kWh</span> (+18 %). Most of the difference follows outside temperature (<span class='data'>r = 0.71</span>, 2 h lag). On 9 days the defrost cycle ran twice as often as usual, starting after the firmware update on 14 Oct.",
+ you:"You", hm:"Claude with Xomtra",
+ f_h:"What Xomtra adds to Home Assistant", f_s:"Home Assistant shows you the present. Xomtra turns its history into answers.",
+ feats:[
+  ["years","Years of history","States and statistics kept for months or years in compressed Parquet files, without loading the Home Assistant database."],
+  ["daily","Findings every day","Entity catalog, data quality checks, correlations between devices and anomalies, ready before you ask."],
+  ["read-only","Safe by design","AI can read, never switch anything. Roles for family members, and every query is logged."]],
+ qs_h:"Questions people ask", qs:[
+  "Which devices use power at night when nobody is home?",
+  "Has the bedroom humidity changed since we got the new windows?",
+  "How much did the solar panels cover of last month's consumption?",
+  "Which sensors stopped reporting this week?"],
+ in_h:"Install where Home Assistant already runs", in_s:"Pick the option that fits your setup. All of them are free.",
+ inst:[
+  ["Home Assistant add-on","For Home Assistant OS on an SSD with 4 GB RAM or more.","Settings → Add-ons → Add repository"],
+  ["Proxmox VE","Ready virtual machine, created by one command on the host.","bash -c \"$(curl -fsSL …/proxmox.sh)\""],
+  ["VMware","OVA appliance for ESXi, vSphere or Workstation.","Deploy OVF Template → xomtra.ova"],
+  ["Docker Compose","For your own Linux server or NAS.","docker compose up -d"]],
+ c_h:"How it compares", c_cols:["","Built-in HA MCP server","Xomtra"],
+ c_rows:[["History","Recorder window (typically 10 days)","Months to years"],["Analysis","Raw data only","Correlations, anomalies, weekly summary"],["Can control devices","Yes (admin)","No, read-only"],["Roles and audit","Admins only","Reader / Admin, full audit log"],["Load on Home Assistant","Queries hit the HA database","Separate storage"]],
+ faq_h:"Questions",
+ faq:[["Do I need Claude?","No. Xomtra works with Claude Desktop, Claude.ai and any client that speaks MCP. Your AI subscription is your own; Xomtra never pays or sees it."],
+  ["Does my data leave the house?","Only the answers your AI client asks for, under your account. Xomtra itself sends nothing anywhere unless you turn on anonymous install counting."],
+  ["How much disk does it need?","A typical home needs 2–5 GB for 90 days of states and 5 years of hourly statistics. Large setups with years of states should use the Proxmox or VMware appliance."],
+  ["Is it affiliated with Home Assistant?","No. Xomtra is an independent open source project built for Home Assistant."]],
+ foot:"Xomtra is an independent open source project, not affiliated with the Open Home Foundation or Nabu Casa. Home Assistant is a trademark of its owners."
+},
+de:{
+ pre_eyebrow:"Öffentliche Beta bald verfügbar · für Home Assistant", pre_cta:"Benachrichtigen", pre_inst:"Verfügbar mit der öffentlichen Beta. Schreib an support@xomtra.com, wir melden uns.",
+ nav:["Funktionsweise","Installation","FAQ"],
+ st_h:"In drei Schritten startklar", st_s:"Meist unter 15 Minuten vom Download bis zur ersten Antwort.",
+ steps:[["Installieren","Add-on, Proxmox, VMware oder Docker. Keine Domain, keine Portfreigabe, kein Cloud-Konto."],["Verbinden","Token auf der Admin-Seite erstellen und Xomtra mit einer Datei zu Claude Desktop hinzufügen."],["Fragen","Die Historie wird im Hintergrund importiert. Stell sofort deine erste Frage."]],
+ eyebrow:"Open Source · für Home Assistant",
+ h1:"Frag dein Haus, was wirklich passiert ist.",
+ lead:"Xomtra speichert jahrelang die Historie deines Home Assistant, findet Muster und Anomalien und lässt Claude oder jeden MCP-Client Fragen zu deinem Zuhause beantworten. Nur lesend, auf deiner eigenen Hardware.",
+ cta1:"Kostenlos installieren", cta2:"So funktioniert es",
+ note:"Apache 2.0 · kein Konto nötig · Daten bleiben zu Hause",
+ q:"Warum hat die Wärmepumpe im Oktober mehr verbraucht als letztes Jahr?",
+ a:"Im Oktober <span class='data'>412 kWh</span> statt <span class='data'>349 kWh</span> (+18 %). Der größte Teil folgt der Außentemperatur (<span class='data'>r = 0,71</span>, 2 h Verzug). An 9 Tagen lief die Abtauung doppelt so oft wie üblich, seit dem Firmware-Update am 14. Okt.",
+ you:"Du", hm:"Claude mit Xomtra",
+ f_h:"Was Xomtra zu Home Assistant hinzufügt", f_s:"Home Assistant zeigt dir die Gegenwart. Xomtra macht aus der Historie Antworten.",
+ feats:[
+  ["jahre","Jahre an Historie","Zustände und Statistiken über Monate oder Jahre in komprimierten Parquet-Dateien, ohne die Datenbank von Home Assistant zu belasten."],
+  ["täglich","Täglich neue Erkenntnisse","Entitätskatalog, Datenqualität, Zusammenhänge zwischen Geräten und Anomalien, fertig bevor du fragst."],
+  ["nur lesen","Sicher by Design","Die KI kann lesen, aber nichts schalten. Rollen für Familienmitglieder, jede Abfrage wird protokolliert."]],
+ qs_h:"Typische Fragen", qs:[
+  "Welche Geräte verbrauchen nachts Strom, wenn niemand zu Hause ist?",
+  "Hat sich die Luftfeuchte im Schlafzimmer seit den neuen Fenstern verändert?",
+  "Wie viel vom Verbrauch im letzten Monat hat die PV-Anlage gedeckt?",
+  "Welche Sensoren melden sich diese Woche nicht mehr?"],
+ in_h:"Installieren, wo Home Assistant schon läuft", in_s:"Wähle die passende Variante. Alle sind kostenlos.",
+ inst:[
+  ["Home Assistant Add-on","Für Home Assistant OS auf SSD mit mindestens 4 GB RAM.","Einstellungen → Add-ons → Repository hinzufügen"],
+  ["Proxmox VE","Fertige VM, mit einem Befehl auf dem Host angelegt.","bash -c \"$(curl -fsSL …/proxmox.sh)\""],
+  ["VMware","OVA-Appliance für ESXi, vSphere oder Workstation.","OVF-Vorlage bereitstellen → xomtra.ova"],
+  ["Docker Compose","Für deinen eigenen Linux-Server oder NAS.","docker compose up -d"]],
+ c_h:"Im Vergleich", c_cols:["","Eingebauter MCP-Server von HA","Xomtra"],
+ c_rows:[["Historie","Recorder-Zeitraum (meist 10 Tage)","Monate bis Jahre"],["Analyse","Nur Rohdaten","Zusammenhänge, Anomalien, Wochenbericht"],["Kann Geräte schalten","Ja (Admin)","Nein, nur lesend"],["Rollen und Audit","Nur Admins","Reader / Admin, vollständiges Protokoll"],["Last auf Home Assistant","Abfragen gehen an die HA-Datenbank","Eigener Speicher"]],
+ faq_h:"Fragen",
+ faq:[["Brauche ich Claude?","Nein. Xomtra funktioniert mit Claude Desktop, Claude.ai und jedem MCP-Client. Dein KI-Abo gehört dir, Xomtra bezahlt oder sieht es nicht."],
+  ["Verlassen meine Daten das Haus?","Nur die Antworten, die dein KI-Client unter deinem Konto anfragt. Xomtra selbst sendet nichts, außer du aktivierst die anonyme Installationszählung."],
+  ["Wie viel Speicher braucht es?","Ein typischer Haushalt braucht 2–5 GB für 90 Tage Zustände und 5 Jahre Stundenstatistiken. Große Installationen mit jahrelangen Zuständen nutzen besser die Proxmox- oder VMware-Appliance."],
+  ["Gehört Xomtra zu Home Assistant?","Nein. Xomtra ist ein unabhängiges Open-Source-Projekt für Home Assistant."]],
+ foot:"Xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zur Open Home Foundation oder zu Nabu Casa. Home Assistant ist eine Marke ihrer Inhaber."
+},
+cs:{
+ pre_eyebrow:"Veřejná beta již brzy · pro Home Assistant", pre_cta:"Dejte mi vědět", pre_inst:"K dispozici s veřejnou betou. Napište na support@xomtra.com a ozveme se.",
+ nav:["Jak to funguje","Instalace","Otázky"],
+ st_h:"Spuštěno ve třech krocích", st_s:"Od stažení k první odpovědi obvykle do 15 minut.",
+ steps:[["Instalace","Doplněk, Proxmox, VMware nebo Docker. Bez domény, bez přesměrování portů, bez cloudového účtu."],["Připojení","V administraci vytvořte token a jedním souborem přidejte Xomtru do Claude Desktop."],["Ptejte se","Historie se načítá na pozadí. První otázku můžete položit hned."]],
+ eyebrow:"Open source · pro Home Assistant",
+ h1:"Zeptejte se domu, co se doopravdy stalo.",
+ lead:"Xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.",
+ cta1:"Nainstalovat zdarma", cta2:"Jak to funguje",
+ note:"Apache 2.0 · bez registrace · data zůstávají doma",
+ q:"Proč tepelné čerpadlo v říjnu spotřebovalo víc než loni?",
+ a:"V říjnu <span class='data'>412 kWh</span> proti <span class='data'>349 kWh</span> (+18 %). Většina rozdílu odpovídá venkovní teplotě (<span class='data'>r = 0,71</span>, zpoždění 2 h). V 9 dnech běželo odmrazování dvakrát častěji než obvykle, od aktualizace firmwaru 14. 10.",
+ you:"Vy", hm:"Claude s Xomtrou",
+ f_h:"Co Xomtra přidává k Home Assistantu", f_s:"Home Assistant ukazuje přítomnost. Xomtra z historie dělá odpovědi.",
+ feats:[
+  ["roky","Roky historie","Stavy a statistiky na měsíce i roky v komprimovaných Parquet souborech, bez zátěže databáze Home Assistantu."],
+  ["denně","Nálezy každý den","Katalog entit, kvalita dat, souvislosti mezi zařízeními a anomálie, připravené dřív, než se zeptáte."],
+  ["jen čtení","Bezpečný z principu","AI může číst, ale nic nesepne. Role pro členy rodiny a záznam každého dotazu."]],
+ qs_h:"Na co se lidé ptají", qs:[
+  "Která zařízení berou v noci proud, když nikdo není doma?",
+  "Změnila se vlhkost v ložnici od výměny oken?",
+  "Kolik ze spotřeby minulého měsíce pokryla fotovoltaika?",
+  "Které senzory tento týden přestaly hlásit?"],
+ in_h:"Nainstalujte tam, kde už Home Assistant běží", in_s:"Vyberte variantu, která vám sedí. Všechny jsou zdarma.",
+ inst:[
+  ["Doplněk Home Assistantu","Pro Home Assistant OS na SSD se 4 GB RAM a více.","Nastavení → Doplňky → Přidat repozitář"],
+  ["Proxmox VE","Hotový virtuální stroj, vytvoří ho jeden příkaz na hostiteli.","bash -c \"$(curl -fsSL …/proxmox.sh)\""],
+  ["VMware","OVA appliance pro ESXi, vSphere nebo Workstation.","Deploy OVF Template → xomtra.ova"],
+  ["Docker Compose","Pro vlastní linuxový server nebo NAS.","docker compose up -d"]],
+ c_h:"Srovnání", c_cols:["","Vestavěný MCP server HA","Xomtra"],
+ c_rows:[["Historie","Okno recorderu (typicky 10 dní)","Měsíce až roky"],["Analýzy","Jen surová data","Souvislosti, anomálie, týdenní shrnutí"],["Může ovládat zařízení","Ano (admin)","Ne, jen čte"],["Role a audit","Jen admini","Reader / Admin, úplný záznam"],["Zátěž Home Assistantu","Dotazy jdou do databáze HA","Vlastní úložiště"]],
+ faq_h:"Otázky",
+ faq:[["Potřebuji Clauda?","Ne. Xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, Xomtra ho neplatí ani nevidí."],
+  ["Odcházejí moje data z domu?","Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. Xomtra sama nic neodesílá, pokud nezapnete anonymní počítání instalací."],
+  ["Kolik potřebuje místa na disku?","Typická domácnost 2–5 GB na 90 dní stavů a 5 let hodinových statistik. Velké instalace s roky stavů patří na appliance pro Proxmox nebo VMware."],
+  ["Je to součást Home Assistantu?","Ne. Xomtra je nezávislý open source projekt pro Home Assistant."]],
+ foot:"Xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků."
+},
+pl:{
+ pre_eyebrow:"Publiczna beta już wkrótce · dla Home Assistant", pre_cta:"Powiadom mnie", pre_inst:"Dostępne w publicznej becie. Napisz na support@xomtra.com, damy znać.",
+ nav:["Jak to działa","Instalacja","Pytania"],
+ st_h:"Gotowe w trzech krokach", st_s:"Zwykle poniżej 15 minut od pobrania do pierwszej odpowiedzi.",
+ steps:[["Instalacja","Dodatek, Proxmox, VMware lub Docker. Bez domeny, bez przekierowania portów, bez konta w chmurze."],["Połączenie","Utwórz token w panelu administracyjnym i dodaj Xomtrę do Claude Desktop jednym plikiem."],["Pytaj","Historia importuje się w tle. Zadaj pierwsze pytanie od razu."]],
+ eyebrow:"Open source · dla Home Assistant",
+ h1:"Zapytaj swój dom, co naprawdę się wydarzyło.",
+ lead:"Xomtra przechowuje lata historii Twojego Home Assistanta, znajduje w niej zależności i anomalie, a Claude lub dowolny klient MCP odpowiada na pytania o Twój dom. Tylko do odczytu, na Twoim własnym sprzęcie.",
+ cta1:"Zainstaluj za darmo", cta2:"Jak to działa",
+ note:"Apache 2.0 · bez zakładania konta · dane zostają w domu",
+ q:"Dlaczego pompa ciepła zużyła w październiku więcej niż rok temu?",
+ a:"W październiku <span class='data'>412 kWh</span> wobec <span class='data'>349 kWh</span> (+18 %). Większość różnicy wynika z temperatury zewnętrznej (<span class='data'>r = 0,71</span>, opóźnienie 2 h). Przez 9 dni odszranianie włączało się dwa razy częściej niż zwykle, od aktualizacji firmware 14.10.",
+ you:"Ty", hm:"Claude z Xomtrą",
+ f_h:"Co Xomtra dodaje do Home Assistanta", f_s:"Home Assistant pokazuje teraźniejszość. Xomtra zamienia historię w odpowiedzi.",
+ feats:[
+  ["lata","Lata historii","Stany i statystyki przez miesiące lub lata w skompresowanych plikach Parquet, bez obciążania bazy Home Assistanta."],
+  ["codziennie","Wnioski każdego dnia","Katalog encji, jakość danych, zależności między urządzeniami i anomalie, gotowe zanim zapytasz."],
+  ["tylko odczyt","Bezpieczny z założenia","AI może czytać, ale niczego nie przełączy. Role dla domowników i zapis każdego zapytania."]],
+ qs_h:"O co pytają użytkownicy", qs:[
+  "Które urządzenia pobierają prąd w nocy, gdy nikogo nie ma w domu?",
+  "Czy wilgotność w sypialni zmieniła się od wymiany okien?",
+  "Jaką część zużycia z zeszłego miesiąca pokryła fotowoltaika?",
+  "Które czujniki przestały raportować w tym tygodniu?"],
+ in_h:"Zainstaluj tam, gdzie już działa Home Assistant", in_s:"Wybierz wariant, który pasuje do Twojej instalacji. Wszystkie są darmowe.",
+ inst:[
+  ["Dodatek Home Assistant","Dla Home Assistant OS na dysku SSD z co najmniej 4 GB RAM.","Ustawienia → Dodatki → Dodaj repozytorium"],
+  ["Proxmox VE","Gotowa maszyna wirtualna, tworzona jednym poleceniem na hoście.","bash -c \"$(curl -fsSL …/proxmox.sh)\""],
+  ["VMware","Appliance OVA dla ESXi, vSphere lub Workstation.","Deploy OVF Template → xomtra.ova"],
+  ["Docker Compose","Dla własnego serwera Linux lub NAS.","docker compose up -d"]],
+ c_h:"Porównanie", c_cols:["","Wbudowany serwer MCP w HA","Xomtra"],
+ c_rows:[["Historia","Okno recordera (zwykle 10 dni)","Od miesięcy do lat"],["Analiza","Tylko surowe dane","Zależności, anomalie, podsumowanie tygodnia"],["Może sterować urządzeniami","Tak (admin)","Nie, tylko odczyt"],["Role i audyt","Tylko administratorzy","Reader / Admin, pełny dziennik"],["Obciążenie Home Assistanta","Zapytania trafiają do bazy HA","Osobny magazyn danych"]],
+ faq_h:"Pytania",
+ faq:[["Czy potrzebuję Claude?","Nie. Xomtra działa z Claude Desktop, Claude.ai i każdym klientem MCP. Subskrypcja AI jest Twoja, Xomtra za nią nie płaci i jej nie widzi."],
+  ["Czy moje dane opuszczają dom?","Tylko odpowiedzi, o które prosi Twój klient AI w ramach Twojego konta. Sama Xomtra niczego nie wysyła, chyba że włączysz anonimowe liczenie instalacji."],
+  ["Ile miejsca na dysku potrzebuje?","Typowy dom potrzebuje 2–5 GB na 90 dni stanów i 5 lat statystyk godzinowych. Duże instalacje z wieloletnią historią stanów powinny użyć appliance dla Proxmox lub VMware."],
+  ["Czy to część Home Assistanta?","Nie. Xomtra to niezależny projekt open source dla Home Assistanta."]],
+ foot:"Xomtra to niezależny projekt open source, niezwiązany z Open Home Foundation ani Nabu Casa. Home Assistant jest znakiem towarowym jego właścicieli."
+},
+nl:{
+ pre_eyebrow:"Publieke bèta binnenkort · voor Home Assistant", pre_cta:"Houd me op de hoogte", pre_inst:"Beschikbaar bij de publieke bèta. Mail naar support@xomtra.com en we laten het je weten.",
+ nav:["Zo werkt het","Installeren","FAQ"],
+ st_h:"Draait in drie stappen", st_s:"Meestal binnen 15 minuten van download tot je eerste antwoord.",
+ steps:[["Installeren","Add-on, Proxmox, VMware of Docker. Geen domein, geen port forwarding, geen cloudaccount."],["Verbinden","Maak een token aan op de beheerpagina en voeg Xomtra met één bestand toe aan Claude Desktop."],["Vragen","De geschiedenis wordt op de achtergrond ingelezen. Stel meteen je eerste vraag."]],
+ eyebrow:"Open source · voor Home Assistant",
+ h1:"Vraag je huis wat er echt gebeurd is.",
+ lead:"Xomtra bewaart jarenlang de geschiedenis van je Home Assistant, vindt verbanden en afwijkingen en laat Claude of een andere MCP-client vragen over je huis beantwoorden. Alleen-lezen, op je eigen hardware.",
+ cta1:"Gratis installeren", cta2:"Zo werkt het",
+ note:"Apache 2.0 · geen account nodig · data blijft thuis",
+ q:"Waarom verbruikte de warmtepomp in oktober meer dan vorig jaar?",
+ a:"In oktober <span class='data'>412 kWh</span> tegenover <span class='data'>349 kWh</span> (+18 %). Het grootste deel van het verschil volgt de buitentemperatuur (<span class='data'>r = 0,71</span>, 2 u vertraging). Op 9 dagen ontdooide de pomp twee keer zo vaak als normaal, sinds de firmware-update van 14 okt.",
+ you:"Jij", hm:"Claude met Xomtra",
+ f_h:"Wat Xomtra toevoegt aan Home Assistant", f_s:"Home Assistant laat je het heden zien. Xomtra maakt van de geschiedenis antwoorden.",
+ feats:[
+  ["jaren","Jaren aan geschiedenis","Statussen en statistieken maanden of jaren bewaard in gecomprimeerde Parquet-bestanden, zonder de database van Home Assistant te belasten."],
+  ["dagelijks","Elke dag bevindingen","Entiteitencatalogus, controle van datakwaliteit, verbanden tussen apparaten en afwijkingen, klaar voordat je het vraagt."],
+  ["alleen-lezen","Veilig ontworpen","AI kan lezen, maar schakelt nooit iets. Rollen voor gezinsleden en elke vraag wordt gelogd."]],
+ qs_h:"Wat mensen vragen", qs:[
+  "Welke apparaten verbruiken 's nachts stroom als er niemand thuis is?",
+  "Is de luchtvochtigheid in de slaapkamer veranderd sinds de nieuwe ramen?",
+  "Hoeveel van het verbruik van vorige maand dekten de zonnepanelen?",
+  "Welke sensoren zijn deze week gestopt met rapporteren?"],
+ in_h:"Installeer waar Home Assistant al draait", in_s:"Kies de variant die bij je opstelling past. Ze zijn allemaal gratis.",
+ inst:[
+  ["Home Assistant add-on","Voor Home Assistant OS op een SSD met minstens 4 GB RAM.","Instellingen → Add-ons → Repository toevoegen"],
+  ["Proxmox VE","Kant-en-klare virtuele machine, aangemaakt met één commando op de host.","bash -c \"$(curl -fsSL …/proxmox.sh)\""],
+  ["VMware","OVA-appliance voor ESXi, vSphere of Workstation.","Deploy OVF Template → xomtra.ova"],
+  ["Docker Compose","Voor je eigen Linux-server of NAS.","docker compose up -d"]],
+ c_h:"Vergelijking", c_cols:["","Ingebouwde MCP-server van HA","Xomtra"],
+ c_rows:[["Geschiedenis","Recorder-venster (meestal 10 dagen)","Maanden tot jaren"],["Analyse","Alleen ruwe data","Verbanden, afwijkingen, weekoverzicht"],["Kan apparaten bedienen","Ja (admin)","Nee, alleen-lezen"],["Rollen en audit","Alleen admins","Reader / Admin, volledig auditlog"],["Belasting van Home Assistant","Vragen gaan naar de HA-database","Eigen opslag"]],
+ faq_h:"Vragen",
+ faq:[["Heb ik Claude nodig?","Nee. Xomtra werkt met Claude Desktop, Claude.ai en elke client die MCP spreekt. Je AI-abonnement is van jou; Xomtra betaalt of ziet het niet."],
+  ["Verlaat mijn data het huis?","Alleen de antwoorden die je AI-client onder jouw account opvraagt. Xomtra zelf verstuurt niets, tenzij je het anoniem tellen van installaties aanzet."],
+  ["Hoeveel schijfruimte is nodig?","Een gemiddeld huis heeft 2–5 GB nodig voor 90 dagen statussen en 5 jaar uurstatistieken. Grote installaties met jaren aan statussen kunnen beter de Proxmox- of VMware-appliance gebruiken."],
+  ["Hoort het bij Home Assistant?","Nee. Xomtra is een onafhankelijk open-sourceproject voor Home Assistant."]],
+ foot:"Xomtra is een onafhankelijk open-sourceproject en niet verbonden aan de Open Home Foundation of Nabu Casa. Home Assistant is een handelsmerk van de eigenaren."
+}};
+const LAUNCHED = false; // přepnout na true v den vydání
+const NOTIFY = "mailto:support@xomtra.com?subject=Xomtra%20beta";
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LEG = {en:["this year","last year"],de:["dieses Jahr","letztes Jahr"],cs:["letos","loni"],pl:["w tym roku","w zeszłym roku"],nl:["dit jaar","vorig jaar"]};
+const spark = `<svg class="spark" viewBox="0 0 300 64" preserveAspectRatio="none" role="img" aria-label="kWh"><g stroke="var(--line)" stroke-width="1"><line x1="0" y1="16" x2="300" y2="16"/><line x1="0" y1="40" x2="300" y2="40"/><line x1="0" y1="63" x2="300" y2="63"/></g><polyline fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-dasharray="3 3" points="0,44 25,42 50,45 75,40 100,43 125,39 150,41 175,37 200,40 225,38 250,36 275,39 300,37"/><polygon fill="var(--signal)" fill-opacity=".12" points="0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 250,20 275,13 300,15 300,64 0,64"/><polyline fill="none" stroke="var(--signal)" stroke-width="2.2" points="0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 250,20 275,13 300,15"/><circle cx="296" cy="15" r="3.5" fill="var(--signal)"/></svg>`;
+const art = `<svg class="art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-40 520 C 380 520, 760 90, 1240 80" stroke="var(--accent)" stroke-opacity=".28"/><path d="M-40 90 C 380 90, 760 520, 1240 520" stroke="var(--ink)" stroke-opacity=".12"/></svg>`;
+
+function render(l){
+  const t = T[l];
+  document.documentElement.lang = l;
+  document.querySelectorAll("nav.lang a").forEach(a => a.setAttribute("aria-current", a.dataset.l === l ? "true" : "false"));
+  const ids = ["how","install","faq"];
+  document.getElementById("sec").innerHTML = t.nav.map((n,i)=>`<a href="#${ids[i]}-${l}">${esc(n)}</a>`).join("");
+  document.getElementById("app").innerHTML = `
+  <div class="hero" id="top">${art}<div class="wrap">
+    <div>
+      <span class="eyebrow"><i></i>${esc(LAUNCHED ? t.eyebrow : t.pre_eyebrow)}</span>
+      <h1>${esc(t.h1)}</h1>
+      <p class="lead">${esc(t.lead)}</p>
+      <div class="ctas"><a class="btn primary" href="${LAUNCHED ? "#install-"+l : NOTIFY}">${esc(LAUNCHED ? t.cta1 : t.pre_cta)} →</a><a class="btn" href="#how-${l}">${esc(t.cta2)}</a></div>
+      <p class="note">${esc(t.note)}</p>
+    </div>
+    <div class="console" aria-label="Example">
+      <div class="bar"><b></b><b></b><b></b><span>xomtra · example</span><em>● read-only</em></div>
+      <div class="body">
+        <div class="msg q"><span class="who">${esc(t.you)}</span>${esc(t.q)}</div>
+        <div class="msg a"><span class="who">${esc(t.hm)}</span>${t.a}${spark}
+          <div class="legend"><span style="--c:var(--signal)">${LEG[l][0]}</span><span style="--c:var(--muted)">${LEG[l][1]}</span></div></div>
+      </div>
+    </div>
+  </div></div>
+  <section id="steps-${l}"><div class="wrap">
+    <h2>${esc(t.st_h)}</h2><p class="sub">${esc(t.st_s)}</p>
+    <div class="steps">${t.steps.map((s,i)=>`<div class="step"><span class="n">0${i+1}</span><h3>${esc(s[0])}</h3><p>${esc(s[1])}</p></div>`).join("")}</div>
+  </div></section>
+  <section id="how-${l}"><div class="wrap">
+    <h2>${esc(t.f_h)}</h2><p class="sub">${esc(t.f_s)}</p>
+    <div class="grid">${t.feats.map(f=>`<div class="feat"><span class="k">${esc(f[0])}</span><h3>${esc(f[1])}</h3><p>${esc(f[2])}</p></div>`).join("")}</div>
+  </div></section>
+  <section><div class="wrap">
+    <h2>${esc(t.qs_h)}</h2><div style="height:20px"></div>
+    <ul class="qs">${t.qs.map(q=>`<li>${esc(q)}</li>`).join("")}</ul>
+  </div></section>
+  <section id="install-${l}"><div class="wrap">
+    <h2>${esc(t.in_h)}</h2><p class="sub">${esc(LAUNCHED ? t.in_s : t.pre_inst)}</p>
+    <div class="install">${t.inst.map(i=>`<div class="inst"><h3>${esc(i[0])}</h3><p>${esc(i[1])}</p><code>${esc(i[2])}</code></div>`).join("")}</div>
+  </div></section>
+  <section><div class="wrap">
+    <h2>${esc(t.c_h)}</h2><div style="height:20px"></div>
+    <div class="cmp"><table><thead><tr>${t.c_cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead>
+    <tbody>${t.c_rows.map(r=>`<tr><td>${esc(r[0])}</td><td class="n">${esc(r[1])}</td><td class="y">${esc(r[2])}</td></tr>`).join("")}</tbody></table></div>
+  </div></section>
+  <section id="faq-${l}"><div class="wrap faq">
+    <h2>${esc(t.faq_h)}</h2><div style="height:12px"></div>
+    ${t.faq.map(f=>`<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join("")}
+  </div></section>`;
+  document.getElementById("foot").textContent = t.foot;
+}
+const FORCE_LANG = "de";
+function pick(){
+  if (FORCE_LANG) return FORCE_LANG;
+  const h = (location.hash || "").replace("#","").split("-").pop();
+  if (T[h]) return h;
+  const n = (navigator.language || "en").slice(0,2);
+  return T[n] ? n : (n === "sk" ? "cs" : "en");
+}
+let cur = null;
+function go(){
+  const l = pick();
+  if (l !== cur){ cur = l; render(l); const el = location.hash && document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
+}
+window.addEventListener("hashchange", go);
+go();
+</script>
+
+</body>
+</html>
