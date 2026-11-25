@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="cs"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Xomtra · dlouhodobá paměť pro Home Assistant</title>
+<meta name="description" content="Xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://xomtra.com/cs/">
+<link rel="alternate" hreflang="en" href="https://xomtra.com/">
+<link rel="alternate" hreflang="de" href="https://xomtra.com/de/">
+<link rel="alternate" hreflang="cs" href="https://xomtra.com/cs/">
+<link rel="alternate" hreflang="pl" href="https://xomtra.com/pl/">
+<link rel="alternate" hreflang="nl" href="https://xomtra.com/nl/">
+<link rel="alternate" hreflang="x-default" href="https://xomtra.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Xomtra">
+<meta property="og:url" content="https://xomtra.com/cs/">
+<meta property="og:title" content="Xomtra · dlouhodobá paměť pro Home Assistant">
+<meta property="og:description" content="Xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.">
+<meta property="og:image" content="https://xomtra.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0c0f">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Xomtra", "url": "https://xomtra.com/cs/", "inLanguage": "cs", "description": "Xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Home Assistant OS, Linux (Docker), Proxmox VE, VMware", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "codeRepository": "https://github.com/xomtra/xomtra", "sameAs": ["https://github.com/xomtra/xomtra"], "image": "https://xomtra.com/og.png"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "cs", "mainEntity": [{"@type": "Question", "name": "Potřebuji Clauda?", "acceptedAnswer": {"@type": "Answer", "text": "Ne. Xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, Xomtra ho neplatí ani nevidí."}}, {"@type": "Question", "name": "Odcházejí moje data z domu?", "acceptedAnswer": {"@type": "Answer", "text": "Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. Xomtra sama nic neodesílá, pokud nezapnete anonymní počítání instalací."}}, {"@type": "Question", "name": "Kolik potřebuje místa na disku?", "acceptedAnswer": {"@type": "Answer", "text": "Typická domácnost 2–5 GB na 90 dní stavů a 5 let hodinových statistik. Velké instalace s roky stavů patří na appliance pro Proxmox nebo VMware."}}, {"@type": "Question", "name": "Je to součást Home Assistantu?", "acceptedAnswer": {"@type": "Answer", "text": "Ne. Xomtra je nezávislý open source projekt pro Home Assistant."}}]}</script>
+<style>body{margin:0}</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+/* Layout: graphite single-column bands; hero = pitch + console-style answer panel over faint crossing-series line art; data and commands in mono */
+:root{
+  --bg:#0b0c0f; --surface:#121419; --raise:#181b21; --line:#252932; --ink:#eceef3; --muted:#959cab;
+  --accent:#7d8bff; --accent-ink:#0b0c0f; --signal:#ffb547; --ok:#5fd4a0;
+  --sans:"Geist","Segoe UI",system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:30px;height:30px;flex:none}
+.brand span{font:600 21px/1 var(--sans);letter-spacing:-.045em}
+nav.sec{display:flex;gap:18px;margin-left:auto}
+nav.sec a{color:var(--muted);text-decoration:none;font-size:14px}
+nav.sec a:hover{color:var(--ink)}
+nav.lang{display:flex;gap:2px;border:1px solid var(--line);border-radius:8px;padding:2px}
+nav.lang a{font:500 12px/1 var(--mono);color:var(--muted);text-decoration:none;padding:6px 8px;border-radius:6px;letter-spacing:.06em}
+nav.lang a[aria-current="true"]{background:var(--raise);color:var(--ink)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero .art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .art path{fill:none;stroke-width:1.4;stroke-linecap:round}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;padding-block:72px 64px;align-items:center}
+.hero .wrap>*{min-width:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:7px 11px}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 22%,transparent)}
+h1{font:600 clamp(36px,5.4vw,60px)/1.02 var(--sans);letter-spacing:-.045em;margin:20px 0 20px;text-wrap:balance}
+.lead{font-size:18px;color:var(--muted);max-width:33em;margin:0 0 28px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 15px/1 var(--sans);padding:13px 18px;border-radius:9px;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn:hover{border-color:var(--muted)}
+.note{font:400 12.5px/1.5 var(--mono);color:var(--muted);margin-top:18px;letter-spacing:.01em}
+
+.console{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.console .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font:500 12px/1 var(--mono);color:var(--muted)}
+.console .bar b{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.console .bar em{margin-left:auto;font-style:normal;color:var(--ok)}
+.console .body{padding:16px;display:flex;flex-direction:column;gap:12px}
+.msg{border-radius:10px;padding:12px 14px;font-size:15px}
+.msg.q{background:var(--raise);align-self:flex-end;max-width:88%}
+.msg.a{border:1px solid var(--line)}
+.who{display:block;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:7px}
+.data{font-family:var(--mono);font-size:13.5px;color:var(--signal);font-variant-numeric:tabular-nums}
+.spark{width:100%;height:64px;margin-top:10px;display:block}
+.legend{display:flex;gap:14px;font:400 11px/1 var(--mono);color:var(--muted);margin-top:6px}
+.legend span::before{content:"";display:inline-block;width:12px;height:2px;vertical-align:middle;margin-right:6px;background:var(--c)}
+
+section{padding-block:72px;border-bottom:1px solid var(--line)}
+.kick{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+h2{font:600 clamp(28px,3.6vw,40px)/1.08 var(--sans);letter-spacing:-.035em;margin:0 0 12px;text-wrap:balance}
+.sub{color:var(--muted);max-width:40em;margin:0 0 36px}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.step{padding:26px 24px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.step+.step{border-left:1px solid var(--line)}
+.step .n{font:500 13px/1 var(--mono);color:var(--accent);display:flex;align-items:center;gap:10px}
+.step .n::after{content:"";flex:1;height:1px;background:var(--line)}
+.step h3{font:600 20px/1.2 var(--sans);letter-spacing:-.02em;margin:0}
+.step p{margin:0;color:var(--muted);font-size:15px}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}
+.feat{border-top:1px solid var(--line);padding-top:20px}
+.feat .k{font:500 12px/1 var(--mono);color:var(--signal);display:block;margin-bottom:12px;letter-spacing:.04em}
+.feat h3{font:600 18px/1.3 var(--sans);letter-spacing:-.015em;margin:0 0 8px}
+.feat p{margin:0;color:var(--muted);font-size:15px}
+
+.qs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;padding:0;margin:0}
+.qs li{border:1px solid var(--line);border-radius:10px;padding:14px 16px 14px 40px;font-size:15px;position:relative;background:var(--surface)}
+.qs li::before{content:"›";position:absolute;left:16px;top:12px;font:500 17px/1.2 var(--mono);color:var(--accent)}
+
+.install{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.inst{border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--surface);display:flex;flex-direction:column;gap:8px;min-width:0}
+.inst h3{font:600 16px/1.3 var(--sans);margin:0}
+.inst p{margin:0;font-size:14px;color:var(--muted);flex:1}
+.inst code{font:400 12px/1.5 var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:8px 10px;border-radius:7px;overflow-x:auto;display:block;white-space:nowrap;margin-top:6px}
+.inst code::before{content:"$ ";color:var(--muted)}
+
+.cmp{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:500 11.5px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:var(--surface)}
+th:last-child{color:var(--accent)}
+td.n{color:var(--muted)} td.y{color:var(--ink);font-weight:500}
+
+.faq{max-width:760px}
+details{border-bottom:1px solid var(--line);padding-block:16px}
+summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 18px/1 var(--mono);color:var(--muted)}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin:10px 0 0;max-width:46em}
+
+footer .wrap{display:flex;gap:16px 28px;flex-wrap:wrap;align-items:center;padding-block:32px;color:var(--muted);font-size:13px}
+footer .brand span{font-size:17px}
+footer .brand svg{width:24px;height:24px}
+footer p{margin:0;flex:1;min-width:240px}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero .art path{stroke-dasharray:1600;animation:draw 2.4s ease-out both}
+  .hero .art path+path{animation-delay:.25s}
+  @keyframes draw{from{stroke-dashoffset:1600}to{stroke-dashoffset:0}}
+}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px;padding-block:48px}
+  .grid,.steps{grid-template-columns:1fr}
+  .step+.step{border-left:0;border-top:1px solid var(--line)}
+  .install{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .qs{grid-template-columns:1fr}
+  nav.sec{display:none}
+  nav.lang{margin-left:auto}
+}
+@media (max-width:520px){.install{grid-template-columns:1fr} section{padding-block:52px}}
+</style>
+
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/cs/" aria-label="Xomtra">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><rect x=".5" y=".5" width="39" height="39" rx="10" fill="var(--surface)" stroke="var(--line)"></rect><path d="M7 30 C16 30 24 10 33 10" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"></path><path d="M7 10 C16 10 24 30 33 30" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"></path><circle cx="20" cy="20" r="4.2" fill="var(--signal)" stroke="var(--surface)" stroke-width="2"></circle></svg>
+    <span>xomtra</span>
+  </a>
+  <nav class="sec" aria-label="Sections"><span id="sec" style="display:contents"><a href="#how-cs">Jak to funguje</a><a href="#install-cs">Instalace</a><a href="#faq-cs">Otázky</a></span><a href="https://github.com/xomtra/xomtra">GitHub ↗</a></nav>
+  <nav class="lang" aria-label="Language">
+    <a href="/" data-l="en" hreflang="en" aria-current="false">EN</a><a href="/de/" data-l="de" hreflang="de" aria-current="false">DE</a><a href="/cs/" data-l="cs" hreflang="cs" aria-current="true">CS</a><a href="/pl/" data-l="pl" hreflang="pl" aria-current="false">PL</a><a href="/nl/" data-l="nl" hreflang="nl" aria-current="false">NL</a>
+  </nav>
+</div></header>
+
+<main id="app">
+  <div class="hero" id="top"><svg class="art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M-40 520 C 380 520, 760 90, 1240 80" stroke="var(--accent)" stroke-opacity=".28"></path><path d="M-40 90 C 380 90, 760 520, 1240 520" stroke="var(--ink)" stroke-opacity=".12"></path></svg><div class="wrap">
+    <div>
+      <span class="eyebrow"><i></i>Veřejná beta již brzy · pro Home Assistant</span>
+      <h1>Zeptejte se domu, co se doopravdy stalo.</h1>
+      <p class="lead">Xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.</p>
+      <div class="ctas"><a class="btn primary" href="mailto:support@xomtra.com?subject=Xomtra%20beta">Dejte mi vědět →</a><a class="btn" href="#how-cs">Jak to funguje</a></div>
+      <p class="note">Apache 2.0 · bez registrace · data zůstávají doma</p>
+    </div>
+    <div class="console" aria-label="Example">
+      <div class="bar"><b></b><b></b><b></b><span>xomtra · example</span><em>● read-only</em></div>
+      <div class="body">
+        <div class="msg q"><span class="who">Vy</span>Proč tepelné čerpadlo v říjnu spotřebovalo víc než loni?</div>
+        <div class="msg a"><span class="who">Claude s Xomtrou</span>V říjnu <span class="data">412 kWh</span> proti <span class="data">349 kWh</span> (+18 %). Většina rozdílu odpovídá venkovní teplotě (<span class="data">r = 0,71</span>, zpoždění 2 h). V 9 dnech běželo odmrazování dvakrát častěji než obvykle, od aktualizace firmwaru 14. 10.<svg class="spark" viewBox="0 0 300 64" preserveAspectRatio="none" role="img" aria-label="kWh"><g stroke="var(--line)" stroke-width="1"><line x1="0" y1="16" x2="300" y2="16"></line><line x1="0" y1="40" x2="300" y2="40"></line><line x1="0" y1="63" x2="300" y2="63"></line></g><polyline fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-dasharray="3 3" points="0,44 25,42 50,45 75,40 100,43 125,39 150,41 175,37 200,40 225,38 250,36 275,39 300,37"></polyline><polygon fill="var(--signal)" fill-opacity=".12" points="0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 250,20 275,13 300,15 300,64 0,64"></polygon><polyline fill="none" stroke="var(--signal)" stroke-width="2.2" points="0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 250,20 275,13 300,15"></polyline><circle cx="296" cy="15" r="3.5" fill="var(--signal)"></circle></svg>
+          <div class="legend"><span style="--c:var(--signal)">letos</span><span style="--c:var(--muted)">loni</span></div></div>
+      </div>
+    </div>
+  </div></div>
+  <section id="steps-cs"><div class="wrap">
+    <h2>Spuštěno ve třech krocích</h2><p class="sub">Od stažení k první odpovědi obvykle do 15 minut.</p>
+    <div class="steps"><div class="step"><span class="n">01</span><h3>Instalace</h3><p>Doplněk, Proxmox, VMware nebo Docker. Bez domény, bez přesměrování portů, bez cloudového účtu.</p></div><div class="step"><span class="n">02</span><h3>Připojení</h3><p>V administraci vytvořte token a jedním souborem přidejte Xomtru do Claude Desktop.</p></div><div class="step"><span class="n">03</span><h3>Ptejte se</h3><p>Historie se načítá na pozadí. První otázku můžete položit hned.</p></div></div>
+  </div></section>
+  <section id="how-cs"><div class="wrap">
+    <h2>Co Xomtra přidává k Home Assistantu</h2><p class="sub">Home Assistant ukazuje přítomnost. Xomtra z historie dělá odpovědi.</p>
+    <div class="grid"><div class="feat"><span class="k">roky</span><h3>Roky historie</h3><p>Stavy a statistiky na měsíce i roky v komprimovaných Parquet souborech, bez zátěže databáze Home Assistantu.</p></div><div class="feat"><span class="k">denně</span><h3>Nálezy každý den</h3><p>Katalog entit, kvalita dat, souvislosti mezi zařízeními a anomálie, připravené dřív, než se zeptáte.</p></div><div class="feat"><span class="k">jen čtení</span><h3>Bezpečný z principu</h3><p>AI může číst, ale nic nesepne. Role pro členy rodiny a záznam každého dotazu.</p></div></div>
+  </div></section>
+  <section><div class="wrap">
+    <h2>Na co se lidé ptají</h2><div style="height:20px"></div>
+    <ul class="qs"><li>Která zařízení berou v noci proud, když nikdo není doma?</li><li>Změnila se vlhkost v ložnici od výměny oken?</li><li>Kolik ze spotřeby minulého měsíce pokryla fotovoltaika?</li><li>Které senzory tento týden přestaly hlásit?</li></ul>
+  </div></section>
+  <section id="install-cs"><div class="wrap">
+    <h2>Nainstalujte tam, kde už Home Assistant běží</h2><p class="sub">K dispozici s veřejnou betou. Napište na support@xomtra.com a ozveme se.</p>
+    <div class="install"><div class="inst"><h3>Doplněk Home Assistantu</h3><p>Pro Home Assistant OS na SSD se 4 GB RAM a více.</p><code>Nastavení → Doplňky → Přidat repozitář</code></div><div class="inst"><h3>Proxmox VE</h3><p>Hotový virtuální stroj, vytvoří ho jeden příkaz na hostiteli.</p><code>bash -c "$(curl -fsSL …/proxmox.sh)"</code></div><div class="inst"><h3>VMware</h3><p>OVA appliance pro ESXi, vSphere nebo Workstation.</p><code>Deploy OVF Template → xomtra.ova</code></div><div class="inst"><h3>Docker Compose</h3><p>Pro vlastní linuxový server nebo NAS.</p><code>docker compose up -d</code></div></div>
+  </div></section>
+  <section><div class="wrap">
+    <h2>Srovnání</h2><div style="height:20px"></div>
+    <div class="cmp"><table><thead><tr><th></th><th>Vestavěný MCP server HA</th><th>Xomtra</th></tr></thead>
+    <tbody><tr><td>Historie</td><td class="n">Okno recorderu (typicky 10 dní)</td><td class="y">Měsíce až roky</td></tr><tr><td>Analýzy</td><td class="n">Jen surová data</td><td class="y">Souvislosti, anomálie, týdenní shrnutí</td></tr><tr><td>Může ovládat zařízení</td><td class="n">Ano (admin)</td><td class="y">Ne, jen čte</td></tr><tr><td>Role a audit</td><td class="n">Jen admini</td><td class="y">Reader / Admin, úplný záznam</td></tr><tr><td>Zátěž Home Assistantu</td><td class="n">Dotazy jdou do databáze HA</td><td class="y">Vlastní úložiště</td></tr></tbody></table></div>
+  </div></section>
+  <section id="faq-cs"><div class="wrap faq">
+    <h2>Otázky</h2><div style="height:12px"></div>
+    <details><summary>Potřebuji Clauda?</summary><p>Ne. Xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, Xomtra ho neplatí ani nevidí.</p></details><details><summary>Odcházejí moje data z domu?</summary><p>Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. Xomtra sama nic neodesílá, pokud nezapnete anonymní počítání instalací.</p></details><details><summary>Kolik potřebuje místa na disku?</summary><p>Typická domácnost 2–5 GB na 90 dní stavů a 5 let hodinových statistik. Velké instalace s roky stavů patří na appliance pro Proxmox nebo VMware.</p></details><details><summary>Je to součást Home Assistantu?</summary><p>Ne. Xomtra je nezávislý open source projekt pro Home Assistant.</p></details>
+  </div></section></main>
+
+<footer><div class="wrap">
+  <span class="brand"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x=".5" y=".5" width="39" height="39" rx="10" fill="var(--surface)" stroke="var(--line)"></rect><path d="M7 30 C16 30 24 10 33 10" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"></path><path d="M7 10 C16 10 24 30 33 30" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"></path><circle cx="20" cy="20" r="4.2" fill="var(--signal)" stroke="var(--surface)" stroke-width="2"></circle></svg><span>xomtra</span></span>
+  <p id="foot">Xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků.</p>
+  <span style="font-family:var(--mono)"><a href="https://github.com/xomtra/xomtra" style="text-decoration:none">GitHub</a> · Apache 2.0 · support@xomtra.com</span>
+</div></footer>
+
+
+
+
+
+</body></html>
