@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://xomtra.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://xomtra.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://xomtra.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://xomtra.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://xomtra.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://xomtra.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xomtra.com/"/>
+  </url>
+  <url>
+    <loc>https://xomtra.com/de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://xomtra.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://xomtra.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://xomtra.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://xomtra.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://xomtra.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xomtra.com/"/>
+  </url>
+  <url>
+    <loc>https://xomtra.com/cs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://xomtra.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://xomtra.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://xomtra.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://xomtra.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://xomtra.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xomtra.com/"/>
+  </url>
+  <url>
+    <loc>https://xomtra.com/pl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://xomtra.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://xomtra.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://xomtra.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://xomtra.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://xomtra.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xomtra.com/"/>
+  </url>
+  <url>
+    <loc>https://xomtra.com/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://xomtra.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://xomtra.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://xomtra.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://xomtra.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://xomtra.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://xomtra.com/"/>
+  </url>
+</urlset>

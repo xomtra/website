@@ -1,27 +1,5 @@
-<!doctype html>
-<html lang="nl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Xomtra · langetermijngeheugen voor Home Assistant</title>
-<meta name="description" content="Xomtra bewaart jarenlang de geschiedenis van je Home Assistant, vindt verbanden en afwijkingen en laat Claude of een andere MCP-client vragen over je huis beantwoorden. Alleen-lezen, op je eigen hardware.">
-<link rel="canonical" href="https://xomtra.com/nl/">
-<link rel="alternate" hreflang="en" href="https://xomtra.com/">
-<link rel="alternate" hreflang="de" href="https://xomtra.com/de/">
-<link rel="alternate" hreflang="cs" href="https://xomtra.com/cs/">
-<link rel="alternate" hreflang="pl" href="https://xomtra.com/pl/">
-<link rel="alternate" hreflang="nl" href="https://xomtra.com/nl/">
-<link rel="alternate" hreflang="x-default" href="https://xomtra.com/">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://xomtra.com/nl/">
-<meta property="og:title" content="Xomtra · langetermijngeheugen voor Home Assistant">
-<meta property="og:description" content="Xomtra bewaart jarenlang de geschiedenis van je Home Assistant, vindt verbanden en afwijkingen en laat Claude of een andere MCP-client vragen over je huis beantwoorden. Alleen-lezen, op je eigen hardware.">
-<meta property="og:image" content="https://xomtra.com/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0c0f">
-<style>body{margin:0}</style>
-
+<title>Xomtra</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: graphite single-column bands; hero = pitch + console-style answer panel over faint crossing-series line art; data and commands in mono */
@@ -147,8 +125,6 @@ footer p{margin:0;flex:1;min-width:240px}
 @media (max-width:520px){.install{grid-template-columns:1fr} section{padding-block:52px}}
 </style>
 
-</head>
-<body>
 <header class="top"><div class="wrap">
   <a class="brand" href="#top" aria-label="Xomtra">
     <svg viewBox="0 0 40 40" aria-hidden="true"><rect x=".5" y=".5" width="39" height="39" rx="10" fill="var(--surface)" stroke="var(--line)"/><path d="M7 30 C16 30 24 10 33 10" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><path d="M7 10 C16 10 24 30 33 30" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="20" cy="20" r="4.2" fill="var(--signal)" stroke="var(--surface)" stroke-width="2"/></svg>
@@ -156,7 +132,7 @@ footer p{margin:0;flex:1;min-width:240px}
   </a>
   <nav class="sec" aria-label="Sections"><span id="sec" style="display:contents"></span><a href="https://github.com/xomtra/xomtra">GitHub ↗</a></nav>
   <nav class="lang" aria-label="Language">
-    <a href="/" data-l="en">EN</a><a href="/de/" data-l="de">DE</a><a href="/cs/" data-l="cs">CS</a><a href="/pl/" data-l="pl">PL</a><a href="/nl/" data-l="nl">NL</a>
+    <a href="#en" data-l="en">EN</a><a href="#de" data-l="de">DE</a><a href="#cs" data-l="cs">CS</a><a href="#pl" data-l="pl">PL</a><a href="#nl" data-l="nl">NL</a>
   </nav>
 </div></header>
 
@@ -418,9 +394,7 @@ function render(l){
   </div></section>`;
   document.getElementById("foot").textContent = t.foot;
 }
-const FORCE_LANG = "nl";
 function pick(){
-  if (FORCE_LANG) return FORCE_LANG;
   const h = (location.hash || "").replace("#","").split("-").pop();
   if (T[h]) return h;
   const n = (navigator.language || "en").slice(0,2);
@@ -434,6 +408,3 @@ function go(){
 window.addEventListener("hashchange", go);
 go();
 </script>
-
-</body>
-</html>
