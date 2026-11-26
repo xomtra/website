@@ -2,7 +2,7 @@
  "T": {
   "en": {
    "pre_eyebrow": "Public beta coming soon · for Home Assistant",
-   "pre_cta": "Get notified",
+   "pre_cta": "Contact us",
    "pre_inst": "Available at the public beta. Write to support@xomtra.com and we will let you know.",
    "nav": [
     "How it works",
@@ -147,7 +147,7 @@
   },
   "de": {
    "pre_eyebrow": "Öffentliche Beta bald verfügbar · für Home Assistant",
-   "pre_cta": "Benachrichtigen",
+   "pre_cta": "Kontaktiere uns",
    "pre_inst": "Verfügbar mit der öffentlichen Beta. Schreib an support@xomtra.com, wir melden uns.",
    "nav": [
     "Funktionsweise",
@@ -292,7 +292,7 @@
   },
   "cs": {
    "pre_eyebrow": "Veřejná beta již brzy · pro Home Assistant",
-   "pre_cta": "Dejte mi vědět",
+   "pre_cta": "Kontaktujte nás",
    "pre_inst": "K dispozici s veřejnou betou. Napište na support@xomtra.com a ozveme se.",
    "nav": [
     "Jak to funguje",
@@ -437,7 +437,7 @@
   },
   "pl": {
    "pre_eyebrow": "Publiczna beta już wkrótce · dla Home Assistant",
-   "pre_cta": "Powiadom mnie",
+   "pre_cta": "Skontaktuj się z nami",
    "pre_inst": "Dostępne w publicznej becie. Napisz na support@xomtra.com, damy znać.",
    "nav": [
     "Jak to działa",
@@ -582,7 +582,7 @@
   },
   "nl": {
    "pre_eyebrow": "Publieke bèta binnenkort · voor Home Assistant",
-   "pre_cta": "Houd me op de hoogte",
+   "pre_cta": "Neem contact op",
    "pre_inst": "Beschikbaar bij de publieke bèta. Mail naar support@xomtra.com en we laten het je weten.",
    "nav": [
     "Zo werkt het",
