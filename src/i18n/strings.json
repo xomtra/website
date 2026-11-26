@@ -127,11 +127,11 @@
     ],
     [
      "Do I need Claude?",
-     "No. xomtra works with Claude Desktop, Claude.ai and any client that speaks MCP. Your AI subscription is your own; xomtra never pays or sees it."
+     "No, but it is the best fit. Any MCP client on a computer in your network works with every installation: Claude Desktop, Claude Code, VS Code or Cursor. Claude.ai needs xomtra on its own virtual machine with a public https:// address. ChatGPT and other cloud assistants are not supported yet. Your AI subscription is your own; xomtra never pays or sees it."
     ],
     [
      "Does my data leave the house?",
-     "Only the answers your AI client asks for, under your account. xomtra itself sends nothing anywhere unless you turn on anonymous install counting."
+     "Only the answers your AI client asks for, under your account. xomtra itself sends none of your data anywhere."
     ],
     [
      "Can xomtra or the AI control my home?",
@@ -139,7 +139,7 @@
     ],
     [
      "How much disk does it need?",
-     "A typical home needs 2–5 GB for 90 days of states and 5 years of hourly statistics. Large setups with years of states should use the Proxmox or VMware appliance."
+     "A typical home needs 2–5 GB for 90 days of states and 5 years of hourly statistics. Large setups with years of states should run xomtra on its own virtual machine with Docker Compose; ready images for Proxmox and VMware are coming."
     ],
     [
      "Is it affiliated with Home Assistant?",
@@ -276,11 +276,11 @@
     ],
     [
      "Brauche ich Claude?",
-     "Nein. xomtra funktioniert mit Claude Desktop, Claude.ai und jedem MCP-Client. Dein KI-Abo gehört dir, xomtra bezahlt oder sieht es nicht."
+     "Nein, aber es passt am besten. Jeder MCP-Client auf einem Rechner in deinem Netz funktioniert mit jeder Installation: Claude Desktop, Claude Code, VS Code oder Cursor. Claude.ai braucht xomtra auf einer eigenen virtuellen Maschine mit öffentlicher https://-Adresse. ChatGPT und andere Cloud-Assistenten werden noch nicht unterstützt. Dein KI-Abo gehört dir, xomtra bezahlt oder sieht es nicht."
     ],
     [
      "Verlassen meine Daten das Haus?",
-     "Nur die Antworten, die dein KI-Client unter deinem Konto anfragt. xomtra selbst sendet nichts, außer du aktivierst die anonyme Installationszählung."
+     "Nur die Antworten, die dein KI-Client unter deinem Konto anfragt. xomtra selbst sendet keine deiner Daten irgendwohin."
     ],
     [
      "Kann xomtra oder die KI mein Zuhause steuern?",
@@ -288,7 +288,7 @@
     ],
     [
      "Wie viel Speicher braucht es?",
-     "Ein typischer Haushalt braucht 2–5 GB für 90 Tage Zustände und 5 Jahre Stundenstatistiken. Große Installationen mit jahrelangen Zuständen nutzen besser die Proxmox- oder VMware-Appliance."
+     "Ein typischer Haushalt braucht 2–5 GB für 90 Tage Zustände und 5 Jahre Stundenstatistiken. Große Installationen mit jahrelangen Zuständen betreibst du besser auf einer eigenen virtuellen Maschine mit Docker Compose; fertige Images für Proxmox und VMware kommen bald."
     ],
     [
      "Gehört xomtra zu Home Assistant?",
@@ -425,11 +425,11 @@
     ],
     [
      "Potřebuji Claude?",
-     "Ne. xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
+     "Ne, ale sedí mu nejlépe. S každou instalací funguje jakýkoli MCP klient na počítači ve vaší síti: Claude Desktop, Claude Code, VS Code nebo Cursor. Claude.ai potřebuje xomtru na samostatném virtuálním stroji s veřejnou adresou https://. ChatGPT a další cloudoví asistenti zatím podporovaní nejsou. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
     ],
     [
      "Odcházejí moje data z domu?",
-     "Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. xomtra sama nic neodesílá, pokud nezapnete anonymní počítání instalací."
+     "Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. xomtra sama žádná vaše data nikam neodesílá."
     ],
     [
      "Může xomtra nebo AI ovládat domácnost?",
@@ -437,7 +437,7 @@
     ],
     [
      "Kolik potřebuje místa na disku?",
-     "Typická domácnost 2–5 GB na 90 dní stavů a 5 let hodinových statistik. Velké instalace s roky stavů patří na appliance pro Proxmox nebo VMware."
+     "Typická domácnost 2–5 GB na 90 dní stavů a 5 let hodinových statistik. Velké instalace s roky stavů patří na samostatný virtuální stroj s Docker Compose; hotové obrazy pro Proxmox a VMware připravujeme."
     ],
     [
      "Je to součást Home Assistantu?",
@@ -574,11 +574,11 @@
     ],
     [
      "Czy potrzebuję Claude?",
-     "Nie. xomtra działa z Claude Desktop, Claude.ai i każdym klientem MCP. Subskrypcja AI jest Twoja, xomtra za nią nie płaci i jej nie widzi."
+     "Nie, ale pasuje najlepiej. Każdy klient MCP na komputerze w Twojej sieci działa z każdą instalacją: Claude Desktop, Claude Code, VS Code lub Cursor. Claude.ai wymaga xomtry na osobnej maszynie wirtualnej z publicznym adresem https://. ChatGPT i inne asystenty w chmurze nie są jeszcze obsługiwane. Subskrypcja AI jest Twoja, xomtra za nią nie płaci i jej nie widzi."
     ],
     [
      "Czy moje dane opuszczają dom?",
-     "Tylko odpowiedzi, o które prosi Twój klient AI w ramach Twojego konta. Sama xomtra niczego nie wysyła, chyba że włączysz anonimowe liczenie instalacji."
+     "Tylko odpowiedzi, o które prosi Twój klient AI w ramach Twojego konta. Sama xomtra nigdzie nie wysyła żadnych Twoich danych."
     ],
     [
      "Czy xomtra albo AI może sterować moim domem?",
@@ -586,7 +586,7 @@
     ],
     [
      "Ile miejsca na dysku potrzebuje?",
-     "Typowy dom potrzebuje 2–5 GB na 90 dni stanów i 5 lat statystyk godzinowych. Duże instalacje z wieloletnią historią stanów powinny użyć appliance dla Proxmox lub VMware."
+     "Typowy dom potrzebuje 2–5 GB na 90 dni stanów i 5 lat statystyk godzinowych. Duże instalacje z wieloletnią historią stanów lepiej uruchomić na osobnej maszynie wirtualnej z Docker Compose; gotowe obrazy dla Proxmox i VMware są w przygotowaniu."
     ],
     [
      "Czy to część Home Assistanta?",
@@ -723,11 +723,11 @@
     ],
     [
      "Heb ik Claude nodig?",
-     "Nee. xomtra werkt met Claude Desktop, Claude.ai en elke client die MCP spreekt. Je AI-abonnement is van jou; xomtra betaalt of ziet het niet."
+     "Nee, maar het past het best. Elke MCP-client op een computer in je netwerk werkt met elke installatie: Claude Desktop, Claude Code, VS Code of Cursor. Claude.ai heeft xomtra nodig op een eigen virtuele machine met een openbaar https://-adres. ChatGPT en andere cloudassistenten worden nog niet ondersteund. Je AI-abonnement is van jou; xomtra betaalt of ziet het niet."
     ],
     [
      "Verlaat mijn data het huis?",
-     "Alleen de antwoorden die je AI-client onder jouw account opvraagt. xomtra zelf verstuurt niets, tenzij je het anoniem tellen van installaties aanzet."
+     "Alleen de antwoorden die je AI-client onder jouw account opvraagt. xomtra zelf verstuurt geen van je gegevens ergens heen."
     ],
     [
      "Kan xomtra of de AI mijn huis bedienen?",
@@ -735,7 +735,7 @@
     ],
     [
      "Hoeveel schijfruimte is nodig?",
-     "Een gemiddeld huis heeft 2–5 GB nodig voor 90 dagen statussen en 5 jaar uurstatistieken. Grote installaties met jaren aan statussen kunnen beter de Proxmox- of VMware-appliance gebruiken."
+     "Een gemiddeld huis heeft 2–5 GB nodig voor 90 dagen statussen en 5 jaar uurstatistieken. Grote installaties met jaren aan statussen draai je beter op een eigen virtuele machine met Docker Compose; kant-en-klare images voor Proxmox en VMware komen eraan."
     ],
     [
      "Hoort het bij Home Assistant?",
