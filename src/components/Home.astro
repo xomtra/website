@@ -3,6 +3,7 @@ import { LAUNCHED, NOTIFY, guidePath, methodPath, type Lang } from "../config";
 import { T, LEG, FLOW, G, M } from "../i18n";
 import Flow from "./Flow.astro";
 import MyHaBadge from "./MyHaBadge.astro";
+import Editions from "./Editions.astro";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -69,6 +70,8 @@ const pts = "0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 25
     <div class="inst later"><h3>{i[0]}<span class="soon">{ui.soon}</span></h3><p>{i[1]}</p><code>{i[2]}</code></div>
   ))}</div>
 </div></section>
+
+<Editions lang={lang} />
 
 <section><div class="wrap">
   <h2>{t.c_h}</h2><div style="height:20px"></div>
