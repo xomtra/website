@@ -1,0 +1,93 @@
+{
+  "nav": "Bezpečnost",
+  "crumb": "Bezpečnost",
+  "title": "Jak xomtra chrání váš dům",
+  "desc": "xomtra Home Assistant jen čte, pouští jen lidi a zařízení, které povolíte, a historii drží na vašem stroji. Jak to dělá kód a co se ještě připravuje.",
+  "lead": "Historie Home Assistantu ukazuje, kdy jsou lidé doma a jak žijí. xomtra s ní tak zachází: jen čte, každému dá přesně ten přístup, který zvolíte, a data drží na vašem vlastním stroji. Všechno níže je open source, takže nám to nemusíte věřit na slovo.",
+  "facts": [
+    ["Čte", "Home Assistant, nic v něm nemění"],
+    ["Data", "zůstávají na vašem stroji"],
+    ["Kód", "open source, image podepsané"]
+  ],
+  "sections": [
+    {
+      "id": "read-only",
+      "h": "Read only už z principu",
+      "b": [
+        "xomtra čte z Home Assistantu stavy, historii a statistiky a nikdy nevolá jeho služby. Váš AI asistent mluví jen s xomtrou a dostane read only nástroje nad vlastní kopií dat xomtry. Žádný nástroj nic nezapíná, neotevírá ani nenastavuje.",
+        "Home Assistant nemá read only tokeny: každý token zvládne to, co jeho uživatel. Záruku dává kód xomtry, který si můžete přečíst. U Dockeru připojte xomtru jako samostatného uživatele Home Assistantu bez administrátorských práv; automatické testy ověřují, že takový uživatel nic nezmění.",
+        "Entity, které nechcete ukládat ani analyzovat, dostanou v Home Assistantu štítek."
+      ]
+    },
+    {
+      "id": "access",
+      "h": "Jen ti, které pustíte",
+      "b": [
+        "V domácí síti dostane každý člověk a každé zařízení osobní token ze stránky administrace. Zobrazí se jen jednou; xomtra si drží jen jeho otisk, ne samotný token. Každý token má vlastníka, roli a volitelně platnost a kdykoli ho můžete odvolat.",
+        "Role určují, co AI uvidí. Čtenář nikdy nevidí osoby, polohu, kamery, zámky, alarmy ani volný text atributů; ty se odfiltrují už v databázi, dřív než vznikne jakákoli odpověď."
+      ]
+    },
+    {
+      "id": "queries",
+      "h": "Dotazy můžou jen číst",
+      "b": [
+        "Když se AI ptá v SQL, dotaz kontrolují tři vrstvy: jen jeden čtecí dotaz nad pohledy, které role smí, databáze otevřená read only bez přístupu k souborům a síti a pohledy, které už vynechávají, co role vidět nesmí.",
+        "Každé volání se zaznamená: kdo se ptal, na co a jestli to bylo povolené. Když záznam nejde uložit, AI dostane místo dat chybu."
+      ]
+    },
+    {
+      "id": "admin",
+      "h": "Stránka administrace",
+      "b": [
+        "Do administrace se přihlásíte administrátorským účtem Home Assistantu, v add-onu rovnou z Home Assistantu. Po přihlášení xomtra token Home Assistantu, který dostala, odvolá, takže si žádný token Home Assistantu přihlášeného člověka nenechává.",
+        "Ve výchozím stavu administrace odpovídá jen z místní sítě, v add-onu jen přes Home Assistant. Nic nenačítá z cizích webů a každý formulář chrání proti podvrženým požadavkům."
+      ]
+    },
+    {
+      "id": "network",
+      "h": "V domácí síti, nebo opatrně na internetu",
+      "b": [
+        {
+          "ul": [
+            "<b>Add-on pro Home Assistant:</b> port MCP je pro klienty v místní síti (Claude Desktop, Claude Code a další). Jde o nešifrované HTTP, proto ho používejte jen v síti, které věříte; není určený k otevření do internetu.",
+            "<b>Docker:</b> HTTPS v domácí síti s vlastní místní certifikační autoritou xomtry.",
+            "<b>Přístup z internetu</b> (pro Claude.ai): xomtra stojí za Caddy s certifikátem Let's Encrypt. Odkudkoli jsou dostupné jen přihlašovací stránky; datová rozhraní odpovídají jen na zveřejněné adresy Claude. Přihlašujete se přes Microsoft Entra ID nebo účtem Home Assistantu."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "h": "Stavěno veřejně, podepsáno",
+      "b": [
+        "Image pro vydání staví jen GitHub Actions z veřejného kódu, prověří je na známé zranitelnosti a podepíše nástrojem cosign, takže si můžete ověřit, že image pochází z repozitáře xomtry. Vydání obsahuje přesně ty image, které prošly testy. Commity i tagy vydání jsou podepsané.",
+        "Klíče a hesla se generují při instalaci na vašem stroji; kód nemá žádná výchozí tajemství. Služby běží bez práv roota a se souborovým systémem read only."
+      ]
+    },
+    {
+      "id": "data",
+      "h": "Vaše data a vaše AI",
+      "b": [
+        "Historie zůstává na stroji, kde xomtra běží, a xomtra sama ji nikam neposílá. Co si váš AI klient pro odpověď vyžádá, jde k jeho poskytovateli pod vaším vlastním účtem a podle jeho podmínek. Co si může vyžádat, určují role a štítky.",
+        "xomtra také říká AI, jak odpovídat: nálezy jsou hypotézy a žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se na ně nezeptáte. To model vede, není to bezpečnostní hranice."
+      ]
+    },
+    {
+      "id": "next",
+      "h": "Připravujeme",
+      "b": [
+        { "note": "Zatím není v aktuálním vydání." },
+        {
+          "ul": [
+            "Přihlášení účtem Home Assistantu jako výchozí pro přístup z internetu; Entra ID zůstane jako volba.",
+            "Konektor hned po přihlášení odvolá token Home Assistantu, jako to už dnes dělá administrace, a povede si vlastní relaci s pevnou platností.",
+            "Seznam připojených klientů v administraci s tlačítkem Odpojit.",
+            "Ve výchozím stavu se smějí připojit jen administrátoři Home Assistantu a s povinným dvoufázovým ověřením."
+          ]
+        }
+      ]
+    }
+  ],
+  "docs": "Principy bezpečnosti v kódu na GitHubu",
+  "help": "Našli jste zranitelnost? Nahlaste ji prosím neveřejně přes GitHub (Security → Report a vulnerability), ne ve veřejném issue. Ostatní dotazy: support@xomtra.com."
+}

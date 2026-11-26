@@ -36,3 +36,12 @@ import mnl from "./method/nl.json";
 export type MethodBlock = string | { ul: string[] } | { note: string };
 export type MethodText = Omit<typeof men, "sections"> & { sections: { id: string; h: string; fig?: "prep" | "struct" | "anom"; b: MethodBlock[] }[] };
 export const M = { en: men, de: mde, cs: mcs, pl: mpl, nl: mnl } as unknown as Record<Lang, MethodText>;
+
+// Security page (/security/ and /<lang>/security/): sections of blocks like the method page.
+import sen from "./security/en.json";
+import sde from "./security/de.json";
+import scs from "./security/cs.json";
+import spl from "./security/pl.json";
+import snl from "./security/nl.json";
+export type SecurityText = Omit<typeof sen, "sections"> & { sections: { id: string; h: string; b: MethodBlock[] }[] };
+export const S = { en: sen, de: sde, cs: scs, pl: spl, nl: snl } as unknown as Record<Lang, SecurityText>;

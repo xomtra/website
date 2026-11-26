@@ -1,0 +1,93 @@
+{
+  "nav": "Security",
+  "crumb": "Security",
+  "title": "How xomtra keeps your home safe",
+  "desc": "xomtra only reads Home Assistant, lets in only the people and devices you allow and keeps the history on your machine. How the code does it, and what is still being prepared.",
+  "lead": "Home Assistant history shows when people are at home and how they live. xomtra treats it that way: it only reads, it gives each person exactly the access you choose, and it keeps the data on your own machine. Everything below is open source, so you do not have to take our word for it.",
+  "facts": [
+    ["Reads", "Home Assistant, changes nothing"],
+    ["Data", "stay on your machine"],
+    ["Code", "open source, images signed"]
+  ],
+  "sections": [
+    {
+      "id": "read-only",
+      "h": "Read only, by design",
+      "b": [
+        "xomtra reads states, history and statistics from Home Assistant and never calls its services. Your AI assistant talks only to xomtra and gets read only tools over xomtra's own copy of the data. There is no tool that switches, opens or sets anything.",
+        "Home Assistant has no read only tokens: every token can do what its user can. The guarantee is xomtra's code, which you can read. With Docker, connect xomtra as a separate Home Assistant user without admin rights; automated tests check that such a user cannot change anything.",
+        "Entities you do not want stored or analysed get a label in Home Assistant."
+      ]
+    },
+    {
+      "id": "access",
+      "h": "Only who you let in",
+      "b": [
+        "In your network, each person and device gets a personal token from the admin page. It is shown once; xomtra keeps only its fingerprint, not the token itself. Each token has an owner, a role and an optional expiry, and you can revoke it at any time.",
+        "Roles decide what the AI may see. A reader never sees people, locations, cameras, locks, alarms or the free text of attributes; these are filtered out in the database, before any answer is put together."
+      ]
+    },
+    {
+      "id": "queries",
+      "h": "Questions can only read",
+      "b": [
+        "When the AI asks in SQL, three layers check the query: only one read query over the views its role allows, a database opened read only without access to files or the network, and views that already leave out what the role must not see.",
+        "Every call is recorded: who asked, what, and whether it was allowed. If the record cannot be stored, the AI gets an error instead of the data."
+      ]
+    },
+    {
+      "id": "admin",
+      "h": "The admin page",
+      "b": [
+        "You sign in to the admin page with your Home Assistant administrator account, or in the add-on straight from Home Assistant. After sign-in xomtra revokes the Home Assistant token it received, so it keeps no Home Assistant token of the person who signed in.",
+        "By default the admin page answers only from your local network, and in the add-on only through Home Assistant. It loads nothing from other sites and protects every form against forged requests."
+      ]
+    },
+    {
+      "id": "network",
+      "h": "In your network, or carefully on the internet",
+      "b": [
+        {
+          "ul": [
+            "<b>Home Assistant add-on:</b> the MCP port is for clients in your local network (Claude Desktop, Claude Code and others). It is plain HTTP, so use it only in a network you trust; it is not meant to be opened to the internet.",
+            "<b>Docker:</b> HTTPS in your network with xomtra's own local certificate authority.",
+            "<b>Access from the internet</b> (for Claude.ai): xomtra sits behind Caddy with a Let's Encrypt certificate. Anyone can reach only the sign-in pages; the data endpoints answer only to Claude's published addresses. You sign in with Microsoft Entra ID or a Home Assistant account."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "h": "Built in the open, signed",
+      "b": [
+        "Release images are built only by GitHub Actions from the public code, scanned for known vulnerabilities and signed with cosign, so you can check that an image comes from the xomtra repository. A release ships the very images that passed the tests. Commits and release tags are signed.",
+        "Keys and passwords are generated on your machine at install; the code has no default secrets. Services run without root rights, with a read only file system."
+      ]
+    },
+    {
+      "id": "data",
+      "h": "Your data and your AI",
+      "b": [
+        "The history stays on the machine where xomtra runs, and xomtra itself sends it nowhere. What your AI client fetches to answer you goes to its provider under your own account and its terms. Roles and labels decide what it can fetch.",
+        "xomtra also tells the AI how to answer: findings are hypotheses, and no conclusions about a person's presence, sleep or health unless you ask. That guides the model, it is not a security boundary."
+      ]
+    },
+    {
+      "id": "next",
+      "h": "Being prepared",
+      "b": [
+        { "note": "Not in the current release yet." },
+        {
+          "ul": [
+            "Sign-in with a Home Assistant account as the default for access from the internet; Entra ID stays an option.",
+            "The connector revokes the Home Assistant token right after sign-in, like the admin page does today, and keeps its own session with a fixed expiry.",
+            "A list of connected clients in the admin page with a Disconnect button.",
+            "By default only Home Assistant administrators may connect, with two-factor authentication required."
+          ]
+        }
+      ]
+    }
+  ],
+  "docs": "Security principles in the code, on GitHub",
+  "help": "Found a vulnerability? Please report it privately through GitHub (Security → Report a vulnerability), not in a public issue. Other questions: support@xomtra.com."
+}
