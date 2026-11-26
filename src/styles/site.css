@@ -140,3 +140,44 @@ figure.flow .tall{display:none;max-width:360px;margin:0 auto}
   nav.lang{margin-left:auto}
 }
 @media (max-width:520px){.install{grid-template-columns:1fr} section{padding-block:52px}}
+
+/* Install cards: guide links and "coming soon" */
+.inst h3 a{text-decoration:none}
+.inst h3 a:hover{text-decoration:underline;text-underline-offset:3px}
+.inst .soon{display:inline-block;margin-left:8px;font:500 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--signal);border:1px solid color-mix(in srgb,var(--signal) 45%,transparent);border-radius:99px;padding:4px 7px;vertical-align:2px}
+.inst.later{background:transparent}
+.inst.later code{color:var(--muted)}
+.inst .glink{margin-top:8px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none}
+.inst .glink:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Installation guides */
+.guide{max-width:820px}
+.ghead{border-bottom:1px solid var(--line)}
+.ghead .wrap{padding-block:48px 40px}
+.ghead h1{font-size:clamp(32px,4.6vw,48px);margin:16px 0}
+.crumb{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.crumb a{color:var(--muted);text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+.facts div{border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:var(--surface)}
+.facts dt{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.facts dd{margin:0;font-size:14.5px}
+.gsteps{list-style:none;padding:0;margin:0;counter-reset:none}
+.gsteps>li{padding:0 0 36px 0;position:relative}
+.gsteps>li+li{border-top:1px solid var(--line);padding-top:32px}
+.gsteps h2{font-size:clamp(21px,2.6vw,26px);margin:0 0 14px}
+.gsteps h2 a{text-decoration:none;display:flex;gap:14px;align-items:baseline}
+.gsteps h2 .n{font:500 14px/1 var(--mono);color:var(--accent);flex:none}
+.gsteps p,.gsteps ul{color:var(--muted);margin:0 0 14px;max-width:44em}
+.gsteps ul{padding-left:20px}
+.gsteps li li{margin-bottom:6px}
+.gsteps b{color:var(--ink);font-weight:500}
+.gsteps a{color:var(--ink);text-underline-offset:3px}
+.gsteps p code,.gsteps li code,.gnote code{font:400 13.5px/1.4 var(--mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:1px 5px;overflow-wrap:anywhere}
+pre.cmd{margin:0 0 14px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:12px 14px;overflow-x:auto}
+.gsteps pre.cmd code{font:400 13px/1.6 var(--mono);color:var(--ink);white-space:pre;background:none;border:0;padding:0;border-radius:0;overflow-wrap:normal}
+.gnote{border-left:2px solid var(--signal);padding:10px 14px;background:var(--surface);border-radius:0 8px 8px 0}
+.gsteps .btn.myha{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-size:14px;padding:10px 14px;text-decoration:none}
+.gfoot{border-top:1px solid var(--line);padding-top:24px;color:var(--muted);font-size:15px}
+.gfoot p{margin:0 0 8px}
+.gfoot a{color:var(--ink);text-underline-offset:3px}

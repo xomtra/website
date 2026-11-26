@@ -1,0 +1,10 @@
+---
+import GuidePage from "../../../components/GuidePage.astro";
+import { LANGS, type Lang } from "../../../config";
+import { GUIDES, type GuideSlug } from "../../../i18n";
+
+export function getStaticPaths() {
+  return LANGS.filter((l) => l !== "en").flatMap((lang) => GUIDES.map((guide) => ({ params: { lang, guide } })));
+}
+---
+<GuidePage lang={Astro.params.lang as Lang} slug={Astro.params.guide as GuideSlug} />
