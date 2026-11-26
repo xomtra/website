@@ -82,9 +82,9 @@
   "docker": {
     "name": "Docker Compose",
     "title": "xomtra installeren met Docker Compose",
-    "desc": "Stap voor stap xomtra installeren op je eigen Linux-server of NAS met Docker Compose: geverifieerde release, .env, eerste token, Claude koppelen en upgrades.",
+    "desc": "Stap voor stap xomtra installeren op je eigen Linux-server of NAS met Docker Compose: geverifieerde release, starten met één commando, Home Assistant koppelen in de browser, eerste token, Claude koppelen en upgrades.",
     "lead": "Voor Home Assistant Container of Core, of als je xomtra op een eigen Linux-server of NAS wilt. xomtra leest Home Assistant via je netwerk; Claude Desktop en Claude Code verbinden met persoonlijke tokens, alleen vanuit je LAN.",
-    "facts": [["Tijd", "ongeveer 20 minuten"], ["Nodig", "Linux, Docker met Compose v2"], ["Toegang", "LAN, persoonlijke tokens"]],
+    "facts": [["Tijd", "ongeveer 15 minuten"], ["Nodig", "Linux, Docker met Compose v2"], ["Toegang", "LAN, persoonlijke tokens"]],
     "steps": [
       {
         "h": "Controleer de vereisten",
@@ -114,25 +114,11 @@
         ]
       },
       {
-        "h": "Maak een Home Assistant gebruiker voor xomtra",
+        "h": "Pin de images en kies de editie",
         "b": [
-          "Maak in Home Assistant een aparte gebruiker <b>zonder</b> beheerdersrechten, log in als die gebruiker en maak bij <b>Profiel → Beveiliging</b> een langdurig toegangstoken. Home Assistant kent geen read only tokens, dus deze gebruiker zou apparaten kunnen bedienen; xomtra leest echter alleen registers, geschiedenis en statistieken en roept nooit diensten aan. Met een aparte gebruiker kun je de toegang van xomtra altijd intrekken zonder aan je eigen account te komen."
-        ]
-      },
-      {
-        "h": "Maak de configuratie",
-        "b": [
-          {"code": "dk_env"},
-          "Het script genereert alle interne wachtwoorden en sleutels en bewaart ze in <code>.env</code> (modus 600). Het vraagt alleen wat het niet kan weten:",
-          {"ul": [
-            "Toegangsmodus: <code>local</code> (alleen LAN).",
-            "Naam of IP-adres van deze server in je LAN.",
-            "Aanmelden op de beheerpagina: <code>ha</code> (je Home Assistant account).",
-            "Netwerk dat de beheerpagina mag openen, bijvoorbeeld <code>192.168.1.0/24</code>.",
-            "Home Assistant URL en het token van de gebruiker uit de vorige stap."
-          ]},
-          "Pin de images op de geverifieerde digests en kies de editie. De lite-editie past op een NAS of kleine server; laat voor de volledige editie met SeaweedFS en de Dagster UI de laatste regel weg:",
-          {"code": "dk_pin"},
+          "Je hoeft geen wachtwoorden in te vullen: de interne wachtwoorden en sleutels maakt xomtra bij de eerste start zelf aan. Het enige bestand dat je maakt is <code>.env</code> met de geverifieerde images:",
+          {"code": "dk_pin_new"},
+          "De lite-editie past op een NAS of kleine server. Voer daarvoor ook het volgende commando uit; laat het weg voor de volledige editie met SeaweedFS en de Dagster UI:",
           {"code": "dk_lite"}
         ]
       },
@@ -140,7 +126,22 @@
         "h": "Start xomtra",
         "b": [
           {"code": "dk_up"},
-          "Binnen een paar minuten horen alle services <code>running</code> of <code>healthy</code> te zijn. De geschiedenis uit Home Assistant laadt op de achtergrond."
+          "Bij de eerste start maakt de eenmalige service <code>secrets-init</code> alle interne wachtwoorden en sleutels aan in het Docker-volume <code>secrets</code> en bepaalt het adres van deze server in je LAN; xomtra draait dan op <code>https://&lt;server&gt;/</code>. Binnen een paar minuten horen alle services <code>running</code> of <code>healthy</code> te zijn."
+        ]
+      },
+      {
+        "h": "Maak een Home Assistant gebruiker voor xomtra",
+        "b": [
+          "Maak in Home Assistant een aparte gebruiker <b>zonder</b> beheerdersrechten, log in als die gebruiker en maak bij <b>Profiel → Beveiliging</b> een langdurig toegangstoken. Home Assistant kent geen read only tokens, dus deze gebruiker zou apparaten kunnen bedienen; xomtra leest echter alleen registers, geschiedenis en statistieken en roept nooit diensten aan. Met een aparte gebruiker kun je de toegang van xomtra altijd intrekken zonder aan je eigen account te komen."
+        ]
+      },
+      {
+        "h": "Koppel Home Assistant",
+        "b": [
+          "Zolang Home Assistant niet gekoppeld is, schrijft de admin-service een eenmalige installatielink in zijn log:",
+          {"code": "dk_setup"},
+          "Open de link in een browser in je LAN (de browser waarschuwt voor het certificaat, dat is normaal; zie de volgende stap). Vul de Home Assistant URL in zoals deze server hem bereikt, bijvoorbeeld <code>http://192.168.1.10:8123</code>, en het token uit de vorige stap.",
+          "xomtra controleert de verbinding voordat het die opslaat en bewaart het token versleuteld in zijn database, niet in een bestand. Daarna werkt de link niet meer en laadt de geschiedenis uit Home Assistant op de achtergrond. De URL of het token kun je later wijzigen op de beheerpagina onder <b>Overzicht</b>."
         ]
       },
       {
@@ -166,10 +167,11 @@
         "b": [
           "Lees eerst de release notes tussen jouw versie en de nieuwe. Zet daarna in <code>xomtra/deploy/compose</code> <code>VERSION</code> zoals in stap 2 en voer uit:",
           {"code": "dk_upgrade"},
-          "<code>--fill</code> voegt instellingen toe die nieuw zijn in deze versie en wijzigt de jouwe nooit. Verifieer de nieuwe images zoals in stap 3, pin ze en herstart:",
+          "Verifieer de nieuwe images zoals in stap 3, pin ze en herstart:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
-          "Terug kan met de vorige tag, de back-up van <code>.env</code> en <code>docker compose up -d</code>. Maak regelmatig een back-up van de machine of de Docker-volumes: daarin staat de hele geschiedenis."
+          "Wachtwoorden en sleutels blijven in het Docker-volume <code>secrets</code>. Een installatie van vóór versie 0.7.0 heeft ze nog in <code>.env</code>; de eerste start van de nieuwe versie neemt ze automatisch over, daarna kun je ze uit <code>.env</code> verwijderen.",
+          "Terug kan met de vorige tag, de back-up van <code>.env</code> en <code>docker compose up -d</code>. Maak regelmatig een back-up van de machine of de Docker-volumes: daarin staat de hele geschiedenis, en zonder het volume <code>secrets</code> zijn de gegevens niet te lezen."
         ]
       }
     ]
