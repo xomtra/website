@@ -1,0 +1,152 @@
+---
+// Illustrations of the method page: the pipeline (wide SVG on desktop, tall on phones) and three
+// small sketches. All curves are generated here from fixed formulas; no data of any home.
+import { M, type MethodText } from "../i18n";
+import type { Lang } from "../config";
+
+interface Props { lang: Lang; kind: "pipe" | "prep" | "struct" | "anom" }
+const { lang, kind } = Astro.props;
+const m: MethodText = M[lang];
+const id = `${kind}-${lang}`;
+const f = (n: number) => n.toFixed(1);
+const line = (pts: [number, number][]) => pts.map(([x, y], i) => `${i ? "L" : "M"}${f(x)} ${f(y)}`).join("");
+
+// Pipeline geometry
+const P = m.pipe;
+const WB = P.nodes.map((t, i) => ({ x: 3 + i * 166, y: 44, w: 150, h: 150, t, i }));
+const TB = P.nodes.map((t, i) => ({ x: 20, y: 34 + i * 106, w: 290, h: 84, t, i }));
+
+// Prep: raw step changes -> hourly series -> residual with one bump
+const daily = (h: number) => 0.55 * Math.sin(((h - 7) / 24) * 2 * Math.PI) + 0.25 * Math.sin(((h - 19) / 12) * 2 * Math.PI);
+const N = 48;
+const raw: [number, number][] = [];
+for (let h = 0; h < N; h += 1.5) {
+  const v = daily(h) + 0.18 * Math.sin(h * 1.7);
+  raw.push([h, v], [h + 1.5, v]);
+}
+const sx = (x0: number, h: number) => x0 + 10 + (h / N) * 150;
+const sy = (v: number) => 95 - v * 42;
+const rawPath = line(raw.map(([h, v]) => [sx(0, h), sy(v)]));
+const bars = Array.from({ length: 24 }, (_, i) => {
+  const h = i * 2;
+  const y = sy(daily(h + 1) + 0.12 * Math.sin(h * 1.7));
+  return { x: sx(215, h), y: Math.min(y, 95), h: Math.abs(y - 95) + 1 };
+});
+const resid: [number, number][] = Array.from({ length: 97 }, (_, i) => {
+  const h = i / 2;
+  const bump = 0.9 * Math.exp(-((h - 31) ** 2) / 6);
+  return [sx(430, h), sy(0.12 * Math.sin(h * 2.3) + 0.08 * Math.sin(h * 5.1) + bump)];
+});
+
+// Anomaly: a week of a sensor, usual range, one episode above it
+const AN = 168;
+const ax = (h: number) => 20 + (h / AN) * 560;
+const ay = (v: number) => 150 - v * 90;
+const usual = (h: number) => 0.45 + 0.25 * Math.sin(((h % 24) - 8) / 24 * 2 * Math.PI) + 0.06 * Math.sin(h / 9);
+const ep0 = 104, ep1 = 113;
+const bandUp: [number, number][] = [], bandLo: [number, number][] = [], ser: [number, number][] = [];
+for (let h = 0; h <= AN; h += 1) {
+  const u = usual(h);
+  bandUp.push([ax(h), ay(u + 0.12)]);
+  bandLo.push([ax(h), ay(u - 0.12)]);
+  const e = h >= ep0 && h <= ep1 ? 0.42 * Math.sin(((h - ep0) / (ep1 - ep0)) * Math.PI) + 0.06 : 0;
+  ser.push([ax(h), ay(u + 0.07 * Math.sin(h * 1.9) + 0.03 * Math.sin(h * 4.3) + e)]);
+}
+const band = line(bandUp) + line(bandLo.reverse()).replace(/^M/, "L") + "Z";
+---
+{kind === "pipe" ? (
+<figure class="flow mfig">
+  <figcaption class="cap">{P.cap}</figcaption>
+  {[
+    { cls: "wide", vb: "0 0 990 204", boxes: WB, p: "w" },
+    { cls: "tall", vb: "0 0 330 664", boxes: TB, p: "t" },
+  ].map((v) => (
+    <svg class={v.cls} viewBox={v.vb} role="img" aria-label={`${P.cap}: ${P.nodes.map((n) => n[0]).join(" → ")}`}>
+      <defs>
+        <marker id={`${v.p}a-${id}`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="hd" d="M0 0L10 5L0 10z" /></marker>
+        <marker id={`${v.p}b-${id}`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="hd req" d="M0 0L10 5L0 10z" /></marker>
+      </defs>
+      {v.p === "w"
+        ? <><rect class="frame" x="158" y="6" width="672" height="196" rx="16" /><text class="fl" x="172" y="28">{P.frame}</text></>
+        : <><rect class="frame" x="6" y="128" width="318" height="416" rx="16" /><text class="fl" x="18" y="534">{P.frame}</text></>}
+      {v.boxes.map((b) => (
+        <g>
+          <rect class={b.i >= 1 && b.i <= 4 ? "box us" : "box"} x={b.x} y={b.y} width={b.w} height={b.h} rx="12" />
+          <text class="n" x={b.x + 14} y={b.y + 24}>{String(b.i + 1).padStart(2, "0")}</text>
+          <text class="t" x={b.x + 14} y={b.y + (v.p === "w" ? 54 : 48)}>{b.t[0]}</text>
+          {v.p === "w"
+            ? b.t.slice(1).map((l, i) => <text class="s" x={b.x + 14} y={b.y + 82 + i * 18}>{l}</text>)
+            : <text class="s" x={b.x + 14} y={b.y + 70}>{b.t.slice(1).join(" · ")}</text>}
+          {v.p === "w" && (b.i === 0 || b.i === 5) && <text class="m" x={b.x + 14} y={b.y + b.h - 16}>{b.i === 0 ? P.ro : P.mcp}</text>}
+        </g>
+      ))}
+      {v.p === "w"
+        ? WB.slice(0, -1).map((b, i) => (
+            <path class={i === 0 ? "ln ro" : i === 4 ? "ln req" : "ln"} marker-end={`url(#w${i === 4 ? "b" : "a"}-${id})`} d={`M${b.x + b.w + 1} 119H${b.x + 166 - 3}`} />
+          ))
+        : TB.slice(0, -1).map((b, i) => (
+            <g>
+              <path class={i === 0 ? "ln ro" : i === 4 ? "ln req" : "ln"} marker-end={`url(#t${i === 4 ? "b" : "a"}-${id})`} d={`M165 ${b.y + b.h + 1}V${b.y + 106 - 3}`} />
+              {(i === 0 || i === 4) && <text class="a" x="175" y={b.y + b.h + 16}>{i === 0 ? P.ro : P.mcp}</text>}
+            </g>
+          ))}
+    </svg>
+  ))}
+</figure>
+) : kind === "prep" ? (
+<figure class="flow mfig small">
+  <figcaption class="cap">{m.figs.prep.cap}<span class="il">{m.illus}</span></figcaption>
+  <svg viewBox="0 0 600 174" role="img" aria-label={`${m.figs.prep.a} → ${m.figs.prep.b} → ${m.figs.prep.c}`}>
+    <defs><marker id={`a-${id}`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="hd" d="M0 0L10 5L0 10z" /></marker></defs>
+    {[0, 215, 430].map((x) => <rect class="box" x={x} y="20" width="170" height="150" rx="12" />)}
+    <path class="ln" d={rawPath} />
+    {bars.map((b) => <rect class="bar" x={b.x} y={b.y} width="5" height={b.h} />)}
+    <line class="zero" x1="440" x2="600" y1="95" y2="95"/>
+    <path class="ln acc" d={line(resid)} />
+    <circle class="dot" cx={sx(430, 31)} cy={sy(0.9 + 0.12 * Math.sin(31 * 2.3) + 0.08 * Math.sin(31 * 5.1))} r="4" />
+    <path class="ln" marker-end={`url(#a-${id})`} d="M174 95H209" />
+    <path class="ln" marker-end={`url(#a-${id})`} d="M389 95H424" />
+  </svg>
+  <div class="mlab p3"><span>{m.figs.prep.a}</span><span>{m.figs.prep.b}</span><span>{m.figs.prep.c}</span></div>
+</figure>
+) : kind === "struct" ? (
+<figure class="flow mfig small">
+  <figcaption class="cap">{m.figs.struct.cap}<span class="il">{m.illus}</span></figcaption>
+  <svg viewBox="0 0 600 174" role="img" aria-label={`${m.figs.struct.cap}: ${m.figs.struct.a}, ${m.figs.struct.b}, ${m.figs.struct.c}`}>
+    {[0, 210, 420].map((x) => <rect class="box" x={x} y="6" width="180" height="164" rx="12" />)}
+    <g>
+      <line class="ln found" x1="40" y1="52" x2="140" y2="52" />
+      <line class="ln acc" x1="40" y1="52" x2="90" y2="128" /><line class="ln acc" x1="90" y1="128" x2="140" y2="52" />
+      <circle class="nd" cx="40" cy="52" r="15" /><text class="nl" x="40" y="57">A</text>
+      <circle class="nd" cx="140" cy="52" r="15" /><text class="nl" x="140" y="57">B</text>
+      <circle class="nd ex" cx="90" cy="128" r="15" /><text class="nl" x="90" y="133">C</text>
+    </g>
+    <g>
+      <circle class="nd hid" cx="300" cy="40" r="17" /><text class="nl" x="300" y="45">?</text>
+      {[240, 280, 320, 360].map((x) => <><line class="ln acc" x1="300" y1="57" x2={x} y2="118" /><circle class="nd" cx={x} cy="130" r="12" /></>)}
+      <path class="ln found" d="M252 150Q300 172 348 150" />
+    </g>
+    <g>
+      <rect class="room" x="440" y="26" width="140" height="124" rx="10" />
+      <text class="a" x="452" y="44">{m.figs.struct.room}</text>
+      <line class="ln found" x1="474" y1="80" x2="546" y2="80" /><line class="ln found" x1="474" y1="80" x2="510" y2="126" /><line class="ln found" x1="546" y1="80" x2="510" y2="126" />
+      <circle class="nd" cx="474" cy="80" r="12" /><circle class="nd" cx="546" cy="80" r="12" /><circle class="nd" cx="510" cy="126" r="12" />
+    </g>
+  </svg>
+  <div class="mlab s3"><span>{m.figs.struct.a}</span><span>{m.figs.struct.b}</span><span>{m.figs.struct.c}</span></div>
+  <div class="legend"><span class="lf">{m.figs.struct.found}</span><span class="le">{m.figs.struct.expl}</span></div>
+</figure>
+) : (
+<figure class="flow mfig small">
+  <figcaption class="cap">{m.figs.anom.cap}<span class="il">{m.illus}</span></figcaption>
+  <svg viewBox="0 0 600 174" role="img" aria-label={`${m.figs.anom.cap}: ${m.figs.anom.series}, ${m.figs.anom.band}, ${m.figs.anom.ep}`}>
+    <rect class="epbg" x={ax(ep0 - 1)} y="14" width={ax(ep1 + 1) - ax(ep0 - 1)} height="150" rx="6" />
+    <path class="band" d={band} />
+    <path class="ln ink" d={line(ser)} />
+    <path class="ln sig" d={line(ser.slice(ep0, ep1 + 1))} />
+    {Array.from({ length: 8 }, (_, d) => <line class="tick" x1={ax(d * 24)} x2={ax(d * 24)} y1="164" y2="170" />)}
+    <line class="zero" x1="20" x2="580" y1="164" y2="164" />
+      </svg>
+  <div class="legend"><span class="lb">{m.figs.anom.band}</span><span class="ls">{m.figs.anom.series}</span><span class="lsig">{m.figs.anom.ep}</span></div>
+</figure>
+)}

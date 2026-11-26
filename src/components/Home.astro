@@ -1,6 +1,6 @@
 ---
-import { LAUNCHED, NOTIFY, MYHA, guidePath, type Lang } from "../config";
-import { T, LEG, FLOW, G } from "../i18n";
+import { LAUNCHED, NOTIFY, MYHA, guidePath, methodPath, type Lang } from "../config";
+import { T, LEG, FLOW, G, M } from "../i18n";
 import Flow from "./Flow.astro";
 
 interface Props { lang: Lang }
@@ -50,6 +50,7 @@ const pts = "0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 25
 <section id={`how-${lang}`}><div class="wrap">
   <h2>{t.f_h}</h2><p class="sub">{t.f_s}</p>
   <div class="grid">{t.feats.map((f) => <div class="feat"><span class="k">{f[0]}</span><h3>{f[1]}</h3><p>{f[2]}</p></div>)}</div>
+  <p class="more"><a href={methodPath(lang)}>{M[lang].more} →</a></p>
 </div></section>
 
 <section><div class="wrap">

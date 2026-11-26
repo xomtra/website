@@ -25,3 +25,14 @@ export type Guide = { name: string; title: string; desc: string; lead: string; f
 type GuideFile = { ui: typeof en.ui } & Record<GuideSlug, Guide>;
 export const G = { en, de, cs, pl, nl } as unknown as Record<Lang, GuideFile>;
 export const CODE = code as Record<string, string>;
+
+// Method page (/method/ and /<lang>/method/): sections of blocks like the guides, plus the
+// texts of its illustrations.
+import men from "./method/en.json";
+import mde from "./method/de.json";
+import mcs from "./method/cs.json";
+import mpl from "./method/pl.json";
+import mnl from "./method/nl.json";
+export type MethodBlock = string | { ul: string[] } | { note: string };
+export type MethodText = Omit<typeof men, "sections"> & { sections: { id: string; h: string; fig?: "prep" | "struct" | "anom"; b: MethodBlock[] }[] };
+export const M = { en: men, de: mde, cs: mcs, pl: mpl, nl: mnl } as unknown as Record<Lang, MethodText>;

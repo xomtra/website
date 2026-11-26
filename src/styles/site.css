@@ -181,3 +181,45 @@ pre.cmd{margin:0 0 14px;background:var(--bg);border:1px solid var(--line);border
 .gfoot{border-top:1px solid var(--line);padding-top:24px;color:var(--muted);font-size:15px}
 .gfoot p{margin:0 0 8px}
 .gfoot a{color:var(--ink);text-underline-offset:3px}
+
+/* Method page: pipeline and small illustrations (generated curves, no real data) */
+nav.sec a[aria-current="page"]{color:var(--ink)}
+.more{margin:22px 0 0}
+.more a{font-size:15px;font-weight:500;color:var(--accent);text-decoration:none}
+.more a:hover{text-decoration:underline;text-underline-offset:3px}
+.mpipe{padding-block:40px 8px;border-bottom:0}
+.msec{padding-top:40px}
+figure.mfig.small{margin:8px 0 18px;max-width:640px}
+.mfig .cap{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.mfig .cap .il{color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400}
+.mfig .n{fill:var(--accent);font:500 11px var(--mono)}
+.mfig .t{font-size:16px}
+.mfig .s{font-size:12px}
+.mfig .ln.acc{stroke:var(--accent)}
+.mfig .ln.ink{stroke:var(--ink);stroke-width:1.6}
+.mfig .ln.sig{stroke:var(--signal);stroke-width:2.4}
+.mfig .ln.found{stroke:var(--signal);stroke-width:2;stroke-dasharray:5 4}
+.mfig .a.sig{fill:var(--signal)}
+.mfig .bar{fill:var(--accent);fill-opacity:.75}
+.mfig .zero,.mfig .tick{stroke:var(--line);stroke-width:1}
+.mfig .dot{fill:var(--signal)}
+.mfig .nd{fill:var(--surface);stroke:var(--muted);stroke-width:1.5}
+.mfig .nd.ex{stroke:var(--accent)}
+.mfig .nd.hid{stroke:var(--accent);stroke-dasharray:4 3}
+.mfig .nl{fill:var(--ink);font:500 13px var(--mono);text-anchor:middle}
+.mfig .room{fill:none;stroke:var(--accent);stroke-width:1.2;stroke-dasharray:6 5}
+.mfig .band{fill:var(--accent);fill-opacity:.16}
+.mfig .epbg{fill:var(--signal);fill-opacity:.08}
+.mfig .legend{display:flex;gap:18px;margin-top:8px;font:500 11px var(--mono);color:var(--muted)}
+.mfig .legend span::before{content:"";display:inline-block;width:20px;height:0;margin-right:8px;vertical-align:3px;border-top:2px dashed var(--signal)}
+.mfig .legend .le::before{border-top:2px solid var(--accent)}
+.gsteps .mfig .cap{font-size:11.5px}
+.mlab{display:grid;gap:0;margin-top:8px;font-size:12.5px;line-height:1.3;color:var(--muted);text-align:center}
+.mlab.p3{grid-template-columns:170fr 45fr 170fr 45fr 170fr}
+.mlab.s3{grid-template-columns:180fr 30fr 180fr 30fr 180fr}
+.mlab span:nth-child(2){grid-column:3}.mlab span:nth-child(3){grid-column:5}
+.mfig .legend{flex-wrap:wrap}
+.mfig .legend .lb::before{border-top:0;height:10px;width:18px;vertical-align:-1px;background:color-mix(in srgb,var(--accent) 16%,transparent)}
+.mfig .legend .ls::before{border-top:2px solid var(--ink)}
+.mfig .legend .lf::before{border-top-style:dashed}
+.mfig .legend .lsig::before{border-top:2px solid var(--signal)}
