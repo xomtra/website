@@ -139,8 +139,25 @@
       "id": "confidence",
       "h": "Poctivě i v tom, co neví",
       "b": [
-        "Malý dům nebo dům, kde mnoho entit nemá přiřazenou oblast, dává analýze méně podkladů. Místo tichého odhadování xomtra takový běh označí jako běh s nízkou jistotou a jeho souvislosti předloží jako hypotézy. Potřebný kontext mu dodají oblasti v Home Assistantu a entita přítomnosti obyvatel.",
+        "Malý dům nebo dům, kde mnoho entit nemá přiřazenou oblast, dává analýze méně podkladů. Místo tichého odhadování xomtra takový běh označí jako běh s nízkou jistotou a jeho souvislosti předloží jako hypotézy. Jak mu potřebný kontext dodat, popisuje následující část.",
         "Analýza dlouhého období u mnoha senzorů potřebuje hodně paměti. Velkou instalaci se stovkami senzorů proto doporučujeme provozovat na samostatném stroji, ne jako add-on na malém hostiteli Home Assistantu."
+      ]
+    },
+    {
+      "id": "tips",
+      "h": "Jak připravit Home Assistant pro xomtru",
+      "b": [
+        "Nejlepší výsledky dává dobře popsaný dům. Pár úprav v Home Assistantu zabere chvíli a analýze výrazně pomůže:",
+        {
+          "ul": [
+            "<b>Přiřaďte zařízení do oblastí.</b> Každé zařízení dejte do místnosti, kde skutečně je. Entity oblast zdědí a xomtra pak pozná, které souvislosti vysvětluje jedna místnost. Když většina entit oblast nemá, běh dostane nízkou jistotu.",
+            "<b>Nastavte entitu přítomnosti.</b> Osoba s device trackerem, třeba z aplikace Home Assistant v telefonu, nebo senzor přítomnosti. Jinak xomtra nerozezná, že spolu dvě místnosti souvisí jen proto, že je někdo doma.",
+            "<b>Vyřaďte nefunkční a nepotřebná zařízení.</b> Štítek <code>xomtra_no_analysis</code> vyřadí entitu z analýzy, data ale zůstanou k dotazům. Štítek <code>xomtra_no_ingest</code> ji vůbec neukládá. Štítek na zařízení platí pro všechny jeho entity, i budoucí.",
+            "<b>Odstraňte zdvojené entity.</b> Když jeden senzor přichází přes dvě integrace, jednu z entit v Home Assistantu zakažte. Ubyde triviálních nálezů.",
+            "<b>Nechte senzory ukládat dlouhodobé statistiky.</b> Senzor potřebuje jednotku a třídu stavu (<code>measurement</code> nebo <code>total</code>). U vlastních a šablonových senzorů je často potřeba ji doplnit.",
+            "<b>Opravte zařízení, která často vypadávají.</b> Řada s mnoha výpadky se do analýzy nedostane, nebo dává horší výsledky."
+          ]
+        }
       ]
     },
     {

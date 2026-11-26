@@ -139,8 +139,25 @@
       "id": "confidence",
       "h": "Ehrlich bei dem, was es nicht weiß",
       "b": [
-        "Ein kleiner Haushalt oder einer, in dem vielen Entitäten kein Bereich zugewiesen ist, gibt der Analyse weniger Anhaltspunkte. Statt still zu raten, markiert xomtra einen solchen Lauf als wenig sicher und stellt seine Zusammenhänge als Hypothesen dar. Bereiche in Home Assistant und eine Anwesenheits-Entität für die Bewohner geben ihm den nötigen Kontext.",
+        "Ein kleiner Haushalt oder einer, in dem vielen Entitäten kein Bereich zugewiesen ist, gibt der Analyse weniger Anhaltspunkte. Statt still zu raten, markiert xomtra einen solchen Lauf als wenig sicher und stellt seine Zusammenhänge als Hypothesen dar. Wie Sie ihm den nötigen Kontext geben, zeigt der nächste Abschnitt.",
         "Die Analyse eines langen Zeitraums über viele Sensoren braucht viel Speicher. Für eine große Installation mit Hunderten von Sensoren empfehlen wir daher einen eigenen Rechner statt des Add-ons auf einem kleinen Home-Assistant-Host."
+      ]
+    },
+    {
+      "id": "tips",
+      "h": "Home Assistant für xomtra vorbereiten",
+      "b": [
+        "Ein gut beschriebenes Zuhause liefert die besten Ergebnisse. Ein paar Änderungen in Home Assistant dauern Minuten und helfen der Analyse sehr:",
+        {
+          "ul": [
+            "<b>Geräte Bereichen zuordnen.</b> Ordnen Sie jedes Gerät dem Raum zu, in dem es wirklich steht. Seine Entitäten erben den Bereich, und xomtra erkennt, welche Zusammenhänge ein Raum erklärt. Haben die meisten Entitäten keinen Bereich, bekommt der Lauf eine geringe Sicherheit.",
+            "<b>Eine Anwesenheits-Entität haben.</b> Eine Person mit Device Tracker, etwa aus der Home-Assistant-App auf dem Handy, oder ein Präsenzsensor. Sonst kann xomtra nicht erkennen, dass zwei Räume nur deshalb zusammenhängen, weil jemand zu Hause ist.",
+            "<b>Defekte und unnötige Geräte ausschließen.</b> Das Label <code>xomtra_no_analysis</code> nimmt eine Entität aus der Analyse, ihre Daten bleiben für Fragen verfügbar. Das Label <code>xomtra_no_ingest</code> speichert sie gar nicht. Ein Label am Gerät gilt für alle seine Entitäten, auch künftige.",
+            "<b>Doppelte Entitäten entfernen.</b> Kommt ein Sensor über zwei Integrationen, deaktivieren Sie eine der Entitäten in Home Assistant. Das ergibt weniger triviale Befunde.",
+            "<b>Sensoren Langzeitstatistiken führen lassen.</b> Ein Sensor braucht eine Einheit und eine Zustandsklasse (<code>measurement</code> oder <code>total</code>). Bei eigenen und Template-Sensoren fehlt sie oft.",
+            "<b>Geräte reparieren, die oft ausfallen.</b> Eine Reihe mit vielen Lücken fällt aus der Analyse heraus oder liefert schwächere Ergebnisse."
+          ]
+        }
       ]
     },
     {
