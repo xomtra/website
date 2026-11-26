@@ -317,7 +317,7 @@
    ],
    "eyebrow": "Open source · pro Home Assistant",
    "h1": "Zeptejte se domu, co se doopravdy stalo.",
-   "lead": "xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.",
+   "lead": "xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a na otázky o vaší domácnosti vám odpoví Claude nebo jiný MCP klient. Read only, na vašem vlastním hardwaru.",
    "cta1": "Nainstalovat zdarma",
    "cta2": "Jak to funguje",
    "note": "Apache 2.0 · bez registrace · data zůstávají doma",
@@ -416,7 +416,7 @@
      "Nic. xomtra je zdarma a open source (Apache 2.0): žádné předplatné, žádný účet, žádné limity. Využíváte jen to, co už máte: počítač, na kterém běží (váš Home Assistant nebo malý virtuální stroj), a pro otázky běžnou řečí vlastní předplatné AI, třeba Claude."
     ],
     [
-     "Potřebuji Clauda?",
+     "Potřebuji Claude?",
      "Ne. xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
     ],
     [
