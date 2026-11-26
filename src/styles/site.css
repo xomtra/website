@@ -223,3 +223,9 @@ figure.mfig.small{margin:8px 0 18px;max-width:640px}
 .mfig .legend .ls::before{border-top:2px solid var(--ink)}
 .mfig .legend .lf::before{border-top-style:dashed}
 .mfig .legend .lsig::before{border-top:2px solid var(--signal)}
+
+/* My Home Assistant badge (official image from my.home-assistant.io) */
+.myha-badge{display:inline-block;line-height:0;border-radius:6px;max-width:100%}
+.myha-badge img{height:40px;width:auto;max-width:100%;object-fit:contain;object-position:left center;display:block}
+.myha-badge:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.inst .myha-badge{margin-top:10px;align-self:flex-start}

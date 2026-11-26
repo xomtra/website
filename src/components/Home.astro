@@ -1,7 +1,8 @@
 ---
-import { LAUNCHED, NOTIFY, MYHA, guidePath, methodPath, type Lang } from "../config";
+import { LAUNCHED, NOTIFY, guidePath, methodPath, type Lang } from "../config";
 import { T, LEG, FLOW, G, M } from "../i18n";
 import Flow from "./Flow.astro";
+import MyHaBadge from "./MyHaBadge.astro";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -62,7 +63,7 @@ const pts = "0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 25
   <h2>{t.in_h}</h2><p class="sub">{LAUNCHED ? t.in_s : t.pre_inst}</p>
   <div class="install">{t.inst.map((i, n) => GUIDE[n] ? (
     <div class="inst"><h3><a href={guidePath(lang, GUIDE[n]!)}>{i[0]}</a></h3><p>{i[1]}</p><code>{i[2]}</code>
-      {LAUNCHED && n === 0 && <a class="btn myha" href={MYHA} rel="noopener">{t.myha} ↗</a>}
+      {n === 0 && <MyHaBadge lang={lang} />}
       <a class="glink" href={guidePath(lang, GUIDE[n]!)}>{ui.guide} →</a></div>
   ) : (
     <div class="inst later"><h3>{i[0]}<span class="soon">{ui.soon}</span></h3><p>{i[1]}</p><code>{i[2]}</code></div>
