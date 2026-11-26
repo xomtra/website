@@ -720,7 +720,7 @@
  },
  "FLOW": {
   "en": {
-   "h": "How the pieces talk",
+   "h": "Where your question goes",
    "s": "The agent asks only xomtra, never Home Assistant directly. xomtra only reads Home Assistant and switches nothing. The model sees only the answers it asked for.",
    "agent": [
     "LLM agent",
@@ -760,7 +760,7 @@
    "cv": "2 · Virtual machine or Docker"
   },
   "cs": {
-   "h": "Jak spolu díly mluví",
+   "h": "Kudy vede vaše otázka",
    "s": "Agent se ptá jen xomtry, nikdy přímo Home Assistantu. xomtra Home Assistant jen čte a nic nepřepíná. Model vidí jen odpovědi, o které požádal.",
    "agent": [
     "LLM agent",
@@ -777,7 +777,7 @@
     "entity, stavy",
     "a statistiky"
    ],
-   "ro": "jen čtení",
+   "ro": "read only",
    "a1": [
     "1 dotaz",
     "+ token"
@@ -800,7 +800,7 @@
    "cv": "2 · Virtuální stroj nebo Docker"
   },
   "de": {
-   "h": "Wie die Teile miteinander sprechen",
+   "h": "Wohin Ihre Frage geht",
    "s": "Der Agent fragt nur xomtra, nie direkt Home Assistant. xomtra liest Home Assistant nur und schaltet nichts. Das Modell sieht nur die Antworten, die es angefordert hat.",
    "agent": [
     "LLM-Agent",
@@ -840,7 +840,7 @@
    "cv": "2 · Virtuelle Maschine oder Docker"
   },
   "pl": {
-   "h": "Jak elementy ze sobą rozmawiają",
+   "h": "Dokąd trafia Twoje pytanie",
    "s": "Agent pyta tylko xomtrę, nigdy bezpośrednio Home Assistant. xomtra tylko czyta Home Assistant i niczego nie przełącza. Model widzi tylko odpowiedzi, o które poprosił.",
    "agent": [
     "Agent LLM",
@@ -880,7 +880,7 @@
    "cv": "2 · Maszyna wirtualna lub Docker"
   },
   "nl": {
-   "h": "Hoe de onderdelen met elkaar praten",
+   "h": "Waar je vraag naartoe gaat",
    "s": "De agent vraagt alleen xomtra, nooit rechtstreeks Home Assistant. xomtra leest Home Assistant alleen en schakelt niets. Het model ziet alleen de antwoorden waar het om vroeg.",
    "agent": [
     "LLM-agent",
