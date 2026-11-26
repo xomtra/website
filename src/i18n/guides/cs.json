@@ -116,7 +116,7 @@
       {
         "h": "Vytvořte uživatele Home Assistantu pro xomtra",
         "b": [
-          "V Home Assistantu vytvořte samostatného uživatele <b>bez</b> administrátorských práv, přihlaste se jako on a na <b>Profil → Zabezpečení</b> vytvořte dlouhodobý přístupový token. xomtra jen čte registry, historii a statistiky, takže práva read only stačí."
+          "V Home Assistantu vytvořte samostatného uživatele <b>bez</b> administrátorských práv, přihlaste se jako on a na <b>Profil → Zabezpečení</b> vytvořte dlouhodobý přístupový token. Home Assistant tokeny read only nemá, takže by tento uživatel zařízení ovládat mohl; xomtra ale jen čte registry, historii a statistiky a nikdy nevolá služby. Samostatný uživatel vám umožní přístup xomtry kdykoli odebrat, aniž byste sahali na svůj účet."
         ]
       },
       {

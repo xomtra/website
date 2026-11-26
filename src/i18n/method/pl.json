@@ -11,7 +11,7 @@
     ],
     [
       "Czyta",
-      "Home Assistant, read only"
+      "Home Assistant, niczego nie zmienia"
     ],
     [
       "Metoda",
@@ -85,7 +85,7 @@
       "id": "collect",
       "h": "Każda zmiana, od pierwszego dnia",
       "b": [
-        "xomtra loguje się do Home Assistanta własnym kontem z uprawnieniami read only. Rejestruje każdą zmianę stanu w chwili, gdy następuje, i zapisuje długoterminowe statystyki, które Home Assistant już liczy. Przy pierwszym uruchomieniu przejmuje historię, którą Home Assistant jeszcze przechowuje, a po utracie połączenia sam uzupełnia brakujący fragment.",
+        "xomtra łączy się z Home Assistantem i tylko z niego czyta: nigdy nie wywołuje usług i niczego nie zmienia. Rejestruje każdą zmianę stanu w chwili, gdy następuje, i zapisuje długoterminowe statystyki, które Home Assistant już liczy. Przy pierwszym uruchomieniu przejmuje historię, którą Home Assistant jeszcze przechowuje, a po utracie połączenia sam uzupełnia brakujący fragment.",
         "Encje, które nie mają być analizowane, oznaczasz w Home Assistancie etykietą. Inna etykieta wyklucza je także z zapisu."
       ]
     },
@@ -132,7 +132,7 @@
       "h": "Najpierw to, co zaskakuje, w poniedziałek podsumowanie",
       "b": [
         "Każdy wniosek dostaje siłę, wagę dowodu i kategorię z publicznego zbioru reguł: usterka, oszczędność, automatyzacja albo zachowanie. Wnioski trywialne, jak znane powiązanie produkcji fotowoltaiki z nasłonecznieniem, pozostają ukryte.",
-        "W poniedziałek rano xomtra zapisuje przegląd minionego tygodnia, więc możesz zapytać, co nowego, co zniknęło i co było nietypowe. Twój asystent AI czyta wnioski przez MCP z tymi samymi uprawnieniami read only co każde inne pytanie i przekłada je na zwykły język."
+        "W poniedziałek rano xomtra zapisuje przegląd minionego tygodnia, więc możesz zapytać, co nowego, co zniknęło i co było nietypowe. Twój asystent AI czyta wnioski przez MCP tymi samymi narzędziami read only co każde inne pytanie i przekłada je na zwykły język."
       ]
     },
     {

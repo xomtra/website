@@ -11,7 +11,7 @@
     ],
     [
       "Reads",
-      "Home Assistant, read only"
+      "Home Assistant, changes nothing"
     ],
     [
       "Method",
@@ -85,7 +85,7 @@
       "id": "collect",
       "h": "Any change, from the first day",
       "b": [
-        "xomtra signs in to Home Assistant with its own read only account. It records every state change the moment it happens and stores the long-term statistics Home Assistant already computes. On the first start it takes over the history Home Assistant still keeps, and after a lost connection it fills in the missing stretch by itself.",
+        "xomtra connects to Home Assistant and only reads from it: it never calls services and changes nothing. It records every state change the moment it happens and stores the long-term statistics Home Assistant already computes. On the first start it takes over the history Home Assistant still keeps, and after a lost connection it fills in the missing stretch by itself.",
         "Entities that should not be analysed get a label in Home Assistant. Another label keeps them out of storage too."
       ]
     },
@@ -132,7 +132,7 @@
       "h": "The surprising first, a summary every Monday",
       "b": [
         "Every finding gets a strength, a weight of evidence and a category from a public rulebook: fault, savings, automation or behaviour. Trivial findings, such as the known link between solar power and sunshine, stay hidden.",
-        "On Monday morning xomtra saves an overview of the past week, so you can ask what is new, what is gone and what was unusual. Your AI assistant reads the findings over MCP with the same read only rights as any other question and translates them into plain language."
+        "On Monday morning xomtra saves an overview of the past week, so you can ask what is new, what is gone and what was unusual. Your AI assistant reads the findings over MCP with the same read only tools as any other question and translates them into plain language."
       ]
     },
     {

@@ -11,7 +11,7 @@
     ],
     [
       "Liest",
-      "Home Assistant, read only"
+      "Home Assistant, ändert nichts"
     ],
     [
       "Methode",
@@ -85,7 +85,7 @@
       "id": "collect",
       "h": "Jede Änderung, vom ersten Tag an",
       "b": [
-        "xomtra meldet sich mit einem eigenen read-only-Konto bei Home Assistant an. Es erfasst jede Zustandsänderung, sobald sie passiert, und speichert die Langzeitstatistiken, die Home Assistant ohnehin berechnet. Beim ersten Start übernimmt es die Historie, die Home Assistant noch aufbewahrt, und nach einem Verbindungsabbruch ergänzt es den fehlenden Abschnitt selbst.",
+        "xomtra verbindet sich mit Home Assistant und liest nur: Es ruft nie Dienste auf und ändert nichts. Es erfasst jede Zustandsänderung, sobald sie passiert, und speichert die Langzeitstatistiken, die Home Assistant ohnehin berechnet. Beim ersten Start übernimmt es die Historie, die Home Assistant noch aufbewahrt, und nach einem Verbindungsabbruch ergänzt es den fehlenden Abschnitt selbst.",
         "Entitäten, die nicht analysiert werden sollen, versehen Sie in Home Assistant mit einem Label. Ein anderes Label schließt sie auch von der Speicherung aus."
       ]
     },
@@ -132,7 +132,7 @@
       "h": "Das Überraschende zuerst, montags eine Übersicht",
       "b": [
         "Jeder Befund bekommt eine Stärke, ein Beweisgewicht und eine Kategorie aus einem öffentlichen Regelwerk: Fehler, Einsparung, Automatisierung oder Verhalten. Triviale Befunde, etwa der bekannte Zusammenhang von Solarstrom und Sonnenschein, bleiben verborgen.",
-        "Am Montagmorgen speichert xomtra eine Übersicht der vergangenen Woche, sodass Sie fragen können, was neu ist, was verschwunden ist und was ungewöhnlich war. Ihr KI-Assistent liest die Befunde über MCP mit denselben read-only-Rechten wie jede andere Frage und übersetzt sie in Alltagssprache."
+        "Am Montagmorgen speichert xomtra eine Übersicht der vergangenen Woche, sodass Sie fragen können, was neu ist, was verschwunden ist und was ungewöhnlich war. Ihr KI-Assistent liest die Befunde über MCP mit denselben read-only-Werkzeugen wie jede andere Frage und übersetzt sie in Alltagssprache."
       ]
     },
     {

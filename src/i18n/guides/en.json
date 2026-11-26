@@ -116,7 +116,7 @@
       {
         "h": "Create a Home Assistant user for xomtra",
         "b": [
-          "In Home Assistant create a dedicated user <b>without</b> administrator rights, sign in as that user and create a long-lived access token on <b>Profile → Security</b>. xomtra only reads registries, history and statistics, so read access is enough."
+          "In Home Assistant create a dedicated user <b>without</b> administrator rights, sign in as that user and create a long-lived access token on <b>Profile → Security</b>. Home Assistant has no read-only tokens, so this user could still control devices; xomtra only reads registries, history and statistics and never calls services. A separate user lets you revoke xomtra's access any time without touching your own account."
         ]
       },
       {

@@ -11,7 +11,7 @@
     ],
     [
       "Čte",
-      "Home Assistant, read only"
+      "Home Assistant, nic v něm nemění"
     ],
     [
       "Metoda",
@@ -85,7 +85,7 @@
       "id": "collect",
       "h": "Jakákoli změna, od prvního dne",
       "b": [
-        "xomtra se k Home Assistantu přihlašuje vlastním účtem s právy read only. Zaznamená každou změnu stavu hned, jak nastane, a ukládá dlouhodobé statistiky, které Home Assistant už počítá. Při prvním spuštění převezme historii, kterou Home Assistant ještě uchovává, a po výpadku spojení chybějící úsek sám doplní.",
+        "xomtra se připojuje k Home Assistantu a jen z něj čte: nikdy nevolá služby a nic nemění. Zaznamená každou změnu stavu hned, jak nastane, a ukládá dlouhodobé statistiky, které Home Assistant už počítá. Při prvním spuštění převezme historii, kterou Home Assistant ještě uchovává, a po výpadku spojení chybějící úsek sám doplní.",
         "Entity, které se nemají analyzovat, označíte v Home Assistantu štítkem. Jiným štítkem je vyloučíte i z ukládání."
       ]
     },
@@ -132,7 +132,7 @@
       "h": "Nejdřív to překvapivé, každé pondělí shrnutí",
       "b": [
         "Každý nález dostane sílu, váhu důkazu a kategorii podle veřejné sady pravidel: porucha, úspora, automatizace nebo chování. Triviální nálezy, například známá souvislost výroby fotovoltaiky se slunečním svitem, zůstávají skryté.",
-        "V pondělí ráno xomtra uloží přehled uplynulého týdne, takže se můžete zeptat, co je nového, co zmizelo a co bylo neobvyklé. Váš AI asistent čte nálezy přes MCP se stejnými právy read only jako jakýkoli jiný dotaz a převede je do lidské řeči."
+        "V pondělí ráno xomtra uloží přehled uplynulého týdne, takže se můžete zeptat, co je nového, co zmizelo a co bylo neobvyklé. Váš AI asistent čte nálezy přes MCP se stejnými nástroji read only jako jakýkoli jiný dotaz a převede je do lidské řeči."
       ]
     },
     {
