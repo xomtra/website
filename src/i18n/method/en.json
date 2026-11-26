@@ -139,8 +139,25 @@
       "id": "confidence",
       "h": "Honest about what it does not know",
       "b": [
-        "A small home, or one where many entities have no area assigned, gives the analysis less to work with. Instead of quietly guessing, xomtra marks such a run as low confidence and presents its relations as hypotheses. Areas in Home Assistant and a presence entity for the residents give it the context it needs.",
+        "A small home, or one where many entities have no area assigned, gives the analysis less to work with. Instead of quietly guessing, xomtra marks such a run as low confidence and presents its relations as hypotheses. The next section shows how to give it the context it needs.",
         "Analysing a long period over many sensors takes a lot of memory. For a large installation with hundreds of sensors we therefore recommend a machine of its own rather than the add-on on a small Home Assistant host."
+      ]
+    },
+    {
+      "id": "tips",
+      "h": "Get Home Assistant ready for xomtra",
+      "b": [
+        "A well described home gives the best results. A few changes in Home Assistant take minutes and help the analysis a lot:",
+        {
+          "ul": [
+            "<b>Put devices into areas.</b> Assign every device to the room it is really in. Its entities inherit the area, and xomtra can tell which relations one room explains. When most entities have no area, the run gets low confidence.",
+            "<b>Have a presence entity.</b> A person with a device tracker, for example from the Home Assistant app on a phone, or a presence sensor. Otherwise xomtra cannot tell that two rooms move together only because someone is home.",
+            "<b>Leave out broken and unneeded devices.</b> The label <code>xomtra_no_analysis</code> keeps an entity out of the analysis while its data stay available for questions. The label <code>xomtra_no_ingest</code> does not store it at all. A label on a device covers all its entities, future ones too.",
+            "<b>Remove duplicate entities.</b> When one sensor comes in through two integrations, disable one of the entities in Home Assistant. There will be fewer trivial findings.",
+            "<b>Let sensors keep long-term statistics.</b> A sensor needs a unit and a state class (<code>measurement</code> or <code>total</code>). Custom and template sensors often lack it.",
+            "<b>Fix devices that drop out often.</b> A series with many gaps is left out of the analysis or gives weaker results."
+          ]
+        }
       ]
     },
     {

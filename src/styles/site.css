@@ -229,3 +229,4 @@ figure.mfig.small{margin:8px 0 18px;max-width:640px}
 .myha-badge img{height:40px;width:auto;max-width:100%;object-fit:contain;object-position:left center;display:block}
 .myha-badge:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .inst .myha-badge{margin-top:10px;align-self:flex-start}
+.gsteps>li{scroll-margin-top:72px}

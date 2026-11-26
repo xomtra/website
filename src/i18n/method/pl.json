@@ -139,8 +139,25 @@
       "id": "confidence",
       "h": "Uczciwie o tym, czego nie wie",
       "b": [
-        "Mały dom albo taki, w którym wiele encji nie ma przypisanego obszaru, daje analizie mniej materiału. Zamiast po cichu zgadywać, xomtra oznacza taki przebieg jako przebieg o niskiej pewności i przedstawia jego powiązania jako hipotezy. Potrzebny kontekst dają mu obszary w Home Assistancie i encja obecności domowników.",
+        "Mały dom albo taki, w którym wiele encji nie ma przypisanego obszaru, daje analizie mniej materiału. Zamiast po cichu zgadywać, xomtra oznacza taki przebieg jako przebieg o niskiej pewności i przedstawia jego powiązania jako hipotezy. Jak dać mu potrzebny kontekst, pokazuje następna część.",
         "Analiza długiego okresu dla wielu czujników wymaga dużo pamięci. Dużą instalację z setkami czujników zalecamy więc uruchamiać na osobnej maszynie, a nie jako dodatek na małym hoście Home Assistanta."
+      ]
+    },
+    {
+      "id": "tips",
+      "h": "Jak przygotować Home Assistanta dla xomtry",
+      "b": [
+        "Najlepsze wyniki daje dobrze opisany dom. Kilka zmian w Home Assistancie zajmuje chwilę i bardzo pomaga analizie:",
+        {
+          "ul": [
+            "<b>Przypisz urządzenia do obszarów.</b> Każde urządzenie przypisz do pokoju, w którym naprawdę stoi. Jego encje dziedziczą obszar, a xomtra rozpoznaje, które powiązania wyjaśnia jeden pokój. Gdy większość encji nie ma obszaru, przebieg dostaje niską pewność.",
+            "<b>Miej encję obecności.</b> Osoba z device trackerem, na przykład z aplikacji Home Assistant w telefonie, albo czujnik obecności. Inaczej xomtra nie rozpozna, że dwa pokoje są powiązane tylko dlatego, że ktoś jest w domu.",
+            "<b>Wyklucz niesprawne i niepotrzebne urządzenia.</b> Etykieta <code>xomtra_no_analysis</code> wyłącza encję z analizy, a jej dane zostają dostępne dla pytań. Etykieta <code>xomtra_no_ingest</code> w ogóle jej nie zapisuje. Etykieta na urządzeniu obejmuje wszystkie jego encje, także przyszłe.",
+            "<b>Usuń zdublowane encje.</b> Gdy jeden czujnik przychodzi przez dwie integracje, wyłącz jedną z encji w Home Assistancie. Będzie mniej trywialnych wniosków.",
+            "<b>Pozwól czujnikom prowadzić statystyki długoterminowe.</b> Czujnik potrzebuje jednostki i klasy stanu (<code>measurement</code> lub <code>total</code>). Czujnikom własnym i szablonowym często jej brakuje.",
+            "<b>Napraw urządzenia, które często znikają.</b> Szereg z wieloma przerwami wypada z analizy albo daje słabsze wyniki."
+          ]
+        }
       ]
     },
     {

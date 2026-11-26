@@ -139,8 +139,25 @@
       "id": "confidence",
       "h": "Eerlijk over wat het niet weet",
       "b": [
-        "Een klein huis, of een huis waar veel entiteiten geen ruimte toegewezen hebben, geeft de analyse minder om mee te werken. In plaats van stilletjes te gokken, markeert xomtra zo'n run als weinig zeker en presenteert het de verbanden als hypotheses. Ruimtes in Home Assistant en een aanwezigheidsentiteit voor de bewoners geven het de context die het nodig heeft.",
+        "Een klein huis, of een huis waar veel entiteiten geen ruimte toegewezen hebben, geeft de analyse minder om mee te werken. In plaats van stilletjes te gokken, markeert xomtra zo'n run als weinig zeker en presenteert het de verbanden als hypotheses. Hoe je het de nodige context geeft, staat in het volgende deel.",
         "Een lange periode over veel sensoren analyseren vraagt veel geheugen. Voor een grote installatie met honderden sensoren raden we daarom een eigen machine aan in plaats van de add-on op een kleine Home Assistant-host."
+      ]
+    },
+    {
+      "id": "tips",
+      "h": "Home Assistant klaarmaken voor xomtra",
+      "b": [
+        "Een goed beschreven huis geeft de beste resultaten. Een paar aanpassingen in Home Assistant kosten minuten en helpen de analyse veel:",
+        {
+          "ul": [
+            "<b>Deel apparaten in ruimtes in.</b> Wijs elk apparaat toe aan de kamer waar het echt staat. De entiteiten nemen de ruimte over, en xomtra herkent welke verbanden één kamer verklaart. Hebben de meeste entiteiten geen ruimte, dan krijgt de run een lage zekerheid.",
+            "<b>Zorg voor een aanwezigheidsentiteit.</b> Een persoon met een device tracker, bijvoorbeeld uit de Home Assistant-app op een telefoon, of een aanwezigheidssensor. Anders kan xomtra niet zien dat twee kamers alleen samenhangen omdat er iemand thuis is.",
+            "<b>Sluit kapotte en overbodige apparaten uit.</b> Het label <code>xomtra_no_analysis</code> haalt een entiteit uit de analyse, de data blijven beschikbaar voor vragen. Het label <code>xomtra_no_ingest</code> slaat haar helemaal niet op. Een label op een apparaat geldt voor al zijn entiteiten, ook toekomstige.",
+            "<b>Verwijder dubbele entiteiten.</b> Komt één sensor binnen via twee integraties, schakel dan een van de entiteiten in Home Assistant uit. Dat geeft minder triviale bevindingen.",
+            "<b>Laat sensoren langetermijnstatistieken bijhouden.</b> Een sensor heeft een eenheid en een state class nodig (<code>measurement</code> of <code>total</code>). Bij eigen en template-sensoren ontbreekt die vaak.",
+            "<b>Repareer apparaten die vaak wegvallen.</b> Een reeks met veel gaten valt uit de analyse of geeft zwakkere resultaten."
+          ]
+        }
       ]
     },
     {
