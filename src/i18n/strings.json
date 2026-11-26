@@ -142,7 +142,7 @@
      "No. xomtra is an independent open source project built for Home Assistant."
     ]
    ],
-   "foot": "xomtra is an independent open source project, not affiliated with the Open Home Foundation or Nabu Casa. Home Assistant is a trademark of its owners.",
+   "foot": "xomtra is an independent open source project, not affiliated with Anthropic, the Open Home Foundation or Nabu Casa. Claude and Home Assistant are trademarks of their owners.",
    "support": "Support xomtra"
   },
   "de": {
@@ -287,7 +287,7 @@
      "Nein. xomtra ist ein unabhängiges Open-Source-Projekt für Home Assistant."
     ]
    ],
-   "foot": "xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zur Open Home Foundation oder zu Nabu Casa. Home Assistant ist eine Marke ihrer Inhaber.",
+   "foot": "xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zu Anthropic, der Open Home Foundation oder Nabu Casa. Claude und Home Assistant sind Marken ihrer Inhaber.",
    "support": "xomtra unterstützen"
   },
   "cs": {
@@ -432,7 +432,7 @@
      "Ne. xomtra je nezávislý open source projekt pro Home Assistant."
     ]
    ],
-   "foot": "xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků.",
+   "foot": "xomtra je nezávislý open source projekt bez vazby na Anthropic, Open Home Foundation nebo Nabu Casa. Claude a Home Assistant jsou ochranné známky svých vlastníků.",
    "support": "Podpořit xomtra"
   },
   "pl": {
@@ -577,7 +577,7 @@
      "Nie. xomtra to niezależny projekt open source dla Home Assistanta."
     ]
    ],
-   "foot": "xomtra to niezależny projekt open source, niezwiązany z Open Home Foundation ani Nabu Casa. Home Assistant jest znakiem towarowym jego właścicieli.",
+   "foot": "xomtra to niezależny projekt open source, niezwiązany z Anthropic, Open Home Foundation ani Nabu Casa. Claude i Home Assistant są znakami towarowymi ich właścicieli.",
    "support": "Wesprzyj xomtra"
   },
   "nl": {
@@ -722,7 +722,7 @@
      "Nee. xomtra is een onafhankelijk open-sourceproject voor Home Assistant."
     ]
    ],
-   "foot": "xomtra is een onafhankelijk open-sourceproject en niet verbonden aan de Open Home Foundation of Nabu Casa. Home Assistant is een handelsmerk van de eigenaren.",
+   "foot": "xomtra is een onafhankelijk open-sourceproject en niet verbonden aan Anthropic, de Open Home Foundation of Nabu Casa. Claude en Home Assistant zijn handelsmerken van hun eigenaren.",
    "support": "Steun xomtra"
   }
  },
