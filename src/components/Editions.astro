@@ -1,0 +1,20 @@
+---
+// Add-on or own server: what each keeps and where the AI assistant can reach it from.
+import editions from "../i18n/editions.json";
+import { guidePath, type Lang } from "../config";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const e = (editions as Record<Lang, typeof editions.en>)[lang];
+const GUIDES = ["home-assistant", "docker"];
+---
+<section id={`editions-${lang}`}><div class="wrap">
+  <h2>{e.h}</h2><p class="sub">{e.s}</p>
+  <div class="eds">{e.cards.map((c, i) => (
+    <div class="ed">
+      <h3><a href={guidePath(lang, GUIDES[i]!)}>{c.name}</a></h3>
+      <p class="tag">{c.tag}</p>
+      <dl>{c.rows.map(([k, v]) => <div><dt>{k}</dt><dd set:html={v} /></div>)}</dl>
+    </div>
+  ))}</div>
+</div></section>

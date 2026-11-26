@@ -1,0 +1,92 @@
+{
+  "en": {
+    "h": "Which one is for you?",
+    "s": "Both run the same analyses. They differ in how much history they keep and from where your AI assistant can reach them.",
+    "cards": [
+      {"name": "Home Assistant add-on", "tag": "Smaller data, quick start", "rows": [
+        ["History", "State history for 90 days by default, about a year at most; hourly statistics for 5 years. It shares disk and memory with Home Assistant."],
+        ["Hardware", "Home Assistant OS or Supervised on an SSD with at least 4 GB of RAM."],
+        ["AI connection", "Only in your home network, over plain HTTP (port 8000) with a personal token. Works with Claude Desktop (extension), Claude Code and other MCP clients that send a token, such as VS Code or Cursor."],
+        ["Not possible", "claude.ai on the web and on phones, ChatGPT and other assistants that connect from the cloud."]
+      ]},
+      {"name": "Own server (Docker Compose)", "tag": "Large data, long history, access from anywhere", "rows": [
+        ["History", "Years of state history, limited only by the disk. Proxmox and VMware images are coming soon."],
+        ["Hardware", "Your own Linux server, NAS or virtual machine with Docker."],
+        ["In your network", "Like the add-on, with personal tokens, but over HTTPS with the server's own certificate."],
+        ["From anywhere", "claude.ai on the web, desktop and phone. It needs: <ul><li>your own domain with an A record pointing to your home (a fixed IP, or a dynamic one kept up to date with DDNS),</li><li>port 443 forwarded from the router to the server (port 80 stays closed),</li><li>a Let's Encrypt certificate, which the server issues and renews itself through a DNS challenge: you only provide an API token for your DNS zone at Cloudflare,</li><li>sign-in with your Home Assistant account or with Microsoft Entra ID.</li></ul>"]
+      ]}
+    ]
+  },
+  "cs": {
+    "h": "Která varianta je pro vás?",
+    "s": "Obě počítají stejné analýzy. Liší se tím, kolik historie udrží a odkud se k nim váš AI asistent dostane.",
+    "cards": [
+      {"name": "Doplněk Home Assistantu", "tag": "Menší data, rychlý start", "rows": [
+        ["Historie", "Historie stavů standardně 90 dní, nejvýš zhruba rok; hodinové statistiky 5 let. Disk a paměť sdílí s Home Assistantem."],
+        ["Hardware", "Home Assistant OS nebo Supervised na SSD s alespoň 4 GB RAM."],
+        ["Připojení AI", "Jen v domácí síti, přes obyčejné HTTP (port 8000) s osobním tokenem. Funguje s Claude Desktop (rozšíření), Claude Code a dalšími MCP klienty, kteří posílají token, například VS Code nebo Cursor."],
+        ["Nejde", "Claude na webu a v telefonu (claude.ai), ChatGPT ani další asistenti, kteří se připojují z cloudu."]
+      ]},
+      {"name": "Vlastní server (Docker Compose)", "tag": "Velká data, dlouhá historie, přístup odkudkoli", "rows": [
+        ["Historie", "Roky historie stavů, omezené jen diskem. Obrazy pro Proxmox a VMware budou brzy."],
+        ["Hardware", "Vlastní linuxový server, NAS nebo virtuální stroj s Dockerem."],
+        ["V domácí síti", "Stejně jako doplněk, s osobními tokeny, ale přes HTTPS s vlastním certifikátem serveru."],
+        ["Odkudkoli", "Claude na webu, v počítači i v telefonu (claude.ai). Potřebujete: <ul><li>vlastní doménu s A záznamem na vaši domácnost (pevná IP, nebo dynamická udržovaná přes DDNS),</li><li>přesměrovaný port 443 z routeru na server (port 80 zůstává zavřený),</li><li>certifikát Let's Encrypt, který si server vystaví a obnovuje sám přes ověření v DNS: dodáte jen API token k DNS zóně u Cloudflare,</li><li>přihlášení účtem Home Assistantu nebo přes Microsoft Entra ID.</li></ul>"]
+      ]}
+    ]
+  },
+  "de": {
+    "h": "Was passt zu dir?",
+    "s": "Beide rechnen dieselben Analysen. Sie unterscheiden sich darin, wie viel Historie sie behalten und von wo dein KI-Assistent sie erreicht.",
+    "cards": [
+      {"name": "Home-Assistant-Add-on", "tag": "Kleinere Datenmengen, schneller Start", "rows": [
+        ["Historie", "Zustandshistorie standardmäßig 90 Tage, höchstens etwa ein Jahr; Stundenstatistiken 5 Jahre. Teilt Platte und Speicher mit Home Assistant."],
+        ["Hardware", "Home Assistant OS oder Supervised auf einer SSD mit mindestens 4 GB RAM."],
+        ["KI-Verbindung", "Nur im Heimnetz, über einfaches HTTP (Port 8000) mit persönlichem Token. Funktioniert mit Claude Desktop (Erweiterung), Claude Code und anderen MCP-Clients, die ein Token senden, etwa VS Code oder Cursor."],
+        ["Nicht möglich", "claude.ai im Web und auf dem Handy, ChatGPT und andere Assistenten, die sich aus der Cloud verbinden."]
+      ]},
+      {"name": "Eigener Server (Docker Compose)", "tag": "Große Datenmengen, lange Historie, Zugriff von überall", "rows": [
+        ["Historie", "Jahre an Zustandshistorie, nur durch die Platte begrenzt. Images für Proxmox und VMware kommen bald."],
+        ["Hardware", "Eigener Linux-Server, NAS oder virtuelle Maschine mit Docker."],
+        ["Im Heimnetz", "Wie das Add-on, mit persönlichen Tokens, aber über HTTPS mit eigenem Zertifikat des Servers."],
+        ["Von überall", "claude.ai im Web, am Rechner und auf dem Handy. Dafür brauchst du: <ul><li>eine eigene Domain mit A-Eintrag auf deinen Anschluss (feste IP oder dynamische per DDNS),</li><li>Port 443 vom Router an den Server weitergeleitet (Port 80 bleibt zu),</li><li>ein Let's-Encrypt-Zertifikat, das der Server selbst über eine DNS-Prüfung ausstellt und erneuert: du lieferst nur ein API-Token für deine DNS-Zone bei Cloudflare,</li><li>Anmeldung mit deinem Home-Assistant-Konto oder über Microsoft Entra ID.</li></ul>"]
+      ]}
+    ]
+  },
+  "pl": {
+    "h": "Która wersja jest dla Ciebie?",
+    "s": "Obie liczą te same analizy. Różnią się tym, ile historii przechowują i skąd może się do nich połączyć Twój asystent AI.",
+    "cards": [
+      {"name": "Dodatek Home Assistant", "tag": "Mniej danych, szybki start", "rows": [
+        ["Historia", "Historia stanów domyślnie 90 dni, najwyżej około roku; statystyki godzinowe 5 lat. Dzieli dysk i pamięć z Home Assistantem."],
+        ["Sprzęt", "Home Assistant OS lub Supervised na dysku SSD z co najmniej 4 GB RAM."],
+        ["Połączenie AI", "Tylko w sieci domowej, przez zwykłe HTTP (port 8000) z osobistym tokenem. Działa z Claude Desktop (rozszerzenie), Claude Code i innymi klientami MCP, które wysyłają token, np. VS Code lub Cursor."],
+        ["Nie działa", "claude.ai w przeglądarce i na telefonie, ChatGPT i inni asystenci łączący się z chmury."]
+      ]},
+      {"name": "Własny serwer (Docker Compose)", "tag": "Dużo danych, długa historia, dostęp z dowolnego miejsca", "rows": [
+        ["Historia", "Lata historii stanów, ograniczone tylko dyskiem. Obrazy dla Proxmox i VMware wkrótce."],
+        ["Sprzęt", "Własny serwer z Linuksem, NAS lub maszyna wirtualna z Dockerem."],
+        ["W sieci domowej", "Jak dodatek, z osobistymi tokenami, ale przez HTTPS z własnym certyfikatem serwera."],
+        ["Z dowolnego miejsca", "claude.ai w przeglądarce, na komputerze i na telefonie. Potrzebujesz: <ul><li>własnej domeny z rekordem A wskazującym na Twój dom (stałe IP lub dynamiczne aktualizowane przez DDNS),</li><li>przekierowania portu 443 z routera na serwer (port 80 zostaje zamknięty),</li><li>certyfikatu Let's Encrypt, który serwer sam wystawia i odnawia przez weryfikację w DNS: dostarczasz tylko token API do strefy DNS w Cloudflare,</li><li>logowania kontem Home Assistant lub przez Microsoft Entra ID.</li></ul>"]
+      ]}
+    ]
+  },
+  "nl": {
+    "h": "Wat past bij jou?",
+    "s": "Beide draaien dezelfde analyses. Ze verschillen in hoeveel geschiedenis ze bewaren en vanwaar je AI-assistent ze kan bereiken.",
+    "cards": [
+      {"name": "Home Assistant-add-on", "tag": "Minder data, snel van start", "rows": [
+        ["Geschiedenis", "Statusgeschiedenis standaard 90 dagen, hooguit ongeveer een jaar; uurstatistieken 5 jaar. Deelt schijf en geheugen met Home Assistant."],
+        ["Hardware", "Home Assistant OS of Supervised op een SSD met minstens 4 GB RAM."],
+        ["AI-verbinding", "Alleen in je thuisnetwerk, via gewoon HTTP (poort 8000) met een persoonlijk token. Werkt met Claude Desktop (extensie), Claude Code en andere MCP-clients die een token sturen, zoals VS Code of Cursor."],
+        ["Niet mogelijk", "claude.ai op het web en op de telefoon, ChatGPT en andere assistenten die vanuit de cloud verbinden."]
+      ]},
+      {"name": "Eigen server (Docker Compose)", "tag": "Veel data, lange geschiedenis, overal bereikbaar", "rows": [
+        ["Geschiedenis", "Jaren statusgeschiedenis, alleen beperkt door de schijf. Images voor Proxmox en VMware komen binnenkort."],
+        ["Hardware", "Eigen Linux-server, NAS of virtuele machine met Docker."],
+        ["In je netwerk", "Zoals de add-on, met persoonlijke tokens, maar via HTTPS met een eigen certificaat van de server."],
+        ["Overal", "claude.ai op het web, de computer en de telefoon. Je hebt nodig: <ul><li>een eigen domein met een A-record naar je huis (vast IP, of dynamisch bijgehouden via DDNS),</li><li>poort 443 doorgestuurd van de router naar de server (poort 80 blijft dicht),</li><li>een Let's Encrypt-certificaat, dat de server zelf uitgeeft en vernieuwt via een DNS-controle: je levert alleen een API-token voor je DNS-zone bij Cloudflare,</li><li>aanmelden met je Home Assistant-account of via Microsoft Entra ID.</li></ul>"]
+      ]}
+    ]
+  }
+}
