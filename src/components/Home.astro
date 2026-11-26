@@ -1,6 +1,7 @@
 ---
 import { LAUNCHED, NOTIFY, type Lang } from "../config";
-import { T, LEG } from "../i18n";
+import { T, LEG, FLOW } from "../i18n";
+import Flow from "./Flow.astro";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -36,6 +37,11 @@ const pts = "0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 25
 <section id={`steps-${lang}`}><div class="wrap">
   <h2>{t.st_h}</h2><p class="sub">{t.st_s}</p>
   <div class="steps">{t.steps.map((s, i) => <div class="step"><span class="n">0{i + 1}</span><h3>{s[0]}</h3><p>{s[1]}</p></div>)}</div>
+</div></section>
+
+<section id={`flow-${lang}`}><div class="wrap">
+  <h2>{FLOW[lang].h}</h2><p class="sub">{FLOW[lang].s}</p>
+  <div class="flows"><Flow lang={lang} vm={false} /><Flow lang={lang} vm={true} /></div>
 </div></section>
 
 <section id={`how-${lang}`}><div class="wrap">

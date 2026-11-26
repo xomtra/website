@@ -1,0 +1,71 @@
+---
+// How an LLM agent, xomtra and Home Assistant talk, for both ways to run xomtra:
+// 1) add-on next to Home Assistant, 2) a VM or Docker that reads it over the LAN.
+// Wide SVG on desktop, a tall one on phones; text from strings.json (FLOW).
+import { FLOW, type Flow } from "../i18n";
+import type { Lang } from "../config";
+
+interface Props { lang: Lang; vm: boolean }
+const { lang, vm } = Astro.props;
+const f: Flow = FLOW[lang];
+const id = `${vm ? "v" : "a"}-${lang}`;
+type B = { x: number; y: number; w: number; h: number; t: string[]; us?: boolean; mono?: string };
+const a3 = vm ? f.a3vm : f.a3;
+// wide (990 x 232)
+const W: B[] = [
+  { x: 4, y: 96, w: 250, h: 150, t: f.agent },
+  { x: 400, y: 96, w: 260, h: 150, t: f.x, us: true },
+  { x: 740, y: 96, w: 240, h: 150, t: f.ha, mono: f.ro },
+];
+const wFrame = vm ? { x: 382, y: 50, w: 290, h: 212, l: f.fv } : { x: 382, y: 50, w: 604, h: 212, l: f.fa };
+// tall (330 x 640)
+const TB: B[] = [
+  { x: 20, y: 0, w: 290, h: 130, t: f.agent },
+  { x: 20, y: 250, w: 290, h: 140, t: f.x, us: true },
+  { x: 20, y: 500, w: 290, h: 130, t: f.ha, mono: f.ro },
+];
+const tFrame = vm ? { x: 6, y: 212, w: 318, h: 202, l: f.fv } : { x: 6, y: 212, w: 318, h: 456, l: f.fa };
+---
+<figure class="flow">
+  <figcaption class="cap">{vm ? f.cv : f.ca}</figcaption>
+  {[
+    { cls: "wide", vb: "0 40 990 228", frame: wFrame, boxes: W, p: "w" },
+    { cls: "tall", vb: "0 0 330 672", frame: tFrame, boxes: TB, p: "t" },
+  ].map((v) => (
+    <svg class={v.cls} viewBox={v.vb} role="img" aria-label={`${vm ? f.cv : f.ca}: ${f.s}`}>
+      <defs>
+        <marker id={`${v.p}a-${id}`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="hd" d="M0 0L10 5L0 10z" /></marker>
+        <marker id={`${v.p}b-${id}`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="hd req" d="M0 0L10 5L0 10z" /></marker>
+      </defs>
+      <rect class="frame" x={v.frame.x} y={v.frame.y} width={v.frame.w} height={v.frame.h} rx="16" />
+      <text class="fl" x={v.frame.x + 14} y={v.p === "w" ? v.frame.y + 22 : v.frame.y + v.frame.h - 10}>{v.frame.l}</text>
+      {v.boxes.map((b) => (
+        <g>
+          <rect class={b.us ? "box us" : "box"} x={b.x} y={b.y} width={b.w} height={b.h} rx="12" />
+          <text class="t" x={b.x + 18} y={b.y + 32}>{b.t[0]}</text>
+          {b.t.slice(1).map((l, i) => <text class="s" x={b.x + 18} y={b.y + 56 + i * 18}>{l}</text>)}
+          {b.mono && <text class="m" x={b.x + 18} y={b.y + b.h - 16}>{b.mono}</text>}
+        </g>
+      ))}
+      {v.p === "w" ? (
+        <g>
+          <path class="ln req" marker-end={`url(#wb-${id})`} d="M258 144H394" />
+          <text class="a" x="266" y="122">{f.a1[0]}</text><text class="a" x="266" y="136">{f.a1[1]}</text>
+          <path class="ln" marker-end={`url(#wa-${id})`} d="M396 198H262" />
+          <text class="a" x="266" y="222">{f.a2[0]}</text><text class="a" x="266" y="236">{f.a2[1]}</text>
+          <path class="ln ro" marker-end={`url(#wa-${id})`} d="M736 171H664" />
+          <text class="a" x="678" y="158">{a3[0]}</text><text class="a" x="678" y="192">{a3[1]}</text>
+        </g>
+      ) : (
+        <g>
+          <path class="ln req" marker-end={`url(#tb-${id})`} d="M110 134V244" />
+          <text class="a" x="120" y="170">{f.a1[0]}</text><text class="a" x="120" y="185">{f.a1[1]}</text>
+          <path class="ln" marker-end={`url(#ta-${id})`} d="M230 246V138" />
+          <text class="a" x="238" y="170">{f.a2[0]}</text>
+          <path class="ln ro" marker-end={`url(#ta-${id})`} d={vm ? "M165 496V420" : "M165 496V396"} />
+          <text class="a" x="175" y={vm ? 452 : 450}>{a3[0]}</text><text class="a" x="175" y="470">{a3[1]}</text>
+        </g>
+      )}
+    </svg>
+  ))}
+</figure>
