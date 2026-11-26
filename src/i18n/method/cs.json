@@ -2,9 +2,22 @@
   "nav": "Metoda",
   "crumb": "Metoda",
   "title": "Jak xomtra čte váš dům",
-  "desc": "Statistika stavěná pro domácnosti: jak xomtra dělá z historie Home Assistantu nálezy, kterým se dá věřit, co testuje před každým vydáním a kde má hranice.",
-  "lead": "Každou noc xomtra projde historii vašeho domu a zapíše, co se hýbe spolu, co bylo neobvyklé a co se změnilo natrvalo. Ne pevnými alarmy na každý senzor, ale statistikou, která ví, kolik toho živá domácnost vyprodukuje čistou náhodou.",
-  "facts": [["Běží", "každou noc, na vašem stroji"], ["Čte", "Home Assistant, read only"], ["Metoda", "open source, testovaná veřejně"]],
+  "desc": "Statistika navržená pro domácnosti: jak xomtra z historie Home Assistantu vytváří nálezy, kterým se dá věřit, co testuje před každým vydáním a kde má hranice.",
+  "lead": "Každou noc xomtra projde historii vašeho domu a zjistí, co spolu souvisí, co bylo neobvyklé a co se změnilo natrvalo. Nikoli pevnými mezemi pro každý senzor, ale statistikou, která ví, kolik náhodných shod vznikne v běžném provozu domácnosti.",
+  "facts": [
+    [
+      "Běží",
+      "každou noc, na vašem stroji"
+    ],
+    [
+      "Čte",
+      "Home Assistant, read only"
+    ],
+    [
+      "Metoda",
+      "open source, testy zveřejněné"
+    ]
+  ],
   "illus": "Ilustrace, ne skutečná data",
   "pipe": {
     "cap": "Od Home Assistantu k odpovědi",
@@ -12,59 +25,140 @@
     "ro": "read only",
     "mcp": "MCP",
     "nodes": [
-      ["Home Assistant", "stavy a statistiky", "vlastní účet"],
-      ["Sběr", "každá změna živě", "+ historie z HA"],
-      ["Uložení", "vlastní datové jezero", "roky, komprimovaně"],
-      ["Analýza", "každou noc", "vztahy, anomálie"],
-      ["Nálezy", "vysvětlené, seřazené", "týdenní shrnutí"],
-      ["Vaše AI", "ptá se lidsky", "a vysvětluje"]
+      [
+        "Home Assistant",
+        "stavy a statistiky",
+        "vlastní účet"
+      ],
+      [
+        "Sběr",
+        "jakákoli změna živě",
+        "+ historie z HA"
+      ],
+      [
+        "Uložení",
+        "vlastní data lake",
+        "roky, komprimovaně"
+      ],
+      [
+        "Analýza",
+        "každou noc",
+        "souvislosti, anomálie"
+      ],
+      [
+        "Nálezy",
+        "vysvětlené, seřazené",
+        "týdenní shrnutí"
+      ],
+      [
+        "Vaše AI",
+        "ptá se běžnou řečí",
+        "a vysvětluje"
+      ]
     ]
   },
   "figs": {
-    "prep": {"cap": "Nejdřív odečíst samozřejmé", "a": "Surové změny", "b": "Hodinové řady", "c": "Bez rytmu a počasí"},
-    "struct": {"cap": "Vztahy, které vysvětluje něco jiného", "a": "Třetí senzor", "b": "Skrytá příčina", "c": "Jedna místnost", "room": "místnost", "found": "nalezeno", "expl": "vysvětluje"},
-    "anom": {"cap": "Neobvyklé pro tuto hodinu v týdnu", "band": "obvyklé rozpětí", "series": "váš senzor", "ep": "epizoda"}
+    "prep": {
+      "cap": "Nejdřív odfiltrovat samozřejmé",
+      "a": "Surové změny",
+      "b": "Hodinové řady",
+      "c": "Bez rytmu a počasí"
+    },
+    "struct": {
+      "cap": "Souvislosti, které vysvětluje něco jiného",
+      "a": "Třetí senzor",
+      "b": "Skrytá příčina",
+      "c": "Jedna místnost",
+      "room": "místnost",
+      "found": "nalezeno",
+      "expl": "vysvětluje"
+    },
+    "anom": {
+      "cap": "Neobvyklé pro tento čas v týdnu",
+      "band": "obvyklé rozpětí",
+      "series": "váš senzor",
+      "ep": "epizoda"
+    }
   },
   "sections": [
-    {"id": "collect", "h": "Každá změna, od prvního dne", "b": [
-      "xomtra se do Home Assistantu přihlašuje vlastním účtem s právy read only. Sleduje každou změnu stavu v okamžiku, kdy nastane, a ukládá dlouhodobé statistiky, které Home Assistant už počítá. Při prvním spuštění převezme historii, kterou Home Assistant ještě drží, a po výpadku spojení mezeru sám doplní.",
-      "Co chcete mít jen pro sebe, označíte v Home Assistantu štítkem a nikdy se neuloží nebo nikdy neanalyzuje."
-    ]},
-    {"id": "store", "h": "Roky historie ve vlastním jezeře", "b": [
-      "Data jdou do datového jezera na vašem disku: komprimované sloupcové soubory s malým katalogem (DuckLake). Databáze Home Assistantu zůstává nedotčená a neroste, a historie může sahat roky zpátky místo dnů."
-    ]},
-    {"id": "prepare", "h": "Nejdřív odečíst samozřejmé", "fig": "prep", "b": [
-      "Z každé vhodné entity vznikne jedna hodinová řada: průměry u měření, spotřeba u měřičů, podíl hodiny u spínačů a binárních senzorů.",
-      "Většina toho, co dům dělá, se řídí hodinami a počasím. Proto xomtra nejdřív odečte denní a týdenní rytmus, venkovní teplotu a pomalé drifty. Zbude to, co hodiny ani počasí nevysvětlí, a tam je to zajímavé."
-    ]},
-    {"id": "relations", "h": "Co se hýbe spolu, a ne náhodou", "fig": "struct", "b": [
-      "xomtra porovná každou dvojici řad, i se zpožděním v řádu hodin: topení se rozjede, místnost se ohřeje později. Se stovkami senzorů jsou to desítky tisíc dvojic a některé vypadají spřízněně čistou náhodou.",
-      "xomtra se proto z vašich vlastních dat učí, jak silný vztah dokáže vyrobit samotná náhoda, a drží podíl falešných nálezů pod kontrolou přes všechny dvojice najednou, ne jednu po druhé.",
-      "Pak vysvětlí, co jde. Senzory v jedné místnosti, přítomnost obyvatel, třetí senzor mezi nimi, skrytá společná příčina nebo jedna veličina měřená dvakrát: takové vztahy jsou skutečné, ale nic nového neříkají, a tak jdou na konec. První nálezy jsou ty překvapivé.",
-      {"note": "Korelace je tip, kam se podívat, ne důkaz příčiny. xomtra to říká a váš AI asistent taky."}
-    ]},
-    {"id": "anomalies", "h": "Co je na váš dům neobvyklé", "fig": "anom", "b": [
-      "Pračka v sobotu ráno je normální. Ve tři ráno v úterý ne. xomtra srovnává každou řadu s tím, co je obvyklé pro stejnou hodinu v týdnu ve vaší vlastní historii, a spotřebiče, které většinu času stojí, posuzuje podle jejich běžného provozu, ne podle šumu v klidu.",
-      "Neobvyklé hodiny tvoří epizody a epizoda se ohlásí, jen když je vzácná ve srovnání se všemi vašimi řadami dohromady. Samostatná kontrola hledá trvalé změny, třeba lednici, která teď každý den bere víc. Neobvyklé počasí, hodinové výkyvy a hodiny po trvalé změně se označí, aby nepřehlušily zbytek."
-    ]},
-    {"id": "findings", "h": "Překvapivé napřed, každé pondělí shrnutí", "b": [
-      "Každý nález dostane sílu, váhu důkazu a kategorii z veřejné sady pravidel: porucha, úspora, automatizace nebo chování. Triviální nálezy, třeba známá fyzika fotovoltaiky a slunce, zůstanou skryté.",
-      "V pondělí ráno si xomtra uloží týden, takže se můžete zeptat, co je nového, co zmizelo a co bylo neobvyklé. Váš AI asistent čte nálezy přes MCP se stejnými právy read only jako jakýkoli jiný dotaz a vysvětlí je lidsky."
-    ]},
-    {"id": "confidence", "h": "Poctivě o tom, co neví", "b": [
-      "Malý dům nebo dům, kde mnoho entit nemá oblast, dává analýze méně podkladů. Místo tichého hádání xomtra takový běh označí jako běh s nízkou jistotou a jeho vztahy podá jako hypotézy. Oblasti v Home Assistantu a entita přítomnosti obyvatel mu dají potřebný kontext.",
-      "Dlouhá okna přes mnoho senzorů potřebují i paměť. Velké instalaci se na malém hostiteli Home Assistantu povede lépe na samostatném stroji."
-    ]},
-    {"id": "tested", "h": "Testované jako věda, zveřejněné, jak to je", "b": [
-      "Každá změna analýz se před vydáním změří:",
-      {"ul": [
-        "<b>Syntetické domácnosti se známou pravdou</b>, při každé změně: simulované počasí, obyvatelé, místnosti a spotřebiče, vztahy známé síly a zpoždění, nesouvisející senzory a vady, jaké mají skutečné senzory.",
-        "<b>Veřejná data skutečných domácností</b>, každou noc: řady z různých domácností spolu souviset nemůžou, takže každý vztah nalezený mezi nimi je falešný. Vložené epizody ukážou, kolik anomálií se najde.",
-        "<b>Dobrovolné metriky z beta instalací</b>: plánované."
-      ]},
-      "Výsledky zveřejňujeme tak, jak jsou, i s tím, co ještě není dost dobré. Vztahy mezi různými domácnostmi ve veřejných datech zůstávají vzácné a silné přímé vztahy se najdou. Malé domácnosti, domácnosti bez oblastí a obsazenost bez entity přítomnosti zatím dávají víc falešných vztahů, než je cíl, a část středně silných anomálií uteče. Zda jsou nálezy pro lidi užitečné, je další test: je předem sepsaný, hodnocení zatím sebraná nejsou.",
-      "Všechna čísla, běh, který je naměřil, a kritéria, která musí vydání splnit, najdete v dokumentu o vyhodnocení na GitHubu."
-    ]}
+    {
+      "id": "collect",
+      "h": "Jakákoli změna, od prvního dne",
+      "b": [
+        "xomtra se k Home Assistantu přihlašuje vlastním účtem s právy read only. Zaznamená každou změnu stavu hned, jak nastane, a ukládá dlouhodobé statistiky, které Home Assistant už počítá. Při prvním spuštění převezme historii, kterou Home Assistant ještě uchovává, a po výpadku spojení chybějící úsek sám doplní.",
+        "Entity, které se nemají analyzovat, označíte v Home Assistantu štítkem. Jiným štítkem je vyloučíte i z ukládání."
+      ]
+    },
+    {
+      "id": "store",
+      "h": "Roky historie ve vlastním data lake",
+      "b": [
+        "Data se ukládají do data lake na vašem disku: komprimované sloupcové soubory s malým katalogem (DuckLake). Databáze Home Assistantu zůstává beze změny a neroste a historie může sahat roky zpátky, ne jen dny."
+      ]
+    },
+    {
+      "id": "prepare",
+      "h": "Nejdřív odfiltrovat samozřejmé",
+      "fig": "prep",
+      "b": [
+        "Z každé vhodné entity vznikne jedna hodinová řada: u měření hodinový průměr, u měřičů spotřeba za hodinu, u spínačů a binárních senzorů podíl hodiny, kdy byly zapnuté.",
+        "Většina dění v domě se řídí denní dobou a počasím. xomtra proto nejdřív odfiltruje denní a týdenní rytmus, vliv venkovní teploty a pomalé trendy. Zbude to, co denní doba ani počasí nevysvětlí, a tam to začíná být zajímavé."
+      ]
+    },
+    {
+      "id": "relations",
+      "h": "Co spolu souvisí, a ne náhodou",
+      "fig": "struct",
+      "b": [
+        "xomtra porovná každou dvojici řad, i s posunem o několik hodin: topení se zapne a místnost se ohřeje až později. Při stovkách senzorů jde o desítky tisíc dvojic a některé z nich vypadají jako související čistě náhodou.",
+        "xomtra se proto z vašich vlastních dat učí, jak silnou souvislost dokáže vytvořit samotná náhoda, a hlídá podíl falešných nálezů souhrnně přes všechny dvojice, ne u každé zvlášť.",
+        "Pak vysvětlí, co vysvětlit jde: senzory v jedné místnosti, přítomnost obyvatel, třetí senzor mezi nimi, skrytou společnou příčinu nebo jednu veličinu měřenou dvakrát. Takové souvislosti jsou skutečné, ale nic nového neříkají, proto se řadí až za ostatní. Na prvních místech tak zůstanou překvapivé nálezy.",
+        {
+          "note": "Korelace ukazuje, kam se podívat, ale nedokazuje příčinu. xomtra to uvádí a váš AI asistent také."
+        }
+      ]
+    },
+    {
+      "id": "anomalies",
+      "h": "Co je ve vašem domě neobvyklé",
+      "fig": "anom",
+      "b": [
+        "Běžící televize v sobotu večer je normální, ve tři ráno v úterý už ne. xomtra porovnává každou řadu s tím, co je ve vaší historii obvyklé pro stejný čas v týdnu. Spotřebiče, které většinu času stojí, posuzuje podle jejich běžného provozu, ne podle šumu v klidovém stavu.",
+        "Neobvyklé časy tvoří epizody. Epizoda se reportuje jen tehdy, když je ojedinělá ve srovnání se všemi vašimi řadami dohromady. Samostatná kontrola hledá trvalé změny, například lednici, která teď každý den spotřebuje víc. Epizody za neobvyklého počasí, hodinové výkyvy a období těsně po trvalé změně se označí, aby nepřekryly ostatní nálezy."
+      ]
+    },
+    {
+      "id": "findings",
+      "h": "Nejdřív to překvapivé, každé pondělí shrnutí",
+      "b": [
+        "Každý nález dostane sílu, váhu důkazu a kategorii podle veřejné sady pravidel: porucha, úspora, automatizace nebo chování. Triviální nálezy, například známá souvislost výroby fotovoltaiky se slunečním svitem, zůstávají skryté.",
+        "V pondělí ráno xomtra uloží přehled uplynulého týdne, takže se můžete zeptat, co je nového, co zmizelo a co bylo neobvyklé. Váš AI asistent čte nálezy přes MCP se stejnými právy read only jako jakýkoli jiný dotaz a převede je do lidské řeči."
+      ]
+    },
+    {
+      "id": "confidence",
+      "h": "Poctivě i v tom, co neví",
+      "b": [
+        "Malý dům nebo dům, kde mnoho entit nemá přiřazenou oblast, dává analýze méně podkladů. Místo tichého odhadování xomtra takový běh označí jako běh s nízkou jistotou a jeho souvislosti předloží jako hypotézy. Potřebný kontext mu dodají oblasti v Home Assistantu a entita přítomnosti obyvatel.",
+        "Analýza dlouhého období u mnoha senzorů potřebuje hodně paměti. Velkou instalaci se stovkami senzorů proto doporučujeme provozovat na samostatném stroji, ne jako add-on na malém hostiteli Home Assistantu."
+      ]
+    },
+    {
+      "id": "tested",
+      "h": "Testované vědeckou metodou s veřejnými hypotézami, výsledky a závěry",
+      "b": [
+        "Jakákoli změna analýz se před vydáním ověří měřením:",
+        {
+          "ul": [
+            "<b>Syntetické domácnosti se známou pravdou</b>, při každé změně kódu: simulované počasí, obyvatelé, místnosti a spotřebiče, souvislosti známé síly a zpoždění, nesouvisející senzory a vady, jaké mají skutečné senzory.",
+            "<b>Veřejná data skutečných domácností</b>, každou noc: řady z různých domácností spolu souviset nemohou, takže každá souvislost nalezená mezi nimi je falešná. Uměle vložené epizody ukazují, kolik anomálií xomtra najde.",
+            "<b>Dobrovolné metriky z beta instalací</b>: zatím plánované."
+          ]
+        },
+        "Výsledky zveřejňujeme takové, jaké jsou, včetně toho, co ještě není dost dobré. Falešné souvislosti mezi různými domácnostmi jsou ve veřejných datech vzácné a silné přímé souvislosti v syntetických domácnostech xomtra najde. Malé domácnosti, domácnosti bez oblastí a pohyb osob bez entity přítomnosti zatím dávají víc falešných souvislostí, než je cílová hodnota, a část středně silných anomálií zůstane nezachycena. Dalším testem je, zda jsou nálezy pro lidi užitečné: jeho postup je zveřejněný předem, hodnocení zatím sebraná nejsou.",
+        "Všechna čísla, běhy, které je naměřily, a kritéria, která musí vydání splnit, najdete v dokumentu o vyhodnocení na GitHubu."
+      ]
+    }
   ],
   "docs": "Vyhodnocení analýz na GitHubu",
   "help": "Otázka, nebo nález, který vypadá špatně? Napište na support@xomtra.com nebo založte issue na GitHubu.",
