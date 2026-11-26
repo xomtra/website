@@ -82,9 +82,9 @@
   "docker": {
     "name": "Docker Compose",
     "title": "Instalace xomtra přes Docker Compose",
-    "desc": "Postup instalace xomtra na vlastní linuxový server nebo NAS přes Docker Compose krok za krokem: ověřené vydání, .env, první token, připojení Claude a aktualizace.",
+    "desc": "Postup instalace xomtra na vlastní linuxový server nebo NAS přes Docker Compose krok za krokem: ověřené vydání, spuštění jedním příkazem, připojení Home Assistantu v prohlížeči, první token, připojení Claude a aktualizace.",
     "lead": "Pro Home Assistant Container nebo Core, nebo když chcete xomtra na vlastním linuxovém serveru či NAS. xomtra čte Home Assistant po síti; Claude Desktop a Claude Code se připojují osobními tokeny, jen z vaší LAN.",
-    "facts": [["Čas", "asi 20 minut"], ["Potřebujete", "Linux, Docker s Compose v2"], ["Přístup", "LAN, osobní tokeny"]],
+    "facts": [["Čas", "asi 15 minut"], ["Potřebujete", "Linux, Docker s Compose v2"], ["Přístup", "LAN, osobní tokeny"]],
     "steps": [
       {
         "h": "Zkontrolujte požadavky",
@@ -114,25 +114,11 @@
         ]
       },
       {
-        "h": "Vytvořte uživatele Home Assistantu pro xomtra",
+        "h": "Připněte obrazy a zvolte edici",
         "b": [
-          "V Home Assistantu vytvořte samostatného uživatele <b>bez</b> administrátorských práv, přihlaste se jako on a na <b>Profil → Zabezpečení</b> vytvořte dlouhodobý přístupový token. Home Assistant tokeny read only nemá, takže by tento uživatel zařízení ovládat mohl; xomtra ale jen čte registry, historii a statistiky a nikdy nevolá služby. Samostatný uživatel vám umožní přístup xomtry kdykoli odebrat, aniž byste sahali na svůj účet."
-        ]
-      },
-      {
-        "h": "Vytvořte konfiguraci",
-        "b": [
-          {"code": "dk_env"},
-          "Skript vygeneruje všechna interní hesla a klíče a uloží je do <code>.env</code> (práva 600). Ptá se jen na to, co nemůže vědět:",
-          {"ul": [
-            "Režim přístupu: <code>local</code> (jen LAN).",
-            "Název nebo IP adresa tohoto serveru ve vaší LAN.",
-            "Přihlášení do admin stránky: <code>ha</code> (váš účet Home Assistantu).",
-            "Síť, ze které smí otevřít admin stránku, například <code>192.168.1.0/24</code>.",
-            "URL Home Assistantu a token uživatele z předchozího kroku."
-          ]},
-          "Připněte obrazy na ověřené digesty a zvolte edici. Edice lite se hodí pro NAS nebo malý server; pro plnou edici se SeaweedFS a Dagster UI vynechte poslední řádek:",
-          {"code": "dk_pin"},
+          "Žádná hesla nevyplňujete: interní hesla a klíče si xomtra při prvním spuštění vygeneruje sama. Jediný soubor, který vytvoříte, je <code>.env</code> s ověřenými obrazy:",
+          {"code": "dk_pin_new"},
+          "Edice lite se hodí pro NAS nebo malý server. Pro ni spusťte i další příkaz; pro plnou edici se SeaweedFS a Dagster UI ho vynechte:",
           {"code": "dk_lite"}
         ]
       },
@@ -140,7 +126,22 @@
         "h": "Spusťte xomtra",
         "b": [
           {"code": "dk_up"},
-          "Během pár minut by všechny služby měly být <code>running</code> nebo <code>healthy</code>. Historie z Home Assistantu se načítá na pozadí."
+          "Při prvním spuštění jednorázová služba <code>secrets-init</code> vygeneruje všechna interní hesla a klíče do Docker volume <code>secrets</code> a zjistí adresu tohoto serveru ve vaší LAN; xomtra pak běží na <code>https://&lt;server&gt;/</code>. Během pár minut by všechny služby měly být <code>running</code> nebo <code>healthy</code>."
+        ]
+      },
+      {
+        "h": "Vytvořte uživatele Home Assistantu pro xomtra",
+        "b": [
+          "V Home Assistantu vytvořte samostatného uživatele <b>bez</b> administrátorských práv, přihlaste se jako on a na <b>Profil → Zabezpečení</b> vytvořte dlouhodobý přístupový token. Home Assistant tokeny read only nemá, takže by tento uživatel zařízení ovládat mohl; xomtra ale jen čte registry, historii a statistiky a nikdy nevolá služby. Samostatný uživatel vám umožní přístup xomtry kdykoli odebrat, aniž byste sahali na svůj účet."
+        ]
+      },
+      {
+        "h": "Připojte Home Assistant",
+        "b": [
+          "Dokud Home Assistant není připojený, vypisuje admin služba do logu jednorázový odkaz na nastavení:",
+          {"code": "dk_setup"},
+          "Otevřete odkaz v prohlížeči ve vaší LAN (prohlížeč varuje kvůli certifikátu, to je v pořádku, viz další krok). Zadejte URL Home Assistantu, jak ho vidí tento server, například <code>http://192.168.1.10:8123</code>, a token z předchozího kroku.",
+          "xomtra spojení před uložením ověří a token uloží zašifrovaný ve své databázi, ne do souboru. Odkaz pak přestane platit a historie z Home Assistantu se načítá na pozadí. URL nebo token můžete později změnit v admin stránce na <b>Přehledu</b>."
         ]
       },
       {
@@ -166,10 +167,11 @@
         "b": [
           "Nejdřív si přečtěte poznámky k vydáním mezi vaší a novou verzí. Pak v <code>xomtra/deploy/compose</code> nastavte <code>VERSION</code> jako v kroku 2 a spusťte:",
           {"code": "dk_upgrade"},
-          "<code>--fill</code> doplní nastavení, která jsou v této verzi nová, a vaše nikdy nemění. Ověřte nové obrazy jako v kroku 3, připněte je a restartujte:",
+          "Ověřte nové obrazy jako v kroku 3, připněte je a restartujte:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
-          "Návrat zpět: přepněte na předchozí tag, obnovte zálohu <code>.env</code> a spusťte <code>docker compose up -d</code>. Stroj nebo Docker volumes pravidelně zálohujte: drží celou historii."
+          "Hesla a klíče zůstávají v Docker volume <code>secrets</code>. Instalace z doby před verzí 0.7.0 je má ještě v <code>.env</code>; první spuštění nové verze je převezme automaticky a pak je z <code>.env</code> můžete smazat.",
+          "Návrat zpět: přepněte na předchozí tag, obnovte zálohu <code>.env</code> a spusťte <code>docker compose up -d</code>. Stroj nebo Docker volumes pravidelně zálohujte: drží celou historii a bez volume <code>secrets</code> data nepřečtete."
         ]
       }
     ]

@@ -82,9 +82,9 @@
   "docker": {
     "name": "Docker Compose",
     "title": "Instalacja xomtra przez Docker Compose",
-    "desc": "Instalacja xomtra na własnym serwerze Linux lub NAS przez Docker Compose krok po kroku: zweryfikowane wydanie, .env, pierwszy token, podłączenie Claude i aktualizacje.",
+    "desc": "Instalacja xomtra na własnym serwerze Linux lub NAS przez Docker Compose krok po kroku: zweryfikowane wydanie, uruchomienie jednym poleceniem, podłączenie Home Assistant w przeglądarce, pierwszy token, podłączenie Claude i aktualizacje.",
     "lead": "Dla Home Assistant Container lub Core albo gdy chcesz mieć xomtra na własnym serwerze Linux lub NAS. xomtra czyta Home Assistant przez sieć; Claude Desktop i Claude Code łączą się tokenami osobistymi, tylko z twojej sieci LAN.",
-    "facts": [["Czas", "około 20 minut"], ["Wymaga", "Linux, Docker z Compose v2"], ["Dostęp", "LAN, tokeny osobiste"]],
+    "facts": [["Czas", "około 15 minut"], ["Wymaga", "Linux, Docker z Compose v2"], ["Dostęp", "LAN, tokeny osobiste"]],
     "steps": [
       {
         "h": "Sprawdź wymagania",
@@ -114,25 +114,11 @@
         ]
       },
       {
-        "h": "Utwórz użytkownika Home Assistant dla xomtra",
+        "h": "Przypnij obrazy i wybierz edycję",
         "b": [
-          "W Home Assistant utwórz osobnego użytkownika <b>bez</b> uprawnień administratora, zaloguj się jako on i w <b>Profil → Bezpieczeństwo</b> utwórz token dostępu długoterminowego. Home Assistant nie ma tokenów read only, więc ten użytkownik mógłby sterować urządzeniami; xomtra jednak tylko czyta rejestry, historię i statystyki i nigdy nie wywołuje usług. Osobny użytkownik pozwala w każdej chwili odebrać xomtrze dostęp bez ruszania własnego konta."
-        ]
-      },
-      {
-        "h": "Utwórz konfigurację",
-        "b": [
-          {"code": "dk_env"},
-          "Skrypt generuje wszystkie wewnętrzne hasła i klucze i zapisuje je w <code>.env</code> (uprawnienia 600). Pyta tylko o to, czego nie może wiedzieć:",
-          {"ul": [
-            "Tryb dostępu: <code>local</code> (tylko LAN).",
-            "Nazwa lub adres IP tego serwera w twojej sieci LAN.",
-            "Logowanie do strony administracyjnej: <code>ha</code> (twoje konto Home Assistant).",
-            "Sieć, z której można otworzyć stronę administracyjną, na przykład <code>192.168.1.0/24</code>.",
-            "URL Home Assistant i token użytkownika z poprzedniego kroku."
-          ]},
-          "Przypnij obrazy do zweryfikowanych digestów i wybierz edycję. Edycja lite pasuje do NAS lub małego serwera; dla pełnej edycji z SeaweedFS i Dagster UI pomiń ostatnią linię:",
-          {"code": "dk_pin"},
+          "Nie wpisujesz żadnych haseł: wewnętrzne hasła i klucze xomtra generuje sama przy pierwszym uruchomieniu. Jedyny plik, który tworzysz, to <code>.env</code> ze zweryfikowanymi obrazami:",
+          {"code": "dk_pin_new"},
+          "Edycja lite pasuje do NAS lub małego serwera. Dla niej uruchom też następne polecenie; dla pełnej edycji z SeaweedFS i Dagster UI je pomiń:",
           {"code": "dk_lite"}
         ]
       },
@@ -140,7 +126,22 @@
         "h": "Uruchom xomtra",
         "b": [
           {"code": "dk_up"},
-          "W ciągu kilku minut wszystkie usługi powinny być <code>running</code> lub <code>healthy</code>. Historia z Home Assistant wczytuje się w tle."
+          "Przy pierwszym uruchomieniu jednorazowa usługa <code>secrets-init</code> generuje wszystkie wewnętrzne hasła i klucze w wolumenie Dockera <code>secrets</code> i ustala adres tego serwera w twojej sieci LAN; xomtra działa wtedy pod <code>https://&lt;server&gt;/</code>. W ciągu kilku minut wszystkie usługi powinny być <code>running</code> lub <code>healthy</code>."
+        ]
+      },
+      {
+        "h": "Utwórz użytkownika Home Assistant dla xomtra",
+        "b": [
+          "W Home Assistant utwórz osobnego użytkownika <b>bez</b> uprawnień administratora, zaloguj się jako on i w <b>Profil → Bezpieczeństwo</b> utwórz token dostępu długoterminowego. Home Assistant nie ma tokenów read only, więc ten użytkownik mógłby sterować urządzeniami; xomtra jednak tylko czyta rejestry, historię i statystyki i nigdy nie wywołuje usług. Osobny użytkownik pozwala w każdej chwili odebrać xomtrze dostęp bez ruszania własnego konta."
+        ]
+      },
+      {
+        "h": "Podłącz Home Assistant",
+        "b": [
+          "Dopóki Home Assistant nie jest podłączony, usługa admin wypisuje w logu jednorazowy link do konfiguracji:",
+          {"code": "dk_setup"},
+          "Otwórz link w przeglądarce w twojej sieci LAN (przeglądarka ostrzega przed certyfikatem, to normalne; zobacz następny krok). Wpisz URL Home Assistant, pod którym widzi go ten serwer, na przykład <code>http://192.168.1.10:8123</code>, oraz token z poprzedniego kroku.",
+          "xomtra sprawdza połączenie przed zapisaniem i przechowuje token zaszyfrowany w swojej bazie danych, nie w pliku. Link przestaje wtedy działać, a historia z Home Assistant wczytuje się w tle. URL lub token możesz później zmienić na stronie administracyjnej w sekcji <b>Przegląd</b>."
         ]
       },
       {
@@ -166,10 +167,11 @@
         "b": [
           "Najpierw przeczytaj informacje o wydaniach między twoją a nową wersją. Potem w <code>xomtra/deploy/compose</code> ustaw <code>VERSION</code> jak w kroku 2 i uruchom:",
           {"code": "dk_upgrade"},
-          "<code>--fill</code> dodaje ustawienia nowe w tej wersji i nigdy nie zmienia twoich. Zweryfikuj nowe obrazy jak w kroku 3, przypnij je i uruchom ponownie:",
+          "Zweryfikuj nowe obrazy jak w kroku 3, przypnij je i uruchom ponownie:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
-          "Aby wrócić, przełącz się na poprzedni tag, przywróć kopię <code>.env</code> i uruchom <code>docker compose up -d</code>. Regularnie rób kopię maszyny lub wolumenów Dockera: zawierają całą historię."
+          "Hasła i klucze zostają w wolumenie Dockera <code>secrets</code>. Instalacja sprzed wersji 0.7.0 ma je jeszcze w <code>.env</code>; pierwsze uruchomienie nowej wersji przejmuje je automatycznie, a potem możesz je usunąć z <code>.env</code>.",
+          "Aby wrócić, przełącz się na poprzedni tag, przywróć kopię <code>.env</code> i uruchom <code>docker compose up -d</code>. Regularnie rób kopię maszyny lub wolumenów Dockera: zawierają całą historię, a bez wolumenu <code>secrets</code> danych nie da się odczytać."
         ]
       }
     ]

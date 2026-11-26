@@ -82,9 +82,9 @@
   "docker": {
     "name": "Docker Compose",
     "title": "Install xomtra with Docker Compose",
-    "desc": "Step-by-step installation of xomtra on your own Linux server or NAS with Docker Compose: verified release, .env, first token, connecting Claude and upgrades.",
+    "desc": "Step-by-step installation of xomtra on your own Linux server or NAS with Docker Compose: verified release, start with one command, connecting Home Assistant in the browser, first token, connecting Claude and upgrades.",
     "lead": "For Home Assistant Container or Core, or when you want xomtra on its own Linux server or NAS. xomtra reads Home Assistant over your network; Claude Desktop and Claude Code connect with personal tokens, only from your LAN.",
-    "facts": [["Time", "about 20 minutes"], ["Needs", "Linux, Docker with Compose v2"], ["Access", "LAN, personal tokens"]],
+    "facts": [["Time", "about 15 minutes"], ["Needs", "Linux, Docker with Compose v2"], ["Access", "LAN, personal tokens"]],
     "steps": [
       {
         "h": "Check the requirements",
@@ -114,25 +114,11 @@
         ]
       },
       {
-        "h": "Create a Home Assistant user for xomtra",
+        "h": "Pin the images and choose the edition",
         "b": [
-          "In Home Assistant create a dedicated user <b>without</b> administrator rights, sign in as that user and create a long-lived access token on <b>Profile → Security</b>. Home Assistant has no read-only tokens, so this user could still control devices; xomtra only reads registries, history and statistics and never calls services. A separate user lets you revoke xomtra's access any time without touching your own account."
-        ]
-      },
-      {
-        "h": "Create the configuration",
-        "b": [
-          {"code": "dk_env"},
-          "The script generates every internal password and key and stores them in <code>.env</code> (mode 600). It asks only for what it cannot know:",
-          {"ul": [
-            "Access mode: <code>local</code> (LAN only).",
-            "Name or IP address of this server in your LAN.",
-            "Sign-in to the admin page: <code>ha</code> (your Home Assistant account).",
-            "Network allowed to open the admin page, for example <code>192.168.1.0/24</code>.",
-            "Home Assistant URL and the token of the user from the previous step."
-          ]},
-          "Pin the images to the verified digests and choose the edition. The lite edition fits a NAS or a small server; leave out the last line for the full edition with SeaweedFS and the Dagster UI:",
-          {"code": "dk_pin"},
+          "There are no passwords to fill in: xomtra generates its internal passwords and keys itself on the first start. The only file you create is <code>.env</code> with the verified images:",
+          {"code": "dk_pin_new"},
+          "The lite edition fits a NAS or a small server. For it, also run the next command; leave it out for the full edition with SeaweedFS and the Dagster UI:",
           {"code": "dk_lite"}
         ]
       },
@@ -140,7 +126,22 @@
         "h": "Start xomtra",
         "b": [
           {"code": "dk_up"},
-          "All services should be <code>running</code> or <code>healthy</code> within a few minutes. The history from Home Assistant loads in the background."
+          "On the first start the one-time service <code>secrets-init</code> generates every internal password and key into the Docker volume <code>secrets</code> and finds this server's address in your LAN; xomtra is then at <code>https://&lt;server&gt;/</code>. All services should be <code>running</code> or <code>healthy</code> within a few minutes."
+        ]
+      },
+      {
+        "h": "Create a Home Assistant user for xomtra",
+        "b": [
+          "In Home Assistant create a dedicated user <b>without</b> administrator rights, sign in as that user and create a long-lived access token on <b>Profile → Security</b>. Home Assistant has no read-only tokens, so this user could still control devices; xomtra only reads registries, history and statistics and never calls services. A separate user lets you revoke xomtra's access any time without touching your own account."
+        ]
+      },
+      {
+        "h": "Connect Home Assistant",
+        "b": [
+          "Until Home Assistant is connected, the admin service prints a one-time setup link to its log:",
+          {"code": "dk_setup"},
+          "Open the link in a browser in your LAN (the browser warns about the certificate, which is expected; see the next step). Enter the Home Assistant URL as this server reaches it, for example <code>http://192.168.1.10:8123</code>, and the token from the previous step.",
+          "xomtra checks the connection before saving it and stores the token encrypted in its database, not in a file. The link then stops working and the history from Home Assistant loads in the background. You can change the URL or the token later on the admin page under <b>Overview</b>."
         ]
       },
       {
@@ -166,10 +167,11 @@
         "b": [
           "Read the release notes between your version and the new one first. Then, in <code>xomtra/deploy/compose</code>, set <code>VERSION</code> as in step 2 and run:",
           {"code": "dk_upgrade"},
-          "<code>--fill</code> adds settings that are new in this version and never changes yours. Verify the new images as in step 3, pin them and restart:",
+          "Verify the new images as in step 3, pin them and restart:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
-          "To roll back, check out the previous tag, restore the <code>.env</code> backup and run <code>docker compose up -d</code>. Back up the machine or the Docker volumes regularly: they hold the whole history."
+          "Passwords and keys stay in the Docker volume <code>secrets</code>. An installation from before version 0.7.0 still has them in <code>.env</code>; the first start of the new version takes them over automatically, after which you can remove them from <code>.env</code>.",
+          "To roll back, check out the previous tag, restore the <code>.env</code> backup and run <code>docker compose up -d</code>. Back up the machine or the Docker volumes regularly: they hold the whole history, and without the volume <code>secrets</code> the data cannot be read."
         ]
       }
     ]

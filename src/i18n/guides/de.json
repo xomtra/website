@@ -82,9 +82,9 @@
   "docker": {
     "name": "Docker Compose",
     "title": "xomtra mit Docker Compose installieren",
-    "desc": "Schritt-für-Schritt-Installation von xomtra auf deinem Linux-Server oder NAS mit Docker Compose: geprüftes Release, .env, erster Token, Claude verbinden und Upgrades.",
+    "desc": "Schritt-für-Schritt-Installation von xomtra auf deinem Linux-Server oder NAS mit Docker Compose: geprüftes Release, Start mit einem Befehl, Home Assistant im Browser verbinden, erster Token, Claude verbinden und Upgrades.",
     "lead": "Für Home Assistant Container oder Core, oder wenn du xomtra auf einem eigenen Linux-Server oder NAS willst. xomtra liest Home Assistant über dein Netz; Claude Desktop und Claude Code verbinden sich mit persönlichen Tokens, nur aus deinem LAN.",
-    "facts": [["Dauer", "etwa 20 Minuten"], ["Voraussetzung", "Linux, Docker mit Compose v2"], ["Zugriff", "LAN, persönliche Tokens"]],
+    "facts": [["Dauer", "etwa 15 Minuten"], ["Voraussetzung", "Linux, Docker mit Compose v2"], ["Zugriff", "LAN, persönliche Tokens"]],
     "steps": [
       {
         "h": "Voraussetzungen prüfen",
@@ -114,25 +114,11 @@
         ]
       },
       {
-        "h": "Home Assistant Benutzer für xomtra anlegen",
+        "h": "Images pinnen und Edition wählen",
         "b": [
-          "Lege in Home Assistant einen eigenen Benutzer <b>ohne</b> Administratorrechte an, melde dich als dieser an und erstelle unter <b>Profil → Sicherheit</b> einen langlebigen Zugriffstoken. Home Assistant kennt keine read-only-Tokens, dieser Benutzer könnte also Geräte steuern; xomtra liest aber nur Registries, Verlauf und Statistiken und ruft nie Dienste auf. Mit einem eigenen Benutzer kannst du xomtra den Zugriff jederzeit entziehen, ohne dein eigenes Konto anzufassen."
-        ]
-      },
-      {
-        "h": "Konfiguration erstellen",
-        "b": [
-          {"code": "dk_env"},
-          "Das Skript erzeugt alle internen Passwörter und Schlüssel und speichert sie in <code>.env</code> (Modus 600). Es fragt nur, was es nicht wissen kann:",
-          {"ul": [
-            "Zugriffsmodus: <code>local</code> (nur LAN).",
-            "Name oder IP-Adresse dieses Servers in deinem LAN.",
-            "Anmeldung an der Admin-Seite: <code>ha</code> (dein Home Assistant Konto).",
-            "Netz, das die Admin-Seite öffnen darf, zum Beispiel <code>192.168.1.0/24</code>.",
-            "Home Assistant URL und der Token des Benutzers aus dem vorigen Schritt."
-          ]},
-          "Pinne die Images auf die geprüften Digests und wähle die Edition. Die Lite-Edition passt auf ein NAS oder einen kleinen Server; für die volle Edition mit SeaweedFS und Dagster UI lass die letzte Zeile weg:",
-          {"code": "dk_pin"},
+          "Du musst keine Passwörter ausfüllen: Die internen Passwörter und Schlüssel erzeugt xomtra beim ersten Start selbst. Die einzige Datei, die du anlegst, ist <code>.env</code> mit den geprüften Images:",
+          {"code": "dk_pin_new"},
+          "Die Lite-Edition passt auf ein NAS oder einen kleinen Server. Führe dafür auch den nächsten Befehl aus; für die volle Edition mit SeaweedFS und Dagster UI lass ihn weg:",
           {"code": "dk_lite"}
         ]
       },
@@ -140,7 +126,22 @@
         "h": "xomtra starten",
         "b": [
           {"code": "dk_up"},
-          "Nach wenigen Minuten sollten alle Dienste <code>running</code> oder <code>healthy</code> sein. Der Verlauf aus Home Assistant lädt im Hintergrund."
+          "Beim ersten Start erzeugt der einmalige Dienst <code>secrets-init</code> alle internen Passwörter und Schlüssel im Docker Volume <code>secrets</code> und ermittelt die Adresse dieses Servers in deinem LAN; xomtra läuft dann unter <code>https://&lt;server&gt;/</code>. Nach wenigen Minuten sollten alle Dienste <code>running</code> oder <code>healthy</code> sein."
+        ]
+      },
+      {
+        "h": "Home Assistant Benutzer für xomtra anlegen",
+        "b": [
+          "Lege in Home Assistant einen eigenen Benutzer <b>ohne</b> Administratorrechte an, melde dich als dieser an und erstelle unter <b>Profil → Sicherheit</b> einen langlebigen Zugriffstoken. Home Assistant kennt keine read-only-Tokens, dieser Benutzer könnte also Geräte steuern; xomtra liest aber nur Registries, Verlauf und Statistiken und ruft nie Dienste auf. Mit einem eigenen Benutzer kannst du xomtra den Zugriff jederzeit entziehen, ohne dein eigenes Konto anzufassen."
+        ]
+      },
+      {
+        "h": "Home Assistant verbinden",
+        "b": [
+          "Solange Home Assistant nicht verbunden ist, schreibt der Admin-Dienst einen einmaligen Einrichtungslink in sein Log:",
+          {"code": "dk_setup"},
+          "Öffne den Link in einem Browser in deinem LAN (der Browser warnt wegen des Zertifikats, das ist erwartet; siehe nächster Schritt). Gib die Home Assistant URL ein, wie dieser Server sie erreicht, zum Beispiel <code>http://192.168.1.10:8123</code>, und den Token aus dem vorigen Schritt.",
+          "xomtra prüft die Verbindung vor dem Speichern und legt den Token verschlüsselt in seiner Datenbank ab, nicht in einer Datei. Danach ist der Link ungültig, und der Verlauf aus Home Assistant lädt im Hintergrund. URL oder Token kannst du später auf der Admin-Seite unter <b>Übersicht</b> ändern."
         ]
       },
       {
@@ -166,10 +167,11 @@
         "b": [
           "Lies zuerst die Release Notes zwischen deiner und der neuen Version. Setze dann in <code>xomtra/deploy/compose</code> <code>VERSION</code> wie in Schritt 2 und führe aus:",
           {"code": "dk_upgrade"},
-          "<code>--fill</code> ergänzt Einstellungen, die in dieser Version neu sind, und ändert deine nie. Prüfe die neuen Images wie in Schritt 3, pinne sie und starte neu:",
+          "Prüfe die neuen Images wie in Schritt 3, pinne sie und starte neu:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
-          "Zurück geht es mit dem vorherigen Tag, dem Backup der <code>.env</code> und <code>docker compose up -d</code>. Sichere die Maschine oder die Docker Volumes regelmäßig: Sie enthalten den ganzen Verlauf."
+          "Passwörter und Schlüssel bleiben im Docker Volume <code>secrets</code>. Eine Installation von vor Version 0.7.0 hat sie noch in <code>.env</code>; der erste Start der neuen Version übernimmt sie automatisch, danach kannst du sie aus <code>.env</code> löschen.",
+          "Zurück geht es mit dem vorherigen Tag, dem Backup der <code>.env</code> und <code>docker compose up -d</code>. Sichere die Maschine oder die Docker Volumes regelmäßig: Sie enthalten den ganzen Verlauf, und ohne das Volume <code>secrets</code> lassen sich die Daten nicht lesen."
         ]
       }
     ]
