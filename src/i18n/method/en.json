@@ -1,0 +1,72 @@
+{
+  "nav": "Method",
+  "crumb": "Method",
+  "title": "How xomtra reads your home",
+  "desc": "Statistics built for homes: how xomtra turns Home Assistant history into findings you can trust, what it tests before every release and where its limits are.",
+  "lead": "Every night xomtra goes through the history of your home and writes down what moves together, what was unusual and what has changed for good. Not with fixed alarms per sensor, but with statistics that know how much a busy home produces by pure chance.",
+  "facts": [["Runs", "every night, on your machine"], ["Reads", "Home Assistant, read only"], ["Method", "open source, tested in public"]],
+  "illus": "Illustration, not real data",
+  "pipe": {
+    "cap": "From Home Assistant to an answer",
+    "frame": "xomtra, on your machine",
+    "ro": "read only",
+    "mcp": "MCP",
+    "nodes": [
+      ["Home Assistant", "states and statistics", "own account"],
+      ["Collect", "every change, live", "+ the history HA keeps"],
+      ["Store", "your own data lake", "years, compressed"],
+      ["Analyse", "every night", "relations, anomalies"],
+      ["Findings", "explained, ranked", "weekly summary"],
+      ["Your AI", "asks in plain words", "and explains"]
+    ]
+  },
+  "figs": {
+    "prep": {"cap": "First, take away the obvious", "a": "Raw changes", "b": "Hourly series", "c": "Rhythm and weather removed"},
+    "struct": {"cap": "Relations that something else explains", "a": "A third sensor", "b": "A hidden cause", "c": "One room", "room": "room", "found": "found", "expl": "explains"},
+    "anom": {"cap": "Unusual for this hour of the week", "band": "usual range", "series": "your sensor", "ep": "episode"}
+  },
+  "sections": [
+    {"id": "collect", "h": "Every change, from the first day", "b": [
+      "xomtra signs in to Home Assistant with its own read only account. It follows every state change as it happens and keeps the long-term statistics Home Assistant already computes. On the first start it picks up the history Home Assistant still holds, and after a lost connection it fills the gap by itself.",
+      "Anything you want to keep private gets a label in Home Assistant and is never stored or never analysed."
+    ]},
+    {"id": "store", "h": "Years of history, in a lake of its own", "b": [
+      "The data go into a data lake on your own disk: compressed column files with a small catalog (DuckLake). Your Home Assistant database is not touched and does not grow, and the history can reach back years instead of days."
+    ]},
+    {"id": "prepare", "h": "First, take away the obvious", "fig": "prep", "b": [
+      "Every suitable entity becomes one hourly series: averages for measurements, consumption for meters, the share of the hour for switches and binary sensors.",
+      "Most of what a home does follows the clock and the weather. That is why xomtra first removes the daily and weekly rhythm, the outside temperature and slow drifts. What is left is what the clock and the weather do not explain, and that is where the interesting part is."
+    ]},
+    {"id": "relations", "h": "What moves together, and not by chance", "fig": "struct", "b": [
+      "xomtra compares every pair of series, also with a delay of hours: the heating starts, the room warms up later. With hundreds of sensors that means tens of thousands of pairs, and some of them look related by pure chance.",
+      "So xomtra learns from your own data how strong a relation chance alone produces, and it keeps the share of false findings under control over all pairs together, not one pair at a time.",
+      "Then it explains what it can. Sensors in one room, the presence of the residents, a third sensor in between, a hidden common cause or one quantity measured twice: such relations are real but say nothing new, so they come last. The first findings are the surprising ones.",
+      {"note": "A correlation is a hint where to look, not proof of a cause. xomtra says so, and so does your AI assistant."}
+    ]},
+    {"id": "anomalies", "h": "What is unusual for your home", "fig": "anom", "b": [
+      "A washing machine on Saturday morning is normal. At three in the morning on a Tuesday it is not. xomtra compares each series with what is usual for the same hour of the week in your own history, and appliances that idle most of the time are judged by their ordinary use, not their idle noise.",
+      "Unusual hours form episodes, and an episode is reported only when it is rare compared with all your series together. A separate check finds lasting changes, such as a fridge that now uses more every day. Unusual weather, one-hour blips and the hours after a lasting change are marked, so they do not crowd out the rest."
+    ]},
+    {"id": "findings", "h": "The surprising first, a summary every Monday", "b": [
+      "Every finding gets a strength, a weight of evidence and a category from a public rulebook: fault, savings, automation or behaviour. Trivial ones, such as known physics of solar power and sunshine, stay hidden.",
+      "On Monday morning xomtra saves the week, so you can ask what is new, what is gone and what was unusual. Your AI assistant reads the findings over MCP with the same read only rights as any other question and explains them in plain words."
+    ]},
+    {"id": "confidence", "h": "Honest about what it does not know", "b": [
+      "A small home, or one where many entities have no area, gives the analysis less to work with. Instead of quietly guessing, xomtra marks such a run as low confidence and presents its relations as hypotheses. Areas in Home Assistant and a presence entity for the residents give it the context it needs.",
+      "Long windows over many sensors also need memory. On a small Home Assistant host, a large installation is better off on a machine of its own."
+    ]},
+    {"id": "tested", "h": "Tested like science, published as it is", "b": [
+      "Every change to the analyses is measured before it reaches a release:",
+      {"ul": [
+        "<b>Synthetic homes with a known truth</b>, on every change: simulated weather, residents, rooms and appliances, relations of known strength and delay, unrelated sensors and the defects real sensors have.",
+        "<b>Public data of real homes</b>, every night: series from different homes cannot be related, so every relation found between them is a false one. Planted episodes show how many anomalies are found.",
+        "<b>Opt-in metrics from beta installations</b>: planned."
+      ]},
+      "We publish the results as they are, including the parts that are not good enough yet. Relations between different homes in public data stay rare and strong direct relations are found. Small homes, homes without areas and occupancy without a presence entity still give more false relations than the target, and part of the moderate anomalies are missed. Whether people find the findings useful is the next test: it is written down in advance, the ratings are not collected yet.",
+      "Every number, the run that measured it and the criteria a release has to meet are in the evaluation document on GitHub."
+    ]}
+  ],
+  "docs": "Evaluation of the analyses on GitHub",
+  "help": "Questions, or a finding that looks wrong? Write to support@xomtra.com or open an issue on GitHub.",
+  "more": "How the analysis works"
+}

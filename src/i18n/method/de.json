@@ -1,0 +1,72 @@
+{
+  "nav": "Methode",
+  "crumb": "Methode",
+  "title": "Wie xomtra Ihr Zuhause liest",
+  "desc": "Statistik für Haushalte: wie xomtra aus der Home-Assistant-Historie Befunde macht, denen man trauen kann, was vor jedem Release getestet wird und wo die Grenzen liegen.",
+  "lead": "Jede Nacht geht xomtra die Historie Ihres Zuhauses durch und hält fest, was sich gemeinsam bewegt, was ungewöhnlich war und was sich dauerhaft verändert hat. Nicht mit festen Alarmen pro Sensor, sondern mit Statistik, die weiß, wie viel ein belebter Haushalt rein zufällig erzeugt.",
+  "facts": [["Läuft", "jede Nacht, auf Ihrem Rechner"], ["Liest", "Home Assistant, read only"], ["Methode", "Open Source, öffentlich getestet"]],
+  "illus": "Illustration, keine echten Daten",
+  "pipe": {
+    "cap": "Von Home Assistant zur Antwort",
+    "frame": "xomtra, auf Ihrem Rechner",
+    "ro": "read only",
+    "mcp": "MCP",
+    "nodes": [
+      ["Home Assistant", "Zustände, Statistiken", "eigenes Konto"],
+      ["Sammeln", "jede Änderung live", "+ Historie aus HA"],
+      ["Speichern", "eigener Data Lake", "Jahre, komprimiert"],
+      ["Analysieren", "jede Nacht", "Muster, Anomalien"],
+      ["Befunde", "erklärt, sortiert", "Wochenübersicht"],
+      ["Ihre KI", "fragt in Worten", "und erklärt"]
+    ]
+  },
+  "figs": {
+    "prep": {"cap": "Zuerst das Offensichtliche abziehen", "a": "Rohe Änderungen", "b": "Stundenreihen", "c": "Ohne Rhythmus und Wetter"},
+    "struct": {"cap": "Beziehungen, die etwas anderes erklärt", "a": "Ein dritter Sensor", "b": "Eine verborgene Ursache", "c": "Ein Raum", "room": "Raum", "found": "gefunden", "expl": "erklärt"},
+    "anom": {"cap": "Ungewöhnlich für diese Stunde der Woche", "band": "üblicher Bereich", "series": "Ihr Sensor", "ep": "Episode"}
+  },
+  "sections": [
+    {"id": "collect", "h": "Jede Änderung, vom ersten Tag an", "b": [
+      "xomtra meldet sich mit einem eigenen read-only-Konto bei Home Assistant an. Es verfolgt jede Zustandsänderung in dem Moment, in dem sie passiert, und übernimmt die Langzeitstatistiken, die Home Assistant ohnehin berechnet. Beim ersten Start holt es die Historie, die Home Assistant noch hat, und nach einem Verbindungsabbruch füllt es die Lücke selbst.",
+      "Was privat bleiben soll, bekommt in Home Assistant ein Label und wird nie gespeichert oder nie analysiert."
+    ]},
+    {"id": "store", "h": "Jahre an Historie, in einem eigenen Lake", "b": [
+      "Die Daten landen in einem Data Lake auf Ihrer eigenen Platte: komprimierte Spaltendateien mit einem kleinen Katalog (DuckLake). Die Datenbank von Home Assistant bleibt unberührt und wächst nicht, und die Historie reicht Jahre statt Tage zurück."
+    ]},
+    {"id": "prepare", "h": "Zuerst das Offensichtliche abziehen", "fig": "prep", "b": [
+      "Jede geeignete Entität wird zu einer Stundenreihe: Mittelwerte bei Messwerten, Verbrauch bei Zählern, der Anteil der Stunde bei Schaltern und binären Sensoren.",
+      "Das meiste, was ein Haushalt tut, folgt der Uhr und dem Wetter. Darum zieht xomtra zuerst den Tages- und Wochenrhythmus, die Außentemperatur und langsame Drifts ab. Übrig bleibt, was weder Uhr noch Wetter erklären, und genau dort wird es interessant."
+    ]},
+    {"id": "relations", "h": "Was sich gemeinsam bewegt, und nicht zufällig", "fig": "struct", "b": [
+      "xomtra vergleicht jedes Paar von Reihen, auch mit einer Verzögerung von Stunden: Die Heizung startet, der Raum wird später warm. Bei Hunderten von Sensoren sind das Zehntausende Paare, und manche wirken rein zufällig verwandt.",
+      "Deshalb lernt xomtra aus Ihren eigenen Daten, wie stark eine Beziehung sein kann, die der Zufall allein erzeugt, und hält den Anteil falscher Befunde über alle Paare zusammen unter Kontrolle, nicht Paar für Paar.",
+      "Dann erklärt es, was sich erklären lässt. Sensoren in einem Raum, die Anwesenheit der Bewohner, ein dritter Sensor dazwischen, eine verborgene gemeinsame Ursache oder eine Größe, die doppelt gemessen wird: Solche Beziehungen sind echt, sagen aber nichts Neues und kommen deshalb zuletzt. Die ersten Befunde sind die überraschenden.",
+      {"note": "Eine Korrelation ist ein Hinweis, wo man hinschauen sollte, kein Beweis für eine Ursache. xomtra sagt das, und Ihr KI-Assistent auch."}
+    ]},
+    {"id": "anomalies", "h": "Was für Ihr Zuhause ungewöhnlich ist", "fig": "anom", "b": [
+      "Die Waschmaschine am Samstagmorgen ist normal. Um drei Uhr nachts an einem Dienstag nicht. xomtra vergleicht jede Reihe mit dem, was für dieselbe Stunde der Woche in Ihrer eigenen Historie üblich ist, und Geräte, die meist stillstehen, werden an ihrem normalen Betrieb gemessen, nicht an ihrem Ruherauschen.",
+      "Ungewöhnliche Stunden bilden Episoden, und eine Episode wird nur gemeldet, wenn sie im Vergleich mit allen Ihren Reihen zusammen selten ist. Eine eigene Prüfung findet dauerhafte Veränderungen, etwa einen Kühlschrank, der jetzt jeden Tag mehr verbraucht. Ungewöhnliches Wetter, einstündige Ausreißer und die Stunden nach einer dauerhaften Veränderung werden markiert, damit sie den Rest nicht überdecken."
+    ]},
+    {"id": "findings", "h": "Das Überraschende zuerst, montags eine Übersicht", "b": [
+      "Jeder Befund bekommt eine Stärke, ein Beweisgewicht und eine Kategorie aus einem öffentlichen Regelwerk: Fehler, Einsparung, Automatisierung oder Verhalten. Triviales, etwa die bekannte Physik von Solarstrom und Sonnenschein, bleibt verborgen.",
+      "Am Montagmorgen speichert xomtra die Woche, sodass Sie fragen können, was neu ist, was verschwunden ist und was ungewöhnlich war. Ihr KI-Assistent liest die Befunde über MCP mit denselben read-only-Rechten wie jede andere Frage und erklärt sie in klaren Worten."
+    ]},
+    {"id": "confidence", "h": "Ehrlich bei dem, was es nicht weiß", "b": [
+      "Ein kleiner Haushalt oder einer, in dem viele Entitäten keinen Bereich haben, gibt der Analyse weniger Anhaltspunkte. Statt still zu raten, markiert xomtra einen solchen Lauf als wenig sicher und stellt seine Beziehungen als Hypothesen dar. Bereiche in Home Assistant und eine Anwesenheits-Entität für die Bewohner geben ihm den nötigen Kontext.",
+      "Lange Zeitfenster über viele Sensoren brauchen auch Speicher. Auf einem kleinen Home-Assistant-Host ist eine große Installation auf einem eigenen Rechner besser aufgehoben."
+    ]},
+    {"id": "tested", "h": "Getestet wie Wissenschaft, veröffentlicht, wie es ist", "b": [
+      "Jede Änderung an den Analysen wird vor einem Release gemessen:",
+      {"ul": [
+        "<b>Synthetische Haushalte mit bekannter Wahrheit</b>, bei jeder Änderung: simuliertes Wetter, Bewohner, Räume und Geräte, Beziehungen bekannter Stärke und Verzögerung, unabhängige Sensoren und die Fehler, die echte Sensoren haben.",
+        "<b>Öffentliche Daten echter Haushalte</b>, jede Nacht: Reihen aus verschiedenen Haushalten können nicht zusammenhängen, also ist jede zwischen ihnen gefundene Beziehung falsch. Eingesetzte Episoden zeigen, wie viele Anomalien gefunden werden.",
+        "<b>Freiwillige Metriken aus Beta-Installationen</b>: geplant."
+      ]},
+      "Wir veröffentlichen die Ergebnisse, wie sie sind, auch die Teile, die noch nicht gut genug sind. Beziehungen zwischen verschiedenen Haushalten bleiben in öffentlichen Daten selten, und starke direkte Beziehungen werden gefunden. Kleine Haushalte, Haushalte ohne Bereiche und Anwesenheit ohne Anwesenheits-Entität ergeben noch mehr falsche Beziehungen als das Ziel, und ein Teil der mittelstarken Anomalien wird übersehen. Ob die Befunde Menschen nützen, ist der nächste Test: Er ist vorab festgelegt, die Bewertungen sind noch nicht gesammelt.",
+      "Alle Zahlen, der Lauf, der sie gemessen hat, und die Kriterien, die ein Release erfüllen muss, stehen im Evaluationsdokument auf GitHub."
+    ]}
+  ],
+  "docs": "Evaluation der Analysen auf GitHub",
+  "help": "Fragen, oder ein Befund, der falsch aussieht? Schreiben Sie an support@xomtra.com oder eröffnen Sie ein Issue auf GitHub.",
+  "more": "So funktioniert die Analyse"
+}
