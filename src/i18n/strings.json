@@ -2,7 +2,7 @@
  "T": {
   "en": {
    "pre_eyebrow": "Public beta coming soon · for Home Assistant",
-   "pre_cta": "Get notified",
+   "pre_cta": "Contact us",
    "pre_inst": "Available at the public beta. Write to support@xomtra.com and we will let you know.",
    "nav": [
     "How it works",
@@ -122,6 +122,10 @@
    "faq_h": "Questions",
    "faq": [
     [
+     "How much does it cost?",
+     "Nothing. xomtra is free and open source (Apache 2.0): no subscription, no account, no limits. You only use what you already have: the machine it runs on (your Home Assistant host or a small virtual machine) and, to ask in plain language, your own AI subscription, such as Claude."
+    ],
+    [
      "Do I need Claude?",
      "No. xomtra works with Claude Desktop, Claude.ai and any client that speaks MCP. Your AI subscription is your own; xomtra never pays or sees it."
     ],
@@ -138,11 +142,12 @@
      "No. xomtra is an independent open source project built for Home Assistant."
     ]
    ],
-   "foot": "xomtra is an independent open source project, not affiliated with the Open Home Foundation or Nabu Casa. Home Assistant is a trademark of its owners."
+   "foot": "xomtra is an independent open source project, not affiliated with Anthropic, the Open Home Foundation or Nabu Casa. Claude and Home Assistant are trademarks of their owners.",
+   "support": "Support xomtra"
   },
   "de": {
    "pre_eyebrow": "Öffentliche Beta bald verfügbar · für Home Assistant",
-   "pre_cta": "Benachrichtigen",
+   "pre_cta": "Kontaktiere uns",
    "pre_inst": "Verfügbar mit der öffentlichen Beta. Schreib an support@xomtra.com, wir melden uns.",
    "nav": [
     "Funktionsweise",
@@ -262,6 +267,10 @@
    "faq_h": "Fragen",
    "faq": [
     [
+     "Was kostet es?",
+     "Nichts. xomtra ist kostenlos und Open Source (Apache 2.0): kein Abo, kein Konto, keine Limits. Du nutzt nur, was du schon hast: den Rechner, auf dem es läuft (deinen Home-Assistant-Host oder eine kleine virtuelle Maschine), und für Fragen in normaler Sprache dein eigenes KI-Abo, etwa Claude."
+    ],
+    [
      "Brauche ich Claude?",
      "Nein. xomtra funktioniert mit Claude Desktop, Claude.ai und jedem MCP-Client. Dein KI-Abo gehört dir, xomtra bezahlt oder sieht es nicht."
     ],
@@ -278,11 +287,12 @@
      "Nein. xomtra ist ein unabhängiges Open-Source-Projekt für Home Assistant."
     ]
    ],
-   "foot": "xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zur Open Home Foundation oder zu Nabu Casa. Home Assistant ist eine Marke ihrer Inhaber."
+   "foot": "xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zu Anthropic, der Open Home Foundation oder Nabu Casa. Claude und Home Assistant sind Marken ihrer Inhaber.",
+   "support": "xomtra unterstützen"
   },
   "cs": {
    "pre_eyebrow": "Veřejná beta již brzy · pro Home Assistant",
-   "pre_cta": "Dejte mi vědět",
+   "pre_cta": "Kontaktujte nás",
    "pre_inst": "K dispozici s veřejnou betou. Napište na support@xomtra.com a ozveme se.",
    "nav": [
     "Jak to funguje",
@@ -307,7 +317,7 @@
    ],
    "eyebrow": "Open source · pro Home Assistant",
    "h1": "Zeptejte se domu, co se doopravdy stalo.",
-   "lead": "xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a nechá Clauda nebo jiného MCP klienta odpovídat na otázky o vaší domácnosti. Jen pro čtení, na vašem vlastním hardwaru.",
+   "lead": "xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a na otázky o vaší domácnosti vám odpoví Claude nebo jiný MCP klient. Read only, na vašem vlastním hardwaru.",
    "cta1": "Nainstalovat zdarma",
    "cta2": "Jak to funguje",
    "note": "Apache 2.0 · bez registrace · data zůstávají doma",
@@ -402,7 +412,11 @@
    "faq_h": "Otázky",
    "faq": [
     [
-     "Potřebuji Clauda?",
+     "Kolik to stojí?",
+     "Nic. xomtra je zdarma a open source (Apache 2.0): žádné předplatné, žádný účet, žádné limity. Využíváte jen to, co už máte: počítač, na kterém běží (váš Home Assistant nebo malý virtuální stroj), a pro otázky běžnou řečí vlastní předplatné AI, třeba Claude."
+    ],
+    [
+     "Potřebuji Claude?",
      "Ne. xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
     ],
     [
@@ -418,11 +432,12 @@
      "Ne. xomtra je nezávislý open source projekt pro Home Assistant."
     ]
    ],
-   "foot": "xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků."
+   "foot": "xomtra je nezávislý open source projekt bez vazby na Anthropic, Open Home Foundation nebo Nabu Casa. Claude a Home Assistant jsou ochranné známky svých vlastníků.",
+   "support": "Podpořit xomtra"
   },
   "pl": {
    "pre_eyebrow": "Publiczna beta już wkrótce · dla Home Assistant",
-   "pre_cta": "Powiadom mnie",
+   "pre_cta": "Skontaktuj się z nami",
    "pre_inst": "Dostępne w publicznej becie. Napisz na support@xomtra.com, damy znać.",
    "nav": [
     "Jak to działa",
@@ -542,6 +557,10 @@
    "faq_h": "Pytania",
    "faq": [
     [
+     "Ile to kosztuje?",
+     "Nic. xomtra jest darmowa i open source (Apache 2.0): bez subskrypcji, bez konta, bez limitów. Korzystasz tylko z tego, co już masz: komputera, na którym działa (Twój host Home Assistant albo mała maszyna wirtualna), i do pytań zwykłym językiem z własnej subskrypcji AI, na przykład Claude."
+    ],
+    [
      "Czy potrzebuję Claude?",
      "Nie. xomtra działa z Claude Desktop, Claude.ai i każdym klientem MCP. Subskrypcja AI jest Twoja, xomtra za nią nie płaci i jej nie widzi."
     ],
@@ -558,11 +577,12 @@
      "Nie. xomtra to niezależny projekt open source dla Home Assistanta."
     ]
    ],
-   "foot": "xomtra to niezależny projekt open source, niezwiązany z Open Home Foundation ani Nabu Casa. Home Assistant jest znakiem towarowym jego właścicieli."
+   "foot": "xomtra to niezależny projekt open source, niezwiązany z Anthropic, Open Home Foundation ani Nabu Casa. Claude i Home Assistant są znakami towarowymi ich właścicieli.",
+   "support": "Wesprzyj xomtra"
   },
   "nl": {
    "pre_eyebrow": "Publieke bèta binnenkort · voor Home Assistant",
-   "pre_cta": "Houd me op de hoogte",
+   "pre_cta": "Neem contact op",
    "pre_inst": "Beschikbaar bij de publieke bèta. Mail naar support@xomtra.com en we laten het je weten.",
    "nav": [
     "Zo werkt het",
@@ -682,6 +702,10 @@
    "faq_h": "Vragen",
    "faq": [
     [
+     "Wat kost het?",
+     "Niets. xomtra is gratis en open source (Apache 2.0): geen abonnement, geen account, geen limieten. Je gebruikt alleen wat je al hebt: de machine waarop het draait (je Home Assistant-host of een kleine virtuele machine) en, om in gewone taal te vragen, je eigen AI-abonnement, zoals Claude."
+    ],
+    [
      "Heb ik Claude nodig?",
      "Nee. xomtra werkt met Claude Desktop, Claude.ai en elke client die MCP spreekt. Je AI-abonnement is van jou; xomtra betaalt of ziet het niet."
     ],
@@ -698,7 +722,8 @@
      "Nee. xomtra is een onafhankelijk open-sourceproject voor Home Assistant."
     ]
    ],
-   "foot": "xomtra is een onafhankelijk open-sourceproject en niet verbonden aan de Open Home Foundation of Nabu Casa. Home Assistant is een handelsmerk van de eigenaren."
+   "foot": "xomtra is een onafhankelijk open-sourceproject en niet verbonden aan Anthropic, de Open Home Foundation of Nabu Casa. Claude en Home Assistant zijn handelsmerken van hun eigenaren.",
+   "support": "Steun xomtra"
   }
  },
  "LEG": {
@@ -725,7 +750,7 @@
  },
  "FLOW": {
   "en": {
-   "h": "Where your question goes",
+   "h": "How xomtra handles your question",
    "s": "The agent asks only xomtra, never Home Assistant directly. xomtra only reads Home Assistant and switches nothing. The model sees only the answers it asked for.",
    "agent": [
     "LLM agent",
@@ -765,7 +790,7 @@
    "cv": "2 · Virtual machine or Docker"
   },
   "cs": {
-   "h": "Kudy vede vaše otázka",
+   "h": "Jak xomtra zpracuje váš dotaz",
    "s": "Agent se ptá jen xomtry, nikdy přímo Home Assistantu. xomtra Home Assistant jen čte a nic nepřepíná. Model vidí jen odpovědi, o které požádal.",
    "agent": [
     "LLM agent",
@@ -805,7 +830,7 @@
    "cv": "2 · Virtuální stroj nebo Docker"
   },
   "de": {
-   "h": "Wohin Ihre Frage geht",
+   "h": "Wie xomtra Ihre Frage verarbeitet",
    "s": "Der Agent fragt nur xomtra, nie direkt Home Assistant. xomtra liest Home Assistant nur und schaltet nichts. Das Modell sieht nur die Antworten, die es angefordert hat.",
    "agent": [
     "LLM-Agent",
@@ -845,7 +870,7 @@
    "cv": "2 · Virtuelle Maschine oder Docker"
   },
   "pl": {
-   "h": "Dokąd trafia Twoje pytanie",
+   "h": "Jak xomtra przetwarza Twoje pytanie",
    "s": "Agent pyta tylko xomtrę, nigdy bezpośrednio Home Assistant. xomtra tylko czyta Home Assistant i niczego nie przełącza. Model widzi tylko odpowiedzi, o które poprosił.",
    "agent": [
     "Agent LLM",
@@ -885,7 +910,7 @@
    "cv": "2 · Maszyna wirtualna lub Docker"
   },
   "nl": {
-   "h": "Waar je vraag naartoe gaat",
+   "h": "Hoe xomtra je vraag verwerkt",
    "s": "De agent vraagt alleen xomtra, nooit rechtstreeks Home Assistant. xomtra leest Home Assistant alleen en schakelt niets. Het model ziet alleen de antwoorden waar het om vroeg.",
    "agent": [
     "LLM-agent",
