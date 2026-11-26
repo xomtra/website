@@ -1,7 +1,7 @@
 ---
 import "../styles/site.css";
 import Mark from "../components/Mark.astro";
-import { LANGS, TITLES, REPO, CONTACT, SITE, pathFor, urlFor, type Lang } from "../config";
+import { LANGS, TITLES, REPO, CONTACT, SITE, SPONSOR, LAUNCHED, pathFor, urlFor, type Lang } from "../config";
 import { T, stripTags } from "../i18n";
 
 interface Props { lang: Lang }
@@ -78,7 +78,7 @@ const faq = {
 <footer><div class="wrap">
   <span class="brand"><Mark /><span>xomtra</span></span>
   <p id="foot">{t.foot}</p>
-  <span style="font-family:var(--mono)"><a href={REPO} style="text-decoration:none">GitHub</a> · Apache 2.0 · {CONTACT}</span>
+  <span style="font-family:var(--mono)"><a href={REPO} style="text-decoration:none">GitHub</a> · Apache 2.0 · {CONTACT}{LAUNCHED && <> · <a href={SPONSOR} style="text-decoration:none">{t.support} ♥</a></>}</span>
 </div></footer>
 </body>
 </html>

@@ -122,6 +122,10 @@
    "faq_h": "Questions",
    "faq": [
     [
+     "How much does it cost?",
+     "Nothing. xomtra is free and open source (Apache 2.0): no subscription, no account, no limits. You only use what you already have: the machine it runs on (your Home Assistant host or a small virtual machine) and, to ask in plain language, your own AI subscription, such as Claude."
+    ],
+    [
      "Do I need Claude?",
      "No. xomtra works with Claude Desktop, Claude.ai and any client that speaks MCP. Your AI subscription is your own; xomtra never pays or sees it."
     ],
@@ -138,7 +142,8 @@
      "No. xomtra is an independent open source project built for Home Assistant."
     ]
    ],
-   "foot": "xomtra is an independent open source project, not affiliated with the Open Home Foundation or Nabu Casa. Home Assistant is a trademark of its owners."
+   "foot": "xomtra is an independent open source project, not affiliated with the Open Home Foundation or Nabu Casa. Home Assistant is a trademark of its owners.",
+   "support": "Support xomtra"
   },
   "de": {
    "pre_eyebrow": "Öffentliche Beta bald verfügbar · für Home Assistant",
@@ -262,6 +267,10 @@
    "faq_h": "Fragen",
    "faq": [
     [
+     "Was kostet es?",
+     "Nichts. xomtra ist kostenlos und Open Source (Apache 2.0): kein Abo, kein Konto, keine Limits. Du nutzt nur, was du schon hast: den Rechner, auf dem es läuft (deinen Home-Assistant-Host oder eine kleine virtuelle Maschine), und für Fragen in normaler Sprache dein eigenes KI-Abo, etwa Claude."
+    ],
+    [
      "Brauche ich Claude?",
      "Nein. xomtra funktioniert mit Claude Desktop, Claude.ai und jedem MCP-Client. Dein KI-Abo gehört dir, xomtra bezahlt oder sieht es nicht."
     ],
@@ -278,7 +287,8 @@
      "Nein. xomtra ist ein unabhängiges Open-Source-Projekt für Home Assistant."
     ]
    ],
-   "foot": "xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zur Open Home Foundation oder zu Nabu Casa. Home Assistant ist eine Marke ihrer Inhaber."
+   "foot": "xomtra ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zur Open Home Foundation oder zu Nabu Casa. Home Assistant ist eine Marke ihrer Inhaber.",
+   "support": "xomtra unterstützen"
   },
   "cs": {
    "pre_eyebrow": "Veřejná beta již brzy · pro Home Assistant",
@@ -402,6 +412,10 @@
    "faq_h": "Otázky",
    "faq": [
     [
+     "Kolik to stojí?",
+     "Nic. xomtra je zdarma a open source (Apache 2.0): žádné předplatné, žádný účet, žádné limity. Využíváte jen to, co už máte: počítač, na kterém běží (váš Home Assistant nebo malý virtuální stroj), a pro otázky běžnou řečí vlastní předplatné AI, třeba Claude."
+    ],
+    [
      "Potřebuji Clauda?",
      "Ne. xomtra funguje s Claude Desktop, Claude.ai i s jakýmkoli MCP klientem. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
     ],
@@ -418,7 +432,8 @@
      "Ne. xomtra je nezávislý open source projekt pro Home Assistant."
     ]
    ],
-   "foot": "xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků."
+   "foot": "xomtra je nezávislý open source projekt bez vazby na Open Home Foundation nebo Nabu Casa. Home Assistant je ochranná známka svých vlastníků.",
+   "support": "Podpořit xomtra"
   },
   "pl": {
    "pre_eyebrow": "Publiczna beta już wkrótce · dla Home Assistant",
@@ -542,6 +557,10 @@
    "faq_h": "Pytania",
    "faq": [
     [
+     "Ile to kosztuje?",
+     "Nic. xomtra jest darmowa i open source (Apache 2.0): bez subskrypcji, bez konta, bez limitów. Korzystasz tylko z tego, co już masz: komputera, na którym działa (Twój host Home Assistant albo mała maszyna wirtualna), i do pytań zwykłym językiem z własnej subskrypcji AI, na przykład Claude."
+    ],
+    [
      "Czy potrzebuję Claude?",
      "Nie. xomtra działa z Claude Desktop, Claude.ai i każdym klientem MCP. Subskrypcja AI jest Twoja, xomtra za nią nie płaci i jej nie widzi."
     ],
@@ -558,7 +577,8 @@
      "Nie. xomtra to niezależny projekt open source dla Home Assistanta."
     ]
    ],
-   "foot": "xomtra to niezależny projekt open source, niezwiązany z Open Home Foundation ani Nabu Casa. Home Assistant jest znakiem towarowym jego właścicieli."
+   "foot": "xomtra to niezależny projekt open source, niezwiązany z Open Home Foundation ani Nabu Casa. Home Assistant jest znakiem towarowym jego właścicieli.",
+   "support": "Wesprzyj xomtra"
   },
   "nl": {
    "pre_eyebrow": "Publieke bèta binnenkort · voor Home Assistant",
@@ -682,6 +702,10 @@
    "faq_h": "Vragen",
    "faq": [
     [
+     "Wat kost het?",
+     "Niets. xomtra is gratis en open source (Apache 2.0): geen abonnement, geen account, geen limieten. Je gebruikt alleen wat je al hebt: de machine waarop het draait (je Home Assistant-host of een kleine virtuele machine) en, om in gewone taal te vragen, je eigen AI-abonnement, zoals Claude."
+    ],
+    [
      "Heb ik Claude nodig?",
      "Nee. xomtra werkt met Claude Desktop, Claude.ai en elke client die MCP spreekt. Je AI-abonnement is van jou; xomtra betaalt of ziet het niet."
     ],
@@ -698,7 +722,8 @@
      "Nee. xomtra is een onafhankelijk open-sourceproject voor Home Assistant."
     ]
    ],
-   "foot": "xomtra is een onafhankelijk open-sourceproject en niet verbonden aan de Open Home Foundation of Nabu Casa. Home Assistant is een handelsmerk van de eigenaren."
+   "foot": "xomtra is een onafhankelijk open-sourceproject en niet verbonden aan de Open Home Foundation of Nabu Casa. Home Assistant is een handelsmerk van de eigenaren.",
+   "support": "Steun xomtra"
   }
  },
  "LEG": {
