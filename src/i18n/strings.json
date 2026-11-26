@@ -63,6 +63,7 @@
    ],
    "in_h": "Install where Home Assistant already runs",
    "in_s": "Pick the option that fits your setup. All of them are free.",
+   "myha": "Add to Home Assistant",
    "inst": [
     [
      "Home Assistant add-on",
@@ -202,6 +203,7 @@
    ],
    "in_h": "Installieren, wo Home Assistant schon läuft",
    "in_s": "Wähle die passende Variante. Alle sind kostenlos.",
+   "myha": "Zu Home Assistant hinzufügen",
    "inst": [
     [
      "Home Assistant Add-on",
@@ -341,6 +343,7 @@
    ],
    "in_h": "Nainstalujte tam, kde už Home Assistant běží",
    "in_s": "Vyberte variantu, která vám sedí. Všechny jsou zdarma.",
+   "myha": "Přidat do Home Assistantu",
    "inst": [
     [
      "Doplněk Home Assistantu",
@@ -480,6 +483,7 @@
    ],
    "in_h": "Zainstaluj tam, gdzie już działa Home Assistant",
    "in_s": "Wybierz wariant, który pasuje do Twojej instalacji. Wszystkie są darmowe.",
+   "myha": "Dodaj do Home Assistant",
    "inst": [
     [
      "Dodatek Home Assistant",
@@ -619,6 +623,7 @@
    ],
    "in_h": "Installeer waar Home Assistant al draait",
    "in_s": "Kies de variant die bij je opstelling past. Ze zijn allemaal gratis.",
+   "myha": "Toevoegen aan Home Assistant",
    "inst": [
     [
      "Home Assistant add-on",
