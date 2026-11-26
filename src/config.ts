@@ -23,3 +23,5 @@ export const urlFor = (l: Lang) => SITE + pathFor(l);
 export const guidePath = (l: Lang, slug: string) => `${pathFor(l)}install/${slug}/`;
 // Method page: /method/ in English, /<lang>/method/ otherwise.
 export const methodPath = (l: Lang) => `${pathFor(l)}method/`;
+// Security page: /security/ in English, /<lang>/security/ otherwise.
+export const securityPath = (l: Lang) => `${pathFor(l)}security/`;

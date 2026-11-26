@@ -1,0 +1,93 @@
+{
+  "nav": "Beveiliging",
+  "crumb": "Beveiliging",
+  "title": "Hoe xomtra je huis beschermt",
+  "desc": "xomtra leest Home Assistant alleen, laat alleen mensen en apparaten toe die jij toestaat en houdt de geschiedenis op je eigen machine. Hoe de code dat doet en wat nog in voorbereiding is.",
+  "lead": "De geschiedenis van Home Assistant laat zien wanneer mensen thuis zijn en hoe ze leven. xomtra gaat daar ook zo mee om: het leest alleen, geeft iedereen precies de toegang die jij kiest en houdt de gegevens op je eigen machine. Alles hieronder is open source, dus je hoeft ons niet op ons woord te geloven.",
+  "facts": [
+    ["Leest", "Home Assistant, verandert niets"],
+    ["Gegevens", "blijven op je machine"],
+    ["Code", "open source, images ondertekend"]
+  ],
+  "sections": [
+    {
+      "id": "read-only",
+      "h": "Read only, vanuit het ontwerp",
+      "b": [
+        "xomtra leest toestanden, geschiedenis en statistieken uit Home Assistant en roept nooit diensten aan. Je AI-assistent praat alleen met xomtra en krijgt read-only tools over xomtra's eigen kopie van de gegevens. Geen enkele tool schakelt, opent of stelt iets in.",
+        "Home Assistant heeft geen read-only tokens: elk token kan wat zijn gebruiker kan. De garantie is de code van xomtra, die je kunt lezen. Met Docker koppel je xomtra als aparte Home Assistant-gebruiker zonder beheerdersrechten; automatische tests controleren dat zo'n gebruiker niets kan wijzigen.",
+        "Entiteiten die je niet wilt opslaan of analyseren, krijgen een label in Home Assistant."
+      ]
+    },
+    {
+      "id": "access",
+      "h": "Alleen wie jij binnenlaat",
+      "b": [
+        "In je thuisnetwerk krijgt elke persoon en elk apparaat een persoonlijk token van de beheerpagina. Het wordt één keer getoond; xomtra bewaart alleen een vingerafdruk ervan, niet het token zelf. Elk token heeft een eigenaar, een rol en optioneel een vervaldatum, en je kunt het altijd intrekken.",
+        "Rollen bepalen wat de AI ziet. Een lezer ziet nooit personen, locaties, camera's, sloten, alarmen of de vrije tekst van attributen; die worden al in de database weggefilterd, voordat er een antwoord ontstaat."
+      ]
+    },
+    {
+      "id": "queries",
+      "h": "Vragen kunnen alleen lezen",
+      "b": [
+        "Als de AI in SQL vraagt, controleren drie lagen de query: alleen één leesquery over de views die de rol toestaat, een database die read only is geopend zonder toegang tot bestanden of het netwerk, en views die al weglaten wat de rol niet mag zien.",
+        "Elke aanroep wordt vastgelegd: wie vroeg, wat, en of het mocht. Kan het record niet worden opgeslagen, dan krijgt de AI een fout in plaats van de gegevens."
+      ]
+    },
+    {
+      "id": "admin",
+      "h": "De beheerpagina",
+      "b": [
+        "Je meldt je aan met je Home Assistant-beheerdersaccount, in de add-on rechtstreeks vanuit Home Assistant. Na het aanmelden trekt xomtra het ontvangen Home Assistant-token in, zodat het geen Home Assistant-token van de aangemelde persoon bewaart.",
+        "Standaard antwoordt de beheerpagina alleen vanuit je lokale netwerk, en in de add-on alleen via Home Assistant. Ze laadt niets van andere sites en beschermt elk formulier tegen vervalste verzoeken."
+      ]
+    },
+    {
+      "id": "network",
+      "h": "In je thuisnetwerk, of voorzichtig op internet",
+      "b": [
+        {
+          "ul": [
+            "<b>Home Assistant-add-on:</b> de MCP-poort is voor clients in je lokale netwerk (Claude Desktop, Claude Code en andere). Het is onversleuteld HTTP, gebruik hem dus alleen in een netwerk dat je vertrouwt; hij is niet bedoeld om naar internet open te zetten.",
+            "<b>Docker:</b> HTTPS in je thuisnetwerk met xomtra's eigen lokale certificaatautoriteit.",
+            "<b>Toegang vanaf internet</b> (voor Claude.ai): xomtra staat achter Caddy met een Let's Encrypt-certificaat. Overal bereikbaar zijn alleen de aanmeldpagina's; de data-endpoints antwoorden alleen op de gepubliceerde adressen van Claude. Je meldt je aan met Microsoft Entra ID of een Home Assistant-account."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "h": "Openlijk gebouwd, ondertekend",
+      "b": [
+        "Release-images worden alleen door GitHub Actions uit de openbare code gebouwd, gescand op bekende kwetsbaarheden en ondertekend met cosign, zodat je kunt controleren dat een image uit de xomtra-repository komt. Een release levert precies de images die de tests hebben doorstaan. Commits en release-tags zijn ondertekend.",
+        "Sleutels en wachtwoorden worden bij de installatie op je machine gegenereerd; de code heeft geen standaardgeheimen. Diensten draaien zonder rootrechten en met een read-only bestandssysteem."
+      ]
+    },
+    {
+      "id": "data",
+      "h": "Jouw gegevens en jouw AI",
+      "b": [
+        "De geschiedenis blijft op de machine waar xomtra draait, en xomtra zelf stuurt die nergens heen. Wat je AI-client ophaalt om je te antwoorden, gaat naar de aanbieder ervan, onder je eigen account en volgens diens voorwaarden. Rollen en labels bepalen wat hij kan ophalen.",
+        "xomtra vertelt de AI ook hoe te antwoorden: bevindingen zijn hypotheses, en geen conclusies over iemands aanwezigheid, slaap of gezondheid, tenzij je ernaar vraagt. Dat stuurt het model, het is geen beveiligingsgrens."
+      ]
+    },
+    {
+      "id": "next",
+      "h": "In voorbereiding",
+      "b": [
+        { "note": "Nog niet in de huidige release." },
+        {
+          "ul": [
+            "Aanmelden met een Home Assistant-account als standaard voor toegang vanaf internet; Entra ID blijft een optie.",
+            "De connector trekt het Home Assistant-token direct na het aanmelden in, zoals de beheerpagina nu al doet, en houdt een eigen sessie met een vaste looptijd bij.",
+            "Een lijst van verbonden clients op de beheerpagina met een knop Ontkoppelen.",
+            "Standaard mogen alleen Home Assistant-beheerders verbinden, met verplichte tweestapsverificatie."
+          ]
+        }
+      ]
+    }
+  ],
+  "docs": "Beveiligingsprincipes in de code, op GitHub",
+  "help": "Een kwetsbaarheid gevonden? Meld die vertrouwelijk via GitHub (Security → Report a vulnerability), niet in een openbaar issue. Andere vragen: support@xomtra.com."
+}

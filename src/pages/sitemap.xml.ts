@@ -1,9 +1,9 @@
 import type { APIRoute } from "astro";
-import { LANGS, SITE, pathFor, guidePath, methodPath, type Lang } from "../config";
+import { LANGS, SITE, pathFor, guidePath, methodPath, securityPath, type Lang } from "../config";
 import { GUIDES } from "../i18n";
 
-// Home page, the method page and every installation guide, each with its language versions.
-const pages: ((l: Lang) => string)[] = [pathFor, methodPath, ...GUIDES.map((g) => (l: Lang) => guidePath(l, g))];
+// Home page, the method and security pages and every installation guide, each with its language versions.
+const pages: ((l: Lang) => string)[] = [pathFor, methodPath, securityPath, ...GUIDES.map((g) => (l: Lang) => guidePath(l, g))];
 
 export const GET: APIRoute = () => {
   const body = pages.map((path) => {

@@ -1,0 +1,60 @@
+---
+// Security principles at a high level. The detailed description, with the code and ADR
+// behind each point, is docs/security.md of the main repository.
+import Base from "../layouts/Base.astro";
+import { REPO, SITE, securityPath, pathFor, type Lang } from "../config";
+import { S, type MethodBlock } from "../i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const m = S[lang];
+const DOCS = `${REPO}/blob/main/docs/security.md`;
+const kind = (b: MethodBlock) => (typeof b === "string" ? "p" : Object.keys(b)[0]);
+
+const article = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: m.title,
+  description: m.desc,
+  inLanguage: lang,
+  url: SITE + securityPath(lang),
+  isPartOf: { "@type": "WebSite", name: "xomtra", url: SITE + pathFor(lang) },
+};
+const crumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "xomtra", item: SITE + pathFor(lang) },
+    { "@type": "ListItem", position: 2, name: m.crumb, item: SITE + securityPath(lang) },
+  ],
+};
+---
+<Base lang={lang} title={`${m.title} · xomtra`} description={m.desc} path={securityPath} ld={[article, crumbs]}>
+<div class="ghead"><div class="wrap guide">
+  <nav class="crumb" aria-label="Breadcrumb"><a href={pathFor(lang)}>xomtra</a> / <span>{m.crumb}</span></nav>
+  <h1>{m.title}</h1>
+  <p class="lead">{m.lead}</p>
+  <dl class="facts">{m.facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+</div></div>
+
+<section class="msec"><div class="wrap guide">
+  <ol class="gsteps">
+    {m.sections.map((s, i) => (
+      <li id={s.id}>
+        <h2><a href={`#${s.id}`}><span class="n">{String(i + 1).padStart(2, "0")}</span>{s.h}</a></h2>
+        {s.b.map((b) => {
+          switch (kind(b)) {
+            case "p": return <p set:html={b as string} />;
+            case "ul": return <ul>{(b as { ul: string[] }).ul.map((x) => <li set:html={x} />)}</ul>;
+            case "note": return <p class="gnote" set:html={(b as { note: string }).note} />;
+          }
+        })}
+      </li>
+    ))}
+  </ol>
+  <div class="gfoot">
+    <p><a href={DOCS}>{m.docs} ↗</a></p>
+    <p>{m.help}</p>
+  </div>
+</div></section>
+</Base>

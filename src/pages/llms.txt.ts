@@ -1,7 +1,7 @@
 // llms.txt (https://llmstxt.org): plain Markdown summary for AI assistants.
 import type { APIRoute } from "astro";
-import { LAUNCHED, SITE, REPO, CONTACT, guidePath, methodPath } from "../config";
-import { T, G, M, GUIDES, stripTags } from "../i18n";
+import { LAUNCHED, SITE, REPO, CONTACT, guidePath, methodPath, securityPath } from "../config";
+import { T, G, M, S, GUIDES, stripTags } from "../i18n";
 
 export const GET: APIRoute = () => {
   const en = T.en;
@@ -12,6 +12,7 @@ export const GET: APIRoute = () => {
     "## What it does", "",
     ...en.feats.map((f) => `- **${f[1]}:** ${f[2]}`),
     "", `How the analysis works: [${M.en.title}](${SITE}${methodPath("en")})`,
+    `Security: [${S.en.title}](${SITE}${securityPath("en")})`,
     "", "## Compared with the built-in Home Assistant MCP server", "",
     "| | Built-in HA MCP server | xomtra |", "|---|---|---|",
     ...en.c_rows.map((r) => `| ${r[0]} | ${r[1]} | ${r[2]} |`),
