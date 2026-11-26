@@ -327,7 +327,7 @@
      "Katalog entit, kvalita dat, souvislosti mezi zařízeními a anomálie, připravené dřív, než se zeptáte."
     ],
     [
-     "jen čtení",
+     "read only",
      "Bezpečný z principu",
      "AI může číst, ale nic nesepne. Role pro členy rodiny a záznam každého dotazu."
     ]
