@@ -19,3 +19,5 @@ export const TITLES: Record<Lang, string> = {
 };
 export const pathFor = (l: Lang) => (l === "en" ? "/" : `/${l}/`);
 export const urlFor = (l: Lang) => SITE + pathFor(l);
+// Installation guides: /install/<slug>/ in English, /<lang>/install/<slug>/ otherwise.
+export const guidePath = (l: Lang, slug: string) => `${pathFor(l)}install/${slug}/`;

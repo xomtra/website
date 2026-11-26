@@ -1,11 +1,14 @@
 ---
-import { LAUNCHED, NOTIFY, MYHA, type Lang } from "../config";
-import { T, LEG, FLOW } from "../i18n";
+import { LAUNCHED, NOTIFY, MYHA, guidePath, type Lang } from "../config";
+import { T, LEG, FLOW, G } from "../i18n";
 import Flow from "./Flow.astro";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = T[lang];
+// Install cards in the order of strings.json "inst": guide page, or null = coming soon.
+const GUIDE = ["home-assistant", null, null, "docker"];
+const ui = G[lang].ui;
 const pts = "0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 250,20 275,13 300,15";
 ---
 <div class="hero" id="top">
@@ -56,7 +59,13 @@ const pts = "0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 25
 
 <section id={`install-${lang}`}><div class="wrap">
   <h2>{t.in_h}</h2><p class="sub">{LAUNCHED ? t.in_s : t.pre_inst}</p>
-  <div class="install">{t.inst.map((i, n) => <div class="inst"><h3>{i[0]}</h3><p>{i[1]}</p><code>{i[2]}</code>{LAUNCHED && n === 0 && <a class="btn myha" href={MYHA} rel="noopener">{t.myha} ↗</a>}</div>)}</div>
+  <div class="install">{t.inst.map((i, n) => GUIDE[n] ? (
+    <div class="inst"><h3><a href={guidePath(lang, GUIDE[n]!)}>{i[0]}</a></h3><p>{i[1]}</p><code>{i[2]}</code>
+      {LAUNCHED && n === 0 && <a class="btn myha" href={MYHA} rel="noopener">{t.myha} ↗</a>}
+      <a class="glink" href={guidePath(lang, GUIDE[n]!)}>{ui.guide} →</a></div>
+  ) : (
+    <div class="inst later"><h3>{i[0]}<span class="soon">{ui.soon}</span></h3><p>{i[1]}</p><code>{i[2]}</code></div>
+  ))}</div>
 </div></section>
 
 <section><div class="wrap">

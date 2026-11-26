@@ -3,7 +3,7 @@
   "en": {
    "pre_eyebrow": "Public beta coming soon · for Home Assistant",
    "pre_cta": "Contact us",
-   "pre_inst": "Available at the public beta. Write to support@xomtra.com and we will let you know.",
+   "pre_inst": "The Home Assistant add-on and Docker Compose work now; Proxmox and VMware images are coming soon. Questions? Write to support@xomtra.com.",
    "nav": [
     "How it works",
     "Install",
@@ -148,7 +148,7 @@
   "de": {
    "pre_eyebrow": "Öffentliche Beta bald verfügbar · für Home Assistant",
    "pre_cta": "Kontaktiere uns",
-   "pre_inst": "Verfügbar mit der öffentlichen Beta. Schreib an support@xomtra.com, wir melden uns.",
+   "pre_inst": "Das Home Assistant Add-on und Docker Compose funktionieren schon; Images für Proxmox und VMware folgen demnächst. Fragen? Schreib an support@xomtra.com.",
    "nav": [
     "Funktionsweise",
     "Installation",
@@ -293,7 +293,7 @@
   "cs": {
    "pre_eyebrow": "Veřejná beta již brzy · pro Home Assistant",
    "pre_cta": "Kontaktujte nás",
-   "pre_inst": "K dispozici s veřejnou betou. Napište na support@xomtra.com a ozveme se.",
+   "pre_inst": "Doplněk Home Assistantu a Docker Compose fungují už teď; obrazy pro Proxmox a VMware budou brzy. Dotazy? Napište na support@xomtra.com.",
    "nav": [
     "Jak to funguje",
     "Instalace",
@@ -438,7 +438,7 @@
   "pl": {
    "pre_eyebrow": "Publiczna beta już wkrótce · dla Home Assistant",
    "pre_cta": "Skontaktuj się z nami",
-   "pre_inst": "Dostępne w publicznej becie. Napisz na support@xomtra.com, damy znać.",
+   "pre_inst": "Dodatek Home Assistant i Docker Compose działają już teraz; obrazy dla Proxmox i VMware będą wkrótce. Pytania? Napisz na support@xomtra.com.",
    "nav": [
     "Jak to działa",
     "Instalacja",
@@ -583,7 +583,7 @@
   "nl": {
    "pre_eyebrow": "Publieke bèta binnenkort · voor Home Assistant",
    "pre_cta": "Neem contact op",
-   "pre_inst": "Beschikbaar bij de publieke bèta. Mail naar support@xomtra.com en we laten het je weten.",
+   "pre_inst": "De Home Assistant add-on en Docker Compose werken nu al; images voor Proxmox en VMware komen binnenkort. Vragen? Mail naar support@xomtra.com.",
    "nav": [
     "Zo werkt het",
     "Installeren",

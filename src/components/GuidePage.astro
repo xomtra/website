@@ -1,0 +1,77 @@
+---
+// One installation guide in one language: numbered steps, shared code blocks, no JavaScript.
+import Base from "../layouts/Base.astro";
+import { LAUNCHED, MYHA, REPO, SITE, guidePath, pathFor, type Lang } from "../config";
+import { T, G, CODE, GUIDES, stripTags, type Block, type Guide, type GuideSlug } from "../i18n";
+
+interface Props { lang: Lang; slug: GuideSlug }
+const { lang, slug } = Astro.props;
+const t = T[lang];
+const ui = G[lang].ui;
+const g: Guide = G[lang][slug];
+const DOCS: Record<GuideSlug, string> = {
+  "home-assistant": `${REPO}/blob/main/docs/setup/home-assistant-addon.md`,
+  docker: `${REPO}/blob/main/docs/setup/local-access.md`,
+};
+// Links between guides are written as {docker} / {home-assistant} in the texts.
+const html = (s: string) => s.replace(/\{(docker|home-assistant)\}/g, (_, k) => guidePath(lang, k));
+const kind = (b: Block) => (typeof b === "string" ? "p" : Object.keys(b)[0]);
+const others = GUIDES.filter((s) => s !== slug);
+
+const howto = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: g.title,
+  description: g.desc,
+  inLanguage: lang,
+  url: SITE + guidePath(lang, slug),
+  step: g.steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.h,
+    text: s.b.filter((b) => typeof b === "string").map((b) => stripTags(b as string)).join(" ") || s.h,
+  })),
+};
+const crumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "xomtra", item: SITE + pathFor(lang) },
+    { "@type": "ListItem", position: 2, name: ui.crumb, item: `${SITE}${pathFor(lang)}#install-${lang}` },
+    { "@type": "ListItem", position: 3, name: g.name, item: SITE + guidePath(lang, slug) },
+  ],
+};
+---
+<Base lang={lang} title={`${g.title} · xomtra`} description={g.desc} path={(l) => guidePath(l, slug)} ld={[howto, crumbs]}>
+<div class="ghead"><div class="wrap guide">
+  <nav class="crumb" aria-label="Breadcrumb"><a href={pathFor(lang)}>xomtra</a> / <a href={`${pathFor(lang)}#install-${lang}`}>{ui.crumb}</a> / <span>{g.name}</span></nav>
+  <h1>{g.title}</h1>
+  <p class="lead">{g.lead}</p>
+  <dl class="facts">{g.facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+</div></div>
+
+<section><div class="wrap guide">
+  <ol class="gsteps" aria-label={ui.steps}>
+    {g.steps.map((s, i) => (
+      <li id={`step-${i + 1}`}>
+        <h2><a href={`#step-${i + 1}`}><span class="n">{String(i + 1).padStart(2, "0")}</span>{s.h}</a></h2>
+        {s.b.map((b) => {
+          switch (kind(b)) {
+            case "p": return <p set:html={html(b as string)} />;
+            case "code": return <pre class="cmd"><code>{CODE[(b as { code: string }).code]}</code></pre>;
+            case "ul": return <ul>{(b as { ul: string[] }).ul.map((x) => <li set:html={html(x)} />)}</ul>;
+            case "note": return <p class="gnote" set:html={html((b as { note: string }).note)} />;
+            case "myha": return LAUNCHED ? <p><a class="btn myha" href={MYHA} rel="noopener">{t.myha} ↗</a></p> : null;
+          }
+        })}
+      </li>
+    ))}
+  </ol>
+
+  <div class="gfoot">
+    <p><a href={DOCS[slug]}>{ui.docs} ↗</a></p>
+    <p>{ui.help}</p>
+    <p class="other">{ui.other}: {others.map((o, i) => <>{i > 0 && " · "}<a href={guidePath(lang, o)}>{G[lang][o].name}</a></>)}</p>
+  </div>
+</div></section>
+</Base>

@@ -1,0 +1,177 @@
+{
+  "ui": {
+    "crumb": "Installation",
+    "soon": "Demnächst",
+    "guide": "Installationsanleitung",
+    "steps": "Schritte",
+    "docs": "Vollständige Dokumentation auf GitHub",
+    "help": "Hängst du fest? Schreib an support@xomtra.com oder eröffne ein Issue auf GitHub.",
+    "other": "Weitere Installationswege"
+  },
+  "home-assistant": {
+    "name": "Home Assistant Add-on",
+    "title": "xomtra als Home Assistant Add-on installieren",
+    "desc": "Schritt-für-Schritt-Installation des xomtra Add-ons für Home Assistant OS: Voraussetzungen, Add-on-Repository, erster Token, Claude verbinden und Backups.",
+    "lead": "Das Add-on betreibt xomtra neben Home Assistant in einem Container. Keine Domain, keine Portweiterleitung, kein Cloud-Konto; Claude Desktop und Claude Code verbinden sich über dein Heimnetz.",
+    "facts": [["Dauer", "etwa 10 Minuten"], ["Voraussetzung", "Home Assistant OS oder Supervised"], ["Zugriff", "LAN, persönliche Tokens"]],
+    "steps": [
+      {
+        "h": "Voraussetzungen prüfen",
+        "b": [
+          {"ul": [
+            "<b>Home Assistant OS oder Supervised.</b> Nur Installationen mit Supervisor haben Add-ons. Mit Home Assistant Container oder Core nimm <a href=\"{docker}\">Docker Compose</a>.",
+            "<b>SSD, mindestens 4 GB RAM und 20 GB freier Speicher.</b> Home Assistant Green (32 GB eMMC) und SD-Karten werden nicht unterstützt.",
+            "<b>64-Bit-System:</b> amd64 (Intel, AMD) oder aarch64 (zum Beispiel Raspberry Pi 5 mit SSD)."
+          ]},
+          {"note": "Willst du den Zustandsverlauf länger als ein Jahr behalten oder den ganzen Verlauf sichern? Betreibe xomtra auf einer eigenen Maschine mit <a href=\"{docker}\">Docker Compose</a>; Images für Proxmox und VMware folgen demnächst."}
+        ]
+      },
+      {
+        "h": "xomtra-Repository hinzufügen",
+        "b": [
+          {"myha": 1},
+          "Öffne in Home Assistant <b>Einstellungen → Add-ons → Add-on Store</b>, dann das Drei-Punkte-Menü → <b>Repositories</b>. Füge diese Adresse ein und wähle <b>Hinzufügen</b>:",
+          {"code": "ha_repo"}
+        ]
+      },
+      {
+        "h": "Add-on installieren und starten",
+        "b": [
+          "Lade den Store neu, öffne <b>xomtra</b> und wähle <b>Installieren</b>. Der Supervisor lädt das signierte Image für dein System. Lass <b>Beim Booten starten</b> und <b>Watchdog</b> an und wähle <b>Starten</b>.",
+          "Der erste Start legt die Datenbank und alle internen Schlüssel im Datenordner des Add-ons an; das dauert etwa eine Minute. Niemand muss ein Passwort eintippen. Danach lädt xomtra im Hintergrund den Verlauf, den Home Assistant noch hat."
+        ]
+      },
+      {
+        "h": "MCP-Adresse setzen",
+        "b": [
+          "MCP-Clients erreichen xomtra auf Port 8000 deines Home Assistant Hosts. Setze im Tab <b>Konfiguration</b> <code>mcp_url</code> auf die Adresse, unter der deine Computer Home Assistant erreichen, zum Beispiel:",
+          {"code": "ha_mcpurl"},
+          "Die Option ist optional: Ohne sie nimmt die Admin-Seite den Host, unter dem du Home Assistant geöffnet hast. Sie steht bei jedem neuen Token, also einmal setzen und die Anleitungen stimmen immer. Speichern und das Add-on neu starten."
+        ]
+      },
+      {
+        "h": "Ersten Token ausstellen",
+        "b": [
+          "Öffne <b>xomtra</b> in der Seitenleiste (nur Home Assistant Administratoren sehen es) und gehe zu <b>Tokens</b>. Gib an, für wen der Token ist, Gerät oder App, Rolle und Ablauf:",
+          {"ul": [
+            "<code>xomtra.Reader</code> liest Verlauf und Befunde, ohne Anwesenheit, Standorte, Kameras und Schlösser. Richtig für die meisten.",
+            "<code>xomtra.Admin</code> sieht alle Entitäten, auch diese, und die Änderungen des Katalogs."
+          ]},
+          "Der Token (<code>xmt_…</code>) wird <b>nur einmal</b> angezeigt. Stelle einen pro Person und Gerät aus: So kannst du einen widerrufen, ohne die anderen, und das Audit zeigt, wer was gefragt hat."
+        ]
+      },
+      {
+        "h": "Claude verbinden",
+        "b": [
+          "<b>Claude Desktop:</b> Lade auf <b>Clients verbinden</b> die Erweiterung <code>xomtra.mcpb</code> herunter (die Adresse ist schon eingetragen), öffne sie und füge den Token ein.",
+          "<b>Claude Code:</b>",
+          {"code": "ha_claude_code"},
+          "Jeder andere MCP-Client mit Streamable HTTP und <code>Authorization</code>-Header funktioniert genauso. Dann stell deine erste Frage, zum Beispiel „Welche Sensoren melden sich diese Woche nicht mehr?“",
+          {"note": "Claude im Web und in den Handy-Apps verbindet sich von den Servern von Anthropic und erreicht dein Heimnetz nicht. Nimm Claude Desktop oder Claude Code auf einem Computer zu Hause oder per VPN verbunden."}
+        ]
+      },
+      {
+        "h": "Backups und Updates",
+        "b": [
+          "Home Assistant Backups enthalten Tokens, Einstellungen und verworfene Befunde von xomtra, aber nicht den Lake mit dem Verlauf (zig GB). Nach einer Wiederherstellung legt xomtra einen neuen Lake an, lädt den Verlauf so weit zurück, wie Home Assistant ihn noch hat, und berechnet die Befunde neu.",
+          "Neue Versionen erscheinen in Home Assistant als Add-on-Updates. Lies vor dem Update die Release Notes: Vor Version 1.0 kann ein Minor-Release Einstellungen ändern."
+        ]
+      }
+    ]
+  },
+  "docker": {
+    "name": "Docker Compose",
+    "title": "xomtra mit Docker Compose installieren",
+    "desc": "Schritt-für-Schritt-Installation von xomtra auf deinem Linux-Server oder NAS mit Docker Compose: geprüftes Release, .env, erster Token, Claude verbinden und Upgrades.",
+    "lead": "Für Home Assistant Container oder Core, oder wenn du xomtra auf einem eigenen Linux-Server oder NAS willst. xomtra liest Home Assistant über dein Netz; Claude Desktop und Claude Code verbinden sich mit persönlichen Tokens, nur aus deinem LAN.",
+    "facts": [["Dauer", "etwa 20 Minuten"], ["Voraussetzung", "Linux, Docker mit Compose v2"], ["Zugriff", "LAN, persönliche Tokens"]],
+    "steps": [
+      {
+        "h": "Voraussetzungen prüfen",
+        "b": [
+          {"ul": [
+            "<b>Linux mit Docker Engine und Compose v2</b>, amd64 oder arm64. Ein NAS mit Docker geht auch.",
+            "<b>SSD, mindestens 4 GB RAM und 20 GB freier Speicher</b> für einen typischen Haushalt; mehr für Jahre an Zustandsverlauf.",
+            "<b>git, curl</b> und <a href=\"https://docs.sigstore.dev/cosign/system_config/installation/\">cosign</a> zum Prüfen der Images.",
+            "<b>Home Assistant von dieser Maschine erreichbar.</b>"
+          ]}
+        ]
+      },
+      {
+        "h": "Neuestes Release herunterladen",
+        "b": [
+          "Ermittle die neueste Version und lade sie zusammen mit den Prüfsummen und den gepinnten Image-Referenzen herunter:",
+          {"code": "dk_version"},
+          {"code": "dk_clone"}
+        ]
+      },
+      {
+        "h": "Release prüfen",
+        "b": [
+          "Prüfe die heruntergeladenen Dateien gegen <code>SHA256SUMS</code> und dann, dass jedes Image vom Release-Workflow genau dieser Version signiert wurde. Jedes Image muss <code>OK</code> ausgeben:",
+          {"code": "dk_verify"},
+          "Schlägt etwas fehl, hör auf und schreib an support@xomtra.com."
+        ]
+      },
+      {
+        "h": "Home Assistant Benutzer für xomtra anlegen",
+        "b": [
+          "Lege in Home Assistant einen eigenen Benutzer <b>ohne</b> Administratorrechte an, melde dich als dieser an und erstelle unter <b>Profil → Sicherheit</b> einen langlebigen Zugriffstoken. xomtra liest nur Registries, Verlauf und Statistiken, read only reicht also."
+        ]
+      },
+      {
+        "h": "Konfiguration erstellen",
+        "b": [
+          {"code": "dk_env"},
+          "Das Skript erzeugt alle internen Passwörter und Schlüssel und speichert sie in <code>.env</code> (Modus 600). Es fragt nur, was es nicht wissen kann:",
+          {"ul": [
+            "Zugriffsmodus: <code>local</code> (nur LAN).",
+            "Name oder IP-Adresse dieses Servers in deinem LAN.",
+            "Anmeldung an der Admin-Seite: <code>ha</code> (dein Home Assistant Konto).",
+            "Netz, das die Admin-Seite öffnen darf, zum Beispiel <code>192.168.1.0/24</code>.",
+            "Home Assistant URL und der Token des Benutzers aus dem vorigen Schritt."
+          ]},
+          "Pinne die Images auf die geprüften Digests und wähle die Edition. Die Lite-Edition passt auf ein NAS oder einen kleinen Server; für die volle Edition mit SeaweedFS und Dagster UI lass die letzte Zeile weg:",
+          {"code": "dk_pin"},
+          {"code": "dk_lite"}
+        ]
+      },
+      {
+        "h": "xomtra starten",
+        "b": [
+          {"code": "dk_up"},
+          "Nach wenigen Minuten sollten alle Dienste <code>running</code> oder <code>healthy</code> sein. Der Verlauf aus Home Assistant lädt im Hintergrund."
+        ]
+      },
+      {
+        "h": "Dem Zertifikat des Servers vertrauen",
+        "b": [
+          "Caddy stellt das Zertifikat deines Servers aus einer eigenen lokalen Zertifizierungsstelle aus. Lade sie einmal von <code>https://&lt;server&gt;/xomtra-ca.crt</code> (der Browser warnt beim ersten Mal, das ist erwartet) und vergleiche den Fingerabdruck mit dem Server:",
+          {"code": "dk_ca"},
+          "Importiere sie in den Zertifikatsspeicher deines Computers oder gib die Datei nur den Clients, die sie brauchen."
+        ]
+      },
+      {
+        "h": "Token ausstellen und Claude verbinden",
+        "b": [
+          "Öffne <code>https://&lt;server&gt;/admin/</code>, melde dich als Home Assistant Administrator an und gehe zu <b>Tokens</b>. Stelle einen Token pro Person und Gerät aus (<code>xomtra.Reader</code> für die meisten); er wird <b>nur einmal</b> angezeigt.",
+          "<b>Claude Desktop:</b> Lade auf <b>Clients verbinden</b> <code>xomtra.mcpb</code> herunter, öffne es, füge den Token ein und wähle <code>xomtra-ca.crt</code>, falls das Zertifikat nicht im Zertifikatsspeicher ist.",
+          "<b>Claude Code</b> (ist das Zertifikat nicht im Zertifikatsspeicher, starte Claude Code mit <code>NODE_EXTRA_CA_CERTS=/pfad/zu/xomtra-ca.crt</code>):",
+          {"code": "dk_claude_code"},
+          {"note": "Claude im Web und in den Handy-Apps verbindet sich von den Servern von Anthropic und erreicht dein LAN nicht. Dafür hat xomtra einen öffentlichen Zugriffsmodus; siehe die Dokumentation auf GitHub."}
+        ]
+      },
+      {
+        "h": "Upgrade",
+        "b": [
+          "Lies zuerst die Release Notes zwischen deiner und der neuen Version. Setze dann in <code>xomtra/deploy/compose</code> <code>VERSION</code> wie in Schritt 2 und führe aus:",
+          {"code": "dk_upgrade"},
+          "<code>--fill</code> ergänzt Einstellungen, die in dieser Version neu sind, und ändert deine nie. Prüfe die neuen Images wie in Schritt 3, pinne sie und starte neu:",
+          {"code": "dk_pin"},
+          {"code": "dk_pull"},
+          "Zurück geht es mit dem vorherigen Tag, dem Backup der <code>.env</code> und <code>docker compose up -d</code>. Sichere die Maschine oder die Docker Volumes regelmäßig: Sie enthalten den ganzen Verlauf."
+        ]
+      }
+    ]
+  }
+}

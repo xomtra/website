@@ -1,7 +1,7 @@
 // llms.txt (https://llmstxt.org): plain Markdown summary for AI assistants.
 import type { APIRoute } from "astro";
-import { LAUNCHED, SITE, REPO, CONTACT } from "../config";
-import { T, stripTags } from "../i18n";
+import { LAUNCHED, SITE, REPO, CONTACT, guidePath } from "../config";
+import { T, G, GUIDES, stripTags } from "../i18n";
 
 export const GET: APIRoute = () => {
   const en = T.en;
@@ -16,6 +16,8 @@ export const GET: APIRoute = () => {
     ...en.c_rows.map((r) => `| ${r[0]} | ${r[1]} | ${r[2]} |`),
     "", "## Install", "",
     ...en.inst.map((i) => `- **${i[0]}:** ${i[1]}`),
+    "", "Step-by-step guides:", "",
+    ...GUIDES.map((g) => `- [${G.en[g].title}](${SITE}${guidePath("en", g)})`),
     "", "## Get started", "",
     ...en.steps.map((s, i) => `${i + 1}. **${s[0]}:** ${s[1]}`),
     "", "## Example questions", "",

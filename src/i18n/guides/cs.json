@@ -1,0 +1,177 @@
+{
+  "ui": {
+    "crumb": "Instalace",
+    "soon": "Brzy",
+    "guide": "Postup instalace",
+    "steps": "Kroky",
+    "docs": "Úplná dokumentace na GitHubu",
+    "help": "Zasekli jste se? Napište na support@xomtra.com nebo založte issue na GitHubu.",
+    "other": "Další způsoby instalace"
+  },
+  "home-assistant": {
+    "name": "Doplněk Home Assistantu",
+    "title": "Instalace xomtra jako doplňku Home Assistantu",
+    "desc": "Postup instalace doplňku xomtra pro Home Assistant OS krok za krokem: požadavky, repozitář doplňku, první token, připojení Claude a zálohy.",
+    "lead": "Doplněk spouští xomtra vedle Home Assistantu v jednom kontejneru. Bez domény, bez přesměrování portů a bez cloudového účtu; Claude Desktop a Claude Code se připojují přes vaši domácí síť.",
+    "facts": [["Čas", "asi 10 minut"], ["Potřebujete", "Home Assistant OS nebo Supervised"], ["Přístup", "LAN, osobní tokeny"]],
+    "steps": [
+      {
+        "h": "Zkontrolujte požadavky",
+        "b": [
+          {"ul": [
+            "<b>Home Assistant OS nebo Supervised.</b> Doplňky mají jen instalace se Supervisorem. S Home Assistant Container nebo Core použijte <a href=\"{docker}\">Docker Compose</a>.",
+            "<b>SSD, aspoň 4 GB RAM a 20 GB volného místa.</b> Home Assistant Green (32 GB eMMC) a SD karty nejsou podporované.",
+            "<b>64bitový systém:</b> amd64 (Intel, AMD) nebo aarch64 (třeba Raspberry Pi 5 s SSD)."
+          ]},
+          {"note": "Chcete historii stavů držet déle než rok nebo zálohovat celou historii? Spusťte xomtra na vlastním stroji přes <a href=\"{docker}\">Docker Compose</a>; obrazy pro Proxmox a VMware budou brzy."}
+        ]
+      },
+      {
+        "h": "Přidejte repozitář xomtra",
+        "b": [
+          {"myha": 1},
+          "V Home Assistantu otevřete <b>Nastavení → Doplňky → Obchod s doplňky</b>, pak menu se třemi tečkami → <b>Repozitáře</b>. Vložte tuto adresu a zvolte <b>Přidat</b>:",
+          {"code": "ha_repo"}
+        ]
+      },
+      {
+        "h": "Nainstalujte a spusťte doplněk",
+        "b": [
+          "Obnovte obchod, otevřete <b>xomtra</b> a zvolte <b>Instalovat</b>. Supervisor stáhne podepsaný obraz pro váš systém. Nechte zapnuté <b>Spustit při startu</b> a <b>Watchdog</b> a zvolte <b>Spustit</b>.",
+          "První start vytvoří databázi doplňku a všechny interní klíče v jeho vlastní datové složce; trvá asi minutu. Nikdo nemusí psát žádné heslo. Pak xomtra na pozadí načte historii, kterou Home Assistant ještě drží."
+        ]
+      },
+      {
+        "h": "Nastavte adresu MCP",
+        "b": [
+          "MCP klienti se k xomtra připojují na port 8000 hostitele Home Assistantu. Na kartě <b>Konfigurace</b> nastavte <code>mcp_url</code> na adresu, kterou vaše počítače používají pro Home Assistant, například:",
+          {"code": "ha_mcpurl"},
+          "Volba je nepovinná: bez ní admin stránka použije adresu, na které jste otevřeli Home Assistant. Zobrazuje se u každého nového tokenu, takže ji stačí nastavit jednou a návody budou vždy správně. Uložte a doplněk restartujte."
+        ]
+      },
+      {
+        "h": "Vystavte první token",
+        "b": [
+          "Otevřete <b>xomtra</b> v postranním panelu (vidí ho jen administrátoři Home Assistantu) a přejděte na <b>Tokeny</b>. Vyplňte, pro koho token je, zařízení nebo aplikaci, roli a platnost:",
+          {"ul": [
+            "<code>xomtra.Reader</code> čte historii a nálezy, bez přítomnosti osob, polohy, kamer a zámků. Vhodná pro většinu lidí.",
+            "<code>xomtra.Admin</code> vidí všechny entity včetně těchto a změny katalogu."
+          ]},
+          "Token (<code>xmt_…</code>) se zobrazí <b>jen jednou</b>. Vystavte jeden pro každého člověka a zařízení: jeden pak zrušíte bez ostatních a audit ukáže, kdo se na co ptal."
+        ]
+      },
+      {
+        "h": "Připojte Claude",
+        "b": [
+          "<b>Claude Desktop:</b> na stránce <b>Připojení klientů</b> stáhněte rozšíření <code>xomtra.mcpb</code> (adresa je už vyplněná), otevřete ho a vložte token.",
+          "<b>Claude Code:</b>",
+          {"code": "ha_claude_code"},
+          "Stejně funguje každý jiný MCP klient, který umí Streamable HTTP a hlavičku <code>Authorization</code>. Pak položte první otázku, třeba „Které senzory tento týden přestaly hlásit?“",
+          {"note": "Claude na webu a v mobilních aplikacích se připojuje ze serverů Anthropicu a do vaší domácí sítě nedosáhne. Použijte Claude Desktop nebo Claude Code na počítači doma nebo připojeném přes VPN."}
+        ]
+      },
+      {
+        "h": "Zálohy a aktualizace",
+        "b": [
+          "Zálohy Home Assistantu obsahují tokeny, nastavení a odmítnuté nálezy xomtra, ale ne lake s historií (desítky GB). Po obnově xomtra založí nový lake, znovu načte historii tak daleko do minulosti, jak ji Home Assistant ještě drží, a nálezy spočítá znovu.",
+          "Nové verze se v Home Assistantu objeví jako aktualizace doplňku. Před aktualizací si přečtěte poznámky k vydání: před verzí 1.0 může vedlejší verze měnit nastavení."
+        ]
+      }
+    ]
+  },
+  "docker": {
+    "name": "Docker Compose",
+    "title": "Instalace xomtra přes Docker Compose",
+    "desc": "Postup instalace xomtra na vlastní linuxový server nebo NAS přes Docker Compose krok za krokem: ověřené vydání, .env, první token, připojení Claude a aktualizace.",
+    "lead": "Pro Home Assistant Container nebo Core, nebo když chcete xomtra na vlastním linuxovém serveru či NAS. xomtra čte Home Assistant po síti; Claude Desktop a Claude Code se připojují osobními tokeny, jen z vaší LAN.",
+    "facts": [["Čas", "asi 20 minut"], ["Potřebujete", "Linux, Docker s Compose v2"], ["Přístup", "LAN, osobní tokeny"]],
+    "steps": [
+      {
+        "h": "Zkontrolujte požadavky",
+        "b": [
+          {"ul": [
+            "<b>Linux s Docker Engine a Compose v2</b>, amd64 nebo arm64. Funguje i NAS s Dockerem.",
+            "<b>SSD, aspoň 4 GB RAM a 20 GB volného místa</b> pro běžnou domácnost; pro roky historie stavů víc.",
+            "<b>git, curl</b> a <a href=\"https://docs.sigstore.dev/cosign/system_config/installation/\">cosign</a> pro ověření obrazů.",
+            "<b>Home Assistant dosažitelný z tohoto stroje.</b>"
+          ]}
+        ]
+      },
+      {
+        "h": "Stáhněte poslední vydání",
+        "b": [
+          "Zjistěte poslední verzi a stáhněte ji spolu s kontrolními součty a připnutými odkazy na obrazy:",
+          {"code": "dk_version"},
+          {"code": "dk_clone"}
+        ]
+      },
+      {
+        "h": "Ověřte vydání",
+        "b": [
+          "Zkontrolujte stažené soubory proti <code>SHA256SUMS</code> a pak, že každý obraz podepsal release workflow právě této verze. U každého obrazu se musí vypsat <code>OK</code>:",
+          {"code": "dk_verify"},
+          "Pokud něco selže, zastavte se a napište na support@xomtra.com."
+        ]
+      },
+      {
+        "h": "Vytvořte uživatele Home Assistantu pro xomtra",
+        "b": [
+          "V Home Assistantu vytvořte samostatného uživatele <b>bez</b> administrátorských práv, přihlaste se jako on a na <b>Profil → Zabezpečení</b> vytvořte dlouhodobý přístupový token. xomtra jen čte registry, historii a statistiky, takže práva read only stačí."
+        ]
+      },
+      {
+        "h": "Vytvořte konfiguraci",
+        "b": [
+          {"code": "dk_env"},
+          "Skript vygeneruje všechna interní hesla a klíče a uloží je do <code>.env</code> (práva 600). Ptá se jen na to, co nemůže vědět:",
+          {"ul": [
+            "Režim přístupu: <code>local</code> (jen LAN).",
+            "Název nebo IP adresa tohoto serveru ve vaší LAN.",
+            "Přihlášení do admin stránky: <code>ha</code> (váš účet Home Assistantu).",
+            "Síť, ze které smí otevřít admin stránku, například <code>192.168.1.0/24</code>.",
+            "URL Home Assistantu a token uživatele z předchozího kroku."
+          ]},
+          "Připněte obrazy na ověřené digesty a zvolte edici. Edice lite se hodí pro NAS nebo malý server; pro plnou edici se SeaweedFS a Dagster UI vynechte poslední řádek:",
+          {"code": "dk_pin"},
+          {"code": "dk_lite"}
+        ]
+      },
+      {
+        "h": "Spusťte xomtra",
+        "b": [
+          {"code": "dk_up"},
+          "Během pár minut by všechny služby měly být <code>running</code> nebo <code>healthy</code>. Historie z Home Assistantu se načítá na pozadí."
+        ]
+      },
+      {
+        "h": "Důvěřujte certifikátu serveru",
+        "b": [
+          "Caddy vystaví certifikát pro váš server z vlastní lokální certifikační autority. Jednou si ji stáhněte z <code>https://&lt;server&gt;/xomtra-ca.crt</code> (prohlížeč poprvé varuje, to je v pořádku) a porovnejte její otisk se serverem:",
+          {"code": "dk_ca"},
+          "Naimportujte ji do úložiště důvěryhodných certifikátů počítače, nebo soubor dejte jen klientům, kteří ho potřebují."
+        ]
+      },
+      {
+        "h": "Vystavte token a připojte Claude",
+        "b": [
+          "Otevřete <code>https://&lt;server&gt;/admin/</code>, přihlaste se jako administrátor Home Assistantu a přejděte na <b>Tokeny</b>. Vystavte jeden token pro každého člověka a zařízení (pro většinu lidí <code>xomtra.Reader</code>); zobrazí se <b>jen jednou</b>.",
+          "<b>Claude Desktop:</b> na stránce <b>Připojení klientů</b> stáhněte <code>xomtra.mcpb</code>, otevřete ho, vložte token a pokud certifikát není v úložišti důvěryhodných certifikátů, vyberte <code>xomtra-ca.crt</code>.",
+          "<b>Claude Code</b> (pokud certifikát není v úložišti důvěryhodných certifikátů, spouštějte Claude Code s <code>NODE_EXTRA_CA_CERTS=/cesta/k/xomtra-ca.crt</code>):",
+          {"code": "dk_claude_code"},
+          {"note": "Claude na webu a v mobilních aplikacích se připojuje ze serverů Anthropicu a do vaší LAN nedosáhne. Pro něj má xomtra režim veřejného přístupu; viz dokumentace na GitHubu."}
+        ]
+      },
+      {
+        "h": "Aktualizace",
+        "b": [
+          "Nejdřív si přečtěte poznámky k vydáním mezi vaší a novou verzí. Pak v <code>xomtra/deploy/compose</code> nastavte <code>VERSION</code> jako v kroku 2 a spusťte:",
+          {"code": "dk_upgrade"},
+          "<code>--fill</code> doplní nastavení, která jsou v této verzi nová, a vaše nikdy nemění. Ověřte nové obrazy jako v kroku 3, připněte je a restartujte:",
+          {"code": "dk_pin"},
+          {"code": "dk_pull"},
+          "Návrat zpět: přepněte na předchozí tag, obnovte zálohu <code>.env</code> a spusťte <code>docker compose up -d</code>. Stroj nebo Docker volumes pravidelně zálohujte: drží celou historii."
+        ]
+      }
+    ]
+  }
+}

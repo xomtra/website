@@ -1,0 +1,16 @@
+{
+  "ha_repo": "https://github.com/xomtra/xomtra",
+  "ha_mcpurl": "http://homeassistant.local:8000/mcp",
+  "ha_claude_code": "claude mcp add --transport http xomtra http://homeassistant.local:8000/mcp \\\n  --header \"Authorization: Bearer xmt_...\"",
+  "dk_version": "VERSION=$(curl -fsSLo /dev/null -w '%{url_effective}' \\\n  https://github.com/xomtra/xomtra/releases/latest | sed 's|.*/tag/v||')\necho \"$VERSION\"",
+  "dk_clone": "git clone --branch \"v$VERSION\" --depth 1 https://github.com/xomtra/xomtra.git\ncd xomtra/deploy/compose\nfor f in SHA256SUMS \"xomtra-$VERSION-images.env\"; do\n  curl -fsSLO \"https://github.com/xomtra/xomtra/releases/download/v$VERSION/$f\"\ndone",
+  "dk_verify": "sha256sum -c SHA256SUMS --ignore-missing\nfor ref in $(grep '_IMAGE=' \"xomtra-$VERSION-images.env\" | cut -d= -f2-); do\n  cosign verify \"$ref\" \\\n    --certificate-identity \"https://github.com/xomtra/xomtra/.github/workflows/release.yml@refs/tags/v$VERSION\" \\\n    --certificate-oidc-issuer https://token.actions.githubusercontent.com \\\n    > /dev/null && echo \"OK  $ref\"\ndone",
+  "dk_env": "./init-env.sh",
+  "dk_pin": "sed -i '/_IMAGE=/d' .env\ngrep '_IMAGE=' \"xomtra-$VERSION-images.env\" >> .env",
+  "dk_up": "docker compose up -d\ndocker compose ps",
+  "dk_ca": "docker compose exec caddy cat /data/caddy/pki/authorities/local/root.crt \\\n  | openssl x509 -noout -fingerprint -sha256",
+  "dk_claude_code": "claude mcp add --transport http xomtra https://<server>/mcp \\\n  --header \"Authorization: Bearer xmt_...\"",
+  "dk_upgrade": "cp -p .env \".env.bak-$(date +%F)\"\ngit fetch --depth 1 origin tag \"v$VERSION\"\ngit checkout -q \"v$VERSION\"\nfor f in SHA256SUMS \"xomtra-$VERSION-images.env\"; do\n  curl -fsSLO \"https://github.com/xomtra/xomtra/releases/download/v$VERSION/$f\"\ndone\n./init-env.sh --fill",
+  "dk_pull": "docker compose pull\ndocker compose up -d",
+  "dk_lite": "echo 'COMPOSE_FILE=compose.yaml:compose.lite.yaml' >> .env"
+}
