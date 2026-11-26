@@ -1,0 +1,10 @@
+---
+// Official My Home Assistant badge: opens the visitor's Home Assistant with the "add add-on
+// repository" dialog pre-filled with the xomtra repository. Image served by my.home-assistant.io.
+import { MYHA, type Lang } from "../config";
+import { T } from "../i18n";
+
+interface Props { lang: Lang }
+const t = T[Astro.props.lang];
+---
+<a class="myha-badge" href={MYHA} rel="noopener" title={t.myha}><img src="https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg" alt={t.myha} height="40" loading="lazy" decoding="async" /></a>

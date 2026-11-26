@@ -1,7 +1,8 @@
 ---
 // One installation guide in one language: numbered steps, shared code blocks, no JavaScript.
 import Base from "../layouts/Base.astro";
-import { LAUNCHED, MYHA, REPO, SITE, guidePath, pathFor, type Lang } from "../config";
+import MyHaBadge from "./MyHaBadge.astro";
+import { REPO, SITE, guidePath, pathFor, type Lang } from "../config";
 import { T, G, CODE, GUIDES, stripTags, type Block, type Guide, type GuideSlug } from "../i18n";
 
 interface Props { lang: Lang; slug: GuideSlug }
@@ -61,7 +62,7 @@ const crumbs = {
             case "code": return <pre class="cmd"><code>{CODE[(b as { code: string }).code]}</code></pre>;
             case "ul": return <ul>{(b as { ul: string[] }).ul.map((x) => <li set:html={html(x)} />)}</ul>;
             case "note": return <p class="gnote" set:html={html((b as { note: string }).note)} />;
-            case "myha": return LAUNCHED ? <p><a class="btn myha" href={MYHA} rel="noopener">{t.myha} ↗</a></p> : null;
+            case "myha": return <p><MyHaBadge lang={lang} /></p>;
           }
         })}
       </li>
