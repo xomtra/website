@@ -11,7 +11,7 @@
     ],
     [
       "Leest",
-      "Home Assistant, read only"
+      "Home Assistant, verandert niets"
     ],
     [
       "Methode",
@@ -85,7 +85,7 @@
       "id": "collect",
       "h": "Elke wijziging, vanaf de eerste dag",
       "b": [
-        "xomtra meldt zich bij Home Assistant aan met een eigen read only account. Het legt elke statuswijziging vast zodra die gebeurt en bewaart de langetermijnstatistieken die Home Assistant al berekent. Bij de eerste start neemt het de geschiedenis over die Home Assistant nog bewaart, en na een verbroken verbinding vult het het ontbrekende stuk zelf aan.",
+        "xomtra maakt verbinding met Home Assistant en leest alleen: het roept nooit diensten aan en verandert niets. Het legt elke statuswijziging vast zodra die gebeurt en bewaart de langetermijnstatistieken die Home Assistant al berekent. Bij de eerste start neemt het de geschiedenis over die Home Assistant nog bewaart, en na een verbroken verbinding vult het het ontbrekende stuk zelf aan.",
         "Entiteiten die niet geanalyseerd mogen worden, geef je in Home Assistant een label. Met een ander label sluit je ze ook uit van opslag."
       ]
     },
@@ -132,7 +132,7 @@
       "h": "Het verrassende eerst, elke maandag een overzicht",
       "b": [
         "Elke bevinding krijgt een sterkte, een gewicht van het bewijs en een categorie uit een openbaar regelboek: storing, besparing, automatisering of gedrag. Triviale bevindingen, zoals het bekende verband tussen zonnestroom en zonneschijn, blijven verborgen.",
-        "Op maandagochtend bewaart xomtra een overzicht van de afgelopen week, zodat je kunt vragen wat nieuw is, wat verdwenen is en wat ongewoon was. Je AI-assistent leest de bevindingen via MCP met dezelfde read only rechten als elke andere vraag en zet ze om in gewone taal."
+        "Op maandagochtend bewaart xomtra een overzicht van de afgelopen week, zodat je kunt vragen wat nieuw is, wat verdwenen is en wat ongewoon was. Je AI-assistent leest de bevindingen via MCP met dezelfde read only tools als elke andere vraag en zet ze om in gewone taal."
       ]
     },
     {

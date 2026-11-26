@@ -116,7 +116,7 @@
       {
         "h": "Home Assistant Benutzer für xomtra anlegen",
         "b": [
-          "Lege in Home Assistant einen eigenen Benutzer <b>ohne</b> Administratorrechte an, melde dich als dieser an und erstelle unter <b>Profil → Sicherheit</b> einen langlebigen Zugriffstoken. xomtra liest nur Registries, Verlauf und Statistiken, read only reicht also."
+          "Lege in Home Assistant einen eigenen Benutzer <b>ohne</b> Administratorrechte an, melde dich als dieser an und erstelle unter <b>Profil → Sicherheit</b> einen langlebigen Zugriffstoken. Home Assistant kennt keine read-only-Tokens, dieser Benutzer könnte also Geräte steuern; xomtra liest aber nur Registries, Verlauf und Statistiken und ruft nie Dienste auf. Mit einem eigenen Benutzer kannst du xomtra den Zugriff jederzeit entziehen, ohne dein eigenes Konto anzufassen."
         ]
       },
       {

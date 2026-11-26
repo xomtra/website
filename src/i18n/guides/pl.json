@@ -116,7 +116,7 @@
       {
         "h": "Utwórz użytkownika Home Assistant dla xomtra",
         "b": [
-          "W Home Assistant utwórz osobnego użytkownika <b>bez</b> uprawnień administratora, zaloguj się jako on i w <b>Profil → Bezpieczeństwo</b> utwórz token dostępu długoterminowego. xomtra tylko czyta rejestry, historię i statystyki, więc dostęp read only wystarczy."
+          "W Home Assistant utwórz osobnego użytkownika <b>bez</b> uprawnień administratora, zaloguj się jako on i w <b>Profil → Bezpieczeństwo</b> utwórz token dostępu długoterminowego. Home Assistant nie ma tokenów read only, więc ten użytkownik mógłby sterować urządzeniami; xomtra jednak tylko czyta rejestry, historię i statystyki i nigdy nie wywołuje usług. Osobny użytkownik pozwala w każdej chwili odebrać xomtrze dostęp bez ruszania własnego konta."
         ]
       },
       {

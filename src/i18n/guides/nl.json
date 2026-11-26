@@ -116,7 +116,7 @@
       {
         "h": "Maak een Home Assistant gebruiker voor xomtra",
         "b": [
-          "Maak in Home Assistant een aparte gebruiker <b>zonder</b> beheerdersrechten, log in als die gebruiker en maak bij <b>Profiel → Beveiliging</b> een langdurig toegangstoken. xomtra leest alleen registers, geschiedenis en statistieken, dus read only is genoeg."
+          "Maak in Home Assistant een aparte gebruiker <b>zonder</b> beheerdersrechten, log in als die gebruiker en maak bij <b>Profiel → Beveiliging</b> een langdurig toegangstoken. Home Assistant kent geen read only tokens, dus deze gebruiker zou apparaten kunnen bedienen; xomtra leest echter alleen registers, geschiedenis en statistieken en roept nooit diensten aan. Met een aparte gebruiker kun je de toegang van xomtra altijd intrekken zonder aan je eigen account te komen."
         ]
       },
       {

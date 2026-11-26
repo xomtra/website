@@ -27,7 +27,7 @@
    ],
    "eyebrow": "Open source · for Home Assistant",
    "h1": "Ask your house what really happened.",
-   "lead": "xomtra keeps years of your Home Assistant history, finds patterns and anomalies, and lets Claude or any MCP client answer questions about your home. Read-only, running on your own hardware.",
+   "lead": "xomtra keeps years of your Home Assistant history, finds patterns and anomalies, and lets Claude or any MCP client answer questions about your home. It never changes anything in Home Assistant and runs on your own hardware.",
    "cta1": "Install free",
    "cta2": "See how it works",
    "note": "Apache 2.0 · no account needed · data stays at home",
@@ -49,9 +49,9 @@
      "Entity catalog, data quality checks, correlations between devices and anomalies, ready before you ask."
     ],
     [
-     "read-only",
+     "reads only",
      "Safe by design",
-     "AI can read, never switch anything. Roles for family members, and every query is logged."
+     "xomtra only reads data and never changes anything in Home Assistant. The AI assistant gets no access to controlling your home. Roles for family members, and every query is logged."
     ]
    ],
    "qs_h": "Questions people ask",
@@ -106,7 +106,7 @@
     [
      "Can control devices",
      "Yes (admin)",
-     "No, read-only"
+     "No, xomtra only reads"
     ],
     [
      "Roles and audit",
@@ -132,6 +132,10 @@
     [
      "Does my data leave the house?",
      "Only the answers your AI client asks for, under your account. xomtra itself sends nothing anywhere unless you turn on anonymous install counting."
+    ],
+    [
+     "Can xomtra or the AI control my home?",
+     "No. xomtra only reads states, history and statistics from Home Assistant and never calls its services. Your AI assistant talks only to xomtra and gets read-only tools over xomtra's own copy of the data, never direct access to Home Assistant. Home Assistant itself has no read-only tokens, so this is guaranteed by xomtra's open source code, not by Home Assistant. With Docker, sign xomtra in as a separate Home Assistant user without admin rights, so you can revoke its access any time."
     ],
     [
      "How much disk does it need?",
@@ -172,7 +176,7 @@
    ],
    "eyebrow": "Open Source · für Home Assistant",
    "h1": "Frag dein Haus, was wirklich passiert ist.",
-   "lead": "xomtra speichert jahrelang die Historie deines Home Assistant, findet Muster und Anomalien und lässt Claude oder jeden MCP-Client Fragen zu deinem Zuhause beantworten. Nur lesend, auf deiner eigenen Hardware.",
+   "lead": "xomtra speichert jahrelang die Historie deines Home Assistant, findet Muster und Anomalien und lässt Claude oder jeden MCP-Client Fragen zu deinem Zuhause beantworten. Es ändert nichts in Home Assistant und läuft auf deiner eigenen Hardware.",
    "cta1": "Kostenlos installieren",
    "cta2": "So funktioniert es",
    "note": "Apache 2.0 · kein Konto nötig · Daten bleiben zu Hause",
@@ -194,9 +198,9 @@
      "Entitätskatalog, Datenqualität, Zusammenhänge zwischen Geräten und Anomalien, fertig bevor du fragst."
     ],
     [
-     "nur lesen",
+     "liest nur",
      "Sicher by Design",
-     "Die KI kann lesen, aber nichts schalten. Rollen für Familienmitglieder, jede Abfrage wird protokolliert."
+     "xomtra liest nur Daten und ändert nichts in Home Assistant. Der KI-Assistent bekommt keinen Zugriff auf die Steuerung deines Zuhauses. Rollen für Familienmitglieder, jede Abfrage wird protokolliert."
     ]
    ],
    "qs_h": "Typische Fragen",
@@ -251,7 +255,7 @@
     [
      "Kann Geräte schalten",
      "Ja (Admin)",
-     "Nein, nur lesend"
+     "Nein, xomtra liest nur"
     ],
     [
      "Rollen und Audit",
@@ -277,6 +281,10 @@
     [
      "Verlassen meine Daten das Haus?",
      "Nur die Antworten, die dein KI-Client unter deinem Konto anfragt. xomtra selbst sendet nichts, außer du aktivierst die anonyme Installationszählung."
+    ],
+    [
+     "Kann xomtra oder die KI mein Zuhause steuern?",
+     "Nein. xomtra liest aus Home Assistant nur Zustände, Verlauf und Statistiken und ruft nie dessen Dienste auf. Dein KI-Assistent spricht nur mit xomtra und bekommt nur lesende Werkzeuge über xomtras eigene Kopie der Daten, nie direkten Zugriff auf Home Assistant. Home Assistant selbst kennt keine read-only-Tokens, das garantiert also der offene Quellcode von xomtra, nicht Home Assistant. Unter Docker meldest du xomtra als eigenen Home-Assistant-Benutzer ohne Administratorrechte an, damit du den Zugriff jederzeit entziehen kannst."
     ],
     [
      "Wie viel Speicher braucht es?",
@@ -317,7 +325,7 @@
    ],
    "eyebrow": "Open source · pro Home Assistant",
    "h1": "Zeptejte se domu, co se doopravdy stalo.",
-   "lead": "xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a na otázky o vaší domácnosti vám odpoví Claude nebo jiný MCP klient. Read only, na vašem vlastním hardwaru.",
+   "lead": "xomtra uchovává roky historie vašeho Home Assistantu, hledá v ní souvislosti a anomálie a na otázky o vaší domácnosti vám odpoví Claude nebo jiný MCP klient. V Home Assistantu nic nemění a běží na vašem vlastním hardwaru.",
    "cta1": "Nainstalovat zdarma",
    "cta2": "Jak to funguje",
    "note": "Apache 2.0 · bez registrace · data zůstávají doma",
@@ -339,9 +347,9 @@
      "Katalog entit, kvalita dat, souvislosti mezi zařízeními a anomálie, připravené dřív, než se zeptáte."
     ],
     [
-     "read only",
+     "jen čte",
      "Bezpečný z principu",
-     "AI může číst, ale nic nesepne. Role pro členy rodiny a záznam každého dotazu."
+     "xomtra v Home Assistantu nic nemění, jen čte data. AI asistent nemá přístup k ovládání domácnosti. Role pro členy rodiny a záznam každého dotazu."
     ]
    ],
    "qs_h": "Na co se lidé ptají",
@@ -396,7 +404,7 @@
     [
      "Může ovládat zařízení",
      "Ano (admin)",
-     "Ne, jen čte"
+     "Ne, xomtra jen čte"
     ],
     [
      "Role a audit",
@@ -422,6 +430,10 @@
     [
      "Odcházejí moje data z domu?",
      "Jen odpovědi, o které si váš AI klient řekne pod vaším účtem. xomtra sama nic neodesílá, pokud nezapnete anonymní počítání instalací."
+    ],
+    [
+     "Může xomtra nebo AI ovládat domácnost?",
+     "Ne. xomtra z Home Assistantu jen čte stavy, historii a statistiky a nikdy nevolá jeho služby. AI asistent komunikuje jen s xomtrou a dostává jen nástroje read only nad její vlastní kopií dat, nikdy přímý přístup k Home Assistantu. Home Assistant sám tokeny read only nemá, takže to zaručuje otevřený kód xomtry, ne Home Assistant. V Dockeru přihlaste xomtru jako samostatného uživatele Home Assistantu bez administrátorských práv, abyste jí mohli přístup kdykoli odebrat."
     ],
     [
      "Kolik potřebuje místa na disku?",
@@ -462,7 +474,7 @@
    ],
    "eyebrow": "Open source · dla Home Assistant",
    "h1": "Zapytaj swój dom, co naprawdę się wydarzyło.",
-   "lead": "xomtra przechowuje lata historii Twojego Home Assistanta, znajduje w niej zależności i anomalie, a Claude lub dowolny klient MCP odpowiada na pytania o Twój dom. Tylko do odczytu, na Twoim własnym sprzęcie.",
+   "lead": "xomtra przechowuje lata historii Twojego Home Assistanta, znajduje w niej zależności i anomalie, a Claude lub dowolny klient MCP odpowiada na pytania o Twój dom. Niczego nie zmienia w Home Assistancie i działa na Twoim własnym sprzęcie.",
    "cta1": "Zainstaluj za darmo",
    "cta2": "Jak to działa",
    "note": "Apache 2.0 · bez zakładania konta · dane zostają w domu",
@@ -484,9 +496,9 @@
      "Katalog encji, jakość danych, zależności między urządzeniami i anomalie, gotowe zanim zapytasz."
     ],
     [
-     "tylko odczyt",
+     "tylko czyta",
      "Bezpieczny z założenia",
-     "AI może czytać, ale niczego nie przełączy. Role dla domowników i zapis każdego zapytania."
+     "xomtra tylko czyta dane i niczego nie zmienia w Home Assistancie. Asystent AI nie ma dostępu do sterowania domem. Role dla domowników i zapis każdego zapytania."
     ]
    ],
    "qs_h": "O co pytają użytkownicy",
@@ -541,7 +553,7 @@
     [
      "Może sterować urządzeniami",
      "Tak (admin)",
-     "Nie, tylko odczyt"
+     "Nie, xomtra tylko czyta"
     ],
     [
      "Role i audyt",
@@ -567,6 +579,10 @@
     [
      "Czy moje dane opuszczają dom?",
      "Tylko odpowiedzi, o które prosi Twój klient AI w ramach Twojego konta. Sama xomtra niczego nie wysyła, chyba że włączysz anonimowe liczenie instalacji."
+    ],
+    [
+     "Czy xomtra albo AI może sterować moim domem?",
+     "Nie. xomtra tylko czyta z Home Assistanta stany, historię i statystyki i nigdy nie wywołuje jego usług. Asystent AI rozmawia tylko z xomtrą i dostaje wyłącznie narzędzia do odczytu własnej kopii danych xomtry, nigdy bezpośredni dostęp do Home Assistanta. Sam Home Assistant nie ma tokenów tylko do odczytu, więc gwarantuje to otwarty kod xomtry, a nie Home Assistant. W Dockerze zaloguj xomtrę jako osobnego użytkownika Home Assistanta bez uprawnień administratora, aby w każdej chwili móc odebrać jej dostęp."
     ],
     [
      "Ile miejsca na dysku potrzebuje?",
@@ -607,7 +623,7 @@
    ],
    "eyebrow": "Open source · voor Home Assistant",
    "h1": "Vraag je huis wat er echt gebeurd is.",
-   "lead": "xomtra bewaart jarenlang de geschiedenis van je Home Assistant, vindt verbanden en afwijkingen en laat Claude of een andere MCP-client vragen over je huis beantwoorden. Alleen-lezen, op je eigen hardware.",
+   "lead": "xomtra bewaart jarenlang de geschiedenis van je Home Assistant, vindt verbanden en afwijkingen en laat Claude of een andere MCP-client vragen over je huis beantwoorden. Het verandert niets in Home Assistant en draait op je eigen hardware.",
    "cta1": "Gratis installeren",
    "cta2": "Zo werkt het",
    "note": "Apache 2.0 · geen account nodig · data blijft thuis",
@@ -629,9 +645,9 @@
      "Entiteitencatalogus, controle van datakwaliteit, verbanden tussen apparaten en afwijkingen, klaar voordat je het vraagt."
     ],
     [
-     "alleen-lezen",
+     "leest alleen",
      "Veilig ontworpen",
-     "AI kan lezen, maar schakelt nooit iets. Rollen voor gezinsleden en elke vraag wordt gelogd."
+     "xomtra leest alleen data en verandert niets in Home Assistant. De AI-assistent krijgt geen toegang tot de bediening van je huis. Rollen voor gezinsleden en elke vraag wordt gelogd."
     ]
    ],
    "qs_h": "Wat mensen vragen",
@@ -686,7 +702,7 @@
     [
      "Kan apparaten bedienen",
      "Ja (admin)",
-     "Nee, alleen-lezen"
+     "Nee, xomtra leest alleen"
     ],
     [
      "Rollen en audit",
@@ -712,6 +728,10 @@
     [
      "Verlaat mijn data het huis?",
      "Alleen de antwoorden die je AI-client onder jouw account opvraagt. xomtra zelf verstuurt niets, tenzij je het anoniem tellen van installaties aanzet."
+    ],
+    [
+     "Kan xomtra of de AI mijn huis bedienen?",
+     "Nee. xomtra leest uit Home Assistant alleen toestanden, geschiedenis en statistieken en roept nooit diensten aan. Je AI-assistent praat alleen met xomtra en krijgt alleen leestools over xomtra's eigen kopie van de data, nooit directe toegang tot Home Assistant. Home Assistant zelf kent geen alleen-lezen-tokens, dus dit garandeert de open broncode van xomtra, niet Home Assistant. Gebruik je Docker, meld xomtra dan aan als aparte Home Assistant-gebruiker zonder beheerdersrechten, zodat je de toegang altijd kunt intrekken."
     ],
     [
      "Hoeveel schijfruimte is nodig?",
