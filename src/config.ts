@@ -2,6 +2,8 @@
 export const LAUNCHED = import.meta.env.PUBLIC_LAUNCHED === "1";
 export const SITE = "https://xomtra.com";
 export const REPO = "https://github.com/xomtra/xomtra";
+// My Home Assistant link: adds the add-on repository in the visitor's Home Assistant.
+export const MYHA = `https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=${encodeURIComponent(REPO)}`;
 export const CONTACT = "support@xomtra.com";
 export const NOTIFY = "mailto:support@xomtra.com?subject=xomtra%20beta";
 export const LANGS = ["en", "de", "cs", "pl", "nl"] as const;

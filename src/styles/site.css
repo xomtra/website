@@ -83,6 +83,7 @@ h2{font:600 clamp(28px,3.6vw,40px)/1.08 var(--sans);letter-spacing:-.035em;margi
 .inst p{margin:0;font-size:14px;color:var(--muted);flex:1}
 .inst code{font:400 12px/1.5 var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:8px 10px;border-radius:7px;overflow-x:auto;display:block;white-space:nowrap;margin-top:6px}
 .inst code::before{content:"$ ";color:var(--muted)}
+.inst .btn.myha{margin-top:8px;justify-content:center;font-size:14px;padding:10px 14px;background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 
 .cmp{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
 table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
