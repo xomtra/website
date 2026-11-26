@@ -2,9 +2,22 @@
   "nav": "Methode",
   "crumb": "Methode",
   "title": "Hoe xomtra je huis leest",
-  "desc": "Statistiek gemaakt voor huizen: hoe xomtra de geschiedenis van Home Assistant omzet in bevindingen die je kunt vertrouwen, wat er voor elke release wordt getest en waar de grenzen liggen.",
-  "lead": "Elke nacht loopt xomtra de geschiedenis van je huis door en noteert wat samen beweegt, wat ongewoon was en wat blijvend is veranderd. Niet met vaste alarmen per sensor, maar met statistiek die weet hoeveel een druk huishouden puur toevallig oplevert.",
-  "facts": [["Draait", "elke nacht, op je eigen machine"], ["Leest", "Home Assistant, read only"], ["Methode", "open source, openbaar getest"]],
+  "desc": "Statistiek ontworpen voor huizen: hoe xomtra de geschiedenis van Home Assistant omzet in bevindingen die je kunt vertrouwen, wat er voor elke release wordt getest en waar de grenzen liggen.",
+  "lead": "Elke nacht loopt xomtra de geschiedenis van je huis door en zoekt uit wat met elkaar samenhangt, wat ongewoon was en wat blijvend is veranderd. Niet met vaste grenzen per sensor, maar met statistiek die weet hoeveel toevallige overeenkomsten het dagelijks leven in een huis oplevert.",
+  "facts": [
+    [
+      "Draait",
+      "elke nacht, op je eigen machine"
+    ],
+    [
+      "Leest",
+      "Home Assistant, read only"
+    ],
+    [
+      "Methode",
+      "open source, tests gepubliceerd"
+    ]
+  ],
   "illus": "Illustratie, geen echte data",
   "pipe": {
     "cap": "Van Home Assistant naar een antwoord",
@@ -12,59 +25,140 @@
     "ro": "read only",
     "mcp": "MCP",
     "nodes": [
-      ["Home Assistant", "states en statistieken", "eigen account"],
-      ["Verzamelen", "elke wijziging live", "+ historie uit HA"],
-      ["Opslaan", "eigen data lake", "jaren, gecomprimeerd"],
-      ["Analyseren", "elke nacht", "relaties, anomalieën"],
-      ["Bevindingen", "verklaard, gesorteerd", "weekoverzicht"],
-      ["Je AI", "vraagt in gewone taal", "en legt uit"]
+      [
+        "Home Assistant",
+        "states en statistieken",
+        "eigen account"
+      ],
+      [
+        "Verzamelen",
+        "elke wijziging live",
+        "+ historie uit HA"
+      ],
+      [
+        "Opslaan",
+        "eigen data lake",
+        "jaren, gecomprimeerd"
+      ],
+      [
+        "Analyseren",
+        "elke nacht",
+        "verbanden, anomalieën"
+      ],
+      [
+        "Bevindingen",
+        "verklaard, gesorteerd",
+        "weekoverzicht"
+      ],
+      [
+        "Je AI",
+        "vraagt in gewone taal",
+        "en legt uit"
+      ]
     ]
   },
   "figs": {
-    "prep": {"cap": "Eerst het voor de hand liggende eraf", "a": "Ruwe wijzigingen", "b": "Uurreeksen", "c": "Zonder ritme en weer"},
-    "struct": {"cap": "Relaties die iets anders verklaart", "a": "Een derde sensor", "b": "Een verborgen oorzaak", "c": "Eén kamer", "room": "kamer", "found": "gevonden", "expl": "verklaart"},
-    "anom": {"cap": "Ongewoon voor dit uur van de week", "band": "gebruikelijk bereik", "series": "je sensor", "ep": "episode"}
+    "prep": {
+      "cap": "Eerst het voor de hand liggende eruit filteren",
+      "a": "Ruwe wijzigingen",
+      "b": "Uurreeksen",
+      "c": "Zonder ritme en weer"
+    },
+    "struct": {
+      "cap": "Verbanden die iets anders verklaart",
+      "a": "Een derde sensor",
+      "b": "Een verborgen oorzaak",
+      "c": "Eén kamer",
+      "room": "kamer",
+      "found": "gevonden",
+      "expl": "verklaart"
+    },
+    "anom": {
+      "cap": "Ongewoon voor dit moment van de week",
+      "band": "gebruikelijk bereik",
+      "series": "je sensor",
+      "ep": "episode"
+    }
   },
   "sections": [
-    {"id": "collect", "h": "Elke wijziging, vanaf de eerste dag", "b": [
-      "xomtra meldt zich bij Home Assistant aan met een eigen read only account. Het volgt elke statuswijziging op het moment dat die gebeurt en bewaart de langetermijnstatistieken die Home Assistant al berekent. Bij de eerste start neemt het de geschiedenis over die Home Assistant nog heeft, en na een verbroken verbinding vult het het gat zelf aan.",
-      "Wat privé moet blijven, krijgt in Home Assistant een label en wordt nooit opgeslagen of nooit geanalyseerd."
-    ]},
-    {"id": "store", "h": "Jaren geschiedenis, in een eigen lake", "b": [
-      "De data gaan naar een data lake op je eigen schijf: gecomprimeerde kolombestanden met een kleine catalogus (DuckLake). De database van Home Assistant blijft onaangeroerd en groeit niet, en de geschiedenis kan jaren teruggaan in plaats van dagen."
-    ]},
-    {"id": "prepare", "h": "Eerst het voor de hand liggende eraf", "fig": "prep", "b": [
-      "Elke geschikte entiteit wordt één uurreeks: gemiddelden voor metingen, verbruik voor meters, het deel van het uur voor schakelaars en binaire sensoren.",
-      "Het meeste wat een huis doet, volgt de klok en het weer. Daarom haalt xomtra eerst het dag- en weekritme, de buitentemperatuur en langzame drift eraf. Wat overblijft, verklaren klok en weer niet, en daar wordt het interessant."
-    ]},
-    {"id": "relations", "h": "Wat samen beweegt, en niet toevallig", "fig": "struct", "b": [
-      "xomtra vergelijkt elk paar reeksen, ook met een vertraging van uren: de verwarming start, de kamer wordt later warm. Met honderden sensoren zijn dat tienduizenden paren, en sommige lijken puur toevallig verwant.",
-      "Daarom leert xomtra uit je eigen data hoe sterk een relatie is die het toeval alleen oplevert, en het houdt het aandeel valse bevindingen onder controle over alle paren samen, niet paar voor paar.",
-      "Daarna verklaart het wat te verklaren valt. Sensoren in één kamer, de aanwezigheid van de bewoners, een derde sensor ertussen, een verborgen gemeenschappelijke oorzaak of één grootheid die twee keer gemeten wordt: zulke relaties zijn echt, maar zeggen niets nieuws, dus komen ze achteraan. De eerste bevindingen zijn de verrassende.",
-      {"note": "Een correlatie is een hint waar je moet kijken, geen bewijs van een oorzaak. xomtra zegt dat, en je AI-assistent ook."}
-    ]},
-    {"id": "anomalies", "h": "Wat ongewoon is voor jouw huis", "fig": "anom", "b": [
-      "De wasmachine op zaterdagochtend is normaal. Om drie uur 's nachts op een dinsdag niet. xomtra vergelijkt elke reeks met wat gebruikelijk is voor hetzelfde uur van de week in je eigen geschiedenis, en apparaten die meestal stilstaan worden beoordeeld op hun gewone gebruik, niet op hun ruis in rust.",
-      "Ongewone uren vormen episodes, en een episode wordt alleen gemeld als ze zeldzaam is vergeleken met al je reeksen samen. Een aparte controle vindt blijvende veranderingen, zoals een koelkast die nu elke dag meer verbruikt. Ongewoon weer, uitschieters van één uur en de uren na een blijvende verandering worden gemarkeerd, zodat ze de rest niet overstemmen."
-    ]},
-    {"id": "findings", "h": "Het verrassende eerst, elke maandag een overzicht", "b": [
-      "Elke bevinding krijgt een sterkte, een gewicht van het bewijs en een categorie uit een openbaar regelboek: storing, besparing, automatisering of gedrag. Triviale bevindingen, zoals de bekende natuurkunde van zonnestroom en zonneschijn, blijven verborgen.",
-      "Op maandagochtend bewaart xomtra de week, zodat je kunt vragen wat nieuw is, wat verdwenen is en wat ongewoon was. Je AI-assistent leest de bevindingen via MCP met dezelfde read only rechten als elke andere vraag en legt ze uit in gewone taal."
-    ]},
-    {"id": "confidence", "h": "Eerlijk over wat het niet weet", "b": [
-      "Een klein huis, of een huis waar veel entiteiten geen ruimte hebben, geeft de analyse minder om mee te werken. In plaats van stilletjes te gokken, markeert xomtra zo'n run als weinig zeker en presenteert het de relaties als hypotheses. Ruimtes in Home Assistant en een aanwezigheidsentiteit voor de bewoners geven het de context die het nodig heeft.",
-      "Lange vensters over veel sensoren vragen ook geheugen. Op een kleine Home Assistant-host is een grote installatie beter af op een eigen machine."
-    ]},
-    {"id": "tested", "h": "Getest als wetenschap, gepubliceerd zoals het is", "b": [
-      "Elke wijziging aan de analyses wordt gemeten voordat ze in een release komt:",
-      {"ul": [
-        "<b>Synthetische huizen met een bekende waarheid</b>, bij elke wijziging: gesimuleerd weer, bewoners, kamers en apparaten, relaties van bekende sterkte en vertraging, ongerelateerde sensoren en de gebreken die echte sensoren hebben.",
-        "<b>Openbare data van echte huizen</b>, elke nacht: reeksen uit verschillende huizen kunnen niet samenhangen, dus elke relatie die ertussen wordt gevonden is vals. Geplante episodes laten zien hoeveel anomalieën gevonden worden.",
-        "<b>Vrijwillige metrieken uit bèta-installaties</b>: gepland."
-      ]},
-      "We publiceren de resultaten zoals ze zijn, ook de delen die nog niet goed genoeg zijn. Relaties tussen verschillende huizen blijven in openbare data zeldzaam en sterke directe relaties worden gevonden. Kleine huizen, huizen zonder ruimtes en aanwezigheid zonder aanwezigheidsentiteit geven nog meer valse relaties dan het doel, en een deel van de matige anomalieën wordt gemist. Of mensen iets aan de bevindingen hebben, is de volgende test: die is vooraf vastgelegd, de beoordelingen zijn nog niet verzameld.",
-      "Alle cijfers, de run die ze mat en de criteria waaraan een release moet voldoen, staan in het evaluatiedocument op GitHub."
-    ]}
+    {
+      "id": "collect",
+      "h": "Elke wijziging, vanaf de eerste dag",
+      "b": [
+        "xomtra meldt zich bij Home Assistant aan met een eigen read only account. Het legt elke statuswijziging vast zodra die gebeurt en bewaart de langetermijnstatistieken die Home Assistant al berekent. Bij de eerste start neemt het de geschiedenis over die Home Assistant nog bewaart, en na een verbroken verbinding vult het het ontbrekende stuk zelf aan.",
+        "Entiteiten die niet geanalyseerd mogen worden, geef je in Home Assistant een label. Met een ander label sluit je ze ook uit van opslag."
+      ]
+    },
+    {
+      "id": "store",
+      "h": "Jaren geschiedenis, in een eigen data lake",
+      "b": [
+        "De data worden opgeslagen in een data lake op je eigen schijf: gecomprimeerde kolombestanden met een kleine catalogus (DuckLake). De database van Home Assistant blijft ongewijzigd en groeit niet, en de geschiedenis kan jaren teruggaan, niet alleen dagen."
+      ]
+    },
+    {
+      "id": "prepare",
+      "h": "Eerst het voor de hand liggende eruit filteren",
+      "fig": "prep",
+      "b": [
+        "Elke geschikte entiteit wordt één uurreeks: het uurgemiddelde voor metingen, het uurverbruik voor meters en voor schakelaars en binaire sensoren het deel van het uur dat ze aan stonden.",
+        "Het meeste wat er in een huis gebeurt, volgt het tijdstip van de dag en het weer. Daarom filtert xomtra eerst het dag- en weekritme, de invloed van de buitentemperatuur en langzame trends eruit. Wat overblijft, verklaren tijdstip en weer niet, en daar begint het interessant te worden."
+      ]
+    },
+    {
+      "id": "relations",
+      "h": "Wat met elkaar samenhangt, en niet toevallig",
+      "fig": "struct",
+      "b": [
+        "xomtra vergelijkt elk paar reeksen, ook een paar uur verschoven: de verwarming gaat aan en de kamer wordt pas later warm. Met honderden sensoren zijn dat tienduizenden paren, en sommige lijken puur toevallig met elkaar samen te hangen.",
+        "Daarom leert xomtra uit je eigen data hoe sterk een verband kan zijn dat alleen het toeval oplevert, en het houdt het aandeel valse bevindingen in de hand over alle paren samen, niet per paar.",
+        "Daarna verklaart het wat te verklaren valt: sensoren in één kamer, de aanwezigheid van de bewoners, een derde sensor ertussen, een verborgen gemeenschappelijke oorzaak of één grootheid die twee keer gemeten wordt. Zulke verbanden zijn echt, maar zeggen niets nieuws, dus komen ze na de andere. Bovenaan blijven de verrassende bevindingen.",
+        {
+          "note": "Een correlatie laat zien waar je moet kijken, maar bewijst geen oorzaak. xomtra zegt dat, en je AI-assistent ook."
+        }
+      ]
+    },
+    {
+      "id": "anomalies",
+      "h": "Wat ongewoon is in jouw huis",
+      "fig": "anom",
+      "b": [
+        "Een tv die op zaterdagavond aanstaat is normaal, om drie uur 's nachts op een dinsdag niet. xomtra vergelijkt elke reeks met wat in je geschiedenis gebruikelijk is voor hetzelfde moment van de week. Apparaten die meestal stilstaan, worden beoordeeld op hun gewone gebruik, niet op hun ruis in rust.",
+        "Ongewone momenten vormen episodes. Een episode wordt alleen gemeld als ze zeldzaam is vergeleken met al je reeksen samen. Een aparte controle zoekt blijvende veranderingen, zoals een koelkast die nu elke dag meer verbruikt. Episodes bij ongewoon weer, uitschieters van één uur en de periode direct na een blijvende verandering worden gemarkeerd, zodat ze de andere bevindingen niet ondersneeuwen."
+      ]
+    },
+    {
+      "id": "findings",
+      "h": "Het verrassende eerst, elke maandag een overzicht",
+      "b": [
+        "Elke bevinding krijgt een sterkte, een gewicht van het bewijs en een categorie uit een openbaar regelboek: storing, besparing, automatisering of gedrag. Triviale bevindingen, zoals het bekende verband tussen zonnestroom en zonneschijn, blijven verborgen.",
+        "Op maandagochtend bewaart xomtra een overzicht van de afgelopen week, zodat je kunt vragen wat nieuw is, wat verdwenen is en wat ongewoon was. Je AI-assistent leest de bevindingen via MCP met dezelfde read only rechten als elke andere vraag en zet ze om in gewone taal."
+      ]
+    },
+    {
+      "id": "confidence",
+      "h": "Eerlijk over wat het niet weet",
+      "b": [
+        "Een klein huis, of een huis waar veel entiteiten geen ruimte toegewezen hebben, geeft de analyse minder om mee te werken. In plaats van stilletjes te gokken, markeert xomtra zo'n run als weinig zeker en presenteert het de verbanden als hypotheses. Ruimtes in Home Assistant en een aanwezigheidsentiteit voor de bewoners geven het de context die het nodig heeft.",
+        "Een lange periode over veel sensoren analyseren vraagt veel geheugen. Voor een grote installatie met honderden sensoren raden we daarom een eigen machine aan in plaats van de add-on op een kleine Home Assistant-host."
+      ]
+    },
+    {
+      "id": "tested",
+      "h": "Getest volgens de wetenschappelijke methode, met openbare hypotheses, resultaten en conclusies",
+      "b": [
+        "Elke wijziging aan de analyses wordt vóór een release met metingen gecontroleerd:",
+        {
+          "ul": [
+            "<b>Synthetische huizen met een bekende waarheid</b>, bij elke codewijziging: gesimuleerd weer, bewoners, kamers en apparaten, verbanden van bekende sterkte en vertraging, ongerelateerde sensoren en de gebreken die echte sensoren hebben.",
+            "<b>Openbare data van echte huizen</b>, elke nacht: reeksen uit verschillende huizen kunnen niet samenhangen, dus elk verband dat ertussen wordt gevonden is vals. Kunstmatig geplante episodes laten zien hoeveel anomalieën xomtra vindt.",
+            "<b>Vrijwillige metrieken uit bèta-installaties</b>: gepland."
+          ]
+        },
+        "We publiceren de resultaten zoals ze zijn, ook wat nog niet goed genoeg is. Valse verbanden tussen verschillende huizen zijn in openbare data zeldzaam, en sterke directe verbanden in synthetische huizen vindt xomtra. Kleine huizen, huizen zonder ruimtes en bewoners die zich verplaatsen zonder aanwezigheidsentiteit geven nog meer valse verbanden dan de doelwaarde, en een deel van de matige anomalieën blijft onopgemerkt. De volgende test is of mensen iets aan de bevindingen hebben: de opzet is vooraf gepubliceerd, de beoordelingen zijn nog niet verzameld.",
+        "Alle cijfers, de runs die ze maten en de criteria waaraan een release moet voldoen, staan in het evaluatiedocument op GitHub."
+      ]
+    }
   ],
   "docs": "Evaluatie van de analyses op GitHub",
   "help": "Vragen, of een bevinding die niet klopt? Schrijf naar support@xomtra.com of open een issue op GitHub.",
