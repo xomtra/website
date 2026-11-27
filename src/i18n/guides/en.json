@@ -96,11 +96,13 @@
         "h": "Check the requirements",
         "b": [
           {"ul": [
-            "<b>Linux with Docker Engine and Compose v2</b>, amd64 or arm64. A NAS with Docker works too.",
+            "<b>Linux with Docker Engine and Compose v2</b>, amd64 or arm64. Install it by the <a href=\"https://docs.docker.com/engine/install/\">official guide</a> and check it with <code>docker compose version</code>. A NAS with Docker works too.",
             "<b>SSD, at least 4 GB RAM and 20 GB of free space</b> for a typical home; more for years of state history.",
-            "<b>git, curl</b> and <a href=\"https://docs.sigstore.dev/cosign/system_config/installation/\">cosign</a> to verify the images.",
-            "<b>Home Assistant reachable from this machine.</b>"
-          ]}
+            "<b>git and curl.</b>",
+            "<b>Home Assistant reachable from this machine</b>, usually on port 8123 (URL like <code>http://&lt;address&gt;:8123</code>)."
+          ]},
+          "If git or curl is missing:",
+          {"code": "dk_tools"}
         ]
       },
       {
@@ -108,21 +110,16 @@
         "b": [
           "Find the latest version, download it and the release's checksums and pinned image references:",
           {"code": "dk_version"},
-          {"code": "dk_clone"}
-        ]
-      },
-      {
-        "h": "Verify the release",
-        "b": [
-          "Check the downloaded files against <code>SHA256SUMS</code>, then check that every image was signed by the release workflow of exactly this version. Each image must print <code>OK</code>:",
-          {"code": "dk_verify"},
-          "If anything fails, stop and write to support@xomtra.com."
+          {"code": "dk_clone"},
+          "Check the downloaded files against <code>SHA256SUMS</code>; every line must end with <code>OK</code>:",
+          {"code": "dk_sums"},
+          {"note": "Optional: you can also check that every image was signed by the release workflow of this version, with cosign in its container; see <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">the documentation</a>."}
         ]
       },
       {
         "h": "Pin the images and choose the edition",
         "b": [
-          "There are no passwords to fill in: xomtra generates its internal passwords and keys itself on the first start. The only file you create is <code>.env</code> with the verified images:",
+          "There are no passwords to fill in: xomtra generates its internal passwords and keys itself on the first start. The only file you create is <code>.env</code> with the pinned images:",
           {"code": "dk_pin_new"},
           "The lite edition fits a NAS or a small server. For it, also run the next command; leave it out for the full edition with SeaweedFS and the Dagster UI:",
           {"code": "dk_lite"},
@@ -184,7 +181,7 @@
         "b": [
           "Read the release notes between your version and the new one first. Then, in <code>xomtra/deploy/compose</code>, set <code>VERSION</code> as in step 2 and run:",
           {"code": "dk_upgrade"},
-          "Verify the new images as in step 3, pin them and restart:",
+          "Pin the new images and restart:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Passwords and keys stay in the Docker volume <code>secrets</code>. An installation from before version 0.7.0 still has them in <code>.env</code>; the first start of the new version takes them over automatically, after which you can remove them from <code>.env</code>.",
@@ -199,7 +196,7 @@
           {"code": "dk_backup"},
           "Remove the containers, networks, volumes and images (the lite edition is included thanks to <code>COMPOSE_FILE</code> in <code>.env</code>), check that no volume is left, delete the downloaded release and the unused image layers:",
           {"code": "dk_down"},
-          "<b>On your computers:</b> in Claude Desktop remove the extension under <b>Settings → Extensions → xomtra → Uninstall</b> and delete <code>xomtra.mcpb</code>. Remove xomtra from Claude Code, and <code>NODE_EXTRA_CA_CERTS</code> from your shell profile if you set it:",
+          "<b>On your computers:</b> in Claude Desktop remove the extension under <b>Settings → Extensions → xomtra → Uninstall</b> and delete <code>xomtra.mcpb</code>. Remove <code>NODE_EXTRA_CA_CERTS</code> from your shell profile if you set it. In Claude Code find the server by its address (you may have named it differently) and remove it by its name:",
           {"code": "dk_mcp_remove"},
           "If you trusted the certificate for the whole computer, remove it (it is named <code>xomtra local CA - &lt;year&gt; ECC Root</code>; delete only this one) and delete <code>xomtra-ca.crt</code>. On Debian or Ubuntu delete the file in <code>/usr/local/share/ca-certificates/</code> and run <code>sudo update-ca-certificates --fresh</code>.",
           {"code": "dk_untrust"},

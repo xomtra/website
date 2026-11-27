@@ -96,11 +96,13 @@
         "h": "Zkontrolujte požadavky",
         "b": [
           {"ul": [
-            "<b>Linux s Docker Engine a Compose v2</b>, amd64 nebo arm64. Funguje i NAS s Dockerem.",
+            "<b>Linux s Docker Engine a Compose v2</b>, amd64 nebo arm64. Nainstalujte ho podle <a href=\"https://docs.docker.com/engine/install/\">oficiálního návodu</a> a ověřte příkazem <code>docker compose version</code>. Funguje i NAS s Dockerem.",
             "<b>SSD, aspoň 4 GB RAM a 20 GB volného místa</b> pro běžnou domácnost; pro roky historie stavů víc.",
-            "<b>git, curl</b> a <a href=\"https://docs.sigstore.dev/cosign/system_config/installation/\">cosign</a> pro ověření obrazů.",
-            "<b>Home Assistant dosažitelný z tohoto stroje.</b>"
-          ]}
+            "<b>git a curl.</b>",
+            "<b>Home Assistant dosažitelný z tohoto stroje</b>, obvykle na portu 8123 (URL ve tvaru <code>http://&lt;adresa&gt;:8123</code>)."
+          ]},
+          "Pokud git nebo curl chybí:",
+          {"code": "dk_tools"}
         ]
       },
       {
@@ -108,21 +110,16 @@
         "b": [
           "Zjistěte poslední verzi a stáhněte ji spolu s kontrolními součty a připnutými odkazy na obrazy:",
           {"code": "dk_version"},
-          {"code": "dk_clone"}
-        ]
-      },
-      {
-        "h": "Ověřte vydání",
-        "b": [
-          "Zkontrolujte stažené soubory proti <code>SHA256SUMS</code> a pak, že každý obraz podepsal release workflow právě této verze. U každého obrazu se musí vypsat <code>OK</code>:",
-          {"code": "dk_verify"},
-          "Pokud něco selže, zastavte se a napište na support@xomtra.com."
+          {"code": "dk_clone"},
+          "Zkontrolujte stažené soubory proti <code>SHA256SUMS</code>; každý řádek musí končit <code>OK</code>:",
+          {"code": "dk_sums"},
+          {"note": "Volitelně můžete ověřit i to, že každý obraz podepsal release workflow této verze, pomocí cosign v kontejneru; viz <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">dokumentace</a>."}
         ]
       },
       {
         "h": "Připněte obrazy a zvolte edici",
         "b": [
-          "Žádná hesla nevyplňujete: interní hesla a klíče si xomtra při prvním spuštění vygeneruje sama. Jediný soubor, který vytvoříte, je <code>.env</code> s ověřenými obrazy:",
+          "Žádná hesla nevyplňujete: interní hesla a klíče si xomtra při prvním spuštění vygeneruje sama. Jediný soubor, který vytvoříte, je <code>.env</code> s připnutými obrazy:",
           {"code": "dk_pin_new"},
           "Edice lite se hodí pro NAS nebo malý server. Pro ni spusťte i další příkaz; pro plnou edici se SeaweedFS a Dagster UI ho vynechte:",
           {"code": "dk_lite"},
@@ -184,7 +181,7 @@
         "b": [
           "Nejdřív si přečtěte poznámky k vydáním mezi vaší a novou verzí. Pak v <code>xomtra/deploy/compose</code> nastavte <code>VERSION</code> jako v kroku 2 a spusťte:",
           {"code": "dk_upgrade"},
-          "Ověřte nové obrazy jako v kroku 3, připněte je a restartujte:",
+          "Připněte nové obrazy a restartujte:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Hesla a klíče zůstávají v Docker volume <code>secrets</code>. Instalace z doby před verzí 0.7.0 je má ještě v <code>.env</code>; první spuštění nové verze je převezme automaticky a pak je z <code>.env</code> můžete smazat.",
@@ -199,7 +196,7 @@
           {"code": "dk_backup"},
           "Odstraňte kontejnery, sítě, volumes a obrazy (díky <code>COMPOSE_FILE</code> v <code>.env</code> včetně edice lite), ověřte, že nezůstal žádný volume, a smažte stažené vydání i nepoužité vrstvy obrazů:",
           {"code": "dk_down"},
-          "<b>Na vašich počítačích:</b> v Claude Desktop odinstalujte rozšíření v <b>Settings → Extensions → xomtra → Uninstall</b> a smažte <code>xomtra.mcpb</code>. Odeberte xomtru z Claude Code a z profilu shellu i <code>NODE_EXTRA_CA_CERTS</code>, pokud jste ho nastavili:",
+          "<b>Na vašich počítačích:</b> v Claude Desktop odinstalujte rozšíření v <b>Settings → Extensions → xomtra → Uninstall</b> a smažte <code>xomtra.mcpb</code>. Z profilu shellu odeberte <code>NODE_EXTRA_CA_CERTS</code>, pokud jste ho nastavili. V Claude Code najděte server podle adresy (mohli jste ho pojmenovat jinak) a odeberte ho pod jeho názvem:",
           {"code": "dk_mcp_remove"},
           "Pokud jste certifikátu důvěřovali pro celý počítač, odeberte ho (jmenuje se <code>xomtra local CA - &lt;rok&gt; ECC Root</code>; smažte jen tento) a smažte <code>xomtra-ca.crt</code>. Na Debianu nebo Ubuntu smažte soubor v <code>/usr/local/share/ca-certificates/</code> a spusťte <code>sudo update-ca-certificates --fresh</code>.",
           {"code": "dk_untrust"},
