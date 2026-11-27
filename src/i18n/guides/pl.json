@@ -99,7 +99,7 @@
             "<b>Linux z Docker Engine i Compose v2</b>, amd64 lub arm64. NAS z Dockerem też się nada.",
             "<b>Dysk SSD, co najmniej 4 GB RAM i 20 GB wolnego miejsca</b> dla typowego domu; więcej dla lat historii stanów.",
             "<b>git, curl</b> i <a href=\"https://docs.sigstore.dev/cosign/system_config/installation/\">cosign</a> do weryfikacji obrazów.",
-            "<b>Home Assistant osiągalny z tej maszyny.</b>"
+            "<b>Home Assistant osiągalny z tej maszyny</b>, zwykle na porcie 8123 (URL w postaci <code>http://&lt;adres&gt;:8123</code>)."
           ]}
         ]
       },
