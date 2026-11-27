@@ -117,12 +117,10 @@
         ]
       },
       {
-        "h": "Images pinnen und Edition wählen",
+        "h": "Images pinnen",
         "b": [
           "Du musst keine Passwörter ausfüllen: Die internen Passwörter und Schlüssel erzeugt xomtra beim ersten Start selbst. Die einzige Datei, die du anlegst, ist <code>.env</code> mit den gepinnten Images:",
           {"code": "dk_pin_new"},
-          "Die Lite-Edition passt auf ein NAS oder einen kleinen Server. Führe dafür auch den nächsten Befehl aus; für die volle Edition mit SeaweedFS und Dagster UI lass ihn weg:",
-          {"code": "dk_lite"},
           "Optional: Soll xomtra unter einem Namen statt der LAN-Adresse erreichbar sein, trage den Namen jetzt ein, noch vor dem ersten Start. Er muss nur auf deinen eigenen Rechnern zu diesem Server auflösen (zum Beispiel ein DNS-Eintrag im Router); öffentliches DNS ist nicht nötig. Du kannst ihn später ändern und dann <code>docker compose up -d --force-recreate</code> ausführen.",
           {"code": "dk_host"}
         ]
@@ -194,7 +192,7 @@
           {"note": "<b>Das lässt sich nicht rückgängig machen.</b> <code>down -v</code> löscht die ganze Kopie des Verlaufs in xomtra, die Einstellungen und ausgestellten Tokens, die internen Passwörter und Schlüssel (Volume <code>secrets</code>) und die Zertifizierungsstelle des Servers. Home Assistant behält seinen eigenen Verlauf. Wenn du vielleicht zurückkommst, sichere zuerst die Volumes."},
           "Optionales Backup: Stoppe xomtra in <code>xomtra/deploy/compose</code> und packe alle Volumes nach <code>~/xomtra-backup</code>. Das Archiv von <code>secrets</code> und die <code>.env</code> sind Geheimnisse, bewahre sie wie ein Passwort auf:",
           {"code": "dk_backup"},
-          "Entferne Container, Netzwerke, Volumes und Images (dank <code>COMPOSE_FILE</code> in <code>.env</code> auch die Lite-Edition), prüfe, dass kein Volume übrig ist, und lösche das heruntergeladene Release und ungenutzte Image-Layer:",
+          "Entferne Container, Netzwerke, Volumes und Images, prüfe, dass kein Volume übrig ist, und lösche das heruntergeladene Release und ungenutzte Image-Layer:",
           {"code": "dk_down"},
           "<b>Auf deinen Computern:</b> Deinstalliere in Claude Desktop die Erweiterung unter <b>Settings → Extensions → xomtra → Uninstall</b> und lösche <code>xomtra.mcpb</code>. Entferne <code>NODE_EXTRA_CA_CERTS</code> aus deinem Shell-Profil, falls du es gesetzt hast. Suche in Claude Code den Server anhand seiner Adresse (vielleicht hast du ihn anders benannt) und entferne ihn unter seinem Namen:",
           {"code": "dk_mcp_remove"},

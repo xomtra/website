@@ -117,12 +117,10 @@
         ]
       },
       {
-        "h": "Przypnij obrazy i wybierz edycję",
+        "h": "Przypnij obrazy",
         "b": [
           "Nie wpisujesz żadnych haseł: wewnętrzne hasła i klucze xomtra generuje sama przy pierwszym uruchomieniu. Jedyny plik, który tworzysz, to <code>.env</code> z przypiętymi obrazami:",
           {"code": "dk_pin_new"},
-          "Edycja lite pasuje do NAS lub małego serwera. Dla niej uruchom też następne polecenie; dla pełnej edycji z SeaweedFS i Dagster UI je pomiń:",
-          {"code": "dk_lite"},
           "Opcjonalnie: jeśli chcesz otwierać xomtra pod nazwą zamiast adresu w LAN, dodaj ją teraz, przed pierwszym uruchomieniem. Nazwa musi wskazywać na ten serwer tylko na Twoich komputerach (na przykład rekord DNS w routerze); publiczny DNS nie jest potrzebny. Później możesz ją zmienić i uruchomić <code>docker compose up -d --force-recreate</code>.",
           {"code": "dk_host"}
         ]
@@ -194,7 +192,7 @@
           {"note": "<b>Tego nie da się cofnąć.</b> <code>down -v</code> usuwa całą kopię historii w xomtrze, jej ustawienia i wydane tokeny, wewnętrzne hasła i klucze (wolumen <code>secrets</code>) oraz urząd certyfikacji serwera. Home Assistant zachowuje własną historię. Jeśli możesz wrócić, najpierw zrób kopię wolumenów."},
           "Opcjonalna kopia: w <code>xomtra/deploy/compose</code> zatrzymaj xomtrę i spakuj wszystkie wolumeny do <code>~/xomtra-backup</code>. Archiwum <code>secrets</code> i plik <code>.env</code> to sekrety, przechowuj je jak hasło:",
           {"code": "dk_backup"},
-          "Usuń kontenery, sieci, wolumeny i obrazy (dzięki <code>COMPOSE_FILE</code> w <code>.env</code> także edycję lite), sprawdź, że nie został żaden wolumen, i usuń pobrane wydanie oraz nieużywane warstwy obrazów:",
+          "Usuń kontenery, sieci, wolumeny i obrazy, sprawdź, że nie został żaden wolumen, i usuń pobrane wydanie oraz nieużywane warstwy obrazów:",
           {"code": "dk_down"},
           "<b>Na twoich komputerach:</b> w Claude Desktop odinstaluj rozszerzenie w <b>Settings → Extensions → xomtra → Uninstall</b> i usuń <code>xomtra.mcpb</code>. Usuń <code>NODE_EXTRA_CA_CERTS</code> z profilu powłoki, jeśli go ustawiłeś. W Claude Code znajdź serwer po adresie (mogłeś nazwać go inaczej) i usuń go pod jego nazwą:",
           {"code": "dk_mcp_remove"},

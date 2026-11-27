@@ -117,12 +117,10 @@
         ]
       },
       {
-        "h": "Připněte obrazy a zvolte edici",
+        "h": "Připněte obrazy",
         "b": [
           "Žádná hesla nevyplňujete: interní hesla a klíče si xomtra při prvním spuštění vygeneruje sama. Jediný soubor, který vytvoříte, je <code>.env</code> s připnutými obrazy:",
           {"code": "dk_pin_new"},
-          "Edice lite se hodí pro NAS nebo malý server. Pro ni spusťte i další příkaz; pro plnou edici se SeaweedFS a Dagster UI ho vynechte:",
-          {"code": "dk_lite"},
           "Volitelně: pokud chcete xomtru otevírat pod jménem místo adresy v LAN, přidejte ho teď, ještě před prvním spuštěním. Jméno musí na tento server ukazovat jen na vašich počítačích (například DNS záznam v routeru), veřejné DNS není potřeba. Později ho můžete změnit a spustit <code>docker compose up -d --force-recreate</code>.",
           {"code": "dk_host"}
         ]
@@ -194,7 +192,7 @@
           {"note": "<b>Nejde vrátit zpět.</b> <code>down -v</code> smaže celou kopii historie v xomtře, její nastavení a vydané tokeny, interní hesla a klíče (volume <code>secrets</code>) i certifikační autoritu serveru. Home Assistant si svou historii ponechá. Pokud se můžete vrátit, nejdřív volumes zazálohujte."},
           "Volitelná záloha: v <code>xomtra/deploy/compose</code> zastavte xomtru a zabalte všechny volumes do <code>~/xomtra-backup</code>. Archiv <code>secrets</code> a soubor <code>.env</code> jsou tajemství, opatrujte je jako heslo:",
           {"code": "dk_backup"},
-          "Odstraňte kontejnery, sítě, volumes a obrazy (díky <code>COMPOSE_FILE</code> v <code>.env</code> včetně edice lite), ověřte, že nezůstal žádný volume, a smažte stažené vydání i nepoužité vrstvy obrazů:",
+          "Odstraňte kontejnery, sítě, volumes a obrazy, ověřte, že nezůstal žádný volume, a smažte stažené vydání i nepoužité vrstvy obrazů:",
           {"code": "dk_down"},
           "<b>Na vašich počítačích:</b> v Claude Desktop odinstalujte rozšíření v <b>Settings → Extensions → xomtra → Uninstall</b> a smažte <code>xomtra.mcpb</code>. Z profilu shellu odeberte <code>NODE_EXTRA_CA_CERTS</code>, pokud jste ho nastavili. V Claude Code najděte server podle adresy (mohli jste ho pojmenovat jinak) a odeberte ho pod jeho názvem:",
           {"code": "dk_mcp_remove"},
