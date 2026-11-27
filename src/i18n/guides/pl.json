@@ -159,7 +159,7 @@
           {"code": "dk_ca"},
           "Na twoim komputerze pobrany plik musi pokazać ten sam odcisk:",
           {"code": "dk_ca_local"},
-          "<b>Wymagane dla Claude Desktop i Claude Code</b>: w przeciwieństwie do przeglądarki nie mogą pominąć ostrzeżenia i kończą się błędem <code>unable to get local issuer certificate</code>. Wybierz <code>xomtra-ca.crt</code> jako <b>Certificate of the server</b> w rozszerzeniu Claude Desktop (zalecane, bez zmian w systemie) albo zaufaj mu na całym komputerze i uruchom Claude ponownie:",
+          "<b>Claude Desktop nic tu nie potrzebuje</b>: rozszerzenie ze strony administracyjnej ma certyfikat w sobie. <b>Wymagane dla Claude Code</b> (i dla Claude Desktop z rozszerzeniem spoza strony administracyjnej): w przeciwieństwie do przeglądarki nie może pominąć ostrzeżenia i kończy się błędem <code>unable to get local issuer certificate</code>. Uruchamiaj Claude Code z <code>NODE_EXTRA_CA_CERTS=/sciezka/do/xomtra-ca.crt</code> (zalecane, bez zmian w systemie) albo zaufaj certyfikatowi na całym komputerze:",
           {"code": "dk_trust"}
         ]
       },
@@ -167,7 +167,7 @@
         "h": "Wystaw token i podłącz Claude",
         "b": [
           "Otwórz <code>https://&lt;server&gt;/admin/</code>, zaloguj się jako administrator Home Assistant i przejdź do <b>Tokeny</b>. Wystaw osobny token dla każdej osoby i urządzenia (<code>xomtra.Reader</code> dla większości); jest pokazywany <b>tylko raz</b>.",
-          "<b>Claude Desktop:</b> na stronie <b>Podłączanie klientów</b> pobierz <code>xomtra.mcpb</code>, otwórz go, wklej token i, jeśli certyfikatu nie ma w magazynie zaufanych certyfikatów, wybierz <code>xomtra-ca.crt</code>.",
+          "<b>Claude Desktop:</b> po wystawieniu tokenu kliknij <b>Pobierz dla Claude Desktop</b> (także na stronie <b>Podłączanie klientów</b>), otwórz <code>xomtra.mcpb</code>, wklej token i zainstaluj. Plik jest przygotowany dla twojego serwera: adres i certyfikat są wpisane, a rozszerzenie ufa tylko temu certyfikatowi, więc do komputera nie trzeba niczego importować. Tokenu nie ma w pliku, Claude Desktop przechowuje go jako sekret.",
           "<b>Claude Code</b> (jeśli certyfikatu nie ma w magazynie zaufanych certyfikatów, uruchamiaj Claude Code z <code>NODE_EXTRA_CA_CERTS=/sciezka/do/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
           {"note": "Claude w przeglądarce i w aplikacjach mobilnych łączy się z serwerów Anthropic i nie sięga do twojej sieci LAN. Do tego xomtra może działać na maszynie z publicznym adresem https://, gdzie logujesz się kontem Home Assistant z uwierzytelnianiem dwuskładnikowym; zobacz dokumentację na GitHubie."}
