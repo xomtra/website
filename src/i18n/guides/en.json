@@ -157,7 +157,10 @@
         "b": [
           "Caddy issues the certificate for your server from its own local certificate authority. Download it once from <code>https://&lt;server&gt;/xomtra-ca.crt</code> (the browser warns the first time, which is expected) and compare its fingerprint with the server:",
           {"code": "dk_ca"},
-          "Import it into your computer's trust store, or give the file only to the clients that need it."
+          "On your computer, the downloaded file must show the same fingerprint:",
+          {"code": "dk_ca_local"},
+          "<b>Required for Claude Desktop and Claude Code</b>: unlike the browser they cannot click through the warning and stop with <code>unable to get local issuer certificate</code>. Either choose <code>xomtra-ca.crt</code> as <b>Certificate of the server</b> in the Claude Desktop extension (recommended, no change to the system), or trust it for the whole computer and restart Claude:",
+          {"code": "dk_trust"}
         ]
       },
       {

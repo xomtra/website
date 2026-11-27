@@ -157,7 +157,10 @@
         "b": [
           "Caddy stellt das Zertifikat deines Servers aus einer eigenen lokalen Zertifizierungsstelle aus. Lade sie einmal von <code>https://&lt;server&gt;/xomtra-ca.crt</code> (der Browser warnt beim ersten Mal, das ist erwartet) und vergleiche den Fingerabdruck mit dem Server:",
           {"code": "dk_ca"},
-          "Importiere sie in den Zertifikatsspeicher deines Computers oder gib die Datei nur den Clients, die sie brauchen."
+          "Auf deinem Computer muss die heruntergeladene Datei denselben Fingerabdruck zeigen:",
+          {"code": "dk_ca_local"},
+          "<b>Für Claude Desktop und Claude Code ist das nötig</b>: Anders als der Browser können sie die Warnung nicht übergehen und brechen mit <code>unable to get local issuer certificate</code> ab. Wähle entweder <code>xomtra-ca.crt</code> als <b>Certificate of the server</b> in der Claude-Desktop-Erweiterung (empfohlen, ohne Änderung am System) oder vertraue ihr auf dem ganzen Computer und starte Claude neu:",
+          {"code": "dk_trust"}
         ]
       },
       {

@@ -157,7 +157,10 @@
         "b": [
           "Caddy vystaví certifikát pro váš server z vlastní místní certifikační autority. Jednou si stáhněte její certifikát z <code>https://&lt;server&gt;/xomtra-ca.crt</code> (prohlížeč poprvé varuje, to je v pořádku) a porovnejte jeho otisk s otiskem na serveru:",
           {"code": "dk_ca"},
-          "Naimportujte ho do úložiště důvěryhodných certifikátů počítače, nebo soubor dejte jen klientům, kteří ho potřebují."
+          "Na vašem počítači musí stažený soubor ukázat stejný otisk:",
+          {"code": "dk_ca_local"},
+          "<b>Pro Claude Desktop a Claude Code je to nutné</b>: na rozdíl od prohlížeče varování přeskočit nemohou a skončí chybou <code>unable to get local issuer certificate</code>. Buď vyberte <code>xomtra-ca.crt</code> jako <b>Certificate of the server</b> v rozšíření Claude Desktop (doporučeno, systém se nemění), nebo mu důvěřujte v celém počítači a Claude restartujte:",
+          {"code": "dk_trust"}
         ]
       },
       {
