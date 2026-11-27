@@ -15,7 +15,7 @@
   "dk_upgrade": "cp -p .env \".env.bak-$(date +%F)\"\ngit fetch --depth 1 origin tag \"v$VERSION\"\ngit checkout -q \"v$VERSION\"\nfor f in SHA256SUMS \"xomtra-$VERSION-images.env\"; do\n  curl -fsSLO \"https://github.com/xomtra/xomtra/releases/download/v$VERSION/$f\"\ndone\nsha256sum -c SHA256SUMS --ignore-missing",
   "dk_pull": "docker compose pull\ndocker compose up -d",
   "dk_lite": "echo 'COMPOSE_FILE=compose.yaml:compose.lite.yaml' >> .env",
-  "dk_host": "echo 'XOMTRA_LOCAL_HOST=xomtra.lan' >> .env",
+  "dk_host": "echo 'XOMTRA_LOCAL_HOST=xomtra.home.arpa' >> .env",
   "dk_ca_local": "openssl x509 -noout -fingerprint -sha256 -in ~/Downloads/xomtra-ca.crt\n# Windows: certutil -dump %USERPROFILE%\\Downloads\\xomtra-ca.crt | findstr /i sha256",
   "dk_trust": "# macOS\nsudo security add-trusted-cert -d -r trustRoot \\\n  -k /Library/Keychains/System.keychain ~/Downloads/xomtra-ca.crt\n# Windows (as administrator)\ncertutil -addstore -f Root %USERPROFILE%\\Downloads\\xomtra-ca.crt",
   "dk_backup": "docker compose stop\nmkdir -p ~/xomtra-backup\nfor v in $(docker volume ls -q --filter label=com.docker.compose.project=xomtra); do\n  docker run --rm -v \"$v\":/v:ro -v ~/xomtra-backup:/b alpine tar czf \"/b/$v.tgz\" -C /v .\ndone\ncp .env ~/xomtra-backup/",
