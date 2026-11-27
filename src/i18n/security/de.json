@@ -1,12 +1,12 @@
 {
   "nav": "Sicherheit",
   "crumb": "Sicherheit",
-  "title": "Wie xomtra Ihr Zuhause schützt",
-  "desc": "xomtra liest Home Assistant nur, lässt nur Personen und Geräte zu, die Sie erlauben, und behält den Verlauf auf Ihrem Rechner. Wie der Code das macht und was noch vorbereitet wird.",
-  "lead": "Der Verlauf von Home Assistant zeigt, wann jemand zu Hause ist und wie man lebt. xomtra geht entsprechend damit um: Es liest nur, gibt jeder Person genau den Zugriff, den Sie wählen, und behält die Daten auf Ihrem eigenen Rechner. Alles hier ist Open Source, Sie müssen uns also nicht aufs Wort glauben.",
+  "title": "Wie xomtra dein Zuhause schützt",
+  "desc": "xomtra liest Home Assistant nur, lässt nur Personen und Geräte zu, die du erlaubst, und behält den Verlauf auf deinem Rechner. Wie der Code das macht.",
+  "lead": "Der Verlauf von Home Assistant zeigt, wann jemand zu Hause ist und wie man lebt. xomtra geht entsprechend damit um: Es liest nur, gibt jeder Person genau den Zugriff, den du wählst, und behält die Daten auf deinem eigenen Rechner. Alles hier ist Open Source, du musst uns also nicht aufs Wort glauben.",
   "facts": [
     ["Liest", "Home Assistant, ändert nichts"],
-    ["Daten", "bleiben auf Ihrem Rechner"],
+    ["Daten", "bleiben auf deinem Rechner"],
     ["Code", "Open Source, Images signiert"]
   ],
   "sections": [
@@ -14,16 +14,18 @@
       "id": "read-only",
       "h": "Read only aus Prinzip",
       "b": [
-        "xomtra liest Zustände, Verlauf und Statistiken aus Home Assistant und ruft nie dessen Dienste auf. Ihr KI-Assistent spricht nur mit xomtra und bekommt Read-only-Werkzeuge über xomtras eigene Kopie der Daten. Kein Werkzeug schaltet, öffnet oder stellt etwas ein.",
-        "Home Assistant hat keine Read-only-Tokens: Jeder Token kann, was sein Benutzer kann. Die Garantie ist xomtras Code, den Sie lesen können. Mit Docker verbinden Sie xomtra als eigenen Home-Assistant-Benutzer ohne Administratorrechte; automatische Tests prüfen, dass ein solcher Benutzer nichts ändern kann.",
+        "xomtra liest Zustände, Verlauf und Statistiken aus Home Assistant und ruft nie dessen Dienste auf. Dein KI-Assistent spricht nur mit xomtra und bekommt Read-only-Werkzeuge über xomtras eigene Kopie der Daten. Kein Werkzeug schaltet, öffnet oder stellt etwas ein.",
+        "Home Assistant hat keine Read-only-Tokens: Jeder Token kann, was sein Benutzer kann. Die Garantie ist xomtras Code, den du lesen kannst. Mit Docker verbindest du xomtra als eigenen Home-Assistant-Benutzer ohne Administratorrechte; automatische Tests prüfen, dass ein solcher Benutzer nichts ändern kann.",
         "Entitäten, die nicht gespeichert oder analysiert werden sollen, bekommen in Home Assistant ein Label."
       ]
     },
     {
       "id": "access",
-      "h": "Nur, wen Sie hereinlassen",
+      "h": "Nur, wen du hereinlässt",
       "b": [
         "Im Heimnetz bekommt jede Person und jedes Gerät einen persönlichen Token aus der Admin-Seite. Er wird einmal angezeigt; xomtra speichert nur seinen Fingerabdruck, nicht den Token selbst. Jeder Token hat einen Besitzer, eine Rolle und optional ein Ablaufdatum und lässt sich jederzeit widerrufen.",
+        "Aus dem Internet meldest du dich mit deinem Home-Assistant-Konto an; Microsoft Entra ID ist eine Option. Standardmäßig dürfen sich nur Home-Assistant-Administratoren verbinden, und nur mit Zwei-Faktor-Authentifizierung. Alle anderen kommen nur hinein, wenn ein Administrator ihnen auf der Admin-Seite <b>Zugriff</b> eine Rolle gibt.",
+        "Direkt nach der Anmeldung widerruft xomtra den erhaltenen Home-Assistant-Token und führt eine eigene Sitzung mit fester Laufzeit. Die Seite <b>Zugriff</b> listet alle verbundenen Clients auf, und <b>Trennen</b> beendet den Zugriff innerhalb einer Minute.",
         "Rollen bestimmen, was die KI sieht. Ein Leser sieht nie Personen, Standorte, Kameras, Schlösser, Alarmanlagen oder den Freitext von Attributen; diese werden schon in der Datenbank herausgefiltert, bevor eine Antwort entsteht."
       ]
     },
@@ -39,7 +41,7 @@
       "id": "admin",
       "h": "Die Admin-Seite",
       "b": [
-        "Sie melden sich mit Ihrem Home-Assistant-Administratorkonto an, im Add-on direkt aus Home Assistant. Nach der Anmeldung widerruft xomtra den erhaltenen Home-Assistant-Token und behält so keinen Home-Assistant-Token der angemeldeten Person.",
+        "Du meldest dich mit deinem Home-Assistant-Administratorkonto an, im Add-on direkt aus Home Assistant. Nach der Anmeldung widerruft xomtra den erhaltenen Home-Assistant-Token und behält so keinen Home-Assistant-Token der angemeldeten Person.",
         "Standardmäßig antwortet die Admin-Seite nur im lokalen Netz, im Add-on nur über Home Assistant. Sie lädt nichts von fremden Seiten und schützt jedes Formular gegen gefälschte Anfragen."
       ]
     },
@@ -49,9 +51,9 @@
       "b": [
         {
           "ul": [
-            "<b>Home-Assistant-Add-on:</b> Der MCP-Port ist für Clients im lokalen Netz (Claude Desktop, Claude Code und andere). Er nutzt unverschlüsseltes HTTP, verwenden Sie ihn also nur in einem Netz, dem Sie vertrauen; er ist nicht dafür gedacht, ins Internet geöffnet zu werden.",
+            "<b>Home-Assistant-Add-on:</b> Der MCP-Port ist für Clients im lokalen Netz (Claude Desktop, Claude Code und andere). Er nutzt unverschlüsseltes HTTP, verwende ihn also nur in einem Netz, dem du vertraust; er ist nicht dafür gedacht, ins Internet geöffnet zu werden.",
             "<b>Docker:</b> HTTPS im Heimnetz mit xomtras eigener lokaler Zertifizierungsstelle.",
-            "<b>Zugriff aus dem Internet</b> (für Claude.ai): xomtra steht hinter Caddy mit einem Let's-Encrypt-Zertifikat. Von überall erreichbar sind nur die Anmeldeseiten; die Datenschnittstellen antworten nur den veröffentlichten Adressen von Claude. Angemeldet wird mit Microsoft Entra ID oder einem Home-Assistant-Konto."
+            "<b>Zugriff aus dem Internet</b> (für Claude.ai): xomtra steht hinter Caddy mit einem Let's-Encrypt-Zertifikat. Von überall erreichbar sind nur die Anmeldeseiten; die Datenschnittstellen antworten nur den veröffentlichten Adressen von Claude. Angemeldet wird mit einem Home-Assistant-Konto oder, wenn du es wählst, mit Microsoft Entra ID."
           ]
         }
       ]
@@ -60,34 +62,19 @@
       "id": "build",
       "h": "Offen gebaut, signiert",
       "b": [
-        "Release-Images baut nur GitHub Actions aus dem öffentlichen Code, prüft sie auf bekannte Schwachstellen und signiert sie mit cosign, sodass Sie prüfen können, dass ein Image aus dem xomtra-Repository stammt. Ein Release liefert genau die Images aus, die die Tests bestanden haben. Commits und Release-Tags sind signiert.",
-        "Schlüssel und Passwörter werden bei der Installation auf Ihrem Rechner erzeugt; der Code hat keine voreingestellten Geheimnisse. Die Dienste laufen ohne Root-Rechte und mit einem schreibgeschützten Dateisystem."
+        "Release-Images baut nur GitHub Actions aus dem öffentlichen Code, prüft sie auf bekannte Schwachstellen und signiert sie mit cosign, sodass du prüfen kannst, dass ein Image aus dem xomtra-Repository stammt. Ein Release liefert genau die Images aus, die die Tests bestanden haben. Commits und Release-Tags sind signiert.",
+        "Schlüssel und Passwörter werden bei der Installation auf deinem Rechner erzeugt; der Code hat keine voreingestellten Geheimnisse. Die Dienste laufen ohne Root-Rechte und mit einem schreibgeschützten Dateisystem."
       ]
     },
     {
       "id": "data",
-      "h": "Ihre Daten und Ihre KI",
+      "h": "Deine Daten und deine KI",
       "b": [
-        "Der Verlauf bleibt auf dem Rechner, auf dem xomtra läuft, und xomtra selbst schickt ihn nirgendwohin. Was Ihr KI-Client für eine Antwort abruft, geht unter Ihrem eigenen Konto und nach dessen Bedingungen an seinen Anbieter. Was er abrufen kann, bestimmen Rollen und Labels.",
-        "xomtra sagt der KI auch, wie sie antworten soll: Ergebnisse sind Hypothesen, und keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn Sie nicht danach fragen. Das leitet das Modell, ist aber keine Sicherheitsgrenze."
-      ]
-    },
-    {
-      "id": "next",
-      "h": "In Vorbereitung",
-      "b": [
-        { "note": "Noch nicht im aktuellen Release." },
-        {
-          "ul": [
-            "Anmeldung mit einem Home-Assistant-Konto als Standard für den Zugriff aus dem Internet; Entra ID bleibt eine Option.",
-            "Der Connector widerruft den Home-Assistant-Token direkt nach der Anmeldung, wie es die Admin-Seite heute schon tut, und führt eine eigene Sitzung mit fester Laufzeit.",
-            "Eine Liste verbundener Clients auf der Admin-Seite mit einer Schaltfläche Trennen.",
-            "Standardmäßig dürfen sich nur Home-Assistant-Administratoren verbinden, mit Pflicht zur Zwei-Faktor-Authentifizierung."
-          ]
-        }
+        "Der Verlauf bleibt auf dem Rechner, auf dem xomtra läuft, und xomtra selbst schickt ihn nirgendwohin. Was dein KI-Client für eine Antwort abruft, geht unter deinem eigenen Konto und nach dessen Bedingungen an seinen Anbieter. Was er abrufen kann, bestimmen Rollen und Labels.",
+        "xomtra gibt der KI außerdem Leitplanken für ihre Antworten. Der feste Kern gilt immer: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, keine Witze über Unfälle oder Gefahren für Leben und Gesundheit und nichts Diskriminierendes, Politisches oder Religiöses. Dazu kommt das Set von Antwortrichtlinien, das du auf der Admin-Seite <b>Antworten</b> wählst. Die Sets liegen auf deinem Rechner, nur Administratoren können sie ändern, und kein Text für das Modell kommt von xomtra.com. Die Leitplanken leiten das Modell, sie sind keine Sicherheitsgrenze."
       ]
     }
   ],
   "docs": "Sicherheitsprinzipien im Code, auf GitHub",
-  "help": "Eine Schwachstelle gefunden? Bitte melden Sie sie vertraulich über GitHub (Security → Report a vulnerability), nicht in einem öffentlichen Issue. Andere Fragen: support@xomtra.com."
+  "help": "Eine Schwachstelle gefunden? Bitte melde sie vertraulich über GitHub (Security → Report a vulnerability), nicht in einem öffentlichen Issue. Andere Fragen: support@xomtra.com."
 }

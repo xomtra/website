@@ -71,9 +71,15 @@
         ]
       },
       {
+        "h": "Wybierz, jak xomtra odpowiada",
+        "b": [
+          "Na stronie administracji <b>Odpowiedzi</b> wybierasz zasady dla odpowiedzi swojego asystenta. Zestaw <b>Domyślny</b> najpierw szuka istotnych danych, zaczyna od odpowiedzi, a potem pokazuje dowody na wykresie lub w tabeli, przyjaznym tonem. <b>Zwięzły</b> odpowiada możliwie najkrócej, a każdy zestaw możesz skopiować i napisać własny. Ponad każdym zestawem zawsze obowiązuje stały rdzeń: tylko wartości pobrane z xomtry, żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że zapytasz, i żadnych żartów o awariach i zagrożeniu życia i zdrowia. Zmiana obowiązuje w ciągu 30 sekund, bez restartu."
+        ]
+      },
+      {
         "h": "Kopie zapasowe i aktualizacje",
         "b": [
-          "Kopie zapasowe Home Assistant zawierają tokeny, ustawienia i odrzucone wyniki xomtra, ale nie lake z historią (dziesiątki GB). Po przywróceniu xomtra zakłada nowy lake, wczytuje historię tak daleko wstecz, jak Home Assistant ją jeszcze ma, i liczy wyniki od nowa.",
+          "Kopie zapasowe Home Assistant zawierają tokeny, ustawienia, zestawy odpowiedzi i odrzucone wyniki xomtry, ale nie lake z historią (dziesiątki GB). Po przywróceniu xomtra zakłada nowy lake, wczytuje historię tak daleko wstecz, jak Home Assistant ją jeszcze ma, i liczy wyniki od nowa.",
           "Nowe wersje pojawiają się w Home Assistant jako aktualizacje dodatku. Przed aktualizacją przeczytaj informacje o wydaniu: przed wersją 1.0 wydanie minor może zmieniać ustawienia."
         ]
       }
@@ -159,7 +165,13 @@
           "<b>Claude Desktop:</b> na stronie <b>Podłączanie klientów</b> pobierz <code>xomtra.mcpb</code>, otwórz go, wklej token i, jeśli certyfikatu nie ma w magazynie zaufanych certyfikatów, wybierz <code>xomtra-ca.crt</code>.",
           "<b>Claude Code</b> (jeśli certyfikatu nie ma w magazynie zaufanych certyfikatów, uruchamiaj Claude Code z <code>NODE_EXTRA_CA_CERTS=/sciezka/do/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
-          {"note": "Claude w przeglądarce i w aplikacjach mobilnych łączy się z serwerów Anthropic i nie sięga do twojej sieci LAN. Do tego xomtra ma tryb dostępu publicznego; zobacz dokumentację na GitHubie."}
+          {"note": "Claude w przeglądarce i w aplikacjach mobilnych łączy się z serwerów Anthropic i nie sięga do twojej sieci LAN. Do tego xomtra może działać na maszynie z publicznym adresem https://, gdzie logujesz się kontem Home Assistant z uwierzytelnianiem dwuskładnikowym; zobacz dokumentację na GitHubie."}
+        ]
+      },
+      {
+        "h": "Wybierz, jak xomtra odpowiada",
+        "b": [
+          "Na stronie administracji <b>Odpowiedzi</b> wybierasz zasady dla odpowiedzi swojego asystenta. Zestaw <b>Domyślny</b> najpierw szuka istotnych danych, zaczyna od odpowiedzi, a potem pokazuje dowody na wykresie lub w tabeli, przyjaznym tonem. <b>Zwięzły</b> odpowiada możliwie najkrócej, a każdy zestaw możesz skopiować i napisać własny. Ponad każdym zestawem zawsze obowiązuje stały rdzeń: tylko wartości pobrane z xomtry, żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że zapytasz, i żadnych żartów o awariach i zagrożeniu życia i zdrowia. Zmiana obowiązuje w ciągu 30 sekund, bez restartu."
         ]
       },
       {

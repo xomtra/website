@@ -10,9 +10,9 @@
   },
   "home-assistant": {
     "name": "Doplněk Home Assistantu",
-    "title": "Instalace xomtra jako doplňku Home Assistantu",
+    "title": "Instalace xomtry jako doplňku Home Assistantu",
     "desc": "Postup instalace doplňku xomtra pro Home Assistant OS krok za krokem: požadavky, repozitář doplňku, první token, připojení Claude a zálohy.",
-    "lead": "Doplněk spouští xomtra vedle Home Assistantu v jednom kontejneru. Bez domény, bez přesměrování portů a bez cloudového účtu; Claude Desktop a Claude Code se připojují přes vaši domácí síť.",
+    "lead": "Doplněk spouští xomtru vedle Home Assistantu v jednom kontejneru. Bez domény, bez přesměrování portů a bez cloudového účtu; Claude Desktop a Claude Code se připojují přes vaši domácí síť.",
     "facts": [["Čas", "asi 10 minut"], ["Potřebujete", "Home Assistant OS nebo Supervised"], ["Přístup", "LAN, osobní tokeny"]],
     "steps": [
       {
@@ -23,7 +23,7 @@
             "<b>SSD, aspoň 4 GB RAM a 20 GB volného místa.</b> Home Assistant Green (32 GB eMMC) a SD karty nejsou podporované.",
             "<b>64bitový systém:</b> amd64 (Intel, AMD) nebo aarch64 (třeba Raspberry Pi 5 s SSD)."
           ]},
-          {"note": "Chcete historii stavů držet déle než rok nebo zálohovat celou historii? Spusťte xomtra na vlastním stroji přes <a href=\"{docker}\">Docker Compose</a>; obrazy pro Proxmox a VMware budou brzy."}
+          {"note": "Chcete historii stavů držet déle než rok nebo zálohovat celou historii? Spusťte xomtru na vlastním stroji přes <a href=\"{docker}\">Docker Compose</a>; obrazy pro Proxmox a VMware budou brzy."}
         ]
       },
       {
@@ -38,15 +38,15 @@
         "h": "Nainstalujte a spusťte doplněk",
         "b": [
           "Obnovte obchod, otevřete <b>xomtra</b> a zvolte <b>Instalovat</b>. Supervisor stáhne podepsaný obraz pro váš systém. Nechte zapnuté <b>Spustit při startu</b> a <b>Watchdog</b> a zvolte <b>Spustit</b>.",
-          "První start vytvoří databázi doplňku a všechny interní klíče v jeho vlastní datové složce; trvá asi minutu. Nikdo nemusí psát žádné heslo. Pak xomtra na pozadí načte historii, kterou Home Assistant ještě drží."
+          "První start vytvoří databázi doplňku a všechny interní klíče v jeho vlastní datové složce; trvá asi minutu. Žádné heslo nemusíte zadávat. Pak xomtra na pozadí načte historii, kterou Home Assistant ještě drží."
         ]
       },
       {
         "h": "Nastavte adresu MCP",
         "b": [
-          "MCP klienti se k xomtra připojují na port 8000 hostitele Home Assistantu. Na kartě <b>Konfigurace</b> nastavte <code>mcp_url</code> na adresu, kterou vaše počítače používají pro Home Assistant, například:",
+          "MCP klienti se k xomtře připojují na portu 8000 hostitele Home Assistantu. Na kartě <b>Konfigurace</b> nastavte <code>mcp_url</code> na adresu, kterou vaše počítače používají pro Home Assistant, například:",
           {"code": "ha_mcpurl"},
-          "Volba je nepovinná: bez ní admin stránka použije adresu, na které jste otevřeli Home Assistant. Zobrazuje se u každého nového tokenu, takže ji stačí nastavit jednou a návody budou vždy správně. Uložte a doplněk restartujte."
+          "Volba je nepovinná: bez ní administrace použije adresu, na které jste otevřeli Home Assistant. Zobrazuje se u každého nového tokenu, takže ji stačí nastavit jednou a pokyny budou vždy správné. Uložte a doplněk restartujte."
         ]
       },
       {
@@ -71,9 +71,15 @@
         ]
       },
       {
+        "h": "Zvolte, jak xomtra odpovídá",
+        "b": [
+          "Na stránce administrace <b>Odpovědi</b> zvolíte mantinely pro odpovědi vašeho asistenta. Sada <b>Výchozí</b> nejdřív hledá relevantní data, začíná odpovědí, kterou pak doloží grafem nebo tabulkou, a mluví přátelským tónem. <b>Věcná</b> odpovídá co nejstručněji a kteroukoli sadu můžete zkopírovat a napsat si vlastní. Nad každou sadou vždy platí pevné jádro: jen hodnoty načtené z xomtry, žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se nezeptáte, a žádné vtipy o haváriích a ohrožení života a zdraví. Změna platí do 30 sekund, bez restartu."
+        ]
+      },
+      {
         "h": "Zálohy a aktualizace",
         "b": [
-          "Zálohy Home Assistantu obsahují tokeny, nastavení a odmítnuté nálezy xomtra, ale ne lake s historií (desítky GB). Po obnově xomtra založí nový lake, znovu načte historii tak daleko do minulosti, jak ji Home Assistant ještě drží, a nálezy spočítá znovu.",
+          "Zálohy Home Assistantu obsahují tokeny, nastavení, sady odpovědí a odmítnuté nálezy xomtry, ale ne lake s historií (desítky GB). Po obnově xomtra založí nový lake, znovu načte historii tak daleko do minulosti, jak ji Home Assistant ještě drží, a nálezy spočítá znovu.",
           "Nové verze se v Home Assistantu objeví jako aktualizace doplňku. Před aktualizací si přečtěte poznámky k vydání: před verzí 1.0 může vedlejší verze měnit nastavení."
         ]
       }
@@ -81,9 +87,9 @@
   },
   "docker": {
     "name": "Docker Compose",
-    "title": "Instalace xomtra přes Docker Compose",
-    "desc": "Postup instalace xomtra na vlastní linuxový server nebo NAS přes Docker Compose krok za krokem: ověřené vydání, spuštění jedním příkazem, připojení Home Assistantu v prohlížeči, první token, připojení Claude a aktualizace.",
-    "lead": "Pro Home Assistant Container nebo Core, nebo když chcete xomtra na vlastním linuxovém serveru či NAS. xomtra čte Home Assistant po síti; Claude Desktop a Claude Code se připojují osobními tokeny, jen z vaší LAN.",
+    "title": "Instalace xomtry přes Docker Compose",
+    "desc": "Postup instalace xomtry na vlastní linuxový server nebo NAS přes Docker Compose krok za krokem: ověřené vydání, spuštění jedním příkazem, připojení Home Assistantu v prohlížeči, první token, připojení Claude a aktualizace.",
+    "lead": "Pro Home Assistant Container nebo Core, nebo když chcete xomtru na vlastním linuxovém serveru či NAS. xomtra čte Home Assistant po síti; Claude Desktop a Claude Code se připojují osobními tokeny, jen z vaší LAN.",
     "facts": [["Čas", "asi 15 minut"], ["Potřebujete", "Linux, Docker s Compose v2"], ["Přístup", "LAN, osobní tokeny"]],
     "steps": [
       {
@@ -123,16 +129,16 @@
         ]
       },
       {
-        "h": "Spusťte xomtra",
+        "h": "Spusťte xomtru",
         "b": [
           {"code": "dk_up"},
           "Při prvním spuštění jednorázová služba <code>secrets-init</code> vygeneruje všechna interní hesla a klíče do Docker volume <code>secrets</code> a zjistí adresu tohoto serveru ve vaší LAN; xomtra pak běží na <code>https://&lt;server&gt;/</code>. Během pár minut by všechny služby měly být <code>running</code> nebo <code>healthy</code>."
         ]
       },
       {
-        "h": "Vytvořte uživatele Home Assistantu pro xomtra",
+        "h": "Vytvořte uživatele Home Assistantu pro xomtru",
         "b": [
-          "V Home Assistantu vytvořte samostatného uživatele <b>bez</b> administrátorských práv, přihlaste se jako on a na <b>Profil → Zabezpečení</b> vytvořte dlouhodobý přístupový token. Home Assistant tokeny read only nemá, takže by tento uživatel zařízení ovládat mohl; xomtra ale jen čte registry, historii a statistiky a nikdy nevolá služby. Samostatný uživatel vám umožní přístup xomtry kdykoli odebrat, aniž byste sahali na svůj účet."
+          "V Home Assistantu vytvořte samostatného uživatele <b>bez</b> administrátorských práv, přihlaste se pod ním a na stránce <b>Profil → Zabezpečení</b> vytvořte dlouhodobý přístupový token. Home Assistant tokeny read only nemá, takže by tento uživatel zařízení ovládat mohl; xomtra ale jen čte registry, historii a statistiky a nikdy nevolá služby. Samostatný uživatel vám umožní přístup xomtry kdykoli odebrat, aniž byste sahali na svůj účet."
         ]
       },
       {
@@ -140,26 +146,32 @@
         "b": [
           "Dokud Home Assistant není připojený, vypisuje admin služba do logu jednorázový odkaz na nastavení:",
           {"code": "dk_setup"},
-          "Otevřete odkaz v prohlížeči ve vaší LAN (prohlížeč varuje kvůli certifikátu, to je v pořádku, viz další krok). Zadejte URL Home Assistantu, jak ho vidí tento server, například <code>http://192.168.1.10:8123</code>, a token z předchozího kroku.",
-          "xomtra spojení před uložením ověří a token uloží zašifrovaný ve své databázi, ne do souboru. Odkaz pak přestane platit a historie z Home Assistantu se načítá na pozadí. URL nebo token můžete později změnit v admin stránce na <b>Přehledu</b>."
+          "Otevřete odkaz v prohlížeči ve vaší LAN (prohlížeč varuje kvůli certifikátu, to je v pořádku, viz další krok). Zadejte adresu Home Assistantu, jak ji vidí tento server, například <code>http://192.168.1.10:8123</code>, a token z předchozího kroku.",
+          "xomtra spojení před uložením ověří a token uloží zašifrovaný ve své databázi, ne do souboru. Odkaz pak přestane platit a historie z Home Assistantu se načítá na pozadí. Adresu nebo token můžete později změnit v administraci na stránce <b>Přehled</b>."
         ]
       },
       {
         "h": "Důvěřujte certifikátu serveru",
         "b": [
-          "Caddy vystaví certifikát pro váš server z vlastní lokální certifikační autority. Jednou si ji stáhněte z <code>https://&lt;server&gt;/xomtra-ca.crt</code> (prohlížeč poprvé varuje, to je v pořádku) a porovnejte její otisk se serverem:",
+          "Caddy vystaví certifikát pro váš server z vlastní místní certifikační autority. Jednou si stáhněte její certifikát z <code>https://&lt;server&gt;/xomtra-ca.crt</code> (prohlížeč poprvé varuje, to je v pořádku) a porovnejte jeho otisk s otiskem na serveru:",
           {"code": "dk_ca"},
-          "Naimportujte ji do úložiště důvěryhodných certifikátů počítače, nebo soubor dejte jen klientům, kteří ho potřebují."
+          "Naimportujte ho do úložiště důvěryhodných certifikátů počítače, nebo soubor dejte jen klientům, kteří ho potřebují."
         ]
       },
       {
         "h": "Vystavte token a připojte Claude",
         "b": [
           "Otevřete <code>https://&lt;server&gt;/admin/</code>, přihlaste se jako administrátor Home Assistantu a přejděte na <b>Tokeny</b>. Vystavte jeden token pro každého člověka a zařízení (pro většinu lidí <code>xomtra.Reader</code>); zobrazí se <b>jen jednou</b>.",
-          "<b>Claude Desktop:</b> na stránce <b>Připojení klientů</b> stáhněte <code>xomtra.mcpb</code>, otevřete ho, vložte token a pokud certifikát není v úložišti důvěryhodných certifikátů, vyberte <code>xomtra-ca.crt</code>.",
+          "<b>Claude Desktop:</b> na stránce <b>Připojení klientů</b> stáhněte <code>xomtra.mcpb</code>, otevřete ho, vložte token, a pokud certifikát není v úložišti důvěryhodných certifikátů, vyberte <code>xomtra-ca.crt</code>.",
           "<b>Claude Code</b> (pokud certifikát není v úložišti důvěryhodných certifikátů, spouštějte Claude Code s <code>NODE_EXTRA_CA_CERTS=/cesta/k/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
-          {"note": "Claude na webu a v mobilních aplikacích se připojuje ze serverů Anthropicu a do vaší LAN nedosáhne. Pro něj má xomtra režim veřejného přístupu; viz dokumentace na GitHubu."}
+          {"note": "Claude na webu a v mobilních aplikacích se připojuje ze serverů Anthropicu a do vaší LAN nedosáhne. Pro něj může xomtra běžet na stroji s veřejnou adresou https://, kde se přihlásíte účtem Home Assistantu s dvoufázovým ověřením; viz dokumentace na GitHubu."}
+        ]
+      },
+      {
+        "h": "Zvolte, jak xomtra odpovídá",
+        "b": [
+          "Na stránce administrace <b>Odpovědi</b> zvolíte mantinely pro odpovědi vašeho asistenta. Sada <b>Výchozí</b> nejdřív hledá relevantní data, začíná odpovědí, kterou pak doloží grafem nebo tabulkou, a mluví přátelským tónem. <b>Věcná</b> odpovídá co nejstručněji a kteroukoli sadu můžete zkopírovat a napsat si vlastní. Nad každou sadou vždy platí pevné jádro: jen hodnoty načtené z xomtry, žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se nezeptáte, a žádné vtipy o haváriích a ohrožení života a zdraví. Změna platí do 30 sekund, bez restartu."
         ]
       },
       {

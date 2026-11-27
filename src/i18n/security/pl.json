@@ -2,7 +2,7 @@
   "nav": "Bezpieczeństwo",
   "crumb": "Bezpieczeństwo",
   "title": "Jak xomtra chroni Twój dom",
-  "desc": "xomtra tylko czyta Home Assistant, wpuszcza tylko osoby i urządzenia, na które pozwolisz, i trzyma historię na Twoim komputerze. Jak robi to kod i co jest jeszcze przygotowywane.",
+  "desc": "xomtra tylko czyta Home Assistant, wpuszcza tylko osoby i urządzenia, na które pozwolisz, i trzyma historię na Twoim komputerze. Jak robi to kod.",
   "lead": "Historia Home Assistant pokazuje, kiedy ktoś jest w domu i jak żyje. xomtra tak ją traktuje: tylko czyta, każdemu daje dokładnie taki dostęp, jaki wybierzesz, i trzyma dane na Twoim własnym komputerze. Wszystko poniżej jest open source, więc nie musisz wierzyć nam na słowo.",
   "facts": [
     ["Czyta", "Home Assistant, niczego nie zmienia"],
@@ -24,6 +24,8 @@
       "h": "Tylko ci, których wpuścisz",
       "b": [
         "W sieci domowej każda osoba i każde urządzenie dostaje osobisty token ze strony administracji. Jest pokazywany raz; xomtra przechowuje tylko jego odcisk, nie sam token. Każdy token ma właściciela, rolę i opcjonalnie datę ważności i można go w każdej chwili odwołać.",
+        "Z internetu logujesz się kontem Home Assistant; Microsoft Entra ID jest opcją. Domyślnie mogą się łączyć tylko administratorzy Home Assistant i tylko z uwierzytelnianiem dwuskładnikowym. Każdy inny wejdzie dopiero wtedy, gdy administrator przyzna mu rolę na stronie administracji <b>Dostęp</b>.",
+        "Zaraz po zalogowaniu xomtra odwołuje otrzymany token Home Assistant i prowadzi własną sesję o stałej ważności. Strona <b>Dostęp</b> pokazuje wszystkich podłączonych klientów, a <b>Rozłącz</b> kończy dostęp w ciągu minuty.",
         "Role decydują, co zobaczy AI. Czytelnik nigdy nie widzi osób, lokalizacji, kamer, zamków, alarmów ani wolnego tekstu atrybutów; są one odfiltrowywane już w bazie danych, zanim powstanie jakakolwiek odpowiedź."
       ]
     },
@@ -51,7 +53,7 @@
           "ul": [
             "<b>Dodatek do Home Assistant:</b> port MCP jest dla klientów w sieci lokalnej (Claude Desktop, Claude Code i inne). To nieszyfrowane HTTP, więc używaj go tylko w sieci, której ufasz; nie jest przeznaczony do otwierania na internet.",
             "<b>Docker:</b> HTTPS w sieci domowej z własnym lokalnym urzędem certyfikacji xomtry.",
-            "<b>Dostęp z internetu</b> (dla Claude.ai): xomtra stoi za Caddy z certyfikatem Let's Encrypt. Z dowolnego miejsca dostępne są tylko strony logowania; interfejsy danych odpowiadają tylko na opublikowane adresy Claude. Logujesz się przez Microsoft Entra ID lub kontem Home Assistant."
+            "<b>Dostęp z internetu</b> (dla Claude.ai): xomtra stoi za Caddy z certyfikatem Let's Encrypt. Z dowolnego miejsca dostępne są tylko strony logowania; interfejsy danych odpowiadają tylko na opublikowane adresy Claude. Logujesz się kontem Home Assistant albo, jeśli wybierzesz, przez Microsoft Entra ID."
           ]
         }
       ]
@@ -69,22 +71,7 @@
       "h": "Twoje dane i Twoja AI",
       "b": [
         "Historia zostaje na komputerze, na którym działa xomtra, a sama xomtra nigdzie jej nie wysyła. To, co Twój klient AI pobierze, aby Ci odpowiedzieć, trafia do jego dostawcy na Twoim własnym koncie i według jego warunków. Co może pobrać, decydują role i etykiety.",
-        "xomtra mówi też AI, jak odpowiadać: wyniki to hipotezy i żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że o to zapytasz. To prowadzi model, ale nie jest granicą bezpieczeństwa."
-      ]
-    },
-    {
-      "id": "next",
-      "h": "W przygotowaniu",
-      "b": [
-        { "note": "Jeszcze nie w aktualnym wydaniu." },
-        {
-          "ul": [
-            "Logowanie kontem Home Assistant jako domyślne dla dostępu z internetu; Entra ID pozostaje opcją.",
-            "Konektor odwołuje token Home Assistant zaraz po zalogowaniu, tak jak już dziś robi to strona administracji, i prowadzi własną sesję o stałej ważności.",
-            "Lista podłączonych klientów na stronie administracji z przyciskiem Odłącz.",
-            "Domyślnie mogą się łączyć tylko administratorzy Home Assistant, z obowiązkowym uwierzytelnianiem dwuskładnikowym."
-          ]
-        }
+        "xomtra daje też AI zasady odpowiedzi. Zawsze obowiązuje stały rdzeń: tylko wartości pobrane z xomtry, żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że o to zapytasz, żadnych żartów o awariach i zagrożeniu życia i zdrowia oraz nic dyskryminującego, politycznego ani religijnego. Do tego dochodzi zestaw wskazówek do odpowiedzi, który wybierzesz na stronie administracji <b>Odpowiedzi</b>. Zestawy są zapisane na Twoim komputerze, zmieniać je mogą tylko administratorzy, a z xomtra.com nie przychodzi żaden tekst dla modelu. Zasady prowadzą model, ale nie są granicą bezpieczeństwa."
       ]
     }
   ],

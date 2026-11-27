@@ -132,7 +132,7 @@
       "h": "The surprising first, a summary every Monday",
       "b": [
         "Every finding gets a strength, a weight of evidence and a category from a public rulebook: fault, savings, automation or behaviour. Trivial findings, such as the known link between solar power and sunshine, stay hidden.",
-        "On Monday morning xomtra saves an overview of the past week, so you can ask what is new, what is gone and what was unusual. Your AI assistant reads the findings over MCP with the same read only tools as any other question and translates them into plain language."
+        "On Monday morning xomtra saves an overview of the past week, so you can ask what is new, what is gone and what was unusual. Your AI assistant reads the findings over MCP with the same read only tools as any other question and translates them into plain language. Its answers follow xomtra's guardrails: a fixed core that, for example, draws no conclusions about a person's presence or health unless you ask, and the set of answer guidelines you choose on the admin page."
       ]
     },
     {

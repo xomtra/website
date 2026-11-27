@@ -2,7 +2,7 @@
   "nav": "Beveiliging",
   "crumb": "Beveiliging",
   "title": "Hoe xomtra je huis beschermt",
-  "desc": "xomtra leest Home Assistant alleen, laat alleen mensen en apparaten toe die jij toestaat en houdt de geschiedenis op je eigen machine. Hoe de code dat doet en wat nog in voorbereiding is.",
+  "desc": "xomtra leest Home Assistant alleen, laat alleen mensen en apparaten toe die jij toestaat en houdt de geschiedenis op je eigen machine. Hoe de code dat doet.",
   "lead": "De geschiedenis van Home Assistant laat zien wanneer mensen thuis zijn en hoe ze leven. xomtra gaat daar ook zo mee om: het leest alleen, geeft iedereen precies de toegang die jij kiest en houdt de gegevens op je eigen machine. Alles hieronder is open source, dus je hoeft ons niet op ons woord te geloven.",
   "facts": [
     ["Leest", "Home Assistant, verandert niets"],
@@ -24,6 +24,8 @@
       "h": "Alleen wie jij binnenlaat",
       "b": [
         "In je thuisnetwerk krijgt elke persoon en elk apparaat een persoonlijk token van de beheerpagina. Het wordt één keer getoond; xomtra bewaart alleen een vingerafdruk ervan, niet het token zelf. Elk token heeft een eigenaar, een rol en optioneel een vervaldatum, en je kunt het altijd intrekken.",
+        "Vanaf internet meld je je aan met je Home Assistant-account; Microsoft Entra ID is een optie. Standaard mogen alleen Home Assistant-beheerders verbinden, en alleen met tweestapsverificatie. Anderen komen pas binnen als een beheerder ze een rol geeft op de beheerpagina <b>Toegang</b>.",
+        "Direct na het aanmelden trekt xomtra het ontvangen Home Assistant-token in en houdt het een eigen sessie met een vaste looptijd bij. De pagina <b>Toegang</b> toont alle verbonden clients, en <b>Ontkoppelen</b> beëindigt de toegang binnen een minuut.",
         "Rollen bepalen wat de AI ziet. Een lezer ziet nooit personen, locaties, camera's, sloten, alarmen of de vrije tekst van attributen; die worden al in de database weggefilterd, voordat er een antwoord ontstaat."
       ]
     },
@@ -51,7 +53,7 @@
           "ul": [
             "<b>Home Assistant-add-on:</b> de MCP-poort is voor clients in je lokale netwerk (Claude Desktop, Claude Code en andere). Het is onversleuteld HTTP, gebruik hem dus alleen in een netwerk dat je vertrouwt; hij is niet bedoeld om naar internet open te zetten.",
             "<b>Docker:</b> HTTPS in je thuisnetwerk met xomtra's eigen lokale certificaatautoriteit.",
-            "<b>Toegang vanaf internet</b> (voor Claude.ai): xomtra staat achter Caddy met een Let's Encrypt-certificaat. Overal bereikbaar zijn alleen de aanmeldpagina's; de data-endpoints antwoorden alleen op de gepubliceerde adressen van Claude. Je meldt je aan met Microsoft Entra ID of een Home Assistant-account."
+            "<b>Toegang vanaf internet</b> (voor Claude.ai): xomtra staat achter Caddy met een Let's Encrypt-certificaat. Overal bereikbaar zijn alleen de aanmeldpagina's; de data-endpoints antwoorden alleen op de gepubliceerde adressen van Claude. Je meldt je aan met een Home Assistant-account, of met Microsoft Entra ID als je dat kiest."
           ]
         }
       ]
@@ -69,22 +71,7 @@
       "h": "Jouw gegevens en jouw AI",
       "b": [
         "De geschiedenis blijft op de machine waar xomtra draait, en xomtra zelf stuurt die nergens heen. Wat je AI-client ophaalt om je te antwoorden, gaat naar de aanbieder ervan, onder je eigen account en volgens diens voorwaarden. Rollen en labels bepalen wat hij kan ophalen.",
-        "xomtra vertelt de AI ook hoe te antwoorden: bevindingen zijn hypotheses, en geen conclusies over iemands aanwezigheid, slaap of gezondheid, tenzij je ernaar vraagt. Dat stuurt het model, het is geen beveiligingsgrens."
-      ]
-    },
-    {
-      "id": "next",
-      "h": "In voorbereiding",
-      "b": [
-        { "note": "Nog niet in de huidige release." },
-        {
-          "ul": [
-            "Aanmelden met een Home Assistant-account als standaard voor toegang vanaf internet; Entra ID blijft een optie.",
-            "De connector trekt het Home Assistant-token direct na het aanmelden in, zoals de beheerpagina nu al doet, en houdt een eigen sessie met een vaste looptijd bij.",
-            "Een lijst van verbonden clients op de beheerpagina met een knop Ontkoppelen.",
-            "Standaard mogen alleen Home Assistant-beheerders verbinden, met verplichte tweestapsverificatie."
-          ]
-        }
+        "xomtra geeft de AI ook vangrails voor zijn antwoorden. De vaste kern geldt altijd: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, geen grappen over ongelukken of gevaar voor leven en gezondheid, en niets discriminerends, politieks of religieus. Daarbovenop komt de set antwoordrichtlijnen die je kiest op de beheerpagina <b>Antwoorden</b>. De sets staan op je eigen machine, alleen beheerders kunnen ze wijzigen, en er komt geen tekst voor het model van xomtra.com. De vangrails sturen het model; ze zijn geen beveiligingsgrens."
       ]
     }
   ],

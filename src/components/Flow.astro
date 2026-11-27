@@ -10,7 +10,7 @@ const { lang, vm } = Astro.props;
 const f: Flow = FLOW[lang];
 const id = `${vm ? "v" : "a"}-${lang}`;
 type Logo = "chat" | "xomtra" | "ha";
-type B = { x: number; y: number; w: number; h: number; t: string[]; us?: boolean; mono?: string; logo: Logo };
+type B = { x: number; y: number; w: number; h: number; t: string[]; us?: boolean; mono?: string; logo: Logo; g?: boolean };
 // Home Assistant logo as published (simple-icons 16.38.1): official colour, unaltered shape.
 // The agent is any MCP client, so it gets a neutral chat icon.
 const HA = "M22.939 10.627 13.061.749a1.505 1.505 0 0 0-2.121 0l-9.879 9.878C.478 11.21 0 12.363 0 13.187v9c0 .826.675 1.5 1.5 1.5h9.227l-4.063-4.062a2.034 2.034 0 0 1-.664.113c-1.13 0-2.05-.92-2.05-2.05s.92-2.05 2.05-2.05 2.05.92 2.05 2.05c0 .233-.041.456-.113.665l3.163 3.163V9.928a2.05 2.05 0 0 1-1.15-1.84c0-1.13.92-2.05 2.05-2.05s2.05.92 2.05 2.05a2.05 2.05 0 0 1-1.15 1.84v8.127l3.146-3.146A2.051 2.051 0 0 1 18 12.239c1.13 0 2.05.92 2.05 2.05s-.92 2.05-2.05 2.05c-.25 0-.488-.047-.709-.13L12.9 20.602v3.088h9.6c.825 0 1.5-.675 1.5-1.5v-9c0-.825-.477-1.977-1.061-2.561z";
@@ -18,17 +18,17 @@ const a3 = vm ? f.a3vm : f.a3;
 // wide (990 x 232)
 const W: B[] = [
   { x: 4, y: 96, w: 250, h: 150, t: f.agent, logo: "chat" },
-  { x: 400, y: 96, w: 260, h: 150, t: f.x, us: true, logo: "xomtra" },
+  { x: 400, y: 96, w: 260, h: 150, t: f.x, us: true, logo: "xomtra", g: true },
   { x: 740, y: 96, w: 240, h: 150, t: f.ha, mono: f.ro, logo: "ha" },
 ];
 const wFrame = vm ? { x: 382, y: 50, w: 290, h: 212, l: f.fv } : { x: 382, y: 50, w: 604, h: 212, l: f.fa };
 // tall (330 x 640)
 const TB: B[] = [
   { x: 20, y: 0, w: 290, h: 130, t: f.agent, logo: "chat" },
-  { x: 20, y: 250, w: 290, h: 140, t: f.x, us: true, logo: "xomtra" },
+  { x: 20, y: 250, w: 290, h: 150, t: f.x, us: true, logo: "xomtra", g: true },
   { x: 20, y: 500, w: 290, h: 130, t: f.ha, mono: f.ro, logo: "ha" },
 ];
-const tFrame = vm ? { x: 6, y: 212, w: 318, h: 202, l: f.fv } : { x: 6, y: 212, w: 318, h: 456, l: f.fa };
+const tFrame = vm ? { x: 6, y: 212, w: 318, h: 222, l: f.fv } : { x: 6, y: 212, w: 318, h: 456, l: f.fa };
 ---
 <figure class="flow">
   <figcaption class="cap">{vm ? f.cv : f.ca}</figcaption>
@@ -56,14 +56,22 @@ const tFrame = vm ? { x: 6, y: 212, w: 318, h: 202, l: f.fv } : { x: 6, y: 212, 
           )}
           {b.t.slice(1).map((l, i) => <text class="s" x={b.x + 18} y={b.y + 56 + i * 18}>{l}</text>)}
           {b.mono && <text class="m" x={b.x + 18} y={b.y + b.h - 16}>{b.mono}</text>}
+          {b.g && (
+            <g class="gr">
+              <rect class="chip" x={b.x + 12} y={b.y + b.h - 60} width={b.w - 24} height="48" rx="8" />
+              <path class="sh" transform={`translate(${b.x + 22} ${b.y + b.h - 52})`} d="M7 .8 12.6 3v4.2c0 3.3-2.3 5.6-5.6 6.6C3.7 12.8 1.4 10.5 1.4 7.2V3z" />
+              <text class="gt" x={b.x + 42} y={b.y + b.h - 41}>{f.g[0]}</text>
+              <text class="gs" x={b.x + 22} y={b.y + b.h - 22}>{f.g[1]}</text>
+            </g>
+          )}
         </g>
       ))}
       {v.p === "w" ? (
         <g>
           <path class="ln req" marker-end={`url(#wb-${id})`} d="M258 144H394" />
           <text class="a" x="266" y="122">{f.a1[0]}</text><text class="a" x="266" y="136">{f.a1[1]}</text>
-          <path class="ln" marker-end={`url(#wa-${id})`} d="M396 198H262" />
-          <text class="a" x="266" y="222">{f.a2[0]}</text><text class="a" x="266" y="236">{f.a2[1]}</text>
+          <path class="ln" marker-end={`url(#wa-${id})`} d="M396 210H262" />
+          <text class="a" x="266" y="232">{f.a2[0]}</text><text class="a" x="266" y="246">{f.a2[1]}</text><text class="a ga" x="266" y="260">+ {f.g[0]}</text>
           <path class="ln ro" marker-end={`url(#wa-${id})`} d="M736 171H664" />
           <text class="a" x="678" y="158">{a3[0]}</text><text class="a" x="678" y="192">{a3[1]}</text>
         </g>
@@ -72,9 +80,9 @@ const tFrame = vm ? { x: 6, y: 212, w: 318, h: 202, l: f.fv } : { x: 6, y: 212, 
           <path class="ln req" marker-end={`url(#tb-${id})`} d="M110 134V244" />
           <text class="a" x="120" y="170">{f.a1[0]}</text><text class="a" x="120" y="185">{f.a1[1]}</text>
           <path class="ln" marker-end={`url(#ta-${id})`} d="M230 246V138" />
-          <text class="a" x="238" y="170">{f.a2[0]}</text>
-          <path class="ln ro" marker-end={`url(#ta-${id})`} d={vm ? "M165 496V420" : "M165 496V396"} />
-          <text class="a" x="175" y={vm ? 452 : 450}>{a3[0]}</text><text class="a" x="175" y="470">{a3[1]}</text>
+          <text class="a" x="238" y="170">{f.a2[0]}</text><text class="a ga" x="238" y="185">+ {f.g[0]}</text>
+          <path class="ln ro" marker-end={`url(#ta-${id})`} d={vm ? "M165 496V440" : "M165 496V406"} />
+          <text class="a" x="175" y={vm ? 464 : 448}>{a3[0]}</text><text class="a" x="175" y={vm ? 480 : 464}>{a3[1]}</text>
         </g>
       )}
     </svg>

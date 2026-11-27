@@ -14,7 +14,7 @@
    "steps": [
     [
      "Install",
-     "Add-on, Proxmox, VMware or Docker. No domain, no port forwarding, no cloud account."
+     "Add-on or Docker; Proxmox and VMware images are coming. No domain, no port forwarding, no cloud account."
     ],
     [
      "Connect",
@@ -41,7 +41,7 @@
     [
      "years",
      "Years of history",
-     "States and statistics kept for months or years in compressed Parquet files, without loading the Home Assistant database."
+     "States and statistics kept for months or years in compressed Parquet files, without adding load to the Home Assistant database."
     ],
     [
      "daily",
@@ -152,7 +152,7 @@
   "de": {
    "pre_eyebrow": "Öffentliche Beta bald verfügbar · für Home Assistant",
    "pre_cta": "Kontaktiere uns",
-   "pre_inst": "Das Home Assistant Add-on und Docker Compose funktionieren schon; Images für Proxmox und VMware folgen demnächst. Fragen? Schreib an support@xomtra.com.",
+   "pre_inst": "Das Home-Assistant-Add-on und Docker Compose funktionieren schon; Images für Proxmox und VMware folgen demnächst. Fragen? Schreib an support@xomtra.com.",
    "nav": [
     "Funktionsweise",
     "Installation",
@@ -163,7 +163,7 @@
    "steps": [
     [
      "Installieren",
-     "Add-on, Proxmox, VMware oder Docker. Keine Domain, keine Portfreigabe, kein Cloud-Konto."
+     "Add-on oder Docker; Images für Proxmox und VMware folgen. Keine Domain, keine Portfreigabe, kein Cloud-Konto."
     ],
     [
      "Verbinden",
@@ -199,7 +199,7 @@
     ],
     [
      "liest nur",
-     "Sicher by Design",
+     "Von Grund auf sicher",
      "xomtra liest nur Daten und ändert nichts in Home Assistant. Der KI-Assistent bekommt keinen Zugriff auf die Steuerung deines Zuhauses. Rollen für Familienmitglieder, jede Abfrage wird protokolliert."
     ]
    ],
@@ -276,7 +276,7 @@
     ],
     [
      "Brauche ich Claude?",
-     "Nein, aber es passt am besten. Jeder MCP-Client auf einem Rechner in deinem Netz funktioniert mit jeder Installation: Claude Desktop, Claude Code, VS Code oder Cursor. Claude.ai braucht xomtra auf einer eigenen virtuellen Maschine mit öffentlicher https://-Adresse. ChatGPT und andere Cloud-Assistenten werden noch nicht unterstützt. Dein KI-Abo gehört dir, xomtra bezahlt oder sieht es nicht."
+     "Nein, aber es passt am besten. Jeder MCP-Client auf einem Rechner in deinem Netz funktioniert mit jeder Installation: Claude Desktop, Claude Code, VS Code oder Cursor. Claude.ai braucht xomtra auf einer eigenen virtuellen Maschine mit öffentlicher https://-Adresse. ChatGPT und andere Cloud-Assistenten werden noch nicht unterstützt. Dein KI-Abo gehört dir; xomtra bezahlt es nicht und sieht es nicht."
     ],
     [
      "Verlassen meine Daten das Haus?",
@@ -307,12 +307,12 @@
     "Instalace",
     "Otázky"
    ],
-   "st_h": "Spuštěno ve třech krocích",
+   "st_h": "Spuštění ve třech krocích",
    "st_s": "Od stažení k první odpovědi obvykle do 15 minut.",
    "steps": [
     [
      "Instalace",
-     "Doplněk, Proxmox, VMware nebo Docker. Bez domény, bez přesměrování portů, bez cloudového účtu."
+     "Doplněk nebo Docker; obrazy pro Proxmox a VMware připravujeme. Bez domény, bez přesměrování portů, bez cloudového účtu."
     ],
     [
      "Připojení",
@@ -334,7 +334,7 @@
    "you": "Vy",
    "hm": "Claude s xomtrou",
    "f_h": "Co xomtra přidává k Home Assistantu",
-   "f_s": "Home Assistant ukazuje přítomnost. xomtra z historie dělá odpovědi.",
+   "f_s": "Home Assistant ukazuje, co se děje teď. xomtra z historie dělá odpovědi.",
    "feats": [
     [
      "roky",
@@ -425,7 +425,7 @@
     ],
     [
      "Potřebuji Claude?",
-     "Ne, ale sedí mu nejlépe. S každou instalací funguje jakýkoli MCP klient na počítači ve vaší síti: Claude Desktop, Claude Code, VS Code nebo Cursor. Claude.ai potřebuje xomtru na samostatném virtuálním stroji s veřejnou adresou https://. ChatGPT a další cloudoví asistenti zatím podporovaní nejsou. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
+     "Ne, ale hodí se k němu nejlépe. S každou instalací funguje jakýkoli MCP klient na počítači ve vaší síti: Claude Desktop, Claude Code, VS Code nebo Cursor. Claude.ai potřebuje xomtru na samostatném virtuálním stroji s veřejnou adresou https://. ChatGPT a další cloudoví asistenti zatím podporovaní nejsou. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
     ],
     [
      "Odcházejí moje data z domu?",
@@ -445,7 +445,7 @@
     ]
    ],
    "foot": "xomtra je nezávislý open source projekt bez vazby na Anthropic, Open Home Foundation nebo Nabu Casa. Claude a Home Assistant jsou ochranné známky svých vlastníků.",
-   "support": "Podpořit xomtra"
+   "support": "Podpořit xomtru"
   },
   "pl": {
    "pre_eyebrow": "Publiczna beta już wkrótce · dla Home Assistant",
@@ -461,7 +461,7 @@
    "steps": [
     [
      "Instalacja",
-     "Dodatek, Proxmox, VMware lub Docker. Bez domeny, bez przekierowania portów, bez konta w chmurze."
+     "Dodatek lub Docker; obrazy dla Proxmox i VMware są w przygotowaniu. Bez domeny, bez przekierowania portów, bez konta w chmurze."
     ],
     [
      "Połączenie",
@@ -610,7 +610,7 @@
    "steps": [
     [
      "Installeren",
-     "Add-on, Proxmox, VMware of Docker. Geen domein, geen port forwarding, geen cloudaccount."
+     "Add-on of Docker; images voor Proxmox en VMware volgen. Geen domein, geen port forwarding, geen cloudaccount."
     ],
     [
      "Verbinden",
@@ -771,7 +771,7 @@
  "FLOW": {
   "en": {
    "h": "How xomtra handles your question",
-   "s": "The agent asks only xomtra, never Home Assistant directly. xomtra only reads Home Assistant and switches nothing. The model sees only the answers it asked for.",
+   "s": "The agent asks only xomtra, never Home Assistant directly. xomtra only reads Home Assistant and switches nothing. The model sees only the answers it asked for. The answers follow xomtra's guardrails: a fixed core and the set you choose on the admin page.",
    "agent": [
     "LLM agent",
     "Claude Desktop, Claude Code",
@@ -788,6 +788,7 @@
     "and statistics"
    ],
    "ro": "read only",
+   "g": ["guardrails", "fixed core + set from the admin page"],
    "a1": [
     "1 request",
     "+ token"
@@ -811,7 +812,7 @@
   },
   "cs": {
    "h": "Jak xomtra zpracuje váš dotaz",
-   "s": "Agent se ptá jen xomtry, nikdy přímo Home Assistantu. xomtra Home Assistant jen čte a nic nepřepíná. Model vidí jen odpovědi, o které požádal.",
+   "s": "Agent se ptá jen xomtry, nikdy přímo Home Assistantu. xomtra Home Assistant jen čte a nic nepřepíná. Model vidí jen odpovědi, o které požádal. Odpovědi se řídí mantinely xomtry: pevným jádrem a sadou, kterou zvolíte v administraci.",
    "agent": [
     "LLM agent",
     "Claude Desktop, Claude Code",
@@ -828,6 +829,7 @@
     "a statistiky"
    ],
    "ro": "read only",
+   "g": ["mantinely", "pevné jádro + sada z administrace"],
    "a1": [
     "1 dotaz",
     "+ token"
@@ -850,8 +852,8 @@
    "cv": "2 · Virtuální stroj nebo Docker"
   },
   "de": {
-   "h": "Wie xomtra Ihre Frage verarbeitet",
-   "s": "Der Agent fragt nur xomtra, nie direkt Home Assistant. xomtra liest Home Assistant nur und schaltet nichts. Das Modell sieht nur die Antworten, die es angefordert hat.",
+   "h": "Wie xomtra deine Frage verarbeitet",
+   "s": "Der Agent fragt nur xomtra, nie direkt Home Assistant. xomtra liest Home Assistant nur und schaltet nichts. Das Modell sieht nur die Antworten, die es angefordert hat. Die Antworten folgen den Leitplanken von xomtra: einem festen Kern und dem Set, das du auf der Admin-Seite wählst.",
    "agent": [
     "LLM-Agent",
     "Claude Desktop, Claude Code",
@@ -868,6 +870,7 @@
     "und Statistiken"
    ],
    "ro": "nur lesend",
+   "g": ["Leitplanken", "fester Kern + Set aus der Admin-Seite"],
    "a1": [
     "1 Anfrage",
     "+ Token"
@@ -891,7 +894,7 @@
   },
   "pl": {
    "h": "Jak xomtra przetwarza Twoje pytanie",
-   "s": "Agent pyta tylko xomtrę, nigdy bezpośrednio Home Assistant. xomtra tylko czyta Home Assistant i niczego nie przełącza. Model widzi tylko odpowiedzi, o które poprosił.",
+   "s": "Agent pyta tylko xomtrę, nigdy bezpośrednio Home Assistant. xomtra tylko czyta Home Assistant i niczego nie przełącza. Model widzi tylko odpowiedzi, o które poprosił. Odpowiedzi podlegają zasadom xomtry: stałemu rdzeniowi i zestawowi, który wybierzesz na stronie administracji.",
    "agent": [
     "Agent LLM",
     "Claude Desktop, Claude Code",
@@ -908,6 +911,7 @@
     "i statystyki"
    ],
    "ro": "tylko odczyt",
+   "g": ["zasady", "stały rdzeń + zestaw z administracji"],
    "a1": [
     "1 zapytanie",
     "+ token"
@@ -931,7 +935,7 @@
   },
   "nl": {
    "h": "Hoe xomtra je vraag verwerkt",
-   "s": "De agent vraagt alleen xomtra, nooit rechtstreeks Home Assistant. xomtra leest Home Assistant alleen en schakelt niets. Het model ziet alleen de antwoorden waar het om vroeg.",
+   "s": "De agent vraagt alleen xomtra, nooit rechtstreeks Home Assistant. xomtra leest Home Assistant alleen en schakelt niets. Het model ziet alleen de antwoorden waar het om vroeg. De antwoorden volgen de vangrails van xomtra: een vaste kern en de set die je op de beheerpagina kiest.",
    "agent": [
     "LLM-agent",
     "Claude Desktop, Claude Code",
@@ -948,6 +952,7 @@
     "en statistieken"
    ],
    "ro": "alleen lezen",
+   "g": ["vangrails", "vaste kern + set uit de beheerpagina"],
    "a1": [
     "1 vraag",
     "+ token"

@@ -2,7 +2,7 @@
   "nav": "Metoda",
   "crumb": "Metoda",
   "title": "Jak xomtra czyta Twój dom",
-  "desc": "Statystyka zaprojektowana dla domów: jak xomtra zamienia historię Home Assistanta w wnioski, którym można ufać, co testuje przed każdym wydaniem i gdzie są jej granice.",
+  "desc": "Statystyka zaprojektowana dla domów: jak xomtra zamienia historię Home Assistanta we wnioski, którym można ufać, co testuje przed każdym wydaniem i gdzie są jej granice.",
   "lead": "Każdej nocy xomtra przegląda historię Twojego domu i ustala, co jest ze sobą powiązane, co było nietypowe i co zmieniło się na stałe. Nie stałymi progami dla każdego czujnika, lecz statystyką, która wie, ile przypadkowych zbieżności powstaje w codziennym życiu domu.",
   "facts": [
     [
@@ -132,7 +132,7 @@
       "h": "Najpierw to, co zaskakuje, w poniedziałek podsumowanie",
       "b": [
         "Każdy wniosek dostaje siłę, wagę dowodu i kategorię z publicznego zbioru reguł: usterka, oszczędność, automatyzacja albo zachowanie. Wnioski trywialne, jak znane powiązanie produkcji fotowoltaiki z nasłonecznieniem, pozostają ukryte.",
-        "W poniedziałek rano xomtra zapisuje przegląd minionego tygodnia, więc możesz zapytać, co nowego, co zniknęło i co było nietypowe. Twój asystent AI czyta wnioski przez MCP tymi samymi narzędziami read only co każde inne pytanie i przekłada je na zwykły język."
+        "W poniedziałek rano xomtra zapisuje przegląd minionego tygodnia, więc możesz zapytać, co nowego, co zniknęło i co było nietypowe. Twój asystent AI czyta wnioski przez MCP tymi samymi narzędziami read only co każde inne pytanie i przekłada je na zwykły język. Jego odpowiedzi podlegają zasadom xomtry: stałemu rdzeniowi, który na przykład nie wyciąga wniosków o obecności czy zdrowiu konkretnej osoby, chyba że zapytasz, oraz zestawowi wskazówek do odpowiedzi, który wybierzesz na stronie administracji."
       ]
     },
     {

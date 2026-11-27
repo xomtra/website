@@ -123,6 +123,11 @@ figure.flow .tall{display:none;max-width:360px;margin:0 auto}
 .flow .ln.req{stroke:var(--accent)}
 .flow .ln.ro{stroke-dasharray:5 4}
 .flow .hd{fill:var(--muted)} .flow .hd.req{fill:var(--accent)}
+.flow .chip{fill:var(--surface);stroke:var(--signal);stroke-opacity:.55;stroke-width:1.2}
+.flow .sh{fill:none;stroke:var(--signal);stroke-width:1.5;stroke-linejoin:round}
+.flow .gt{fill:var(--signal);font:600 11.5px var(--mono);letter-spacing:.02em}
+.flow .a.ga{fill:var(--signal)}
+.flow .gs{fill:var(--muted);font:400 11.5px var(--sans)}
 
 @media (prefers-reduced-motion:no-preference){
   .hero .art path{stroke-dasharray:1600;animation:draw 2.4s ease-out both}

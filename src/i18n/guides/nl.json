@@ -71,9 +71,15 @@
         ]
       },
       {
+        "h": "Kies hoe xomtra antwoordt",
+        "b": [
+          "Op de beheerpagina <b>Antwoorden</b> kies je de vangrails voor de antwoorden van je assistent. De set <b>Standaard</b> zoekt eerst de relevante gegevens, geeft eerst het antwoord en daarna het bewijs als grafiek of tabel, op een vriendelijke toon. <b>Beknopt</b> antwoordt zo kort mogelijk, en je kunt elke set dupliceren en een eigen set schrijven. Boven elke set geldt altijd een vaste kern: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, en geen grappen over ongelukken of gevaar voor leven en gezondheid. Een wijziging geldt binnen 30 seconden, zonder herstart."
+        ]
+      },
+      {
         "h": "Back-ups en updates",
         "b": [
-          "Home Assistant back-ups bevatten de tokens, instellingen en afgewezen bevindingen van xomtra, maar niet de lake met de geschiedenis (tientallen GB). Na een herstel start xomtra een nieuwe lake, laadt de geschiedenis opnieuw zo ver terug als Home Assistant die nog heeft en berekent de bevindingen opnieuw.",
+          "Home Assistant-back-ups bevatten de tokens, instellingen, antwoordsets en afgewezen bevindingen van xomtra, maar niet de lake met de geschiedenis (tientallen GB). Na een herstel start xomtra een nieuwe lake, laadt de geschiedenis opnieuw zo ver terug als Home Assistant die nog heeft en berekent de bevindingen opnieuw.",
           "Nieuwe versies verschijnen in Home Assistant als add-on-updates. Lees de release notes voor je bijwerkt: vóór versie 1.0 kan een minor release instellingen wijzigen."
         ]
       }
@@ -159,7 +165,13 @@
           "<b>Claude Desktop:</b> download op <b>Clients verbinden</b> <code>xomtra.mcpb</code>, open hem, plak het token en kies <code>xomtra-ca.crt</code> als het certificaat niet in je certificaatopslag staat.",
           "<b>Claude Code</b> (staat het certificaat niet in je certificaatopslag, start Claude Code dan met <code>NODE_EXTRA_CA_CERTS=/pad/naar/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
-          {"note": "Claude op het web en in de telefoonapps verbindt vanaf de servers van Anthropic en kan je LAN niet bereiken. Daarvoor heeft xomtra een publieke toegangsmodus; zie de documentatie op GitHub."}
+          {"note": "Claude op het web en in de telefoonapps verbindt vanaf de servers van Anthropic en kan je LAN niet bereiken. Daarvoor kan xomtra draaien op een machine met een openbaar https://-adres, waar je je aanmeldt met je Home Assistant-account en tweestapsverificatie; zie de documentatie op GitHub."}
+        ]
+      },
+      {
+        "h": "Kies hoe xomtra antwoordt",
+        "b": [
+          "Op de beheerpagina <b>Antwoorden</b> kies je de vangrails voor de antwoorden van je assistent. De set <b>Standaard</b> zoekt eerst de relevante gegevens, geeft eerst het antwoord en daarna het bewijs als grafiek of tabel, op een vriendelijke toon. <b>Beknopt</b> antwoordt zo kort mogelijk, en je kunt elke set dupliceren en een eigen set schrijven. Boven elke set geldt altijd een vaste kern: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, en geen grappen over ongelukken of gevaar voor leven en gezondheid. Een wijziging geldt binnen 30 seconden, zonder herstart."
         ]
       },
       {

@@ -13,7 +13,7 @@
         ["History", "Years of state history, limited only by the disk. Proxmox and VMware images are coming soon."],
         ["Hardware", "Your own Linux server, NAS or virtual machine with Docker."],
         ["In your network", "Like the add-on, with personal tokens, but over HTTPS with the server's own certificate."],
-        ["From anywhere", "claude.ai on the web, desktop and phone. It needs: <ul><li>your own domain with an A record pointing to your home (a fixed IP, or a dynamic one kept up to date with DDNS),</li><li>port 443 forwarded from the router to the server (port 80 stays closed),</li><li>a Let's Encrypt certificate, which the server issues and renews itself through a DNS challenge: you only provide an API token for your DNS zone at Cloudflare,</li><li>sign-in with your Home Assistant account or with Microsoft Entra ID.</li></ul>"]
+        ["From anywhere", "claude.ai on the web, desktop and phone. It needs: <ul><li>your own domain with an A record pointing to your home (a fixed IP, or a dynamic one kept up to date with DDNS),</li><li>port 443 forwarded from the router to the server (port 80 stays closed),</li><li>a Let's Encrypt certificate, which the server issues and renews itself through a DNS challenge: you only provide an API token for your DNS zone at Cloudflare,</li><li>sign-in with your Home Assistant account and two-factor authentication, or optionally with Microsoft Entra ID.</li></ul>"]
       ]}
     ]
   },
@@ -31,7 +31,7 @@
         ["Historie", "Roky historie stavů, omezené jen diskem. Obrazy pro Proxmox a VMware budou brzy."],
         ["Hardware", "Vlastní linuxový server, NAS nebo virtuální stroj s Dockerem."],
         ["V domácí síti", "Stejně jako doplněk, s osobními tokeny, ale přes HTTPS s vlastním certifikátem serveru."],
-        ["Odkudkoli", "Claude na webu, v počítači i v telefonu (claude.ai). Potřebujete: <ul><li>vlastní doménu s A záznamem na vaši domácnost (pevná IP, nebo dynamická udržovaná přes DDNS),</li><li>přesměrovaný port 443 z routeru na server (port 80 zůstává zavřený),</li><li>certifikát Let's Encrypt, který si server vystaví a obnovuje sám přes ověření v DNS: dodáte jen API token k DNS zóně u Cloudflare,</li><li>přihlášení účtem Home Assistantu nebo přes Microsoft Entra ID.</li></ul>"]
+        ["Odkudkoli", "Claude na webu, v počítači i v telefonu (claude.ai). Potřebujete: <ul><li>vlastní doménu s A záznamem na vaši domácnost (pevná IP, nebo dynamická udržovaná přes DDNS),</li><li>přesměrovaný port 443 z routeru na server (port 80 zůstává zavřený),</li><li>certifikát Let's Encrypt, který si server vystaví a obnovuje sám přes ověření v DNS: dodáte jen API token k DNS zóně u Cloudflare,</li><li>přihlášení účtem Home Assistantu s dvoufázovým ověřením, volitelně přes Microsoft Entra ID.</li></ul>"]
       ]}
     ]
   },
@@ -49,7 +49,7 @@
         ["Historie", "Jahre an Zustandshistorie, nur durch die Platte begrenzt. Images für Proxmox und VMware kommen bald."],
         ["Hardware", "Eigener Linux-Server, NAS oder virtuelle Maschine mit Docker."],
         ["Im Heimnetz", "Wie das Add-on, mit persönlichen Tokens, aber über HTTPS mit eigenem Zertifikat des Servers."],
-        ["Von überall", "claude.ai im Web, am Rechner und auf dem Handy. Dafür brauchst du: <ul><li>eine eigene Domain mit A-Eintrag auf deinen Anschluss (feste IP oder dynamische per DDNS),</li><li>Port 443 vom Router an den Server weitergeleitet (Port 80 bleibt zu),</li><li>ein Let's-Encrypt-Zertifikat, das der Server selbst über eine DNS-Prüfung ausstellt und erneuert: du lieferst nur ein API-Token für deine DNS-Zone bei Cloudflare,</li><li>Anmeldung mit deinem Home-Assistant-Konto oder über Microsoft Entra ID.</li></ul>"]
+        ["Von überall", "claude.ai im Web, am Rechner und auf dem Handy. Dafür brauchst du: <ul><li>eine eigene Domain mit A-Eintrag auf deinen Anschluss (feste IP oder dynamische per DDNS),</li><li>Port 443 vom Router an den Server weitergeleitet (Port 80 bleibt zu),</li><li>ein Let's-Encrypt-Zertifikat, das der Server selbst über eine DNS-Prüfung ausstellt und erneuert: du lieferst nur ein API-Token für deine DNS-Zone bei Cloudflare,</li><li>Anmeldung mit deinem Home-Assistant-Konto und Zwei-Faktor-Authentifizierung, optional über Microsoft Entra ID.</li></ul>"]
       ]}
     ]
   },
@@ -67,7 +67,7 @@
         ["Historia", "Lata historii stanów, ograniczone tylko dyskiem. Obrazy dla Proxmox i VMware wkrótce."],
         ["Sprzęt", "Własny serwer z Linuksem, NAS lub maszyna wirtualna z Dockerem."],
         ["W sieci domowej", "Jak dodatek, z osobistymi tokenami, ale przez HTTPS z własnym certyfikatem serwera."],
-        ["Z dowolnego miejsca", "claude.ai w przeglądarce, na komputerze i na telefonie. Potrzebujesz: <ul><li>własnej domeny z rekordem A wskazującym na Twój dom (stałe IP lub dynamiczne aktualizowane przez DDNS),</li><li>przekierowania portu 443 z routera na serwer (port 80 zostaje zamknięty),</li><li>certyfikatu Let's Encrypt, który serwer sam wystawia i odnawia przez weryfikację w DNS: dostarczasz tylko token API do strefy DNS w Cloudflare,</li><li>logowania kontem Home Assistant lub przez Microsoft Entra ID.</li></ul>"]
+        ["Z dowolnego miejsca", "claude.ai w przeglądarce, na komputerze i na telefonie. Potrzebujesz: <ul><li>własnej domeny z rekordem A wskazującym na Twój dom (stałe IP lub dynamiczne aktualizowane przez DDNS),</li><li>przekierowania portu 443 z routera na serwer (port 80 zostaje zamknięty),</li><li>certyfikatu Let's Encrypt, który serwer sam wystawia i odnawia przez weryfikację w DNS: dostarczasz tylko token API do strefy DNS w Cloudflare,</li><li>logowania kontem Home Assistant z uwierzytelnianiem dwuskładnikowym, opcjonalnie przez Microsoft Entra ID.</li></ul>"]
       ]}
     ]
   },
@@ -85,7 +85,7 @@
         ["Geschiedenis", "Jaren statusgeschiedenis, alleen beperkt door de schijf. Images voor Proxmox en VMware komen binnenkort."],
         ["Hardware", "Eigen Linux-server, NAS of virtuele machine met Docker."],
         ["In je netwerk", "Zoals de add-on, met persoonlijke tokens, maar via HTTPS met een eigen certificaat van de server."],
-        ["Overal", "claude.ai op het web, de computer en de telefoon. Je hebt nodig: <ul><li>een eigen domein met een A-record naar je huis (vast IP, of dynamisch bijgehouden via DDNS),</li><li>poort 443 doorgestuurd van de router naar de server (poort 80 blijft dicht),</li><li>een Let's Encrypt-certificaat, dat de server zelf uitgeeft en vernieuwt via een DNS-controle: je levert alleen een API-token voor je DNS-zone bij Cloudflare,</li><li>aanmelden met je Home Assistant-account of via Microsoft Entra ID.</li></ul>"]
+        ["Overal", "claude.ai op het web, de computer en de telefoon. Je hebt nodig: <ul><li>een eigen domein met een A-record naar je huis (vast IP, of dynamisch bijgehouden via DDNS),</li><li>poort 443 doorgestuurd van de router naar de server (poort 80 blijft dicht),</li><li>een Let's Encrypt-certificaat, dat de server zelf uitgeeft en vernieuwt via een DNS-controle: je levert alleen een API-token voor je DNS-zone bij Cloudflare,</li><li>aanmelden met je Home Assistant-account en tweestapsverificatie, of optioneel via Microsoft Entra ID.</li></ul>"]
       ]}
     ]
   }
