@@ -98,7 +98,7 @@
           {"ul": [
             "<b>Linux z Docker Engine i Compose v2</b>, amd64 lub arm64. Zainstaluj go według <a href=\"https://docs.docker.com/engine/install/\">oficjalnej instrukcji</a> i sprawdź poleceniem <code>docker compose version</code>. NAS z Dockerem też się nada.",
             "<b>Dysk SSD, co najmniej 4 GB RAM i 20 GB wolnego miejsca</b> dla typowego domu; więcej dla lat historii stanów.",
-            "<b>git i curl.</b> cosign, który sprawdza podpisy obrazów, działa w kontenerze, więc nie musisz instalować niczego więcej.",
+            "<b>git i curl.</b>",
             "<b>Home Assistant osiągalny z tej maszyny</b>, zwykle na porcie 8123 (URL w postaci <code>http://&lt;adres&gt;:8123</code>)."
           ]},
           "Jeśli brakuje git lub curl:",
@@ -110,21 +110,16 @@
         "b": [
           "Ustal najnowszą wersję i pobierz ją razem z sumami kontrolnymi i przypiętymi odwołaniami do obrazów:",
           {"code": "dk_version"},
-          {"code": "dk_clone"}
-        ]
-      },
-      {
-        "h": "Zweryfikuj wydanie",
-        "b": [
-          "Sprawdź pobrane pliki względem <code>SHA256SUMS</code>, a potem, że każdy obraz podpisał workflow wydania dokładnie tej wersji. Każdy obraz musi wypisać <code>OK</code>:",
-          {"code": "dk_verify"},
-          "Jeśli coś się nie zgadza, przerwij i napisz na support@xomtra.com."
+          {"code": "dk_clone"},
+          "Sprawdź pobrane pliki z <code>SHA256SUMS</code>; każda linia musi kończyć się <code>OK</code>:",
+          {"code": "dk_sums"},
+          {"note": "Opcjonalnie możesz też sprawdzić, że każdy obraz podpisał workflow wydania tej wersji, za pomocą cosign w kontenerze; zobacz <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">dokumentację</a>."}
         ]
       },
       {
         "h": "Przypnij obrazy i wybierz edycję",
         "b": [
-          "Nie wpisujesz żadnych haseł: wewnętrzne hasła i klucze xomtra generuje sama przy pierwszym uruchomieniu. Jedyny plik, który tworzysz, to <code>.env</code> ze zweryfikowanymi obrazami:",
+          "Nie wpisujesz żadnych haseł: wewnętrzne hasła i klucze xomtra generuje sama przy pierwszym uruchomieniu. Jedyny plik, który tworzysz, to <code>.env</code> z przypiętymi obrazami:",
           {"code": "dk_pin_new"},
           "Edycja lite pasuje do NAS lub małego serwera. Dla niej uruchom też następne polecenie; dla pełnej edycji z SeaweedFS i Dagster UI je pomiń:",
           {"code": "dk_lite"},
@@ -186,7 +181,7 @@
         "b": [
           "Najpierw przeczytaj informacje o wydaniach między twoją a nową wersją. Potem w <code>xomtra/deploy/compose</code> ustaw <code>VERSION</code> jak w kroku 2 i uruchom:",
           {"code": "dk_upgrade"},
-          "Zweryfikuj nowe obrazy jak w kroku 3, przypnij je i uruchom ponownie:",
+          "Przypnij nowe obrazy i uruchom ponownie:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Hasła i klucze zostają w wolumenie Dockera <code>secrets</code>. Instalacja sprzed wersji 0.7.0 ma je jeszcze w <code>.env</code>; pierwsze uruchomienie nowej wersji przejmuje je automatycznie, a potem możesz je usunąć z <code>.env</code>.",

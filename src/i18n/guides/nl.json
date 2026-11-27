@@ -98,7 +98,7 @@
           {"ul": [
             "<b>Linux met Docker Engine en Compose v2</b>, amd64 of arm64. Installeer het volgens de <a href=\"https://docs.docker.com/engine/install/\">officiële handleiding</a> en controleer het met <code>docker compose version</code>. Een NAS met Docker werkt ook.",
             "<b>SSD, minstens 4 GB RAM en 20 GB vrije ruimte</b> voor een gemiddeld huis; meer voor jaren statusgeschiedenis.",
-            "<b>git en curl.</b> cosign, dat de handtekeningen van de images controleert, draait in een container, dus je hoeft verder niets te installeren.",
+            "<b>git en curl.</b>",
             "<b>Home Assistant bereikbaar vanaf deze machine</b>, meestal op poort 8123 (URL zoals <code>http://&lt;adres&gt;:8123</code>)."
           ]},
           "Als git of curl ontbreekt:",
@@ -110,21 +110,16 @@
         "b": [
           "Zoek de nieuwste versie op en download die samen met de checksums en de vastgepinde image-verwijzingen:",
           {"code": "dk_version"},
-          {"code": "dk_clone"}
-        ]
-      },
-      {
-        "h": "Verifieer de release",
-        "b": [
-          "Controleer de gedownloade bestanden tegen <code>SHA256SUMS</code> en daarna dat elk image is ondertekend door de release-workflow van precies deze versie. Elk image moet <code>OK</code> tonen:",
-          {"code": "dk_verify"},
-          "Gaat er iets mis, stop dan en mail naar support@xomtra.com."
+          {"code": "dk_clone"},
+          "Controleer de gedownloade bestanden tegen <code>SHA256SUMS</code>; elke regel moet eindigen op <code>OK</code>:",
+          {"code": "dk_sums"},
+          {"note": "Optioneel kun je ook controleren dat elke image ondertekend is door de release-workflow van deze versie, met cosign in een container; zie <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">de documentatie</a>."}
         ]
       },
       {
         "h": "Pin de images en kies de editie",
         "b": [
-          "Je hoeft geen wachtwoorden in te vullen: de interne wachtwoorden en sleutels maakt xomtra bij de eerste start zelf aan. Het enige bestand dat je maakt is <code>.env</code> met de geverifieerde images:",
+          "Je hoeft geen wachtwoorden in te vullen: de interne wachtwoorden en sleutels maakt xomtra bij de eerste start zelf aan. Het enige bestand dat je maakt is <code>.env</code> met de gepinde images:",
           {"code": "dk_pin_new"},
           "De lite-editie past op een NAS of kleine server. Voer daarvoor ook het volgende commando uit; laat het weg voor de volledige editie met SeaweedFS en de Dagster UI:",
           {"code": "dk_lite"},
@@ -186,7 +181,7 @@
         "b": [
           "Lees eerst de release notes tussen jouw versie en de nieuwe. Zet daarna in <code>xomtra/deploy/compose</code> <code>VERSION</code> zoals in stap 2 en voer uit:",
           {"code": "dk_upgrade"},
-          "Verifieer de nieuwe images zoals in stap 3, pin ze en herstart:",
+          "Pin de nieuwe images en herstart:",
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Wachtwoorden en sleutels blijven in het Docker-volume <code>secrets</code>. Een installatie van vóór versie 0.7.0 heeft ze nog in <code>.env</code>; de eerste start van de nieuwe versie neemt ze automatisch over, daarna kun je ze uit <code>.env</code> verwijderen.",
