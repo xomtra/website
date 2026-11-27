@@ -199,7 +199,7 @@
           {"code": "dk_backup"},
           "Odstraňte kontejnery, sítě, volumes a obrazy (díky <code>COMPOSE_FILE</code> v <code>.env</code> včetně edice lite), ověřte, že nezůstal žádný volume, a smažte stažené vydání i nepoužité vrstvy obrazů:",
           {"code": "dk_down"},
-          "<b>Na vašich počítačích:</b> v Claude Desktop odinstalujte rozšíření v <b>Settings → Extensions → xomtra → Uninstall</b> a smažte <code>xomtra.mcpb</code>. Odeberte xomtru z Claude Code a z profilu shellu i <code>NODE_EXTRA_CA_CERTS</code>, pokud jste ho nastavili:",
+          "<b>Na vašich počítačích:</b> v Claude Desktop odinstalujte rozšíření v <b>Settings → Extensions → xomtra → Uninstall</b> a smažte <code>xomtra.mcpb</code>. Z profilu shellu odeberte <code>NODE_EXTRA_CA_CERTS</code>, pokud jste ho nastavili. V Claude Code najděte server podle adresy (mohli jste ho pojmenovat jinak) a odeberte ho pod jeho názvem:",
           {"code": "dk_mcp_remove"},
           "Pokud jste certifikátu důvěřovali pro celý počítač, odeberte ho (jmenuje se <code>xomtra local CA - &lt;rok&gt; ECC Root</code>; smažte jen tento) a smažte <code>xomtra-ca.crt</code>. Na Debianu nebo Ubuntu smažte soubor v <code>/usr/local/share/ca-certificates/</code> a spusťte <code>sudo update-ca-certificates --fresh</code>.",
           {"code": "dk_untrust"},

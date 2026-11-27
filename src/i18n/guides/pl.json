@@ -199,7 +199,7 @@
           {"code": "dk_backup"},
           "Usuń kontenery, sieci, wolumeny i obrazy (dzięki <code>COMPOSE_FILE</code> w <code>.env</code> także edycję lite), sprawdź, że nie został żaden wolumen, i usuń pobrane wydanie oraz nieużywane warstwy obrazów:",
           {"code": "dk_down"},
-          "<b>Na twoich komputerach:</b> w Claude Desktop odinstaluj rozszerzenie w <b>Settings → Extensions → xomtra → Uninstall</b> i usuń <code>xomtra.mcpb</code>. Usuń xomtrę z Claude Code, a z profilu powłoki <code>NODE_EXTRA_CA_CERTS</code>, jeśli go ustawiłeś:",
+          "<b>Na twoich komputerach:</b> w Claude Desktop odinstaluj rozszerzenie w <b>Settings → Extensions → xomtra → Uninstall</b> i usuń <code>xomtra.mcpb</code>. Usuń <code>NODE_EXTRA_CA_CERTS</code> z profilu powłoki, jeśli go ustawiłeś. W Claude Code znajdź serwer po adresie (mogłeś nazwać go inaczej) i usuń go pod jego nazwą:",
           {"code": "dk_mcp_remove"},
           "Jeśli zaufałeś certyfikatowi dla całego komputera, usuń go (nazywa się <code>xomtra local CA - &lt;rok&gt; ECC Root</code>; usuń tylko ten) i usuń <code>xomtra-ca.crt</code>. Na Debianie lub Ubuntu usuń plik w <code>/usr/local/share/ca-certificates/</code> i uruchom <code>sudo update-ca-certificates --fresh</code>.",
           {"code": "dk_untrust"},
