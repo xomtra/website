@@ -125,7 +125,9 @@
           "Je hoeft geen wachtwoorden in te vullen: de interne wachtwoorden en sleutels maakt xomtra bij de eerste start zelf aan. Het enige bestand dat je maakt is <code>.env</code> met de geverifieerde images:",
           {"code": "dk_pin_new"},
           "De lite-editie past op een NAS of kleine server. Voer daarvoor ook het volgende commando uit; laat het weg voor de volledige editie met SeaweedFS en de Dagster UI:",
-          {"code": "dk_lite"}
+          {"code": "dk_lite"},
+          "Optioneel: wil je xomtra onder een naam openen in plaats van het LAN-adres, voeg die naam dan nu toe, nog vóór de eerste start. Hij hoeft alleen op je eigen computers naar deze server te verwijzen (bijvoorbeeld een DNS-record in je router); publieke DNS is niet nodig. Je kunt hem later wijzigen en daarna <code>docker compose up -d --force-recreate</code> uitvoeren.",
+          {"code": "dk_host"}
         ]
       },
       {
@@ -144,7 +146,7 @@
       {
         "h": "Koppel Home Assistant",
         "b": [
-          "Zolang Home Assistant niet gekoppeld is, schrijft de admin-service een eenmalige installatielink in zijn log:",
+          "Zolang Home Assistant niet gekoppeld is, toont dit commando een eenmalige installatielink (die staat ook in het log van de admin-service):",
           {"code": "dk_setup"},
           "Open de link in een browser in je LAN (de browser waarschuwt voor het certificaat, dat is normaal; zie de volgende stap). Vul de Home Assistant URL in zoals deze server hem bereikt, bijvoorbeeld <code>http://192.168.1.10:8123</code>, en het token uit de vorige stap.",
           "xomtra controleert de verbinding voordat het die opslaat en bewaart het token versleuteld in zijn database, niet in een bestand. Daarna werkt de link niet meer en laadt de geschiedenis uit Home Assistant op de achtergrond. De URL of het token kun je later wijzigen op de beheerpagina onder <b>Overzicht</b>."

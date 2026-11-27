@@ -125,7 +125,9 @@
           "Nie wpisujesz żadnych haseł: wewnętrzne hasła i klucze xomtra generuje sama przy pierwszym uruchomieniu. Jedyny plik, który tworzysz, to <code>.env</code> ze zweryfikowanymi obrazami:",
           {"code": "dk_pin_new"},
           "Edycja lite pasuje do NAS lub małego serwera. Dla niej uruchom też następne polecenie; dla pełnej edycji z SeaweedFS i Dagster UI je pomiń:",
-          {"code": "dk_lite"}
+          {"code": "dk_lite"},
+          "Opcjonalnie: jeśli chcesz otwierać xomtra pod nazwą zamiast adresu w LAN, dodaj ją teraz, przed pierwszym uruchomieniem. Nazwa musi wskazywać na ten serwer tylko na Twoich komputerach (na przykład rekord DNS w routerze); publiczny DNS nie jest potrzebny. Później możesz ją zmienić i uruchomić <code>docker compose up -d --force-recreate</code>.",
+          {"code": "dk_host"}
         ]
       },
       {
@@ -144,7 +146,7 @@
       {
         "h": "Podłącz Home Assistant",
         "b": [
-          "Dopóki Home Assistant nie jest podłączony, usługa admin wypisuje w logu jednorazowy link do konfiguracji:",
+          "Dopóki Home Assistant nie jest podłączony, to polecenie wypisuje jednorazowy link do konfiguracji (jest też w logu usługi admin):",
           {"code": "dk_setup"},
           "Otwórz link w przeglądarce w twojej sieci LAN (przeglądarka ostrzega przed certyfikatem, to normalne; zobacz następny krok). Wpisz URL Home Assistant, pod którym widzi go ten serwer, na przykład <code>http://192.168.1.10:8123</code>, oraz token z poprzedniego kroku.",
           "xomtra sprawdza połączenie przed zapisaniem i przechowuje token zaszyfrowany w swojej bazie danych, nie w pliku. Link przestaje wtedy działać, a historia z Home Assistant wczytuje się w tle. URL lub token możesz później zmienić na stronie administracyjnej w sekcji <b>Przegląd</b>."
