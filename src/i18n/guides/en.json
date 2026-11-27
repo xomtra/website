@@ -117,12 +117,10 @@
         ]
       },
       {
-        "h": "Pin the images and choose the edition",
+        "h": "Pin the images",
         "b": [
           "There are no passwords to fill in: xomtra generates its internal passwords and keys itself on the first start. The only file you create is <code>.env</code> with the pinned images:",
           {"code": "dk_pin_new"},
-          "The lite edition fits a NAS or a small server. For it, also run the next command; leave it out for the full edition with SeaweedFS and the Dagster UI:",
-          {"code": "dk_lite"},
           "Optional: to reach xomtra under a name instead of its LAN address, add the name now, before the first start. It only has to resolve to this server on your own computers (for example a DNS record in your router); no public DNS is needed. You can change it later and then run <code>docker compose up -d --force-recreate</code>.",
           {"code": "dk_host"}
         ]
@@ -194,7 +192,7 @@
           {"note": "<b>This cannot be undone.</b> <code>down -v</code> deletes xomtra's whole copy of the history, its settings and issued tokens, the internal passwords and keys (volume <code>secrets</code>) and the server's certificate authority. Home Assistant keeps its own history. If you might come back, back up the volumes first."},
           "Optional backup: in <code>xomtra/deploy/compose</code> stop xomtra and pack every volume into <code>~/xomtra-backup</code>. The archive of <code>secrets</code> and the <code>.env</code> are secrets, keep them like a password:",
           {"code": "dk_backup"},
-          "Remove the containers, networks, volumes and images (the lite edition is included thanks to <code>COMPOSE_FILE</code> in <code>.env</code>), check that no volume is left, delete the downloaded release and the unused image layers:",
+          "Remove the containers, networks, volumes and images, check that no volume is left, delete the downloaded release and the unused image layers:",
           {"code": "dk_down"},
           "<b>On your computers:</b> in Claude Desktop remove the extension under <b>Settings → Extensions → xomtra → Uninstall</b> and delete <code>xomtra.mcpb</code>. Remove <code>NODE_EXTRA_CA_CERTS</code> from your shell profile if you set it. In Claude Code find the server by its address (you may have named it differently) and remove it by its name:",
           {"code": "dk_mcp_remove"},

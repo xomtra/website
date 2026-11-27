@@ -117,12 +117,10 @@
         ]
       },
       {
-        "h": "Pin de images en kies de editie",
+        "h": "Pin de images",
         "b": [
           "Je hoeft geen wachtwoorden in te vullen: de interne wachtwoorden en sleutels maakt xomtra bij de eerste start zelf aan. Het enige bestand dat je maakt is <code>.env</code> met de gepinde images:",
           {"code": "dk_pin_new"},
-          "De lite-editie past op een NAS of kleine server. Voer daarvoor ook het volgende commando uit; laat het weg voor de volledige editie met SeaweedFS en de Dagster UI:",
-          {"code": "dk_lite"},
           "Optioneel: wil je xomtra onder een naam openen in plaats van het LAN-adres, voeg die naam dan nu toe, nog vóór de eerste start. Hij hoeft alleen op je eigen computers naar deze server te verwijzen (bijvoorbeeld een DNS-record in je router); publieke DNS is niet nodig. Je kunt hem later wijzigen en daarna <code>docker compose up -d --force-recreate</code> uitvoeren.",
           {"code": "dk_host"}
         ]
@@ -194,7 +192,7 @@
           {"note": "<b>Dit kan niet ongedaan worden gemaakt.</b> <code>down -v</code> verwijdert de hele kopie van de geschiedenis in xomtra, de instellingen en uitgegeven tokens, de interne wachtwoorden en sleutels (volume <code>secrets</code>) en de certificaatautoriteit van de server. Home Assistant houdt zijn eigen geschiedenis. Kom je misschien terug, maak dan eerst een back-up van de volumes."},
           "Optionele back-up: stop xomtra in <code>xomtra/deploy/compose</code> en pak alle volumes in naar <code>~/xomtra-backup</code>. Het archief van <code>secrets</code> en de <code>.env</code> zijn geheimen, bewaar ze als een wachtwoord:",
           {"code": "dk_backup"},
-          "Verwijder containers, netwerken, volumes en images (dankzij <code>COMPOSE_FILE</code> in <code>.env</code> ook de lite-editie), controleer dat er geen volume over is en verwijder de gedownloade release en ongebruikte image-lagen:",
+          "Verwijder containers, netwerken, volumes en images, controleer dat er geen volume over is en verwijder de gedownloade release en ongebruikte image-lagen:",
           {"code": "dk_down"},
           "<b>Op je computers:</b> verwijder in Claude Desktop de extensie via <b>Settings → Extensions → xomtra → Uninstall</b> en verwijder <code>xomtra.mcpb</code>. Haal <code>NODE_EXTRA_CA_CERTS</code> uit je shell-profiel als je dat had ingesteld. Zoek in Claude Code de server op zijn adres (misschien heb je hem anders genoemd) en verwijder hem onder zijn naam:",
           {"code": "dk_mcp_remove"},
