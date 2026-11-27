@@ -250,3 +250,35 @@ figure.mfig.small{margin:8px 0 18px;max-width:640px}
 .ed dd ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
 .ed dd li{margin-bottom:4px}
 @media (max-width:900px){.eds{grid-template-columns:1fr}}
+
+/* Blog */
+.bmeta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font:400 13px/1.4 var(--mono);color:var(--muted);margin:0 0 10px}
+.ghead .bmeta{margin-top:16px}
+.bkind{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--line);border-radius:99px;padding:5px 9px;color:var(--accent)}
+.bkind.news{color:var(--signal)}
+.bdraft{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--bg);background:var(--signal);border-radius:4px;padding:4px 6px}
+.bempty{color:var(--muted)}
+.blist{list-style:none;padding:0;margin:0 0 32px}
+.blist>li{padding:28px 0;border-top:1px solid var(--line)}
+.blist>li:first-child{border-top:0;padding-top:0}
+.blist h2{font-size:clamp(21px,2.6vw,26px);margin:0 0 10px}
+.blist h2 a{text-decoration:none}
+.blist h2 a:hover{text-decoration:underline;text-underline-offset:4px}
+.blist p:not(.bmeta){color:var(--muted);margin:0;max-width:44em}
+.prose{max-width:44em;margin-bottom:32px;overflow-wrap:break-word}
+.prose>:first-child{margin-top:0}
+.prose p,.prose ul,.prose ol,.prose blockquote{color:var(--muted);margin:0 0 16px}
+.prose h2{font-size:clamp(21px,2.6vw,26px);margin:36px 0 14px}
+.prose h3{font-size:19px;margin:28px 0 10px}
+.prose ul,.prose ol{padding-left:22px}
+.prose li{margin-bottom:6px}
+.prose strong,.prose b{color:var(--ink);font-weight:500}
+.prose a{color:var(--ink);text-underline-offset:3px}
+.prose img,.prose .bcover{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px;margin:8px 0 24px}
+.prose blockquote{border-left:2px solid var(--accent);padding:4px 0 4px 16px}
+.prose code{font:400 13.5px/1.4 var(--mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:1px 5px;overflow-wrap:anywhere}
+.prose pre{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;margin:0 0 16px}
+.prose pre code{background:none;border:0;padding:0;font-size:13px;line-height:1.6;overflow-wrap:normal}
+.prose hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+.prose table{border-collapse:collapse;display:block;overflow-x:auto;margin:0 0 16px;font-size:14.5px}
+.prose th,.prose td{border:1px solid var(--line);padding:8px 10px;text-align:left}

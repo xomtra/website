@@ -25,3 +25,7 @@ export const guidePath = (l: Lang, slug: string) => `${pathFor(l)}install/${slug
 export const methodPath = (l: Lang) => `${pathFor(l)}method/`;
 // Security page: /security/ in English, /<lang>/security/ otherwise.
 export const securityPath = (l: Lang) => `${pathFor(l)}security/`;
+// Blog: /blog/ and /blog/<id>/ in English, /<lang>/blog/... otherwise.
+export const blogPath = (l: Lang) => `${pathFor(l)}blog/`;
+export const postPath = (l: Lang, id: string) => `${blogPath(l)}${id}/`;
+export const LANG_NAMES: Record<Lang, string> = { en: "English", de: "Deutsch", cs: "Čeština", pl: "Polski", nl: "Nederlands" };

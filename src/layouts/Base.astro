@@ -1,11 +1,14 @@
 ---
 import "../styles/site.css";
 import Mark from "../components/Mark.astro";
-import { LANGS, TITLES, REPO, CONTACT, SITE, SPONSOR, LAUNCHED, pathFor, urlFor, methodPath, securityPath, type Lang } from "../config";
-import { T, M, S, stripTags } from "../i18n";
+import { LANGS, TITLES, REPO, CONTACT, SITE, SPONSOR, LAUNCHED, pathFor, urlFor, methodPath, securityPath, blogPath, type Lang } from "../config";
+import { T, M, S, B, stripTags } from "../i18n";
+import { postsIn } from "../lib/blog";
 
 // Home page by default; other pages pass their own title, description, path and JSON-LD.
-interface Props { lang: Lang; title?: string; description?: string; path?: (l: Lang) => string; ld?: object[] }
+// `langs` limits the language versions (hreflang, switcher) when a page does not exist in all of them,
+// e.g. a blog post without every translation; the switcher then links to that language's `fallback`.
+interface Props { lang: Lang; title?: string; description?: string; path?: (l: Lang) => string; ld?: object[]; og?: "website" | "article"; langs?: readonly Lang[]; fallback?: (l: Lang) => string }
 const { lang } = Astro.props;
 const t = T[lang];
 const title = Astro.props.title ?? TITLES[lang];
@@ -13,6 +16,11 @@ const description = Astro.props.description ?? t.lead;
 const path = Astro.props.path ?? pathFor;
 const url = (l: Lang) => SITE + path(l);
 const home = !Astro.props.path;
+const langs = Astro.props.langs ?? LANGS;
+const switchTo = (l: Lang) => (langs.includes(l) ? path(l) : (Astro.props.fallback ?? pathFor)(l));
+// The Blog link shows once the language has a published post.
+const hasBlog = (await postsIn(lang)).length > 0;
+const here = Astro.url.pathname;
 const ids = ["how", "install", "faq"];
 const LOCALE: Record<Lang, string> = { en: "en_US", de: "de_DE", cs: "cs_CZ", pl: "pl_PL", nl: "nl_NL" };
 const og = `${SITE}/og.png`;
@@ -50,20 +58,21 @@ const faq = {
 <meta name="description" content={description}>
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href={url(lang)}>
-{LANGS.map((l) => <link rel="alternate" hreflang={l} href={url(l)}>)}
-<link rel="alternate" hreflang="x-default" href={url("en")}>
+{langs.map((l) => <link rel="alternate" hreflang={l} href={url(l)}>)}
+{langs.includes("en") && <link rel="alternate" hreflang="x-default" href={url("en")}>}
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
-<meta property="og:type" content="website">
+{hasBlog && <link rel="alternate" type="application/rss+xml" title={`xomtra · ${B[lang].title}`} href={`${blogPath(lang)}rss.xml`}>}
+<meta property="og:type" content={Astro.props.og ?? "website"}>
 <meta property="og:site_name" content="xomtra">
 <meta property="og:url" content={url(lang)}>
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
 <meta property="og:locale" content={LOCALE[lang]}>
-{LANGS.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={LOCALE[l]}>)}
+{langs.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={LOCALE[l]}>)}
 <meta property="og:image" content={og}>
 <meta property="og:image:secure_url" content={og}>
 <meta property="og:image:type" content="image/png">
@@ -87,10 +96,11 @@ const faq = {
     {t.nav.map((n, i) => <a href={`${home ? "" : pathFor(lang)}#${ids[i]}-${lang}`}>{n}</a>)}
     <a href={methodPath(lang)} aria-current={Astro.url.pathname === methodPath(lang) ? "page" : undefined}>{M[lang].nav}</a>
     <a href={securityPath(lang)} aria-current={Astro.url.pathname === securityPath(lang) ? "page" : undefined}>{S[lang].nav}</a>
+    {hasBlog && <a href={blogPath(lang)} aria-current={here.startsWith(blogPath(lang)) ? "page" : undefined}>{B[lang].nav}</a>}
     <a href={REPO}>GitHub ↗</a>
   </nav>
   <nav class="lang" aria-label="Language">
-    {LANGS.map((l) => <a href={path(l)} data-l={l} hreflang={l} aria-current={l === lang ? "true" : "false"}>{l.toUpperCase()}</a>)}
+    {LANGS.map((l) => <a href={switchTo(l)} data-l={l} hreflang={l} aria-current={l === lang ? "true" : "false"}>{l.toUpperCase()}</a>)}
   </nav>
 </div></header>
 

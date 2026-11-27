@@ -45,3 +45,9 @@ import spl from "./security/pl.json";
 import snl from "./security/nl.json";
 export type SecurityText = Omit<typeof sen, "sections"> & { sections: { id: string; h: string; b: MethodBlock[] }[] };
 export const S = { en: sen, de: sde, cs: scs, pl: spl, nl: snl } as unknown as Record<Lang, SecurityText>;
+
+// Blog (/blog/ and /<lang>/blog/): interface texts; the posts are a content collection
+// (src/content.config.ts, src/lib/blog.ts).
+import blog from "./blog.json";
+export type BlogText = (typeof blog)["en"];
+export const B = blog as Record<Lang, BlogText>;
