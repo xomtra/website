@@ -16,5 +16,9 @@
   "dk_lite": "echo 'COMPOSE_FILE=compose.yaml:compose.lite.yaml' >> .env",
   "dk_host": "echo 'XOMTRA_LOCAL_HOST=xomtra.lan' >> .env",
   "dk_ca_local": "openssl x509 -noout -fingerprint -sha256 -in ~/Downloads/xomtra-ca.crt\n# Windows: certutil -dump %USERPROFILE%\\Downloads\\xomtra-ca.crt | findstr /i sha256",
-  "dk_trust": "# macOS\nsudo security add-trusted-cert -d -r trustRoot \\\n  -k /Library/Keychains/System.keychain ~/Downloads/xomtra-ca.crt\n# Windows (as administrator)\ncertutil -addstore -f Root %USERPROFILE%\\Downloads\\xomtra-ca.crt"
+  "dk_trust": "# macOS\nsudo security add-trusted-cert -d -r trustRoot \\\n  -k /Library/Keychains/System.keychain ~/Downloads/xomtra-ca.crt\n# Windows (as administrator)\ncertutil -addstore -f Root %USERPROFILE%\\Downloads\\xomtra-ca.crt",
+  "dk_backup": "docker compose stop\nmkdir -p ~/xomtra-backup\nfor v in $(docker volume ls -q --filter label=com.docker.compose.project=xomtra); do\n  docker run --rm -v \"$v\":/v:ro -v ~/xomtra-backup:/b alpine tar czf \"/b/$v.tgz\" -C /v .\ndone\ncp .env ~/xomtra-backup/",
+  "dk_down": "docker compose down -v --rmi all --remove-orphans\ndocker volume ls --filter label=com.docker.compose.project=xomtra   # empty\ncd ../../.. && rm -rf xomtra\ndocker image prune -f",
+  "dk_mcp_remove": "claude mcp remove xomtra",
+  "dk_untrust": "# macOS: show the SHA-1 hash, then delete the certificate by it\nsecurity find-certificate -a -c \"xomtra local CA\" -Z /Library/Keychains/System.keychain | grep SHA-1\nsudo security delete-certificate -Z <sha1-hash> /Library/Keychains/System.keychain\n# Windows (as administrator)\ncertutil -store Root \"xomtra local CA\"\ncertutil -delstore Root <cert-hash>"
 }

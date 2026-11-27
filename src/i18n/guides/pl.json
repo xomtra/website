@@ -88,7 +88,7 @@
   "docker": {
     "name": "Docker Compose",
     "title": "Instalacja xomtra przez Docker Compose",
-    "desc": "Instalacja xomtra na własnym serwerze Linux lub NAS przez Docker Compose krok po kroku: zweryfikowane wydanie, uruchomienie jednym poleceniem, podłączenie Home Assistant w przeglądarce, pierwszy token, podłączenie Claude i aktualizacje.",
+    "desc": "Instalacja xomtra na własnym serwerze Linux lub NAS przez Docker Compose krok po kroku: zweryfikowane wydanie, uruchomienie jednym poleceniem, podłączenie Home Assistant w przeglądarce, pierwszy token, podłączenie Claude, aktualizacje i odinstalowanie.",
     "lead": "Dla Home Assistant Container lub Core albo gdy chcesz mieć xomtra na własnym serwerze Linux lub NAS. xomtra czyta Home Assistant przez sieć; Claude Desktop i Claude Code łączą się tokenami osobistymi, tylko z twojej sieci LAN.",
     "facts": [["Czas", "około 15 minut"], ["Wymaga", "Linux, Docker z Compose v2"], ["Dostęp", "LAN, tokeny osobiste"]],
     "steps": [
@@ -189,6 +189,21 @@
           {"code": "dk_pull"},
           "Hasła i klucze zostają w wolumenie Dockera <code>secrets</code>. Instalacja sprzed wersji 0.7.0 ma je jeszcze w <code>.env</code>; pierwsze uruchomienie nowej wersji przejmuje je automatycznie, a potem możesz je usunąć z <code>.env</code>.",
           "Aby wrócić, przełącz się na poprzedni tag, przywróć kopię <code>.env</code> i uruchom <code>docker compose up -d</code>. Regularnie rób kopię maszyny lub wolumenów Dockera: zawierają całą historię, a bez wolumenu <code>secrets</code> danych nie da się odczytać."
+        ]
+      },
+      {
+        "h": "Odinstalowanie",
+        "b": [
+          {"note": "<b>Tego nie da się cofnąć.</b> <code>down -v</code> usuwa całą kopię historii w xomtrze, jej ustawienia i wydane tokeny, wewnętrzne hasła i klucze (wolumen <code>secrets</code>) oraz urząd certyfikacji serwera. Home Assistant zachowuje własną historię. Jeśli możesz wrócić, najpierw zrób kopię wolumenów."},
+          "Opcjonalna kopia: w <code>xomtra/deploy/compose</code> zatrzymaj xomtrę i spakuj wszystkie wolumeny do <code>~/xomtra-backup</code>. Archiwum <code>secrets</code> i plik <code>.env</code> to sekrety, przechowuj je jak hasło:",
+          {"code": "dk_backup"},
+          "Usuń kontenery, sieci, wolumeny i obrazy (dzięki <code>COMPOSE_FILE</code> w <code>.env</code> także edycję lite), sprawdź, że nie został żaden wolumen, i usuń pobrane wydanie oraz nieużywane warstwy obrazów:",
+          {"code": "dk_down"},
+          "<b>Na twoich komputerach:</b> w Claude Desktop odinstaluj rozszerzenie w <b>Settings → Extensions → xomtra → Uninstall</b> i usuń <code>xomtra.mcpb</code>. Usuń xomtrę z Claude Code, a z profilu powłoki <code>NODE_EXTRA_CA_CERTS</code>, jeśli go ustawiłeś:",
+          {"code": "dk_mcp_remove"},
+          "Jeśli zaufałeś certyfikatowi dla całego komputera, usuń go (nazywa się <code>xomtra local CA - &lt;rok&gt; ECC Root</code>; usuń tylko ten) i usuń <code>xomtra-ca.crt</code>. Na Debianie lub Ubuntu usuń plik w <code>/usr/local/share/ca-certificates/</code> i uruchom <code>sudo update-ca-certificates --fresh</code>.",
+          {"code": "dk_untrust"},
+          "<b>W Home Assistant:</b> zaloguj się jako użytkownik dla xomtry i w <b>Profil → Bezpieczeństwo</b> usuń jego token dostępu długoterminowego; do tego czasu pozostaje ważny. Potem usuń tego użytkownika w <b>Ustawienia → Osoby</b>. Logowanie własnym kontem Home Assistant nic nie zostawia. Jeśli skonfigurowałeś publiczny adres dla Claude w przeglądarce, usuń też konektor w claude.ai, przekierowanie portu i rekord DNS."
         ]
       }
     ]

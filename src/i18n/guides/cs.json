@@ -88,7 +88,7 @@
   "docker": {
     "name": "Docker Compose",
     "title": "Instalace xomtry přes Docker Compose",
-    "desc": "Postup instalace xomtry na vlastní linuxový server nebo NAS přes Docker Compose krok za krokem: ověřené vydání, spuštění jedním příkazem, připojení Home Assistantu v prohlížeči, první token, připojení Claude a aktualizace.",
+    "desc": "Postup instalace xomtry na vlastní linuxový server nebo NAS přes Docker Compose krok za krokem: ověřené vydání, spuštění jedním příkazem, připojení Home Assistantu v prohlížeči, první token, připojení Claude, aktualizace a odinstalace.",
     "lead": "Pro Home Assistant Container nebo Core, nebo když chcete xomtru na vlastním linuxovém serveru či NAS. xomtra čte Home Assistant po síti; Claude Desktop a Claude Code se připojují osobními tokeny, jen z vaší LAN.",
     "facts": [["Čas", "asi 15 minut"], ["Potřebujete", "Linux, Docker s Compose v2"], ["Přístup", "LAN, osobní tokeny"]],
     "steps": [
@@ -189,6 +189,21 @@
           {"code": "dk_pull"},
           "Hesla a klíče zůstávají v Docker volume <code>secrets</code>. Instalace z doby před verzí 0.7.0 je má ještě v <code>.env</code>; první spuštění nové verze je převezme automaticky a pak je z <code>.env</code> můžete smazat.",
           "Návrat zpět: přepněte na předchozí tag, obnovte zálohu <code>.env</code> a spusťte <code>docker compose up -d</code>. Stroj nebo Docker volumes pravidelně zálohujte: drží celou historii a bez volume <code>secrets</code> data nepřečtete."
+        ]
+      },
+      {
+        "h": "Odinstalace",
+        "b": [
+          {"note": "<b>Nejde vrátit zpět.</b> <code>down -v</code> smaže celou kopii historie v xomtře, její nastavení a vydané tokeny, interní hesla a klíče (volume <code>secrets</code>) i certifikační autoritu serveru. Home Assistant si svou historii ponechá. Pokud se můžete vrátit, nejdřív volumes zazálohujte."},
+          "Volitelná záloha: v <code>xomtra/deploy/compose</code> zastavte xomtru a zabalte všechny volumes do <code>~/xomtra-backup</code>. Archiv <code>secrets</code> a soubor <code>.env</code> jsou tajemství, opatrujte je jako heslo:",
+          {"code": "dk_backup"},
+          "Odstraňte kontejnery, sítě, volumes a obrazy (díky <code>COMPOSE_FILE</code> v <code>.env</code> včetně edice lite), ověřte, že nezůstal žádný volume, a smažte stažené vydání i nepoužité vrstvy obrazů:",
+          {"code": "dk_down"},
+          "<b>Na vašich počítačích:</b> v Claude Desktop odinstalujte rozšíření v <b>Settings → Extensions → xomtra → Uninstall</b> a smažte <code>xomtra.mcpb</code>. Odeberte xomtru z Claude Code a z profilu shellu i <code>NODE_EXTRA_CA_CERTS</code>, pokud jste ho nastavili:",
+          {"code": "dk_mcp_remove"},
+          "Pokud jste certifikátu důvěřovali pro celý počítač, odeberte ho (jmenuje se <code>xomtra local CA - &lt;rok&gt; ECC Root</code>; smažte jen tento) a smažte <code>xomtra-ca.crt</code>. Na Debianu nebo Ubuntu smažte soubor v <code>/usr/local/share/ca-certificates/</code> a spusťte <code>sudo update-ca-certificates --fresh</code>.",
+          {"code": "dk_untrust"},
+          "<b>V Home Assistantu:</b> přihlaste se jako uživatel pro xomtru a v <b>Profil → Zabezpečení</b> smažte jeho dlouhodobý přístupový token; do té doby zůstává platný. Pak tohoto uživatele smažte v <b>Nastavení → Lidé</b>. Přihlašování vlastním účtem Home Assistantu nic nezanechává. Pokud jste nastavili veřejnou adresu pro Claude na webu, odeberte i konektor v claude.ai, přesměrování portu a DNS záznam."
         ]
       }
     ]
