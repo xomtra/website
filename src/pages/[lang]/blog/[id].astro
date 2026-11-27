@@ -1,0 +1,9 @@
+---
+import BlogPost from "../../../components/BlogPost.astro";
+import { allPosts } from "../../../lib/blog";
+
+export async function getStaticPaths() {
+  return (await allPosts()).filter((p) => p.lang !== "en").map((post) => ({ params: { lang: post.lang, id: post.slug }, props: { post } }));
+}
+---
+<BlogPost post={Astro.props.post} />

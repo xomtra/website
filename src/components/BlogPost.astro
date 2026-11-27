@@ -1,0 +1,62 @@
+---
+// One blog post in one language. The language switcher leads to the same post in the other
+// languages it was written in, otherwise to that language's blog index.
+import Base from "../layouts/Base.astro";
+import { SITE, CONTACT, LANG_NAMES, blogPath, postPath, pathFor, type Lang } from "../config";
+import { B } from "../i18n";
+import { translations, fmtDate, isoDate, type Post } from "../lib/blog";
+import { render } from "astro:content";
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const lang = post.lang;
+const b = B[lang];
+const d = post.data;
+const langs = await translations(post.slug);
+const { Content } = await render(post);
+const path = (l: Lang) => postPath(l, post.slug);
+const image = d.image ? new URL(d.image, SITE).href : undefined;
+
+const article = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: d.title,
+  description: d.description,
+  inLanguage: lang,
+  datePublished: isoDate(d.date),
+  url: SITE + path(lang),
+  ...(image ? { image } : {}),
+  author: { "@type": "Organization", name: "xomtra", url: SITE + "/", email: CONTACT },
+  publisher: { "@type": "Organization", name: "xomtra", url: SITE + "/", logo: { "@type": "ImageObject", url: SITE + "/icon-512.png" } },
+  isPartOf: { "@type": "Blog", name: `xomtra · ${b.title}`, url: SITE + blogPath(lang) },
+};
+const crumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "xomtra", item: SITE + pathFor(lang) },
+    { "@type": "ListItem", position: 2, name: b.title, item: SITE + blogPath(lang) },
+    { "@type": "ListItem", position: 3, name: d.title, item: SITE + path(lang) },
+  ],
+};
+const others = langs.filter((l) => l !== lang);
+---
+<Base lang={lang} title={`${d.title} · xomtra`} description={d.description} path={path} langs={langs} fallback={blogPath} og="article" ld={[article, crumbs]}>
+<div class="ghead"><div class="wrap guide">
+  <nav class="crumb" aria-label="Breadcrumb"><a href={pathFor(lang)}>xomtra</a> / <a href={blogPath(lang)}>{b.title}</a></nav>
+  <p class="bmeta"><span class={`bkind ${d.kind}`}>{b[d.kind]}</span><time datetime={isoDate(d.date)}>{fmtDate(lang, d.date)}</time>{d.draft && <span class="bdraft">draft</span>}</p>
+  <h1>{d.title}</h1>
+  <p class="lead">{d.description}</p>
+</div></div>
+
+<section class="msec"><div class="wrap guide">
+  <article class="prose">
+    {d.image && <img class="bcover" src={d.image} alt={d.image_alt ?? ""} />}
+    <Content />
+  </article>
+  <div class="gfoot">
+    {others.length > 0 && <p>{b.other}: {others.map((l, i) => <>{i > 0 && " · "}<a href={path(l)} hreflang={l} lang={l}>{LANG_NAMES[l]}</a></>)}</p>}
+    <p><a href={blogPath(lang)}>← {b.back}</a></p>
+  </div>
+</div></section>
+</Base>

@@ -1,0 +1,160 @@
+# Pages CMS (https://pagescms.org): editor for the blog on xomtra.com.
+# Each post is one Markdown file per language: src/content/blog/<lang>/<id>.md.
+# Give a post the same ID in every language; that is what links the translations
+# (language switcher, hreflang, sitemap). The ID is also the address: /blog/<id>/, /cs/blog/<id>/ …
+# Images go to public/media/blog and are served from /media/blog.
+
+media:
+  input: public/media/blog
+  output: /media/blog
+  categories: [image]
+
+components:
+  id:
+    label: ID (same in every language, becomes the address)
+    type: string
+    required: true
+    pattern:
+      regex: "^[a-z0-9][a-z0-9-]*$"
+      message: Lowercase letters, digits and dashes only, e.g. xomtra-0-9-released
+  title:
+    label: Title
+    type: string
+    required: true
+  description:
+    label: Summary (blog list, search engines, link previews)
+    type: text
+    required: true
+    options:
+      maxlength: 300
+  date:
+    label: Date
+    type: date
+    required: true
+  kind:
+    label: Type
+    type: select
+    default: news
+    options:
+      values:
+        - { value: news, label: News }
+        - { value: article, label: Article }
+  draft:
+    label: Draft (not published while on)
+    type: boolean
+    default: true
+  image:
+    label: Cover image (optional)
+    type: image
+  image_alt:
+    label: Cover image description (for screen readers)
+    type: string
+  body:
+    label: Text
+    type: rich-text
+
+content:
+  - name: blog
+    label: Blog
+    type: group
+    items:
+      - name: blog-en
+        label: English
+        type: collection
+        path: src/content/blog/en
+        filename: "{fields.id}.md"
+        view:
+          fields: [title, date, kind, draft]
+          primary: title
+          sort: [date, title]
+          default: { sort: date, order: desc }
+        fields:
+          - { name: id, component: id }
+          - { name: title, component: title }
+          - { name: description, component: description }
+          - { name: date, component: date }
+          - { name: kind, component: kind }
+          - { name: draft, component: draft }
+          - { name: image, component: image }
+          - { name: image_alt, component: image_alt }
+          - { name: body, component: body }
+      - name: blog-de
+        label: Deutsch
+        type: collection
+        path: src/content/blog/de
+        filename: "{fields.id}.md"
+        view:
+          fields: [title, date, kind, draft]
+          primary: title
+          sort: [date, title]
+          default: { sort: date, order: desc }
+        fields:
+          - { name: id, component: id }
+          - { name: title, component: title }
+          - { name: description, component: description }
+          - { name: date, component: date }
+          - { name: kind, component: kind }
+          - { name: draft, component: draft }
+          - { name: image, component: image }
+          - { name: image_alt, component: image_alt }
+          - { name: body, component: body }
+      - name: blog-cs
+        label: Čeština
+        type: collection
+        path: src/content/blog/cs
+        filename: "{fields.id}.md"
+        view:
+          fields: [title, date, kind, draft]
+          primary: title
+          sort: [date, title]
+          default: { sort: date, order: desc }
+        fields:
+          - { name: id, component: id }
+          - { name: title, component: title }
+          - { name: description, component: description }
+          - { name: date, component: date }
+          - { name: kind, component: kind }
+          - { name: draft, component: draft }
+          - { name: image, component: image }
+          - { name: image_alt, component: image_alt }
+          - { name: body, component: body }
+      - name: blog-pl
+        label: Polski
+        type: collection
+        path: src/content/blog/pl
+        filename: "{fields.id}.md"
+        view:
+          fields: [title, date, kind, draft]
+          primary: title
+          sort: [date, title]
+          default: { sort: date, order: desc }
+        fields:
+          - { name: id, component: id }
+          - { name: title, component: title }
+          - { name: description, component: description }
+          - { name: date, component: date }
+          - { name: kind, component: kind }
+          - { name: draft, component: draft }
+          - { name: image, component: image }
+          - { name: image_alt, component: image_alt }
+          - { name: body, component: body }
+      - name: blog-nl
+        label: Nederlands
+        type: collection
+        path: src/content/blog/nl
+        filename: "{fields.id}.md"
+        view:
+          fields: [title, date, kind, draft]
+          primary: title
+          sort: [date, title]
+          default: { sort: date, order: desc }
+        fields:
+          - { name: id, component: id }
+          - { name: title, component: title }
+          - { name: description, component: description }
+          - { name: date, component: date }
+          - { name: kind, component: kind }
+          - { name: draft, component: draft }
+          - { name: image, component: image }
+          - { name: image_alt, component: image_alt }
+          - { name: body, component: body }

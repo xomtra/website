@@ -1,0 +1,53 @@
+---
+// Blog index of one language: its published posts, newest first.
+import Base from "../layouts/Base.astro";
+import { SITE, blogPath, postPath, pathFor, type Lang } from "../config";
+import { B } from "../i18n";
+import { postsIn, fmtDate, isoDate } from "../lib/blog";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const b = B[lang];
+const posts = await postsIn(lang);
+
+const blog = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: `xomtra · ${b.title}`,
+  description: b.desc,
+  inLanguage: lang,
+  url: SITE + blogPath(lang),
+  isPartOf: { "@type": "WebSite", name: "xomtra", url: SITE + pathFor(lang) },
+  blogPost: posts.map((p) => ({ "@type": "BlogPosting", headline: p.data.title, url: SITE + postPath(lang, p.slug), datePublished: isoDate(p.data.date) })),
+};
+const crumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "xomtra", item: SITE + pathFor(lang) },
+    { "@type": "ListItem", position: 2, name: b.title, item: SITE + blogPath(lang) },
+  ],
+};
+---
+<Base lang={lang} title={`${b.title} · xomtra`} description={b.desc} path={blogPath} ld={[blog, crumbs]}>
+<div class="ghead"><div class="wrap guide">
+  <nav class="crumb" aria-label="Breadcrumb"><a href={pathFor(lang)}>xomtra</a> / <span>{b.title}</span></nav>
+  <h1>{b.title}</h1>
+  <p class="lead">{b.lead}</p>
+</div></div>
+
+<section class="msec"><div class="wrap guide">
+  {posts.length === 0 ? <p class="bempty">{b.empty}</p> : (
+    <ul class="blist">
+      {posts.map((p) => (
+        <li>
+          <p class="bmeta"><span class={`bkind ${p.data.kind}`}>{b[p.data.kind]}</span><time datetime={isoDate(p.data.date)}>{fmtDate(lang, p.data.date)}</time>{p.data.draft && <span class="bdraft">draft</span>}</p>
+          <h2><a href={postPath(lang, p.slug)}>{p.data.title}</a></h2>
+          <p>{p.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+  {posts.length > 0 && <div class="gfoot"><p><a href={`${blogPath(lang)}rss.xml`}>{b.rss}</a></p></div>}
+</div></section>
+</Base>

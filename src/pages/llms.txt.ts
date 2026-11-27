@@ -1,10 +1,12 @@
 // llms.txt (https://llmstxt.org): plain Markdown summary for AI assistants.
 import type { APIRoute } from "astro";
-import { LAUNCHED, SITE, REPO, CONTACT, guidePath, methodPath, securityPath } from "../config";
+import { LAUNCHED, SITE, REPO, CONTACT, guidePath, methodPath, securityPath, blogPath, postPath } from "../config";
 import { T, G, M, S, GUIDES, stripTags } from "../i18n";
+import { postsIn, isoDate } from "../lib/blog";
 
-export const GET: APIRoute = () => {
+export const GET: APIRoute = async () => {
   const en = T.en;
+  const posts = await postsIn("en");
   const L: string[] = [
     "# xomtra", "", "> " + en.lead, "",
     "xomtra is an independent open source project (Apache 2.0) for Home Assistant. It is not affiliated with the Open Home Foundation or Nabu Casa.", "",
@@ -27,6 +29,7 @@ export const GET: APIRoute = () => {
     ...en.qs.map((q) => `- ${q}`),
     "", "## FAQ", "",
     ...en.faq.flatMap(([q, a]) => [`### ${q}`, "", stripTags(a), ""]),
+    ...(posts.length ? ["## Blog", "", ...posts.map((p) => `- [${p.data.title}](${SITE}${postPath("en", p.slug)}) (${isoDate(p.data.date)}): ${p.data.description}`), "", `All posts: ${SITE}${blogPath("en")}`, ""] : []),
     "## Links", "",
     `- [Website](${SITE}/): English; also [Deutsch](${SITE}/de/), [Čeština](${SITE}/cs/), [Polski](${SITE}/pl/), [Nederlands](${SITE}/nl/)`,
     `- [Source code and issues](${REPO})`,
