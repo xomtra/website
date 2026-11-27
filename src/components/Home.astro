@@ -9,7 +9,7 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = T[lang];
 // Install cards in the order of strings.json "inst": guide page, or null = coming soon.
-const GUIDE = ["home-assistant", null, null, "docker"];
+const GUIDE = ["home-assistant", "docker", null, null];
 const ui = G[lang].ui;
 const pts = "0,40 25,37 50,39 75,32 100,34 125,26 150,30 175,18 200,24 225,16 250,20 275,13 300,15";
 ---

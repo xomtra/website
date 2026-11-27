@@ -71,6 +71,11 @@
      "Settings → Add-ons → Add repository"
     ],
     [
+     "Docker Compose",
+     "For your own Linux server or NAS.",
+     "docker compose up -d"
+    ],
+    [
      "Proxmox VE",
      "Ready virtual machine, created by one command on the host.",
      "bash -c \"$(curl -fsSL …/proxmox.sh)\""
@@ -79,11 +84,6 @@
      "VMware",
      "OVA appliance for ESXi, vSphere or Workstation.",
      "Deploy OVF Template → xomtra.ova"
-    ],
-    [
-     "Docker Compose",
-     "For your own Linux server or NAS.",
-     "docker compose up -d"
     ]
    ],
    "c_h": "How it compares",
@@ -220,6 +220,11 @@
      "Einstellungen → Add-ons → Repository hinzufügen"
     ],
     [
+     "Docker Compose",
+     "Für deinen eigenen Linux-Server oder NAS.",
+     "docker compose up -d"
+    ],
+    [
      "Proxmox VE",
      "Fertige VM, mit einem Befehl auf dem Host angelegt.",
      "bash -c \"$(curl -fsSL …/proxmox.sh)\""
@@ -228,11 +233,6 @@
      "VMware",
      "OVA-Appliance für ESXi, vSphere oder Workstation.",
      "OVF-Vorlage bereitstellen → xomtra.ova"
-    ],
-    [
-     "Docker Compose",
-     "Für deinen eigenen Linux-Server oder NAS.",
-     "docker compose up -d"
     ]
    ],
    "c_h": "Im Vergleich",
@@ -369,6 +369,11 @@
      "Nastavení → Doplňky → Přidat repozitář"
     ],
     [
+     "Docker Compose",
+     "Pro vlastní linuxový server nebo NAS.",
+     "docker compose up -d"
+    ],
+    [
      "Proxmox VE",
      "Hotový virtuální stroj, vytvoří ho jeden příkaz na hostiteli.",
      "bash -c \"$(curl -fsSL …/proxmox.sh)\""
@@ -377,11 +382,6 @@
      "VMware",
      "OVA appliance pro ESXi, vSphere nebo Workstation.",
      "Deploy OVF Template → xomtra.ova"
-    ],
-    [
-     "Docker Compose",
-     "Pro vlastní linuxový server nebo NAS.",
-     "docker compose up -d"
     ]
    ],
    "c_h": "Srovnání",
@@ -518,6 +518,11 @@
      "Ustawienia → Dodatki → Dodaj repozytorium"
     ],
     [
+     "Docker Compose",
+     "Dla własnego serwera Linux lub NAS.",
+     "docker compose up -d"
+    ],
+    [
      "Proxmox VE",
      "Gotowa maszyna wirtualna, tworzona jednym poleceniem na hoście.",
      "bash -c \"$(curl -fsSL …/proxmox.sh)\""
@@ -526,11 +531,6 @@
      "VMware",
      "Appliance OVA dla ESXi, vSphere lub Workstation.",
      "Deploy OVF Template → xomtra.ova"
-    ],
-    [
-     "Docker Compose",
-     "Dla własnego serwera Linux lub NAS.",
-     "docker compose up -d"
     ]
    ],
    "c_h": "Porównanie",
@@ -667,6 +667,11 @@
      "Instellingen → Add-ons → Repository toevoegen"
     ],
     [
+     "Docker Compose",
+     "Voor je eigen Linux-server of NAS.",
+     "docker compose up -d"
+    ],
+    [
      "Proxmox VE",
      "Kant-en-klare virtuele machine, aangemaakt met één commando op de host.",
      "bash -c \"$(curl -fsSL …/proxmox.sh)\""
@@ -675,11 +680,6 @@
      "VMware",
      "OVA-appliance voor ESXi, vSphere of Workstation.",
      "Deploy OVF Template → xomtra.ova"
-    ],
-    [
-     "Docker Compose",
-     "Voor je eigen Linux-server of NAS.",
-     "docker compose up -d"
     ]
    ],
    "c_h": "Vergelijking",
