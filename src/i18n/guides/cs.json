@@ -96,7 +96,7 @@
         "h": "Zkontrolujte požadavky",
         "b": [
           {"ul": [
-            "<b>Linux s Docker Engine a Compose v2</b>, amd64 nebo arm64. Funguje i NAS s Dockerem.",
+            "<b>Linux s Docker Engine a Compose v2</b>, amd64 nebo arm64. Nainstalujte ho podle <a href=\"https://docs.docker.com/engine/install/\">oficiálního návodu</a> a ověřte příkazem <code>docker compose version</code>. Funguje i NAS s Dockerem.",
             "<b>SSD, aspoň 4 GB RAM a 20 GB volného místa</b> pro běžnou domácnost; pro roky historie stavů víc.",
             "<b>git a curl.</b> cosign, který ověřuje podpisy obrazů, běží v kontejneru, takže nic dalšího instalovat nemusíte.",
             "<b>Home Assistant dosažitelný z tohoto stroje</b>, obvykle na portu 8123 (URL ve tvaru <code>http://&lt;adresa&gt;:8123</code>)."

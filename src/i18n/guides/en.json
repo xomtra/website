@@ -96,7 +96,7 @@
         "h": "Check the requirements",
         "b": [
           {"ul": [
-            "<b>Linux with Docker Engine and Compose v2</b>, amd64 or arm64. A NAS with Docker works too.",
+            "<b>Linux with Docker Engine and Compose v2</b>, amd64 or arm64. Install it by the <a href=\"https://docs.docker.com/engine/install/\">official guide</a> and check it with <code>docker compose version</code>. A NAS with Docker works too.",
             "<b>SSD, at least 4 GB RAM and 20 GB of free space</b> for a typical home; more for years of state history.",
             "<b>git and curl.</b> cosign, which checks the signatures of the images, runs in a container, so there is nothing more to install.",
             "<b>Home Assistant reachable from this machine</b>, usually on port 8123 (URL like <code>http://&lt;address&gt;:8123</code>)."
