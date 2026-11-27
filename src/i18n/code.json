@@ -13,5 +13,6 @@
   "dk_claude_code": "claude mcp add --transport http xomtra https://<server>/mcp \\\n  --header \"Authorization: Bearer xmt_...\"",
   "dk_upgrade": "cp -p .env \".env.bak-$(date +%F)\"\ngit fetch --depth 1 origin tag \"v$VERSION\"\ngit checkout -q \"v$VERSION\"\nfor f in SHA256SUMS \"xomtra-$VERSION-images.env\"; do\n  curl -fsSLO \"https://github.com/xomtra/xomtra/releases/download/v$VERSION/$f\"\ndone",
   "dk_pull": "docker compose pull\ndocker compose up -d",
-  "dk_lite": "echo 'COMPOSE_FILE=compose.yaml:compose.lite.yaml' >> .env"
+  "dk_lite": "echo 'COMPOSE_FILE=compose.yaml:compose.lite.yaml' >> .env",
+  "dk_host": "echo 'XOMTRA_LOCAL_HOST=xomtra.lan' >> .env"
 }

@@ -125,7 +125,9 @@
           "Žádná hesla nevyplňujete: interní hesla a klíče si xomtra při prvním spuštění vygeneruje sama. Jediný soubor, který vytvoříte, je <code>.env</code> s ověřenými obrazy:",
           {"code": "dk_pin_new"},
           "Edice lite se hodí pro NAS nebo malý server. Pro ni spusťte i další příkaz; pro plnou edici se SeaweedFS a Dagster UI ho vynechte:",
-          {"code": "dk_lite"}
+          {"code": "dk_lite"},
+          "Volitelně: pokud chcete xomtru otevírat pod jménem místo adresy v LAN, přidejte ho teď, ještě před prvním spuštěním. Jméno musí na tento server ukazovat jen na vašich počítačích (například DNS záznam v routeru), veřejné DNS není potřeba. Později ho můžete změnit a spustit <code>docker compose up -d --force-recreate</code>.",
+          {"code": "dk_host"}
         ]
       },
       {

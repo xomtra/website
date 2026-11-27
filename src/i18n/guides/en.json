@@ -125,7 +125,9 @@
           "There are no passwords to fill in: xomtra generates its internal passwords and keys itself on the first start. The only file you create is <code>.env</code> with the verified images:",
           {"code": "dk_pin_new"},
           "The lite edition fits a NAS or a small server. For it, also run the next command; leave it out for the full edition with SeaweedFS and the Dagster UI:",
-          {"code": "dk_lite"}
+          {"code": "dk_lite"},
+          "Optional: to reach xomtra under a name instead of its LAN address, add the name now, before the first start. It only has to resolve to this server on your own computers (for example a DNS record in your router); no public DNS is needed. You can change it later and then run <code>docker compose up -d --force-recreate</code>.",
+          {"code": "dk_host"}
         ]
       },
       {

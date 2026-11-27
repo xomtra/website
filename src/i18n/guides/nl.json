@@ -125,7 +125,9 @@
           "Je hoeft geen wachtwoorden in te vullen: de interne wachtwoorden en sleutels maakt xomtra bij de eerste start zelf aan. Het enige bestand dat je maakt is <code>.env</code> met de geverifieerde images:",
           {"code": "dk_pin_new"},
           "De lite-editie past op een NAS of kleine server. Voer daarvoor ook het volgende commando uit; laat het weg voor de volledige editie met SeaweedFS en de Dagster UI:",
-          {"code": "dk_lite"}
+          {"code": "dk_lite"},
+          "Optioneel: wil je xomtra onder een naam openen in plaats van het LAN-adres, voeg die naam dan nu toe, nog vóór de eerste start. Hij hoeft alleen op je eigen computers naar deze server te verwijzen (bijvoorbeeld een DNS-record in je router); publieke DNS is niet nodig. Je kunt hem later wijzigen en daarna <code>docker compose up -d --force-recreate</code> uitvoeren.",
+          {"code": "dk_host"}
         ]
       },
       {

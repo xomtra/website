@@ -125,7 +125,9 @@
           "Nie wpisujesz żadnych haseł: wewnętrzne hasła i klucze xomtra generuje sama przy pierwszym uruchomieniu. Jedyny plik, który tworzysz, to <code>.env</code> ze zweryfikowanymi obrazami:",
           {"code": "dk_pin_new"},
           "Edycja lite pasuje do NAS lub małego serwera. Dla niej uruchom też następne polecenie; dla pełnej edycji z SeaweedFS i Dagster UI je pomiń:",
-          {"code": "dk_lite"}
+          {"code": "dk_lite"},
+          "Opcjonalnie: jeśli chcesz otwierać xomtra pod nazwą zamiast adresu w LAN, dodaj ją teraz, przed pierwszym uruchomieniem. Nazwa musi wskazywać na ten serwer tylko na Twoich komputerach (na przykład rekord DNS w routerze); publiczny DNS nie jest potrzebny. Później możesz ją zmienić i uruchomić <code>docker compose up -d --force-recreate</code>.",
+          {"code": "dk_host"}
         ]
       },
       {
