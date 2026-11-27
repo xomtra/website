@@ -157,14 +157,17 @@
         "b": [
           "Caddy issues the certificate for your server from its own local certificate authority. Download it once from <code>https://&lt;server&gt;/xomtra-ca.crt</code> (the browser warns the first time, which is expected) and compare its fingerprint with the server:",
           {"code": "dk_ca"},
-          "Import it into your computer's trust store, or give the file only to the clients that need it."
+          "On your computer, the downloaded file must show the same fingerprint:",
+          {"code": "dk_ca_local"},
+          "<b>Claude Desktop needs nothing here</b>: the extension from the admin page carries the certificate. <b>Claude Code needs it</b> (and Claude Desktop with an extension from elsewhere than the admin page): unlike the browser it cannot click through the warning and stops with <code>unable to get local issuer certificate</code>. Start Claude Code with <code>NODE_EXTRA_CA_CERTS=/path/to/xomtra-ca.crt</code> (recommended, no change to the system), or trust the certificate for the whole computer:",
+          {"code": "dk_trust"}
         ]
       },
       {
         "h": "Issue a token and connect Claude",
         "b": [
           "Open <code>https://&lt;server&gt;/admin/</code>, sign in as a Home Assistant administrator and go to <b>Tokens</b>. Issue one token per person and device (<code>xomtra.Reader</code> for most people); it is shown <b>once</b>.",
-          "<b>Claude Desktop:</b> on <b>Connect clients</b>, download <code>xomtra.mcpb</code>, open it, paste the token and, if the certificate is not in your trust store, select <code>xomtra-ca.crt</code>.",
+          "<b>Claude Desktop:</b> after issuing the token, click <b>Download for Claude Desktop</b> (also on <b>Connect clients</b>), open <code>xomtra.mcpb</code>, paste the token and install. The file is made for your server: the address and the certificate are filled in and the extension trusts only this certificate, so nothing has to be imported into the computer. The token is not in the file, Claude Desktop keeps it as a secret.",
           "<b>Claude Code</b> (if the certificate is not in your trust store, start Claude Code with <code>NODE_EXTRA_CA_CERTS=/path/to/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
           {"note": "Claude on the web and in the phone apps connects from Anthropic's servers and cannot reach your LAN. For that, xomtra can run on a machine with a public https:// address, where you sign in with your Home Assistant account and two-factor authentication; see the documentation on GitHub."}

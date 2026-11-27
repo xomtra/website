@@ -157,14 +157,17 @@
         "b": [
           "Caddy geeft het certificaat van je server uit vanuit een eigen lokale certificaatautoriteit. Download die één keer van <code>https://&lt;server&gt;/xomtra-ca.crt</code> (de browser waarschuwt de eerste keer, dat hoort zo) en vergelijk de vingerafdruk met de server:",
           {"code": "dk_ca"},
-          "Importeer hem in de certificaatopslag van je computer of geef het bestand alleen aan de clients die het nodig hebben."
+          "Op je computer moet het gedownloade bestand dezelfde vingerafdruk tonen:",
+          {"code": "dk_ca_local"},
+          "<b>Claude Desktop heeft hier niets nodig</b>: de extensie van de beheerpagina bevat het certificaat al. <b>Nodig voor Claude Code</b> (en voor Claude Desktop met een extensie van elders dan de beheerpagina): anders dan de browser kan het de waarschuwing niet overslaan en stopt het met <code>unable to get local issuer certificate</code>. Start Claude Code met <code>NODE_EXTRA_CA_CERTS=/pad/naar/xomtra-ca.crt</code> (aanbevolen, zonder wijziging aan het systeem), of vertrouw het certificaat op de hele computer:",
+          {"code": "dk_trust"}
         ]
       },
       {
         "h": "Maak een token en koppel Claude",
         "b": [
           "Open <code>https://&lt;server&gt;/admin/</code>, meld je aan als Home Assistant beheerder en ga naar <b>Tokens</b>. Maak één token per persoon en apparaat (<code>xomtra.Reader</code> voor de meeste mensen); het wordt <b>één keer</b> getoond.",
-          "<b>Claude Desktop:</b> download op <b>Clients verbinden</b> <code>xomtra.mcpb</code>, open hem, plak het token en kies <code>xomtra-ca.crt</code> als het certificaat niet in je certificaatopslag staat.",
+          "<b>Claude Desktop:</b> klik na het uitgeven van het token op <b>Downloaden voor Claude Desktop</b> (ook op <b>Clients verbinden</b>), open <code>xomtra.mcpb</code>, plak het token en installeer. Het bestand is gemaakt voor jouw server: adres en certificaat zijn ingevuld en de extensie vertrouwt alleen dit certificaat, dus er hoeft niets in de computer te worden geïmporteerd. Het token zit niet in het bestand, Claude Desktop bewaart het als geheim.",
           "<b>Claude Code</b> (staat het certificaat niet in je certificaatopslag, start Claude Code dan met <code>NODE_EXTRA_CA_CERTS=/pad/naar/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
           {"note": "Claude op het web en in de telefoonapps verbindt vanaf de servers van Anthropic en kan je LAN niet bereiken. Daarvoor kan xomtra draaien op een machine met een openbaar https://-adres, waar je je aanmeldt met je Home Assistant-account en tweestapsverificatie; zie de documentatie op GitHub."}
