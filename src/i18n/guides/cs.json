@@ -100,7 +100,9 @@
             "<b>SSD, aspoň 4 GB RAM a 20 GB volného místa</b> pro běžnou domácnost; pro roky historie stavů víc.",
             "<b>git, curl</b> a <a href=\"https://docs.sigstore.dev/cosign/system_config/installation/\">cosign</a> pro ověření obrazů.",
             "<b>Home Assistant dosažitelný z tohoto stroje</b>, obvykle na portu 8123 (URL ve tvaru <code>http://&lt;adresa&gt;:8123</code>)."
-          ]}
+          ]},
+          "Instalace git, curl a cosign (cosign musí být ve verzi 3; starší balíčky z distribuce nestačí, na macOS <code>brew install cosign</code>):",
+          {"code": "dk_tools"}
         ]
       },
       {

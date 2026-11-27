@@ -100,7 +100,9 @@
             "<b>SSD, mindestens 4 GB RAM und 20 GB freier Speicher</b> für einen typischen Haushalt; mehr für Jahre an Zustandsverlauf.",
             "<b>git, curl</b> und <a href=\"https://docs.sigstore.dev/cosign/system_config/installation/\">cosign</a> zum Prüfen der Images.",
             "<b>Home Assistant von dieser Maschine erreichbar</b>, meist auf Port 8123 (URL wie <code>http://&lt;adresse&gt;:8123</code>)."
-          ]}
+          ]},
+          "So installierst du git, curl und cosign (cosign muss Version 3 sein; ältere Pakete deiner Distribution reichen nicht, auf macOS <code>brew install cosign</code>):",
+          {"code": "dk_tools"}
         ]
       },
       {
