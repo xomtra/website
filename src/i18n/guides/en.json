@@ -46,7 +46,7 @@
         "b": [
           "MCP clients reach xomtra on port 8000 of your Home Assistant host. On the <b>Configuration</b> tab, set <code>mcp_url</code> to the address your computers use for Home Assistant, for example:",
           {"code": "ha_mcpurl"},
-          "The option is optional: without it the admin page uses the host you opened Home Assistant on. It is shown with every new token, so set it once and the instructions are always right. Save and restart the add-on."
+          "This setting is optional: without it the admin page uses the host you opened Home Assistant on. It is shown with every new token, so set it once and the instructions are always right. Save and restart the add-on."
         ]
       },
       {
@@ -71,9 +71,15 @@
         ]
       },
       {
+        "h": "Choose how xomtra answers",
+        "b": [
+          "On the admin page <b>Answers</b> you choose the guardrails for your assistant's answers. The set <b>Default</b> looks for the relevant data first, gives the answer first and then the evidence as a chart or a table, in a friendly tone. <b>Concise</b> answers as briefly as possible, and you can duplicate any set and write your own. A fixed core always applies on top of every set: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, and no jokes about accidents or threats to life and health. A change applies within 30 seconds, without a restart."
+        ]
+      },
+      {
         "h": "Backups and updates",
         "b": [
-          "Home Assistant backups keep xomtra's tokens, settings and dismissed findings, but not the lake with the history (tens of GB). After a restore xomtra starts a new lake, loads the history again as far back as Home Assistant still keeps it, and computes the findings again.",
+          "Home Assistant backups keep xomtra's tokens, settings, answer sets and dismissed findings, but not the lake with the history (tens of GB). After a restore xomtra starts a new lake, loads the history again as far back as Home Assistant still keeps it, and computes the findings again.",
           "New versions appear in Home Assistant as add-on updates. Read the release notes before updating: before version 1.0 a minor release may change settings."
         ]
       }
@@ -159,7 +165,13 @@
           "<b>Claude Desktop:</b> on <b>Connect clients</b>, download <code>xomtra.mcpb</code>, open it, paste the token and, if the certificate is not in your trust store, select <code>xomtra-ca.crt</code>.",
           "<b>Claude Code</b> (if the certificate is not in your trust store, start Claude Code with <code>NODE_EXTRA_CA_CERTS=/path/to/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
-          {"note": "Claude on the web and in the phone apps connects from Anthropic's servers and cannot reach your LAN. For that, xomtra has a public access mode; see the documentation on GitHub."}
+          {"note": "Claude on the web and in the phone apps connects from Anthropic's servers and cannot reach your LAN. For that, xomtra can run on a machine with a public https:// address, where you sign in with your Home Assistant account and two-factor authentication; see the documentation on GitHub."}
+        ]
+      },
+      {
+        "h": "Choose how xomtra answers",
+        "b": [
+          "On the admin page <b>Answers</b> you choose the guardrails for your assistant's answers. The set <b>Default</b> looks for the relevant data first, gives the answer first and then the evidence as a chart or a table, in a friendly tone. <b>Concise</b> answers as briefly as possible, and you can duplicate any set and write your own. A fixed core always applies on top of every set: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, and no jokes about accidents or threats to life and health. A change applies within 30 seconds, without a restart."
         ]
       },
       {

@@ -124,7 +124,7 @@
       "fig": "anom",
       "b": [
         "Běžící televize v sobotu večer je normální, ve tři ráno v úterý už ne. xomtra porovnává každou řadu s tím, co je ve vaší historii obvyklé pro stejný čas v týdnu. Spotřebiče, které většinu času stojí, posuzuje podle jejich běžného provozu, ne podle šumu v klidovém stavu.",
-        "Neobvyklé časy tvoří epizody. Epizoda se reportuje jen tehdy, když je ojedinělá ve srovnání se všemi vašimi řadami dohromady. Samostatná kontrola hledá trvalé změny, například lednici, která teď každý den spotřebuje víc. Epizody za neobvyklého počasí, hodinové výkyvy a období těsně po trvalé změně se označí, aby nepřekryly ostatní nálezy."
+        "Neobvyklé časy tvoří epizody. Epizoda se hlásí jen tehdy, když je ojedinělá ve srovnání se všemi vašimi řadami dohromady. Samostatná kontrola hledá trvalé změny, například lednici, která teď každý den spotřebuje víc. Epizody za neobvyklého počasí, hodinové výkyvy a období těsně po trvalé změně se označí, aby nepřekryly ostatní nálezy."
       ]
     },
     {
@@ -132,7 +132,7 @@
       "h": "Nejdřív to překvapivé, každé pondělí shrnutí",
       "b": [
         "Každý nález dostane sílu, váhu důkazu a kategorii podle veřejné sady pravidel: porucha, úspora, automatizace nebo chování. Triviální nálezy, například známá souvislost výroby fotovoltaiky se slunečním svitem, zůstávají skryté.",
-        "V pondělí ráno xomtra uloží přehled uplynulého týdne, takže se můžete zeptat, co je nového, co zmizelo a co bylo neobvyklé. Váš AI asistent čte nálezy přes MCP se stejnými nástroji read only jako jakýkoli jiný dotaz a převede je do lidské řeči."
+        "V pondělí ráno xomtra uloží přehled uplynulého týdne, takže se můžete zeptat, co je nového, co zmizelo a co bylo neobvyklé. Váš AI asistent čte nálezy přes MCP se stejnými nástroji read only jako jakýkoli jiný dotaz a převede je do lidské řeči. Jeho odpovědi se řídí mantinely xomtry: pevným jádrem, které například nevyvozuje závěry o přítomnosti nebo zdraví konkrétního člověka, pokud se nezeptáte, a sadou pokynů k odpovědím, kterou zvolíte v administraci."
       ]
     },
     {
@@ -140,7 +140,7 @@
       "h": "Poctivě i v tom, co neví",
       "b": [
         "Malý dům nebo dům, kde mnoho entit nemá přiřazenou oblast, dává analýze méně podkladů. Místo tichého odhadování xomtra takový běh označí jako běh s nízkou jistotou a jeho souvislosti předloží jako hypotézy. Jak mu potřebný kontext dodat, popisuje následující část.",
-        "Analýza dlouhého období u mnoha senzorů potřebuje hodně paměti. Velkou instalaci se stovkami senzorů proto doporučujeme provozovat na samostatném stroji, ne jako add-on na malém hostiteli Home Assistantu."
+        "Analýza dlouhého období u mnoha senzorů potřebuje hodně paměti. Velkou instalaci se stovkami senzorů proto doporučujeme provozovat na samostatném stroji, ne jako doplněk na malém hostiteli Home Assistantu."
       ]
     },
     {

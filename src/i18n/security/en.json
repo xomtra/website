@@ -2,7 +2,7 @@
   "nav": "Security",
   "crumb": "Security",
   "title": "How xomtra keeps your home safe",
-  "desc": "xomtra only reads Home Assistant, lets in only the people and devices you allow and keeps the history on your machine. How the code does it, and what is still being prepared.",
+  "desc": "xomtra only reads Home Assistant, lets in only the people and devices you allow and keeps the history on your machine. How the code does it.",
   "lead": "Home Assistant history shows when people are at home and how they live. xomtra treats it that way: it only reads, it gives each person exactly the access you choose, and it keeps the data on your own machine. Everything below is open source, so you do not have to take our word for it.",
   "facts": [
     ["Reads", "Home Assistant, changes nothing"],
@@ -24,6 +24,8 @@
       "h": "Only who you let in",
       "b": [
         "In your network, each person and device gets a personal token from the admin page. It is shown once; xomtra keeps only its fingerprint, not the token itself. Each token has an owner, a role and an optional expiry, and you can revoke it at any time.",
+        "From the internet you sign in with your Home Assistant account; Microsoft Entra ID is an option. By default only Home Assistant administrators may connect, and only with two-factor authentication. Anyone else gets in only when an administrator gives them a role on the admin page <b>Access</b>.",
+        "Right after sign-in xomtra revokes the Home Assistant token it received and keeps its own session with a fixed expiry. The page <b>Access</b> lists every connected client, and <b>Disconnect</b> ends its access within a minute.",
         "Roles decide what the AI may see. A reader never sees people, locations, cameras, locks, alarms or the free text of attributes; these are filtered out in the database, before any answer is put together."
       ]
     },
@@ -51,7 +53,7 @@
           "ul": [
             "<b>Home Assistant add-on:</b> the MCP port is for clients in your local network (Claude Desktop, Claude Code and others). It is plain HTTP, so use it only in a network you trust; it is not meant to be opened to the internet.",
             "<b>Docker:</b> HTTPS in your network with xomtra's own local certificate authority.",
-            "<b>Access from the internet</b> (for Claude.ai): xomtra sits behind Caddy with a Let's Encrypt certificate. Anyone can reach only the sign-in pages; the data endpoints answer only to Claude's published addresses. You sign in with Microsoft Entra ID or a Home Assistant account."
+            "<b>Access from the internet</b> (for Claude.ai): xomtra sits behind Caddy with a Let's Encrypt certificate. Anyone can reach only the sign-in pages; the data endpoints answer only to Claude's published addresses. You sign in with a Home Assistant account, or with Microsoft Entra ID if you choose it."
           ]
         }
       ]
@@ -69,22 +71,7 @@
       "h": "Your data and your AI",
       "b": [
         "The history stays on the machine where xomtra runs, and xomtra itself sends it nowhere. What your AI client fetches to answer you goes to its provider under your own account and its terms. Roles and labels decide what it can fetch.",
-        "xomtra also tells the AI how to answer: findings are hypotheses, and no conclusions about a person's presence, sleep or health unless you ask. That guides the model, it is not a security boundary."
-      ]
-    },
-    {
-      "id": "next",
-      "h": "Being prepared",
-      "b": [
-        { "note": "Not in the current release yet." },
-        {
-          "ul": [
-            "Sign-in with a Home Assistant account as the default for access from the internet; Entra ID stays an option.",
-            "The connector revokes the Home Assistant token right after sign-in, like the admin page does today, and keeps its own session with a fixed expiry.",
-            "A list of connected clients in the admin page with a Disconnect button.",
-            "By default only Home Assistant administrators may connect, with two-factor authentication required."
-          ]
-        }
+        "xomtra also gives the AI guardrails for its answers. The fixed core always applies: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, no jokes about accidents or threats to life and health, and nothing discriminatory, political or religious. On top of it comes the set of answer guidelines you choose on the admin page <b>Answers</b>. The sets are stored on your machine, only administrators can change them, and no text for the model comes from xomtra.com. The guardrails guide the model; they are not a security boundary."
       ]
     }
   ],

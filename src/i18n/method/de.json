@@ -1,13 +1,13 @@
 {
   "nav": "Methode",
   "crumb": "Methode",
-  "title": "Wie xomtra Ihr Zuhause liest",
+  "title": "Wie xomtra dein Zuhause liest",
   "desc": "Statistik für Haushalte: wie xomtra aus der Home-Assistant-Historie Befunde macht, denen man trauen kann, was vor jedem Release getestet wird und wo die Grenzen liegen.",
-  "lead": "Jede Nacht geht xomtra die Historie Ihres Zuhauses durch und findet heraus, was zusammenhängt, was ungewöhnlich war und was sich dauerhaft verändert hat. Nicht mit festen Grenzwerten pro Sensor, sondern mit Statistik, die weiß, wie viele zufällige Übereinstimmungen der Alltag eines Haushalts erzeugt.",
+  "lead": "Jede Nacht geht xomtra die Historie deines Zuhauses durch und findet heraus, was zusammenhängt, was ungewöhnlich war und was sich dauerhaft verändert hat. Nicht mit festen Grenzwerten pro Sensor, sondern mit Statistik, die weiß, wie viele zufällige Übereinstimmungen der Alltag eines Haushalts erzeugt.",
   "facts": [
     [
       "Läuft",
-      "jede Nacht, auf Ihrem Rechner"
+      "jede Nacht, auf deinem Rechner"
     ],
     [
       "Liest",
@@ -21,7 +21,7 @@
   "illus": "Illustration, keine echten Daten",
   "pipe": {
     "cap": "Von Home Assistant zur Antwort",
-    "frame": "xomtra, auf Ihrem Rechner",
+    "frame": "xomtra, auf deinem Rechner",
     "ro": "read only",
     "mcp": "MCP",
     "nodes": [
@@ -51,7 +51,7 @@
         "Wochenübersicht"
       ],
       [
-        "Ihre KI",
+        "Deine KI",
         "fragt in Worten",
         "und erklärt"
       ]
@@ -76,7 +76,7 @@
     "anom": {
       "cap": "Ungewöhnlich für diese Zeit der Woche",
       "band": "üblicher Bereich",
-      "series": "Ihr Sensor",
+      "series": "dein Sensor",
       "ep": "Episode"
     }
   },
@@ -86,7 +86,7 @@
       "h": "Jede Änderung, vom ersten Tag an",
       "b": [
         "xomtra verbindet sich mit Home Assistant und liest nur: Es ruft nie Dienste auf und ändert nichts. Es erfasst jede Zustandsänderung, sobald sie passiert, und speichert die Langzeitstatistiken, die Home Assistant ohnehin berechnet. Beim ersten Start übernimmt es die Historie, die Home Assistant noch aufbewahrt, und nach einem Verbindungsabbruch ergänzt es den fehlenden Abschnitt selbst.",
-        "Entitäten, die nicht analysiert werden sollen, versehen Sie in Home Assistant mit einem Label. Ein anderes Label schließt sie auch von der Speicherung aus."
+        "Entitäten, die nicht analysiert werden sollen, versiehst du in Home Assistant mit einem Label. Ein anderes Label schließt sie auch von der Speicherung aus."
       ]
     },
     {
@@ -111,20 +111,20 @@
       "fig": "struct",
       "b": [
         "xomtra vergleicht jedes Paar von Reihen, auch um einige Stunden verschoben: Die Heizung schaltet ein, der Raum wird erst später warm. Bei Hunderten von Sensoren sind das Zehntausende Paare, und manche davon wirken rein zufällig zusammenhängend.",
-        "Deshalb lernt xomtra aus Ihren eigenen Daten, wie stark ein Zusammenhang sein kann, den allein der Zufall erzeugt, und hält den Anteil falscher Befunde über alle Paare gemeinsam im Rahmen, nicht für jedes Paar einzeln.",
+        "Deshalb lernt xomtra aus deinen eigenen Daten, wie stark ein Zusammenhang sein kann, den allein der Zufall erzeugt, und hält den Anteil falscher Befunde über alle Paare gemeinsam im Rahmen, nicht für jedes Paar einzeln.",
         "Dann erklärt es, was sich erklären lässt: Sensoren in einem Raum, die Anwesenheit der Bewohner, ein dritter Sensor dazwischen, eine verborgene gemeinsame Ursache oder eine Größe, die doppelt gemessen wird. Solche Zusammenhänge sind echt, sagen aber nichts Neues und werden deshalb hinter den anderen eingeordnet. Oben bleiben die überraschenden Befunde.",
         {
-          "note": "Eine Korrelation zeigt, wo man hinschauen sollte, beweist aber keine Ursache. xomtra sagt das, und Ihr KI-Assistent auch."
+          "note": "Eine Korrelation zeigt, wo man hinschauen sollte, beweist aber keine Ursache. xomtra sagt das, und dein KI-Assistent auch."
         }
       ]
     },
     {
       "id": "anomalies",
-      "h": "Was in Ihrem Zuhause ungewöhnlich ist",
+      "h": "Was in deinem Zuhause ungewöhnlich ist",
       "fig": "anom",
       "b": [
         "Ein laufender Fernseher am Samstagabend ist normal, um drei Uhr nachts an einem Dienstag nicht. xomtra vergleicht jede Reihe mit dem, was in Ihrer Historie für dieselbe Zeit der Woche üblich ist. Geräte, die meist stillstehen, werden an ihrem normalen Betrieb gemessen, nicht an ihrem Rauschen im Ruhezustand.",
-        "Ungewöhnliche Zeiten bilden Episoden. Eine Episode wird nur gemeldet, wenn sie im Vergleich mit allen Ihren Reihen zusammen selten ist. Eine eigene Prüfung sucht dauerhafte Veränderungen, etwa einen Kühlschrank, der jetzt jeden Tag mehr verbraucht. Episoden bei ungewöhnlichem Wetter, einstündige Ausreißer und die Zeit direkt nach einer dauerhaften Veränderung werden markiert, damit sie die übrigen Befunde nicht überdecken."
+        "Ungewöhnliche Zeiten bilden Episoden. Eine Episode wird nur gemeldet, wenn sie im Vergleich mit allen deinen Reihen zusammen selten ist. Eine eigene Prüfung sucht dauerhafte Veränderungen, etwa einen Kühlschrank, der jetzt jeden Tag mehr verbraucht. Episoden bei ungewöhnlichem Wetter, einstündige Ausreißer und die Zeit direkt nach einer dauerhaften Veränderung werden markiert, damit sie die übrigen Befunde nicht überdecken."
       ]
     },
     {
@@ -132,14 +132,14 @@
       "h": "Das Überraschende zuerst, montags eine Übersicht",
       "b": [
         "Jeder Befund bekommt eine Stärke, ein Beweisgewicht und eine Kategorie aus einem öffentlichen Regelwerk: Fehler, Einsparung, Automatisierung oder Verhalten. Triviale Befunde, etwa der bekannte Zusammenhang von Solarstrom und Sonnenschein, bleiben verborgen.",
-        "Am Montagmorgen speichert xomtra eine Übersicht der vergangenen Woche, sodass Sie fragen können, was neu ist, was verschwunden ist und was ungewöhnlich war. Ihr KI-Assistent liest die Befunde über MCP mit denselben read-only-Werkzeugen wie jede andere Frage und übersetzt sie in Alltagssprache."
+        "Am Montagmorgen speichert xomtra eine Übersicht der vergangenen Woche, sodass du fragen kannst, was neu ist, was verschwunden ist und was ungewöhnlich war. Dein KI-Assistent liest die Befunde über MCP mit denselben read-only-Werkzeugen wie jede andere Frage und übersetzt sie in Alltagssprache. Seine Antworten folgen den Leitplanken von xomtra: einem festen Kern, der zum Beispiel keine Schlüsse über Anwesenheit oder Gesundheit einer Person zieht, wenn du nicht danach fragst, und dem Set von Antwortrichtlinien, das du auf der Admin-Seite wählst."
       ]
     },
     {
       "id": "confidence",
       "h": "Ehrlich bei dem, was es nicht weiß",
       "b": [
-        "Ein kleiner Haushalt oder einer, in dem vielen Entitäten kein Bereich zugewiesen ist, gibt der Analyse weniger Anhaltspunkte. Statt still zu raten, markiert xomtra einen solchen Lauf als wenig sicher und stellt seine Zusammenhänge als Hypothesen dar. Wie Sie ihm den nötigen Kontext geben, zeigt der nächste Abschnitt.",
+        "Ein kleiner Haushalt oder einer, in dem vielen Entitäten kein Bereich zugewiesen ist, gibt der Analyse weniger Anhaltspunkte. Statt still zu raten, markiert xomtra einen solchen Lauf als wenig sicher und stellt seine Zusammenhänge als Hypothesen dar. Wie du ihm den nötigen Kontext gibst, zeigt der nächste Abschnitt.",
         "Die Analyse eines langen Zeitraums über viele Sensoren braucht viel Speicher. Für eine große Installation mit Hunderten von Sensoren empfehlen wir daher einen eigenen Rechner statt des Add-ons auf einem kleinen Home-Assistant-Host."
       ]
     },
@@ -150,10 +150,10 @@
         "Ein gut beschriebenes Zuhause liefert die besten Ergebnisse. Ein paar Änderungen in Home Assistant dauern Minuten und helfen der Analyse sehr:",
         {
           "ul": [
-            "<b>Geräte Bereichen zuordnen.</b> Ordnen Sie jedes Gerät dem Raum zu, in dem es wirklich steht. Seine Entitäten erben den Bereich, und xomtra erkennt, welche Zusammenhänge ein Raum erklärt. Haben die meisten Entitäten keinen Bereich, bekommt der Lauf eine geringe Sicherheit.",
+            "<b>Geräte Bereichen zuordnen.</b> Ordne jedes Gerät dem Raum zu, in dem es wirklich steht. Seine Entitäten erben den Bereich, und xomtra erkennt, welche Zusammenhänge ein Raum erklärt. Haben die meisten Entitäten keinen Bereich, bekommt der Lauf eine geringe Sicherheit.",
             "<b>Eine Anwesenheits-Entität haben.</b> Eine Person mit Device Tracker, etwa aus der Home-Assistant-App auf dem Handy, oder ein Präsenzsensor. Sonst kann xomtra nicht erkennen, dass zwei Räume nur deshalb zusammenhängen, weil jemand zu Hause ist.",
             "<b>Defekte und unnötige Geräte ausschließen.</b> Das Label <code>xomtra_no_analysis</code> nimmt eine Entität aus der Analyse, ihre Daten bleiben für Fragen verfügbar. Das Label <code>xomtra_no_ingest</code> speichert sie gar nicht. Ein Label am Gerät gilt für alle seine Entitäten, auch künftige.",
-            "<b>Doppelte Entitäten entfernen.</b> Kommt ein Sensor über zwei Integrationen, deaktivieren Sie eine der Entitäten in Home Assistant. Das ergibt weniger triviale Befunde.",
+            "<b>Doppelte Entitäten entfernen.</b> Kommt ein Sensor über zwei Integrationen, deaktiviere eine der Entitäten in Home Assistant. Das ergibt weniger triviale Befunde.",
             "<b>Sensoren Langzeitstatistiken führen lassen.</b> Ein Sensor braucht eine Einheit und eine Zustandsklasse (<code>measurement</code> oder <code>total</code>). Bei eigenen und Template-Sensoren fehlt sie oft.",
             "<b>Geräte reparieren, die oft ausfallen.</b> Eine Reihe mit vielen Lücken fällt aus der Analyse heraus oder liefert schwächere Ergebnisse."
           ]
@@ -178,6 +178,6 @@
     }
   ],
   "docs": "Evaluation der Analysen auf GitHub",
-  "help": "Fragen, oder ein Befund, der falsch aussieht? Schreiben Sie an support@xomtra.com oder eröffnen Sie ein Issue auf GitHub.",
+  "help": "Fragen, oder ein Befund, der falsch aussieht? Schreib an support@xomtra.com oder eröffne ein Issue auf GitHub.",
   "more": "So funktioniert die Analyse"
 }

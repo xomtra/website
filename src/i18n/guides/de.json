@@ -46,7 +46,7 @@
         "b": [
           "MCP-Clients erreichen xomtra auf Port 8000 deines Home Assistant Hosts. Setze im Tab <b>Konfiguration</b> <code>mcp_url</code> auf die Adresse, unter der deine Computer Home Assistant erreichen, zum Beispiel:",
           {"code": "ha_mcpurl"},
-          "Die Option ist optional: Ohne sie nimmt die Admin-Seite den Host, unter dem du Home Assistant geöffnet hast. Sie steht bei jedem neuen Token, also einmal setzen und die Anleitungen stimmen immer. Speichern und das Add-on neu starten."
+          "Die Einstellung ist optional: Ohne sie nimmt die Admin-Seite den Host, unter dem du Home Assistant geöffnet hast. Sie steht bei jedem neuen Token, also einmal setzen und die Anleitungen stimmen immer. Speichern und das Add-on neu starten."
         ]
       },
       {
@@ -71,9 +71,15 @@
         ]
       },
       {
+        "h": "Wählen, wie xomtra antwortet",
+        "b": [
+          "Auf der Admin-Seite <b>Antworten</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
+        ]
+      },
+      {
         "h": "Backups und Updates",
         "b": [
-          "Home Assistant Backups enthalten Tokens, Einstellungen und verworfene Befunde von xomtra, aber nicht den Lake mit dem Verlauf (zig GB). Nach einer Wiederherstellung legt xomtra einen neuen Lake an, lädt den Verlauf so weit zurück, wie Home Assistant ihn noch hat, und berechnet die Befunde neu.",
+          "Home-Assistant-Backups enthalten Tokens, Einstellungen, Antwort-Sets und verworfene Befunde von xomtra, aber nicht den Lake mit dem Verlauf (zig GB). Nach einer Wiederherstellung legt xomtra einen neuen Lake an, lädt den Verlauf so weit zurück, wie Home Assistant ihn noch hat, und berechnet die Befunde neu.",
           "Neue Versionen erscheinen in Home Assistant als Add-on-Updates. Lies vor dem Update die Release Notes: Vor Version 1.0 kann ein Minor-Release Einstellungen ändern."
         ]
       }
@@ -159,7 +165,13 @@
           "<b>Claude Desktop:</b> Lade auf <b>Clients verbinden</b> <code>xomtra.mcpb</code> herunter, öffne es, füge den Token ein und wähle <code>xomtra-ca.crt</code>, falls das Zertifikat nicht im Zertifikatsspeicher ist.",
           "<b>Claude Code</b> (ist das Zertifikat nicht im Zertifikatsspeicher, starte Claude Code mit <code>NODE_EXTRA_CA_CERTS=/pfad/zu/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
-          {"note": "Claude im Web und in den Handy-Apps verbindet sich von den Servern von Anthropic und erreicht dein LAN nicht. Dafür hat xomtra einen öffentlichen Zugriffsmodus; siehe die Dokumentation auf GitHub."}
+          {"note": "Claude im Web und in den Handy-Apps verbindet sich von den Servern von Anthropic und erreicht dein LAN nicht. Dafür kann xomtra auf einer Maschine mit öffentlicher https://-Adresse laufen, an der du dich mit deinem Home-Assistant-Konto und Zwei-Faktor-Authentifizierung anmeldest; siehe die Dokumentation auf GitHub."}
+        ]
+      },
+      {
+        "h": "Wählen, wie xomtra antwortet",
+        "b": [
+          "Auf der Admin-Seite <b>Antworten</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
         ]
       },
       {
