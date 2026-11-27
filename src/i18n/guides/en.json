@@ -144,7 +144,7 @@
       {
         "h": "Connect Home Assistant",
         "b": [
-          "Until Home Assistant is connected, the admin service prints a one-time setup link to its log:",
+          "Until Home Assistant is connected, this command prints a one-time setup link (it is also in the log of the admin service):",
           {"code": "dk_setup"},
           "Open the link in a browser in your LAN (the browser warns about the certificate, which is expected; see the next step). Enter the Home Assistant URL as this server reaches it, for example <code>http://192.168.1.10:8123</code>, and the token from the previous step.",
           "xomtra checks the connection before saving it and stores the token encrypted in its database, not in a file. The link then stops working and the history from Home Assistant loads in the background. You can change the URL or the token later on the admin page under <b>Overview</b>."

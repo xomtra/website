@@ -8,7 +8,7 @@
   "dk_pin_new": "grep '_IMAGE=' \"xomtra-$VERSION-images.env\" > .env",
   "dk_pin": "sed -i '/_IMAGE=/d' .env\ngrep '_IMAGE=' \"xomtra-$VERSION-images.env\" >> .env",
   "dk_up": "docker compose up -d\ndocker compose ps",
-  "dk_setup": "docker compose logs admin | grep -A2 setup",
+  "dk_setup": "docker compose exec admin xomtra-admin setup-link",
   "dk_ca": "docker compose exec caddy cat /data/caddy/pki/authorities/local/root.crt \\\n  | openssl x509 -noout -fingerprint -sha256",
   "dk_claude_code": "claude mcp add --transport http xomtra https://<server>/mcp \\\n  --header \"Authorization: Bearer xmt_...\"",
   "dk_upgrade": "cp -p .env \".env.bak-$(date +%F)\"\ngit fetch --depth 1 origin tag \"v$VERSION\"\ngit checkout -q \"v$VERSION\"\nfor f in SHA256SUMS \"xomtra-$VERSION-images.env\"; do\n  curl -fsSLO \"https://github.com/xomtra/xomtra/releases/download/v$VERSION/$f\"\ndone",

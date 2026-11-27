@@ -144,7 +144,7 @@
       {
         "h": "Připojte Home Assistant",
         "b": [
-          "Dokud Home Assistant není připojený, vypisuje admin služba do logu jednorázový odkaz na nastavení:",
+          "Dokud Home Assistant není připojený, vypíše tento příkaz jednorázový odkaz na nastavení (najdete ho i v logu služby admin):",
           {"code": "dk_setup"},
           "Otevřete odkaz v prohlížeči ve vaší LAN (prohlížeč varuje kvůli certifikátu, to je v pořádku, viz další krok). Zadejte adresu Home Assistantu, jak ji vidí tento server, například <code>http://192.168.1.10:8123</code>, a token z předchozího kroku.",
           "xomtra spojení před uložením ověří a token uloží zašifrovaný ve své databázi, ne do souboru. Odkaz pak přestane platit a historie z Home Assistantu se načítá na pozadí. Adresu nebo token můžete později změnit v administraci na stránce <b>Přehled</b>."

@@ -144,7 +144,7 @@
       {
         "h": "Home Assistant verbinden",
         "b": [
-          "Solange Home Assistant nicht verbunden ist, schreibt der Admin-Dienst einen einmaligen Einrichtungslink in sein Log:",
+          "Solange Home Assistant nicht verbunden ist, gibt dieser Befehl einen einmaligen Einrichtungslink aus (er steht auch im Log des Admin-Dienstes):",
           {"code": "dk_setup"},
           "Öffne den Link in einem Browser in deinem LAN (der Browser warnt wegen des Zertifikats, das ist erwartet; siehe nächster Schritt). Gib die Home Assistant URL ein, wie dieser Server sie erreicht, zum Beispiel <code>http://192.168.1.10:8123</code>, und den Token aus dem vorigen Schritt.",
           "xomtra prüft die Verbindung vor dem Speichern und legt den Token verschlüsselt in seiner Datenbank ab, nicht in einer Datei. Danach ist der Link ungültig, und der Verlauf aus Home Assistant lädt im Hintergrund. URL oder Token kannst du später auf der Admin-Seite unter <b>Übersicht</b> ändern."

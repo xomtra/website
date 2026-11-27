@@ -144,7 +144,7 @@
       {
         "h": "Koppel Home Assistant",
         "b": [
-          "Zolang Home Assistant niet gekoppeld is, schrijft de admin-service een eenmalige installatielink in zijn log:",
+          "Zolang Home Assistant niet gekoppeld is, toont dit commando een eenmalige installatielink (die staat ook in het log van de admin-service):",
           {"code": "dk_setup"},
           "Open de link in een browser in je LAN (de browser waarschuwt voor het certificaat, dat is normaal; zie de volgende stap). Vul de Home Assistant URL in zoals deze server hem bereikt, bijvoorbeeld <code>http://192.168.1.10:8123</code>, en het token uit de vorige stap.",
           "xomtra controleert de verbinding voordat het die opslaat en bewaart het token versleuteld in zijn database, niet in een bestand. Daarna werkt de link niet meer en laadt de geschiedenis uit Home Assistant op de achtergrond. De URL of het token kun je later wijzigen op de beheerpagina onder <b>Overzicht</b>."
