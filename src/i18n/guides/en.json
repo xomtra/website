@@ -98,10 +98,10 @@
           {"ul": [
             "<b>Linux with Docker Engine and Compose v2</b>, amd64 or arm64. A NAS with Docker works too.",
             "<b>SSD, at least 4 GB RAM and 20 GB of free space</b> for a typical home; more for years of state history.",
-            "<b>git, curl</b> and <a href=\"https://docs.sigstore.dev/cosign/system_config/installation/\">cosign</a> to verify the images.",
+            "<b>git and curl.</b> cosign, which checks the signatures of the images, runs in a container, so there is nothing more to install.",
             "<b>Home Assistant reachable from this machine</b>, usually on port 8123 (URL like <code>http://&lt;address&gt;:8123</code>)."
           ]},
-          "To install git, curl and cosign (cosign must be version 3; older packages from your distribution are not enough, on macOS use <code>brew install cosign</code>):",
+          "If git or curl is missing:",
           {"code": "dk_tools"}
         ]
       },
