@@ -23,7 +23,7 @@
             "<b>SSD, mindestens 4 GB RAM und 20 GB freier Speicher.</b> Home Assistant Green (32 GB eMMC) und SD-Karten werden nicht unterstützt.",
             "<b>64-Bit-System:</b> amd64 (Intel, AMD) oder aarch64 (zum Beispiel Raspberry Pi 5 mit SSD)."
           ]},
-          {"note": "Willst du den Zustandsverlauf länger als ein Jahr behalten oder den ganzen Verlauf sichern? Betreibe xomtra auf einer eigenen Maschine mit <a href=\"{docker}\">Docker Compose</a>; Images für Proxmox und VMware folgen demnächst."}
+          {"note": "Willst du den Zustandsverlauf länger als ein Jahr behalten oder den ganzen Verlauf sichern? Betreibe xomtra auf einer eigenen Maschine mit <a href=\"{docker}\">Docker Compose</a>."}
         ]
       },
       {

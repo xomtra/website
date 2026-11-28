@@ -3,7 +3,7 @@
   "en": {
    "pre_eyebrow": "Public beta coming soon · for Home Assistant",
    "pre_cta": "Contact us",
-   "pre_inst": "The Home Assistant add-on and Docker Compose work now; Proxmox and VMware images are coming soon. Questions? Write to support@xomtra.com.",
+   "pre_inst": "The Home Assistant add-on and Docker Compose work now. Questions? Write to support@xomtra.com.",
    "nav": [
     "How it works",
     "Install",
@@ -14,7 +14,7 @@
    "steps": [
     [
      "Install",
-     "Add-on or Docker; Proxmox and VMware images are coming. No domain, no port forwarding, no cloud account."
+     "Add-on or Docker. No domain, no port forwarding, no cloud account."
     ],
     [
      "Connect",
@@ -61,7 +61,7 @@
     "How much did the solar panels cover of last month's consumption?",
     "Which sensors stopped reporting this week?"
    ],
-   "in_h": "Install where Home Assistant already runs",
+   "in_h": "Inside Home Assistant or right next to it",
    "in_s": "Pick the option that fits your setup. All of them are free.",
    "myha": "Add to Home Assistant",
    "inst": [
@@ -74,16 +74,6 @@
      "Docker Compose",
      "For your own Linux server.",
      "docker compose up -d"
-    ],
-    [
-     "Proxmox VE",
-     "Ready virtual machine, created by one command on the host.",
-     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
-    ],
-    [
-     "VMware",
-     "OVA appliance for ESXi, vSphere or Workstation.",
-     "Deploy OVF Template → xomtra.ova"
     ]
    ],
    "c_h": "How it compares",
@@ -139,7 +129,7 @@
     ],
     [
      "How much disk does it need?",
-     "A typical home needs 2–5 GB for 90 days of states and 5 years of hourly statistics. Large setups with years of states should run xomtra on its own virtual machine with Docker Compose; ready images for Proxmox and VMware are coming."
+     "It depends mainly on how many state changes Home Assistant records. As a guide, for 1,000 entities (about 500,000 state changes a day) you need about 6 GB for 90 days of states and 5 years of hourly statistics, and about 20 GB for each year of states. A smaller home with 300 entities needs about a third of that. To keep years of state history, run xomtra on your own server or virtual machine with Docker Compose."
     ],
     [
      "Is it affiliated with Home Assistant?",
@@ -152,7 +142,7 @@
   "de": {
    "pre_eyebrow": "Öffentliche Beta bald verfügbar · für Home Assistant",
    "pre_cta": "Kontaktiere uns",
-   "pre_inst": "Das Home-Assistant-Add-on und Docker Compose funktionieren schon; Images für Proxmox und VMware folgen demnächst. Fragen? Schreib an support@xomtra.com.",
+   "pre_inst": "Das Home-Assistant-Add-on und Docker Compose funktionieren schon. Fragen? Schreib an support@xomtra.com.",
    "nav": [
     "Funktionsweise",
     "Installation",
@@ -163,7 +153,7 @@
    "steps": [
     [
      "Installieren",
-     "Add-on oder Docker; Images für Proxmox und VMware folgen. Keine Domain, keine Portfreigabe, kein Cloud-Konto."
+     "Add-on oder Docker. Keine Domain, keine Portfreigabe, kein Cloud-Konto."
     ],
     [
      "Verbinden",
@@ -210,7 +200,7 @@
     "Wie viel vom Verbrauch im letzten Monat hat die PV-Anlage gedeckt?",
     "Welche Sensoren melden sich diese Woche nicht mehr?"
    ],
-   "in_h": "Installieren, wo Home Assistant schon läuft",
+   "in_h": "Direkt in Home Assistant oder daneben",
    "in_s": "Wähle die passende Variante. Alle sind kostenlos.",
    "myha": "Zu Home Assistant hinzufügen",
    "inst": [
@@ -223,16 +213,6 @@
      "Docker Compose",
      "Für deinen eigenen Linux-Server.",
      "docker compose up -d"
-    ],
-    [
-     "Proxmox VE",
-     "Fertige VM, mit einem Befehl auf dem Host angelegt.",
-     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
-    ],
-    [
-     "VMware",
-     "OVA-Appliance für ESXi, vSphere oder Workstation.",
-     "OVF-Vorlage bereitstellen → xomtra.ova"
     ]
    ],
    "c_h": "Im Vergleich",
@@ -288,7 +268,7 @@
     ],
     [
      "Wie viel Speicher braucht es?",
-     "Ein typischer Haushalt braucht 2–5 GB für 90 Tage Zustände und 5 Jahre Stundenstatistiken. Große Installationen mit jahrelangen Zuständen betreibst du besser auf einer eigenen virtuellen Maschine mit Docker Compose; fertige Images für Proxmox und VMware kommen bald."
+     "Das hängt vor allem davon ab, wie viele Zustandsänderungen Home Assistant aufzeichnet. Als Richtwert brauchst du für 1000 Entitäten (rund 500.000 Zustandsänderungen am Tag) etwa 6 GB für 90 Tage Zustände und 5 Jahre Stundenstatistiken und etwa 20 GB für jedes Jahr an Zuständen. Ein kleinerer Haushalt mit 300 Entitäten kommt mit einem Drittel aus. Willst du jahrelange Zustandshistorie behalten, betreibe xomtra auf einem eigenen Server oder einer virtuellen Maschine mit Docker Compose."
     ],
     [
      "Gehört xomtra zu Home Assistant?",
@@ -301,7 +281,7 @@
   "cs": {
    "pre_eyebrow": "Veřejná beta již brzy · pro Home Assistant",
    "pre_cta": "Kontaktujte nás",
-   "pre_inst": "Doplněk Home Assistantu a Docker Compose fungují už teď; obrazy pro Proxmox a VMware budou brzy. Dotazy? Napište na support@xomtra.com.",
+   "pre_inst": "Doplněk Home Assistantu a Docker Compose fungují už teď. Dotazy? Napište na support@xomtra.com.",
    "nav": [
     "Jak to funguje",
     "Instalace",
@@ -312,7 +292,7 @@
    "steps": [
     [
      "Instalace",
-     "Doplněk nebo Docker; obrazy pro Proxmox a VMware připravujeme. Bez domény, bez přesměrování portů, bez cloudového účtu."
+     "Doplněk nebo Docker. Bez domény, bez přesměrování portů, bez cloudového účtu."
     ],
     [
      "Připojení",
@@ -359,7 +339,7 @@
     "Kolik ze spotřeby minulého měsíce pokryla fotovoltaika?",
     "Které senzory tento týden přestaly hlásit?"
    ],
-   "in_h": "Nainstalujte tam, kde už Home Assistant běží",
+   "in_h": "Přímo v Home Assistantu, nebo vedle něj",
    "in_s": "Vyberte variantu, která vám sedí. Všechny jsou zdarma.",
    "myha": "Přidat do Home Assistantu",
    "inst": [
@@ -372,16 +352,6 @@
      "Docker Compose",
      "Pro vlastní linuxový server.",
      "docker compose up -d"
-    ],
-    [
-     "Proxmox VE",
-     "Hotový virtuální stroj, vytvoří ho jeden příkaz na hostiteli.",
-     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
-    ],
-    [
-     "VMware",
-     "OVA appliance pro ESXi, vSphere nebo Workstation.",
-     "Deploy OVF Template → xomtra.ova"
     ]
    ],
    "c_h": "Srovnání",
@@ -437,7 +407,7 @@
     ],
     [
      "Kolik potřebuje místa na disku?",
-     "Typická domácnost 2–5 GB na 90 dní stavů a 5 let hodinových statistik. Velké instalace s roky stavů patří na samostatný virtuální stroj s Docker Compose; hotové obrazy pro Proxmox a VMware připravujeme."
+     "Záleží hlavně na tom, kolik změn stavů Home Assistant zapisuje. Orientačně na 1000 entit (zhruba 500 tisíc změn stavů denně) potřebujete asi 6 GB na 90 dní stavů a 5 let hodinových statistik a asi 20 GB na každý rok stavů. Menší domácnost s 300 entitami vystačí s třetinou. Chcete-li držet roky historie stavů, spusťte xomtru na vlastním serveru nebo virtuálním stroji s Docker Compose."
     ],
     [
      "Je to součást Home Assistantu?",
@@ -450,7 +420,7 @@
   "pl": {
    "pre_eyebrow": "Publiczna beta już wkrótce · dla Home Assistant",
    "pre_cta": "Skontaktuj się z nami",
-   "pre_inst": "Dodatek Home Assistant i Docker Compose działają już teraz; obrazy dla Proxmox i VMware będą wkrótce. Pytania? Napisz na support@xomtra.com.",
+   "pre_inst": "Dodatek Home Assistant i Docker Compose działają już teraz. Pytania? Napisz na support@xomtra.com.",
    "nav": [
     "Jak to działa",
     "Instalacja",
@@ -461,7 +431,7 @@
    "steps": [
     [
      "Instalacja",
-     "Dodatek lub Docker; obrazy dla Proxmox i VMware są w przygotowaniu. Bez domeny, bez przekierowania portów, bez konta w chmurze."
+     "Dodatek lub Docker. Bez domeny, bez przekierowania portów, bez konta w chmurze."
     ],
     [
      "Połączenie",
@@ -508,7 +478,7 @@
     "Jaką część zużycia z zeszłego miesiąca pokryła fotowoltaika?",
     "Które czujniki przestały raportować w tym tygodniu?"
    ],
-   "in_h": "Zainstaluj tam, gdzie już działa Home Assistant",
+   "in_h": "Bezpośrednio w Home Assistant albo obok niego",
    "in_s": "Wybierz wariant, który pasuje do Twojej instalacji. Wszystkie są darmowe.",
    "myha": "Dodaj do Home Assistant",
    "inst": [
@@ -521,16 +491,6 @@
      "Docker Compose",
      "Dla własnego serwera Linux.",
      "docker compose up -d"
-    ],
-    [
-     "Proxmox VE",
-     "Gotowa maszyna wirtualna, tworzona jednym poleceniem na hoście.",
-     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
-    ],
-    [
-     "VMware",
-     "Appliance OVA dla ESXi, vSphere lub Workstation.",
-     "Deploy OVF Template → xomtra.ova"
     ]
    ],
    "c_h": "Porównanie",
@@ -586,7 +546,7 @@
     ],
     [
      "Ile miejsca na dysku potrzebuje?",
-     "Typowy dom potrzebuje 2–5 GB na 90 dni stanów i 5 lat statystyk godzinowych. Duże instalacje z wieloletnią historią stanów lepiej uruchomić na osobnej maszynie wirtualnej z Docker Compose; gotowe obrazy dla Proxmox i VMware są w przygotowaniu."
+     "Zależy to głównie od tego, ile zmian stanów zapisuje Home Assistant. Orientacyjnie na 1000 encji (około 500 tysięcy zmian stanów dziennie) potrzeba około 6 GB na 90 dni stanów i 5 lat statystyk godzinowych oraz około 20 GB na każdy rok stanów. Mniejszy dom z 300 encjami potrzebuje mniej więcej jednej trzeciej. Aby trzymać wieloletnią historię stanów, uruchom xomtra na własnym serwerze lub maszynie wirtualnej z Docker Compose."
     ],
     [
      "Czy to część Home Assistanta?",
@@ -599,7 +559,7 @@
   "nl": {
    "pre_eyebrow": "Publieke bèta binnenkort · voor Home Assistant",
    "pre_cta": "Neem contact op",
-   "pre_inst": "De Home Assistant add-on en Docker Compose werken nu al; images voor Proxmox en VMware komen binnenkort. Vragen? Mail naar support@xomtra.com.",
+   "pre_inst": "De Home Assistant add-on en Docker Compose werken nu al. Vragen? Mail naar support@xomtra.com.",
    "nav": [
     "Zo werkt het",
     "Installeren",
@@ -610,7 +570,7 @@
    "steps": [
     [
      "Installeren",
-     "Add-on of Docker; images voor Proxmox en VMware volgen. Geen domein, geen port forwarding, geen cloudaccount."
+     "Add-on of Docker. Geen domein, geen port forwarding, geen cloudaccount."
     ],
     [
      "Verbinden",
@@ -657,7 +617,7 @@
     "Hoeveel van het verbruik van vorige maand dekten de zonnepanelen?",
     "Welke sensoren zijn deze week gestopt met rapporteren?"
    ],
-   "in_h": "Installeer waar Home Assistant al draait",
+   "in_h": "Direct in Home Assistant of ernaast",
    "in_s": "Kies de variant die bij je opstelling past. Ze zijn allemaal gratis.",
    "myha": "Toevoegen aan Home Assistant",
    "inst": [
@@ -670,16 +630,6 @@
      "Docker Compose",
      "Voor je eigen Linux-server.",
      "docker compose up -d"
-    ],
-    [
-     "Proxmox VE",
-     "Kant-en-klare virtuele machine, aangemaakt met één commando op de host.",
-     "bash -c \"$(curl -fsSL …/proxmox.sh)\""
-    ],
-    [
-     "VMware",
-     "OVA-appliance voor ESXi, vSphere of Workstation.",
-     "Deploy OVF Template → xomtra.ova"
     ]
    ],
    "c_h": "Vergelijking",
@@ -735,7 +685,7 @@
     ],
     [
      "Hoeveel schijfruimte is nodig?",
-     "Een gemiddeld huis heeft 2–5 GB nodig voor 90 dagen statussen en 5 jaar uurstatistieken. Grote installaties met jaren aan statussen draai je beter op een eigen virtuele machine met Docker Compose; kant-en-klare images voor Proxmox en VMware komen eraan."
+     "Dat hangt vooral af van hoeveel statuswijzigingen Home Assistant vastlegt. Als richtlijn heb je voor 1000 entiteiten (zo'n 500.000 statuswijzigingen per dag) ongeveer 6 GB nodig voor 90 dagen statussen en 5 jaar uurstatistieken, en ongeveer 20 GB voor elk jaar aan statussen. Een kleiner huis met 300 entiteiten heeft ongeveer een derde nodig. Wil je jaren aan statusgeschiedenis bewaren, draai xomtra dan op een eigen server of virtuele machine met Docker Compose."
     ],
     [
      "Hoort het bij Home Assistant?",
@@ -806,7 +756,7 @@
     "over LAN"
    ],
    "fa": "Home Assistant OS · add-on",
-   "fv": "VM or Docker · Proxmox, VMware, Linux",
+   "fv": "VM or Docker · Linux",
    "ca": "1 · Home Assistant add-on",
    "cv": "2 · Virtual machine or Docker"
   },
@@ -847,7 +797,7 @@
     "po LAN"
    ],
    "fa": "Home Assistant OS · doplněk",
-   "fv": "VM nebo Docker · Proxmox, VMware, Linux",
+   "fv": "VM nebo Docker · Linux",
    "ca": "1 · Doplněk Home Assistantu",
    "cv": "2 · Virtuální stroj nebo Docker"
   },
@@ -888,7 +838,7 @@
     "über LAN"
    ],
    "fa": "Home Assistant OS · Add-on",
-   "fv": "VM oder Docker · Proxmox, VMware, Linux",
+   "fv": "VM oder Docker · Linux",
    "ca": "1 · Home-Assistant-Add-on",
    "cv": "2 · Virtuelle Maschine oder Docker"
   },
@@ -929,7 +879,7 @@
     "przez LAN"
    ],
    "fa": "Home Assistant OS · dodatek",
-   "fv": "VM lub Docker · Proxmox, VMware, Linux",
+   "fv": "VM lub Docker · Linux",
    "ca": "1 · Dodatek Home Assistant",
    "cv": "2 · Maszyna wirtualna lub Docker"
   },
@@ -970,7 +920,7 @@
     "via LAN"
    ],
    "fa": "Home Assistant OS · add-on",
-   "fv": "VM of Docker · Proxmox, VMware, Linux",
+   "fv": "VM of Docker · Linux",
    "ca": "1 · Home Assistant-add-on",
    "cv": "2 · Virtuele machine of Docker"
   }
