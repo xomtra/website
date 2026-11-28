@@ -98,10 +98,10 @@
           {"ul": [
             "<b>Linux mit Docker Engine und Compose v2</b>, amd64 (Intel, AMD; für arm64 werden die Images noch nicht gebaut). Installiere es nach der <a href=\"https://docs.docker.com/engine/install/\">offiziellen Anleitung</a> und prüfe es mit <code>docker compose version</code>.",
             "<b>SSD, mindestens 4 GB RAM (8 GB empfohlen) und 20 GB freier Speicher</b> für einen typischen Haushalt; mehr für Jahre an Zustandsverlauf. Die Docker-Installation startet xomtra komplett und ist für einen Rechner mit genug Arbeitsspeicher gedacht, nicht für einen kleinen Server; auf einem kleinen Rechner nimmst du das Home-Assistant-Add-on.",
-            "<b>git und curl.</b>",
+            "<b>curl</b> (git wird nicht gebraucht).",
             "<b>Home Assistant von dieser Maschine erreichbar</b>, meist auf Port 8123 (URL wie <code>http://&lt;adresse&gt;:8123</code>)."
           ]},
-          "Falls git oder curl fehlt:",
+          "Falls curl fehlt:",
           {"code": "dk_tools"}
         ]
       },
@@ -113,6 +113,8 @@
           {"code": "dk_clone"},
           "Prüfe die heruntergeladenen Dateien gegen <code>SHA256SUMS</code>; jede Zeile muss mit <code>OK</code> enden:",
           {"code": "dk_sums"},
+          "Entpacke das Release (das Verzeichnis <code>xomtra/deploy/compose</code> seines Tags) und wechsle hinein:",
+          {"code": "dk_unpack"},
           {"note": "Optional kannst du auch prüfen, dass jedes Image vom Release-Workflow dieser Version signiert wurde, mit cosign im Container; siehe <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">Dokumentation</a>."}
         ]
       },
@@ -183,7 +185,7 @@
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Passwörter und Schlüssel bleiben im Docker Volume <code>secrets</code>. Eine Installation von vor Version 0.7.0 hat sie noch in <code>.env</code>; der erste Start der neuen Version übernimmt sie automatisch, danach kannst du sie aus <code>.env</code> löschen.",
-          "Zurück geht es mit dem vorherigen Tag, dem Backup der <code>.env</code> und <code>docker compose up -d</code>. Sichere die Maschine oder die Docker Volumes regelmäßig: Sie enthalten den ganzen Verlauf, und ohne das Volume <code>secrets</code> lassen sich die Daten nicht lesen."
+          "Zurück geht es mit dem Archiv der vorherigen Version, genauso entpackt, dem Backup der <code>.env</code> und <code>docker compose up -d</code>. Sichere die Maschine oder die Docker Volumes regelmäßig: Sie enthalten den ganzen Verlauf, und ohne das Volume <code>secrets</code> lassen sich die Daten nicht lesen."
         ]
       },
       {

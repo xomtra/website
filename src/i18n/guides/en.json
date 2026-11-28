@@ -98,10 +98,10 @@
           {"ul": [
             "<b>Linux with Docker Engine and Compose v2</b>, amd64 (Intel, AMD; the images are not built for arm64 yet). Install it by the <a href=\"https://docs.docker.com/engine/install/\">official guide</a> and check it with <code>docker compose version</code>.",
             "<b>SSD, at least 4 GB RAM (8 GB recommended) and 20 GB of free space</b> for a typical home; more for years of state history. The Docker installation runs the full xomtra stack and is meant for a machine with enough memory, not for a small server; on a small machine use the Home Assistant add-on.",
-            "<b>git and curl.</b>",
+            "<b>curl</b> (git is not needed).",
             "<b>Home Assistant reachable from this machine</b>, usually on port 8123 (URL like <code>http://&lt;address&gt;:8123</code>)."
           ]},
-          "If git or curl is missing:",
+          "If curl is missing:",
           {"code": "dk_tools"}
         ]
       },
@@ -113,6 +113,8 @@
           {"code": "dk_clone"},
           "Check the downloaded files against <code>SHA256SUMS</code>; every line must end with <code>OK</code>:",
           {"code": "dk_sums"},
+          "Unpack the release (the directory <code>xomtra/deploy/compose</code> of its tag) and go into it:",
+          {"code": "dk_unpack"},
           {"note": "Optional: you can also check that every image was signed by the release workflow of this version, with cosign in its container; see <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">the documentation</a>."}
         ]
       },
@@ -183,7 +185,7 @@
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Passwords and keys stay in the Docker volume <code>secrets</code>. An installation from before version 0.7.0 still has them in <code>.env</code>; the first start of the new version takes them over automatically, after which you can remove them from <code>.env</code>.",
-          "To roll back, check out the previous tag, restore the <code>.env</code> backup and run <code>docker compose up -d</code>. Back up the machine or the Docker volumes regularly: they hold the whole history, and without the volume <code>secrets</code> the data cannot be read."
+          "To roll back, unpack the archive of the previous version the same way, restore the <code>.env</code> backup and run <code>docker compose up -d</code>. Back up the machine or the Docker volumes regularly: they hold the whole history, and without the volume <code>secrets</code> the data cannot be read."
         ]
       },
       {
