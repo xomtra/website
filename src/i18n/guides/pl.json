@@ -96,8 +96,8 @@
         "h": "Sprawdź wymagania",
         "b": [
           {"ul": [
-            "<b>Linux z Docker Engine i Compose v2</b>, amd64 lub arm64. Zainstaluj go według <a href=\"https://docs.docker.com/engine/install/\">oficjalnej instrukcji</a> i sprawdź poleceniem <code>docker compose version</code>. NAS z Dockerem też się nada.",
-            "<b>Dysk SSD, co najmniej 4 GB RAM i 20 GB wolnego miejsca</b> dla typowego domu; więcej dla lat historii stanów.",
+            "<b>Linux z Docker Engine i Compose v2</b>, amd64 (Intel, AMD; obrazy dla arm64 nie są jeszcze budowane). Zainstaluj go według <a href=\"https://docs.docker.com/engine/install/\">oficjalnej instrukcji</a> i sprawdź poleceniem <code>docker compose version</code>. NAS z Dockerem też się nada.",
+            "<b>Dysk SSD, co najmniej 4 GB RAM (zalecane 8 GB) i 20 GB wolnego miejsca</b> dla typowego domu; więcej dla lat historii stanów. Instalacja przez Dockera uruchamia całą xomtrę i jest przeznaczona dla maszyny z wystarczającą ilością pamięci, nie dla małego serwera; na małej maszynie użyj dodatku Home Assistant.",
             "<b>git i curl.</b>",
             "<b>Home Assistant osiągalny z tej maszyny</b>, zwykle na porcie 8123 (URL w postaci <code>http://&lt;adres&gt;:8123</code>)."
           ]},

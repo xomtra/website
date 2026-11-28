@@ -96,8 +96,8 @@
         "h": "Controleer de vereisten",
         "b": [
           {"ul": [
-            "<b>Linux met Docker Engine en Compose v2</b>, amd64 of arm64. Installeer het volgens de <a href=\"https://docs.docker.com/engine/install/\">officiële handleiding</a> en controleer het met <code>docker compose version</code>. Een NAS met Docker werkt ook.",
-            "<b>SSD, minstens 4 GB RAM en 20 GB vrije ruimte</b> voor een gemiddeld huis; meer voor jaren statusgeschiedenis.",
+            "<b>Linux met Docker Engine en Compose v2</b>, amd64 (Intel, AMD; voor arm64 worden de images nog niet gebouwd). Installeer het volgens de <a href=\"https://docs.docker.com/engine/install/\">officiële handleiding</a> en controleer het met <code>docker compose version</code>. Een NAS met Docker werkt ook.",
+            "<b>SSD, minstens 4 GB RAM (8 GB aanbevolen) en 20 GB vrije ruimte</b> voor een gemiddeld huis; meer voor jaren statusgeschiedenis. De Docker-installatie draait de volledige xomtra en is bedoeld voor een machine met genoeg geheugen, niet voor een kleine server; gebruik op een kleine machine de Home Assistant-add-on.",
             "<b>git en curl.</b>",
             "<b>Home Assistant bereikbaar vanaf deze machine</b>, meestal op poort 8123 (URL zoals <code>http://&lt;adres&gt;:8123</code>)."
           ]},
