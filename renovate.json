@@ -1,0 +1,41 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":semanticCommitsDisabled"
+  ],
+  "timezone": "Europe/Prague",
+  "schedule": ["before 6am on monday"],
+  "minimumReleaseAge": "3 days",
+  "prConcurrentLimit": 5,
+  "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "packageRules": [
+    {
+      "description": "Group GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
+    },
+    {
+      "description": "Group minor and patch npm updates into one PR",
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "npm minor and patch"
+    },
+    {
+      "description": "Astro major updates usually need content or config changes: approve on the dependency dashboard",
+      "matchPackageNames": ["astro", "@astrojs/**"],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Node.js major (.nvmrc, engines): move only to an LTS line supported by Cloudflare builds, approve on the dashboard",
+      "matchPackageNames": ["node"],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}
