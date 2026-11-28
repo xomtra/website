@@ -131,7 +131,7 @@
         "h": "Start xomtra",
         "b": [
           {"code": "dk_up"},
-          "On the first start the one-time service <code>secrets-init</code> generates every internal password and key into the Docker volume <code>secrets</code> and finds this server's address in your LAN; xomtra is then at <code>https://&lt;server&gt;/</code>. All services should be <code>running</code> or <code>healthy</code> within a few minutes."
+          "On the first start the one-time service <code>secrets-init</code> generates every internal password and key into the Docker volume <code>secrets</code> and finds this server's address in your LAN; its admin page is then at <code>https://&lt;server&gt;/admin/</code> (the bare <code>https://&lt;server&gt;/</code> is not a page). You open it for the first time through the setup link in the step <b>Connect Home Assistant</b>. All services should be <code>running</code> or <code>healthy</code> within a few minutes. <code>docker compose up -d</code> itself does not print the one-time setup link; the last command does (you use it in the step <b>Connect Home Assistant</b>)."
         ]
       },
       {

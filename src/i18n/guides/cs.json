@@ -131,7 +131,7 @@
         "h": "Spusťte xomtru",
         "b": [
           {"code": "dk_up"},
-          "Při prvním spuštění jednorázová služba <code>secrets-init</code> vygeneruje všechna interní hesla a klíče do Docker volume <code>secrets</code> a zjistí adresu tohoto serveru ve vaší LAN; xomtra pak běží na <code>https://&lt;server&gt;/</code>. Během pár minut by všechny služby měly být <code>running</code> nebo <code>healthy</code>."
+          "Při prvním spuštění jednorázová služba <code>secrets-init</code> vygeneruje všechna interní hesla a klíče do Docker volume <code>secrets</code> a zjistí adresu tohoto serveru ve vaší LAN; administrace pak běží na <code>https://&lt;server&gt;/admin/</code> (samotné <code>https://&lt;server&gt;/</code> žádná stránka není). Poprvé ji otevřete odkazem pro nastavení v kroku <b>Připojte Home Assistant</b>. Během pár minut by všechny služby měly být <code>running</code> nebo <code>healthy</code>. Samotné <code>docker compose up -d</code> jednorázový odkaz pro nastavení nevypíše; vypíše ho poslední příkaz (použijete ho v kroku <b>Připojte Home Assistant</b>)."
         ]
       },
       {
