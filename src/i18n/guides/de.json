@@ -52,12 +52,12 @@
       {
         "h": "Ersten Token ausstellen",
         "b": [
-          "Öffne <b>xomtra</b> in der Seitenleiste (nur Home Assistant Administratoren sehen es) und gehe zu <b>Tokens</b>. Gib an, für wen der Token ist, Gerät oder App, Rolle und Ablauf:",
+          "Öffne <b>xomtra</b> in der Seitenleiste (nur Home Assistant Administratoren sehen es) und gehe zu <b>MCP-Tokens</b>. Gib Gerät oder App und Ablauf an und wähle die Rolle:",
           {"ul": [
-            "<code>xomtra.Reader</code> liest Verlauf und Befunde, ohne Anwesenheit, Standorte, Kameras und Schlösser. Richtig für die meisten.",
-            "<code>xomtra.Admin</code> sieht alle Entitäten, auch diese, und die Änderungen des Katalogs."
+            "<code>xomtra.Reader</code> liest Verlauf und Befunde, ohne Anwesenheit, Standorte, Kameras und Schlösser. Richtig für die meisten Geräte und vorausgewählt. Was genau verborgen bleibt, legst du auf der Seite <b>Für Reader verborgen</b> fest.",
+            "<code>xomtra.Admin</code> ist deine eigene Rolle: Sie sieht alle Entitäten, auch diese, und die Änderungen des Katalogs. Nutze sie nur auf deinem eigenen Gerät."
           ]},
-          "Der Token (<code>xmt_…</code>) wird <b>nur einmal</b> angezeigt. Stelle einen pro Person und Gerät aus: So kannst du einen widerrufen, ohne die anderen, und das Audit zeigt, wer was gefragt hat."
+          "Der Token (<code>xmt_…</code>) wird <b>nur einmal</b> angezeigt. Er gehört dir: Wie ein langlebiger Token in Home Assistant hat er deine Rolle in xomtra und funktioniert nicht mehr, wenn du den Zugriff verlierst. Stelle einen pro Gerät aus: So kannst du einen widerrufen, ohne die anderen, und das Audit zeigt, welches Gerät was gefragt hat."
         ]
       },
       {
@@ -73,7 +73,7 @@
       {
         "h": "Wählen, wie xomtra antwortet",
         "b": [
-          "Auf der Admin-Seite <b>Antworten</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
+          "Auf der Admin-Seite <b>MCP-Setup</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
         ]
       },
       {
@@ -146,7 +146,7 @@
           "Solange Home Assistant nicht verbunden ist, gibt dieser Befehl einen einmaligen Einrichtungslink aus (er steht auch im Log des Admin-Dienstes):",
           {"code": "dk_setup"},
           "Öffne den Link in einem Browser in deinem LAN (der Browser warnt wegen des Zertifikats, das ist erwartet; siehe nächster Schritt). Gib die Home Assistant URL ein, wie dieser Server sie erreicht, zum Beispiel <code>http://192.168.1.10:8123</code>, und den Token aus dem vorigen Schritt.",
-          "xomtra prüft die Verbindung vor dem Speichern und legt den Token verschlüsselt in seiner Datenbank ab, nicht in einer Datei. Danach ist der Link ungültig, und der Verlauf aus Home Assistant lädt im Hintergrund. URL oder Token kannst du später auf der Admin-Seite unter <b>Übersicht</b> ändern."
+          "xomtra prüft die Verbindung vor dem Speichern und legt den Token verschlüsselt in seiner Datenbank ab, nicht in einer Datei. Der Link gilt nur einmal und höchstens 24 Stunden (derselbe Befehl gibt einen neuen aus); danach lädt der Verlauf aus Home Assistant im Hintergrund. URL oder Token kannst du später auf der Admin-Seite unter <b>Übersicht</b> ändern."
         ]
       },
       {
@@ -163,7 +163,7 @@
       {
         "h": "Token ausstellen und Claude verbinden",
         "b": [
-          "Öffne <code>https://&lt;server&gt;/admin/</code>, melde dich als Home Assistant Administrator an und gehe zu <b>Tokens</b>. Stelle einen Token pro Person und Gerät aus (<code>xomtra.Reader</code> für die meisten); er wird <b>nur einmal</b> angezeigt.",
+          "Öffne <code>https://&lt;server&gt;/admin/</code>, melde dich als Home Assistant Administrator an und gehe zu <b>MCP-Tokens</b>. Stelle einen Token pro Gerät aus (<code>xomtra.Reader</code> für die meisten, einen Token mit deiner Rolle <code>xomtra.Admin</code> nur auf deinem eigenen Gerät); er wird <b>nur einmal</b> angezeigt. Andere Personen im Haushalt können sich mit ihrem eigenen Home-Assistant-Konto anmelden, sobald du ihnen auf der Seite <b>Zugriff</b> eine Rolle gibst, und eigene Tokens ausstellen.",
           "<b>Claude Desktop:</b> Klicke nach dem Ausstellen des Tokens auf <b>Für Claude Desktop herunterladen</b> (auch auf <b>Clients verbinden</b>), öffne <code>xomtra.mcpb</code>, füge den Token ein und installiere. Die Datei ist für deinen Server gemacht: Adresse und Zertifikat sind eingetragen und die Erweiterung vertraut nur diesem Zertifikat, daher muss nichts in den Computer importiert werden. Der Token ist nicht in der Datei, Claude Desktop speichert ihn als Geheimnis.",
           "<b>Claude Code</b> (ist das Zertifikat nicht im Zertifikatsspeicher, starte Claude Code mit <code>NODE_EXTRA_CA_CERTS=/pfad/zu/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
@@ -173,7 +173,7 @@
       {
         "h": "Wählen, wie xomtra antwortet",
         "b": [
-          "Auf der Admin-Seite <b>Antworten</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
+          "Auf der Admin-Seite <b>MCP-Setup</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
         ]
       },
       {
@@ -264,7 +264,7 @@
         "b": [
           "Öffne auf <a href=\"https://claude.ai\">claude.ai</a> <b>Settings → Connectors → Add custom connector</b>, nenne ihn <code>xomtra</code> und gib <code>https://xomtra.example.org/mcp</code> ein. OAuth Client ID und Secret bleiben leer; Claude registriert sich selbst.",
           "Klicke auf <b>Connect</b>: die Zustimmungsseite von xomtra, dann die Home-Assistant-Anmeldung mit Zwei-Faktor-Authentifizierung, dann zurück zu Claude. Dein Browser muss Home Assistant in dem Moment erreichen, verbinde also zu Hause oder über VPN; danach funktioniert der Connector überall.",
-          "Home-Assistant-Administratoren haben sofort Zugriff. Andere erscheinen nach ihrem ersten Versuch auf der Admin-Seite <b>Zugriff</b>, wo du ihnen eine Rolle gibst."
+          "Home-Assistant-Administratoren haben sofort Zugriff, immer mit der Rolle <code>xomtra.Admin</code>. Andere erscheinen nach ihrem ersten Versuch auf der Admin-Seite <b>Zugriff</b>, wo du ihnen eine Rolle gibst. Hat der Home-Assistant-Token, mit dem xomtra liest, keine Administratorrechte, merkt xomtra nicht, wenn du jemanden in Home Assistant entfernst: Klicke dann auch auf <b>Überall trennen</b> und nimm der Person die Rolle."
         ]
       },
       {

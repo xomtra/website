@@ -52,12 +52,12 @@
       {
         "h": "Maak je eerste token aan",
         "b": [
-          "Open <b>xomtra</b> in de zijbalk (alleen Home Assistant beheerders zien het) en ga naar <b>Tokens</b>. Vul in voor wie het token is, het apparaat of de app, de rol en de vervaldatum:",
+          "Open <b>xomtra</b> in de zijbalk (alleen Home Assistant beheerders zien het) en ga naar <b>MCP-tokens</b>. Vul het apparaat of de app en de vervaldatum in en kies de rol:",
           {"ul": [
-            "<code>xomtra.Reader</code> leest geschiedenis en bevindingen, zonder aanwezigheid, locaties, camera's en sloten. Geschikt voor de meeste mensen.",
-            "<code>xomtra.Admin</code> ziet alle entiteiten, ook die, en de wijzigingen van de catalogus."
+            "<code>xomtra.Reader</code> leest geschiedenis en bevindingen, zonder aanwezigheid, locaties, camera's en sloten. Geschikt voor de meeste apparaten en vooraf gekozen. Wat het precies niet ziet, stel je in op de pagina <b>Verborgen voor Reader</b>.",
+            "<code>xomtra.Admin</code> is je eigen rol: die ziet alle entiteiten, ook die, en de wijzigingen van de catalogus. Gebruik hem alleen op je eigen apparaat."
           ]},
-          "Het token (<code>xmt_…</code>) wordt <b>één keer</b> getoond. Maak er één per persoon en apparaat: zo trek je er één in zonder de rest, en de audit laat zien wie wat vroeg."
+          "Het token (<code>xmt_…</code>) wordt <b>één keer</b> getoond. Het is van jou: net als een langlevend token in Home Assistant heeft het je rol in xomtra en werkt het niet meer als je de toegang verliest. Maak er één per apparaat: zo trek je er één in zonder de rest, en de audit laat zien welk apparaat wat vroeg."
         ]
       },
       {
@@ -73,7 +73,7 @@
       {
         "h": "Kies hoe xomtra antwoordt",
         "b": [
-          "Op de beheerpagina <b>Antwoorden</b> kies je de vangrails voor de antwoorden van je assistent. De set <b>Standaard</b> zoekt eerst de relevante gegevens, geeft eerst het antwoord en daarna het bewijs als grafiek of tabel, op een vriendelijke toon. <b>Beknopt</b> antwoordt zo kort mogelijk, en je kunt elke set dupliceren en een eigen set schrijven. Boven elke set geldt altijd een vaste kern: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, en geen grappen over ongelukken of gevaar voor leven en gezondheid. Een wijziging geldt binnen 30 seconden, zonder herstart."
+          "Op de beheerpagina <b>MCP-setup</b> kies je de vangrails voor de antwoorden van je assistent. De set <b>Standaard</b> zoekt eerst de relevante gegevens, geeft eerst het antwoord en daarna het bewijs als grafiek of tabel, op een vriendelijke toon. <b>Beknopt</b> antwoordt zo kort mogelijk, en je kunt elke set dupliceren en een eigen set schrijven. Boven elke set geldt altijd een vaste kern: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, en geen grappen over ongelukken of gevaar voor leven en gezondheid. Een wijziging geldt binnen 30 seconden, zonder herstart."
         ]
       },
       {
@@ -146,7 +146,7 @@
           "Zolang Home Assistant niet gekoppeld is, toont dit commando een eenmalige installatielink (die staat ook in het log van de admin-service):",
           {"code": "dk_setup"},
           "Open de link in een browser in je LAN (de browser waarschuwt voor het certificaat, dat is normaal; zie de volgende stap). Vul de Home Assistant URL in zoals deze server hem bereikt, bijvoorbeeld <code>http://192.168.1.10:8123</code>, en het token uit de vorige stap.",
-          "xomtra controleert de verbinding voordat het die opslaat en bewaart het token versleuteld in zijn database, niet in een bestand. Daarna werkt de link niet meer en laadt de geschiedenis uit Home Assistant op de achtergrond. De URL of het token kun je later wijzigen op de beheerpagina onder <b>Overzicht</b>."
+          "xomtra controleert de verbinding voordat het die opslaat en bewaart het token versleuteld in zijn database, niet in een bestand. De link werkt maar één keer en hoogstens 24 uur (dezelfde opdracht geeft een nieuwe); daarna laadt de geschiedenis uit Home Assistant op de achtergrond. De URL of het token kun je later wijzigen op de beheerpagina onder <b>Overzicht</b>."
         ]
       },
       {
@@ -163,7 +163,7 @@
       {
         "h": "Maak een token en koppel Claude",
         "b": [
-          "Open <code>https://&lt;server&gt;/admin/</code>, meld je aan als Home Assistant beheerder en ga naar <b>Tokens</b>. Maak één token per persoon en apparaat (<code>xomtra.Reader</code> voor de meeste mensen); het wordt <b>één keer</b> getoond.",
+          "Open <code>https://&lt;server&gt;/admin/</code>, meld je aan als Home Assistant beheerder en ga naar <b>MCP-tokens</b>. Maak één token per apparaat (<code>xomtra.Reader</code> voor de meeste, een token met je rol <code>xomtra.Admin</code> alleen op je eigen apparaat); het wordt <b>één keer</b> getoond. Andere mensen in huis kunnen zich aanmelden met hun eigen Home Assistant-account zodra je ze een rol geeft op de pagina <b>Toegang</b>, en eigen tokens maken.",
           "<b>Claude Desktop:</b> klik na het uitgeven van het token op <b>Downloaden voor Claude Desktop</b> (ook op <b>Clients verbinden</b>), open <code>xomtra.mcpb</code>, plak het token en installeer. Het bestand is gemaakt voor jouw server: adres en certificaat zijn ingevuld en de extensie vertrouwt alleen dit certificaat, dus er hoeft niets in de computer te worden geïmporteerd. Het token zit niet in het bestand, Claude Desktop bewaart het als geheim.",
           "<b>Claude Code</b> (staat het certificaat niet in je certificaatopslag, start Claude Code dan met <code>NODE_EXTRA_CA_CERTS=/pad/naar/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
@@ -173,7 +173,7 @@
       {
         "h": "Kies hoe xomtra antwoordt",
         "b": [
-          "Op de beheerpagina <b>Antwoorden</b> kies je de vangrails voor de antwoorden van je assistent. De set <b>Standaard</b> zoekt eerst de relevante gegevens, geeft eerst het antwoord en daarna het bewijs als grafiek of tabel, op een vriendelijke toon. <b>Beknopt</b> antwoordt zo kort mogelijk, en je kunt elke set dupliceren en een eigen set schrijven. Boven elke set geldt altijd een vaste kern: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, en geen grappen over ongelukken of gevaar voor leven en gezondheid. Een wijziging geldt binnen 30 seconden, zonder herstart."
+          "Op de beheerpagina <b>MCP-setup</b> kies je de vangrails voor de antwoorden van je assistent. De set <b>Standaard</b> zoekt eerst de relevante gegevens, geeft eerst het antwoord en daarna het bewijs als grafiek of tabel, op een vriendelijke toon. <b>Beknopt</b> antwoordt zo kort mogelijk, en je kunt elke set dupliceren en een eigen set schrijven. Boven elke set geldt altijd een vaste kern: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, en geen grappen over ongelukken of gevaar voor leven en gezondheid. Een wijziging geldt binnen 30 seconden, zonder herstart."
         ]
       },
       {
@@ -264,7 +264,7 @@
         "b": [
           "Open op <a href=\"https://claude.ai\">claude.ai</a> <b>Settings → Connectors → Add custom connector</b>, noem hem <code>xomtra</code> en vul <code>https://xomtra.example.org/mcp</code> in. Laat OAuth client ID en secret leeg; Claude registreert zichzelf.",
           "Klik op <b>Connect</b>: de toestemmingspagina van xomtra, dan de Home Assistant-aanmelding met tweestapsverificatie, dan terug in Claude. Je browser moet Home Assistant op dat moment bereiken, dus koppel thuis of via VPN; daarna werkt de connector overal.",
-          "Home Assistant-beheerders hebben meteen toegang. Anderen verschijnen na hun eerste poging op de beheerpagina <b>Toegang</b>, waar je ze een rol geeft."
+          "Home Assistant-beheerders hebben meteen toegang, altijd met de rol <code>xomtra.Admin</code>. Anderen verschijnen na hun eerste poging op de beheerpagina <b>Toegang</b>, waar je ze een rol geeft. Heeft het Home Assistant-token waarmee xomtra leest geen beheerdersrechten, dan merkt xomtra niet dat je iemand in Home Assistant verwijdert: klik dan ook op <b>Overal ontkoppelen</b> en neem de rol af."
         ]
       },
       {

@@ -23,10 +23,13 @@
       "id": "access",
       "h": "Jen ti, které pustíte",
       "b": [
-        "V domácí síti dostane každý člověk a každé zařízení osobní token ze stránky administrace. Zobrazí se jen jednou; xomtra si drží jen jeho otisk, ne samotný token. Každý token má vlastníka, roli a volitelně platnost a kdykoli ho můžete odvolat.",
-        "Z internetu se přihlašujete účtem Home Assistantu; Microsoft Entra ID je volitelné. Ve výchozím stavu se smějí připojit jen administrátoři Home Assistantu, a to jen s dvoufázovým ověřením. Kdokoli další se dostane dovnitř, jen když mu administrátor přidělí roli na stránce administrace <b>Přístup</b>.",
-        "Hned po přihlášení xomtra odvolá token Home Assistantu, který dostala, a vede si vlastní relaci s pevnou platností. Stránka <b>Přístup</b> ukazuje všechny připojené klienty a tlačítko <b>Odpojit</b> ukončí přístup do minuty.",
-        "Role určují, co AI uvidí. Čtenář nikdy nevidí osoby, polohu, kamery, zámky, alarmy ani volný text atributů; ty se odfiltrují už v databázi, dřív než vznikne jakákoli odpověď."
+        "Home Assistant, případně Microsoft Entra ID, pokud si ho zvolíte, jen potvrdí, kdo se přihlašuje. Roli dává xomtra a drží ji ve vlastní databázi: administrátoři Home Assistantu mají vždy <code>xomtra.Admin</code>, nový účet nemá žádnou roli a kdokoli další se dostane dovnitř, až mu ji administrátor přidělí na stránce administrace <b>Přístup</b>. xomtra pozná lidi podle pevného ID jejich účtu, nikdy podle jména nebo e-mailové adresy, které se mohou změnit.",
+        "V domácí síti dostane každé zařízení osobní token ze stránky administrace <b>MCP Tokeny</b>. Zobrazí se jen jednou; xomtra si drží jen jeho otisk, ne samotný token. Stejně jako dlouhodobý token v Home Assistantu patří token tomu, kdo ho vydal, a má jeho roli; administrátor ho může omezit na <code>xomtra.Reader</code>. Když se role změní nebo člověk přístup ztratí, jeho tokeny se do 30 sekund přizpůsobí. Každý může zrušit své tokeny, administrátor kterýkoli.",
+        "Z internetu se Claude připojuje přes váš účet Home Assistantu, ve výchozím stavu jen s dvoufázovým ověřením. Před přihlášením xomtra vždy ukáže stránku se souhlasem, která jmenuje klienta, takže odkaz od někoho cizího nemůže k vašemu domu připojit jeho Claude.",
+        "Hned po přihlášení xomtra odvolá token Home Assistantu, který dostala, a vede si vlastní relaci, ve výchozím stavu na 180 dní. Claude dostává přístupové tokeny platné nejvýš 60 minut; každou obnovu xomtra ověří proti této relaci a roli člověka, nikdy ne přes Home Assistant. Na stránce <b>Přístup</b> tlačítko <b>Odpojit</b> ukončí přihlášení do minuty a <b>Odpojit všude</b> ukončí všechny relace člověka včetně administrace.",
+        "Pokud xomtra čte Home Assistant administrátorským tokenem, každých 5 minut si načte seznam jeho uživatelů: odebraný nebo deaktivovaný uživatel ztratí přístup během několika minut. S tokenem bez administrátorských práv, jak doporučuje návod pro Docker, xomtra tento seznam nevidí. Když tedy někoho v Home Assistantu odeberete, klikněte u něj v xomtře i na <b>Odpojit všude</b> a odeberte mu roli.",
+        "Role určují, co AI uvidí. Čtenář ve výchozím stavu nevidí osoby, polohu, kamery, zámky, alarmy ani volný text atributů; ty se odfiltrují už v databázi, dřív než vznikne jakákoli odpověď. Administrátor tento seznam upraví na stránce <b>Co Reader nevidí</b> a xomtra si zapíše, kdo ho změnil a proč.",
+        "MCP server, tedy část, se kterou mluví AI, nemá token Home Assistantu ani klíč k uloženému tokenu, takže ani útočník, který by ho převzal, nemůže ovládat váš dům. S Home Assistantem mluví jen načítání dat a administrace, a to jen ke čtení. Výjimkou je doplněk, kde vše sdílí jeden kontejner a token Supervisoru; proto je jeho MCP port určený jen pro vaši vlastní síť."
       ]
     },
     {
@@ -41,7 +44,9 @@
       "id": "admin",
       "h": "Stránka administrace",
       "b": [
-        "Do administrace se přihlásíte administrátorským účtem Home Assistantu, v doplňku rovnou z Home Assistantu. Po přihlášení xomtra token Home Assistantu, který dostala, odvolá, takže si žádný token Home Assistantu přihlášeného člověka nenechává.",
+        "Do administrace se přihlásíte účtem Home Assistantu, případně přes Microsoft Entra ID, v doplňku rovnou z Home Assistantu. Po přihlášení xomtra token Home Assistantu, který dostala, odvolá, takže si žádný token Home Assistantu přihlášeného člověka nenechává. Relace je uložená v databázi xomtry: odhlášení ji ukončí a změněná role platí od dalšího kliknutí.",
+        "Každá stránka má určené role, které ji smějí otevřít, a server to ověřuje u každého požadavku. Čtenář vidí jen své MCP tokeny a návod k připojení klientů; cokoli dalšího server odmítne a zapíše do auditu.",
+        "Novou instalaci otevírá odkaz pro nastavení, který platí jen jednou a nejvýš 24 hodin. Vytvořit ho může jen ten, kdo smí na serveru spustit příkaz.",
         "Ve výchozím stavu administrace odpovídá jen z místní sítě, v doplňku jen přes Home Assistant. Nic nenačítá z cizích webů a každý formulář chrání proti podvrženým požadavkům."
       ]
     },
@@ -71,7 +76,8 @@
       "h": "Vaše data a vaše AI",
       "b": [
         "Historie zůstává na stroji, kde xomtra běží, a xomtra sama ji nikam neposílá. Co si váš AI klient pro odpověď vyžádá, jde k jeho poskytovateli pod vaším vlastním účtem a podle jeho podmínek. Co si může vyžádat, určují role a štítky.",
-        "xomtra dává AI také mantinely pro odpovědi. Vždy platí pevné jádro: jen hodnoty načtené z xomtry, žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se na ně nezeptáte, žádné vtipy o haváriích a ohrožení života a zdraví a nic diskriminačního, politického ani náboženského. K němu se přidává sada pokynů k odpovědím, kterou zvolíte na stránce administrace <b>Odpovědi</b>. Sady jsou uložené na vašem stroji, měnit je smějí jen administrátoři a z xomtra.com nepřichází žádný text pro model. Mantinely model vedou, nejsou to bezpečnostní hranice."
+        "xomtra váže svá data na jednu instanci Home Assistantu. Když spojení vede na jinou, třeba po přeinstalaci Home Assistantu, xomtra z ní nic nezapíše, dokud administrátor nerozhodne na stránce <b>Instance HA</b>: data ponechat a spojení opravit, nebo je smazat a začít s novou instancí znovu.",
+        "xomtra dává AI také mantinely pro odpovědi. Vždy platí pevné jádro: jen hodnoty načtené z xomtry, žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se na ně nezeptáte, žádné vtipy o haváriích a ohrožení života a zdraví a nic diskriminačního, politického ani náboženského. K němu se přidává sada pokynů k odpovědím, kterou zvolíte na stránce administrace <b>MCP Setup</b>. Sady jsou uložené na vašem stroji, měnit je smějí jen administrátoři a z xomtra.com nepřichází žádný text pro model. Mantinely model vedou, nejsou to bezpečnostní hranice."
       ]
     }
   ],

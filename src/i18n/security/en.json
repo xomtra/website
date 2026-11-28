@@ -23,10 +23,13 @@
       "id": "access",
       "h": "Only who you let in",
       "b": [
-        "In your network, each person and device gets a personal token from the admin page. It is shown once; xomtra keeps only its fingerprint, not the token itself. Each token has an owner, a role and an optional expiry, and you can revoke it at any time.",
-        "From the internet you sign in with your Home Assistant account; Microsoft Entra ID is an option. By default only Home Assistant administrators may connect, and only with two-factor authentication. Anyone else gets in only when an administrator gives them a role on the admin page <b>Access</b>.",
-        "Right after sign-in xomtra revokes the Home Assistant token it received and keeps its own session with a fixed expiry. The page <b>Access</b> lists every connected client, and <b>Disconnect</b> ends its access within a minute.",
-        "Roles decide what the AI may see. A reader never sees people, locations, cameras, locks, alarms or the free text of attributes; these are filtered out in the database, before any answer is put together."
+        "Home Assistant, or Microsoft Entra ID if you choose it, only confirms who is signing in. The role comes from xomtra and is kept in its own database: Home Assistant administrators always have <code>xomtra.Admin</code>, a new account has no role, and anyone else gets in only after an administrator gives them one on the admin page <b>Access</b>. xomtra knows people by the fixed ID of their account, never by a name or an e-mail address, which can change.",
+        "In your network, each device gets a personal token from the admin page <b>MCP tokens</b>. It is shown once; xomtra keeps only its fingerprint, not the token itself. Like a long-lived token in Home Assistant, a token belongs to the person who issued it and has their role; an administrator can limit it to <code>xomtra.Reader</code>. When the role changes or the person loses access, their tokens follow within 30 seconds. Everyone can revoke their own tokens, and an administrator any token.",
+        "From the internet, Claude connects through your Home Assistant account, by default only with two-factor authentication. Before the sign-in xomtra always shows a consent page that names the client, so a link sent by someone else cannot connect their Claude to your home.",
+        "Right after sign-in xomtra revokes the Home Assistant token it received and keeps its own session, 180 days by default. Claude gets access tokens valid for at most 60 minutes; xomtra checks every renewal against that session and the person's role, never through Home Assistant. On the page <b>Access</b>, <b>Disconnect</b> ends a sign-in within a minute and <b>Disconnect everywhere</b> ends every session of a person, the admin page included.",
+        "If xomtra reads Home Assistant with an administrator token, it loads Home Assistant's list of users every 5 minutes: a removed or deactivated user loses access within minutes. With a token without admin rights, as the Docker guide recommends, xomtra cannot see that list. So when you remove someone in Home Assistant, also click <b>Disconnect everywhere</b> for them in xomtra and take their role away.",
+        "Roles decide what the AI may see. By default a reader does not see people, locations, cameras, locks, alarms or the free text of attributes; these are filtered out in the database, before any answer is put together. An administrator adjusts this list on the page <b>Hidden from Reader</b>, and xomtra records who changed it and why.",
+        "The MCP server, the part the AI talks to, holds no Home Assistant token and no key to the stored one, so even someone who took it over could not control your home. Only the data import and the admin page talk to Home Assistant, and only to read. The exception is the add-on, where everything shares one container and the Supervisor's token; that is why its MCP port is meant only for your own network."
       ]
     },
     {
@@ -41,7 +44,9 @@
       "id": "admin",
       "h": "The admin page",
       "b": [
-        "You sign in to the admin page with your Home Assistant administrator account, or in the add-on straight from Home Assistant. After sign-in xomtra revokes the Home Assistant token it received, so it keeps no Home Assistant token of the person who signed in.",
+        "You sign in to the admin page with your Home Assistant account, or with Microsoft Entra ID; in the add-on straight from Home Assistant. After sign-in xomtra revokes the Home Assistant token it received, so it keeps no Home Assistant token of the person who signed in. The session is kept in xomtra's database: signing out ends it, and a changed role applies from the next click.",
+        "Every page states which roles may open it, and the server checks that on every request. A reader sees only their own MCP tokens and how to connect clients; anything else is refused and written to the audit log.",
+        "A new installation is opened with a setup link that works only once and for at most 24 hours. Only someone who may run a command on the server can create one.",
         "By default the admin page answers only from your local network, and in the add-on only through Home Assistant. It loads nothing from other sites and protects every form against forged requests."
       ]
     },
@@ -71,7 +76,8 @@
       "h": "Your data and your AI",
       "b": [
         "The history stays on the machine where xomtra runs, and xomtra itself sends it nowhere. What your AI client fetches to answer you goes to its provider under your own account and its terms. Roles and labels decide what it can fetch.",
-        "xomtra also gives the AI guardrails for its answers. The fixed core always applies: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, no jokes about accidents or threats to life and health, and nothing discriminatory, political or religious. On top of it comes the set of answer guidelines you choose on the admin page <b>Answers</b>. The sets are stored on your machine, only administrators can change them, and no text for the model comes from xomtra.com. The guardrails guide the model; they are not a security boundary."
+        "xomtra binds its data to one Home Assistant instance. If a connection leads to another one, for example after you reinstall Home Assistant, xomtra writes nothing from it until an administrator decides on the page <b>HA instance</b>: keep the data and fix the connection, or delete them and start over with the new instance.",
+        "xomtra also gives the AI guardrails for its answers. The fixed core always applies: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, no jokes about accidents or threats to life and health, and nothing discriminatory, political or religious. On top of it comes the set of answer guidelines you choose on the admin page <b>MCP setup</b>. The sets are stored on your machine, only administrators can change them, and no text for the model comes from xomtra.com. The guardrails guide the model; they are not a security boundary."
       ]
     }
   ],
