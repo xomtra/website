@@ -61,7 +61,7 @@
     "How much did the solar panels cover of last month's consumption?",
     "Which sensors stopped reporting this week?"
    ],
-   "in_h": "Install where Home Assistant already runs",
+   "in_h": "As a Home Assistant add-on or on your own server",
    "in_s": "Pick the option that fits your setup. All of them are free.",
    "myha": "Add to Home Assistant",
    "inst": [
@@ -200,7 +200,7 @@
     "Wie viel vom Verbrauch im letzten Monat hat die PV-Anlage gedeckt?",
     "Welche Sensoren melden sich diese Woche nicht mehr?"
    ],
-   "in_h": "Installieren, wo Home Assistant schon läuft",
+   "in_h": "Als Home-Assistant-Add-on oder auf deinem eigenen Server",
    "in_s": "Wähle die passende Variante. Alle sind kostenlos.",
    "myha": "Zu Home Assistant hinzufügen",
    "inst": [
@@ -339,7 +339,7 @@
     "Kolik ze spotřeby minulého měsíce pokryla fotovoltaika?",
     "Které senzory tento týden přestaly hlásit?"
    ],
-   "in_h": "Nainstalujte tam, kde už Home Assistant běží",
+   "in_h": "Jako doplněk Home Assistantu, nebo na vlastním serveru",
    "in_s": "Vyberte variantu, která vám sedí. Všechny jsou zdarma.",
    "myha": "Přidat do Home Assistantu",
    "inst": [
@@ -478,7 +478,7 @@
     "Jaką część zużycia z zeszłego miesiąca pokryła fotowoltaika?",
     "Które czujniki przestały raportować w tym tygodniu?"
    ],
-   "in_h": "Zainstaluj tam, gdzie już działa Home Assistant",
+   "in_h": "Jako dodatek Home Assistant lub na własnym serwerze",
    "in_s": "Wybierz wariant, który pasuje do Twojej instalacji. Wszystkie są darmowe.",
    "myha": "Dodaj do Home Assistant",
    "inst": [
@@ -617,7 +617,7 @@
     "Hoeveel van het verbruik van vorige maand dekten de zonnepanelen?",
     "Welke sensoren zijn deze week gestopt met rapporteren?"
    ],
-   "in_h": "Installeer waar Home Assistant al draait",
+   "in_h": "Als Home Assistant add-on of op je eigen server",
    "in_s": "Kies de variant die bij je opstelling past. Ze zijn allemaal gratis.",
    "myha": "Toevoegen aan Home Assistant",
    "inst": [
