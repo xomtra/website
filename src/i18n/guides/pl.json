@@ -98,10 +98,10 @@
           {"ul": [
             "<b>Linux z Docker Engine i Compose v2</b>, amd64 (Intel, AMD; obrazy dla arm64 nie są jeszcze budowane). Zainstaluj go według <a href=\"https://docs.docker.com/engine/install/\">oficjalnej instrukcji</a> i sprawdź poleceniem <code>docker compose version</code>.",
             "<b>Dysk SSD, co najmniej 4 GB RAM (zalecane 8 GB) i 20 GB wolnego miejsca</b> dla typowego domu; więcej dla lat historii stanów. Instalacja przez Dockera uruchamia całą xomtrę i jest przeznaczona dla maszyny z wystarczającą ilością pamięci, nie dla małego serwera; na małej maszynie użyj dodatku Home Assistant.",
-            "<b>git i curl.</b>",
+            "<b>curl</b> (git nie jest potrzebny).",
             "<b>Home Assistant osiągalny z tej maszyny</b>, zwykle na porcie 8123 (URL w postaci <code>http://&lt;adres&gt;:8123</code>)."
           ]},
-          "Jeśli brakuje git lub curl:",
+          "Jeśli brakuje curl:",
           {"code": "dk_tools"}
         ]
       },
@@ -113,6 +113,8 @@
           {"code": "dk_clone"},
           "Sprawdź pobrane pliki z <code>SHA256SUMS</code>; każda linia musi kończyć się <code>OK</code>:",
           {"code": "dk_sums"},
+          "Rozpakuj wydanie (katalog <code>xomtra/deploy/compose</code> jego tagu) i przejdź do niego:",
+          {"code": "dk_unpack"},
           {"note": "Opcjonalnie możesz też sprawdzić, że każdy obraz podpisał workflow wydania tej wersji, za pomocą cosign w kontenerze; zobacz <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">dokumentację</a>."}
         ]
       },
@@ -183,7 +185,7 @@
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Hasła i klucze zostają w wolumenie Dockera <code>secrets</code>. Instalacja sprzed wersji 0.7.0 ma je jeszcze w <code>.env</code>; pierwsze uruchomienie nowej wersji przejmuje je automatycznie, a potem możesz je usunąć z <code>.env</code>.",
-          "Aby wrócić, przełącz się na poprzedni tag, przywróć kopię <code>.env</code> i uruchom <code>docker compose up -d</code>. Regularnie rób kopię maszyny lub wolumenów Dockera: zawierają całą historię, a bez wolumenu <code>secrets</code> danych nie da się odczytać."
+          "Aby wrócić, rozpakuj tak samo archiwum poprzedniej wersji, przywróć kopię <code>.env</code> i uruchom <code>docker compose up -d</code>. Regularnie rób kopię maszyny lub wolumenów Dockera: zawierają całą historię, a bez wolumenu <code>secrets</code> danych nie da się odczytać."
         ]
       },
       {

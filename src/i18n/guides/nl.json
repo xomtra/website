@@ -98,10 +98,10 @@
           {"ul": [
             "<b>Linux met Docker Engine en Compose v2</b>, amd64 (Intel, AMD; voor arm64 worden de images nog niet gebouwd). Installeer het volgens de <a href=\"https://docs.docker.com/engine/install/\">officiële handleiding</a> en controleer het met <code>docker compose version</code>.",
             "<b>SSD, minstens 4 GB RAM (8 GB aanbevolen) en 20 GB vrije ruimte</b> voor een gemiddeld huis; meer voor jaren statusgeschiedenis. De Docker-installatie draait de volledige xomtra en is bedoeld voor een machine met genoeg geheugen, niet voor een kleine server; gebruik op een kleine machine de Home Assistant-add-on.",
-            "<b>git en curl.</b>",
+            "<b>curl</b> (git is niet nodig).",
             "<b>Home Assistant bereikbaar vanaf deze machine</b>, meestal op poort 8123 (URL zoals <code>http://&lt;adres&gt;:8123</code>)."
           ]},
-          "Als git of curl ontbreekt:",
+          "Als curl ontbreekt:",
           {"code": "dk_tools"}
         ]
       },
@@ -113,6 +113,8 @@
           {"code": "dk_clone"},
           "Controleer de gedownloade bestanden tegen <code>SHA256SUMS</code>; elke regel moet eindigen op <code>OK</code>:",
           {"code": "dk_sums"},
+          "Pak de release uit (de map <code>xomtra/deploy/compose</code> van de tag) en ga erin:",
+          {"code": "dk_unpack"},
           {"note": "Optioneel kun je ook controleren dat elke image ondertekend is door de release-workflow van deze versie, met cosign in een container; zie <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">de documentatie</a>."}
         ]
       },
@@ -183,7 +185,7 @@
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Wachtwoorden en sleutels blijven in het Docker-volume <code>secrets</code>. Een installatie van vóór versie 0.7.0 heeft ze nog in <code>.env</code>; de eerste start van de nieuwe versie neemt ze automatisch over, daarna kun je ze uit <code>.env</code> verwijderen.",
-          "Terug kan met de vorige tag, de back-up van <code>.env</code> en <code>docker compose up -d</code>. Maak regelmatig een back-up van de machine of de Docker-volumes: daarin staat de hele geschiedenis, en zonder het volume <code>secrets</code> zijn de gegevens niet te lezen."
+          "Terug kan met het archief van de vorige versie, op dezelfde manier uitgepakt, de back-up van <code>.env</code> en <code>docker compose up -d</code>. Maak regelmatig een back-up van de machine of de Docker-volumes: daarin staat de hele geschiedenis, en zonder het volume <code>secrets</code> zijn de gegevens niet te lezen."
         ]
       },
       {

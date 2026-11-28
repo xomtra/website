@@ -98,10 +98,10 @@
           {"ul": [
             "<b>Linux s Docker Engine a Compose v2</b>, amd64 (Intel, AMD; pro arm64 se obrazy zatím nesestavují). Nainstalujte ho podle <a href=\"https://docs.docker.com/engine/install/\">oficiálního návodu</a> a ověřte příkazem <code>docker compose version</code>.",
             "<b>SSD, aspoň 4 GB RAM (doporučeno 8 GB) a 20 GB volného místa</b> pro běžnou domácnost; pro roky historie stavů víc. Instalace přes Docker spouští celou xomtru a je určená pro stroj s dostatkem paměti, ne pro malý server; na malý stroj použijte doplněk Home Assistantu.",
-            "<b>git a curl.</b>",
+            "<b>curl</b> (git není potřeba).",
             "<b>Home Assistant dosažitelný z tohoto stroje</b>, obvykle na portu 8123 (URL ve tvaru <code>http://&lt;adresa&gt;:8123</code>)."
           ]},
-          "Pokud git nebo curl chybí:",
+          "Pokud curl chybí:",
           {"code": "dk_tools"}
         ]
       },
@@ -113,6 +113,8 @@
           {"code": "dk_clone"},
           "Zkontrolujte stažené soubory proti <code>SHA256SUMS</code>; každý řádek musí končit <code>OK</code>:",
           {"code": "dk_sums"},
+          "Rozbalte vydání (adresář <code>xomtra/deploy/compose</code> jeho tagu) a přejděte do něj:",
+          {"code": "dk_unpack"},
           {"note": "Volitelně můžete ověřit i to, že každý obraz podepsal release workflow této verze, pomocí cosign v kontejneru; viz <a href=\"https://github.com/xomtra/xomtra/blob/main/docs/releasing.md#installing-a-release\">dokumentace</a>."}
         ]
       },
@@ -183,7 +185,7 @@
           {"code": "dk_pin"},
           {"code": "dk_pull"},
           "Hesla a klíče zůstávají v Docker volume <code>secrets</code>. Instalace z doby před verzí 0.7.0 je má ještě v <code>.env</code>; první spuštění nové verze je převezme automaticky a pak je z <code>.env</code> můžete smazat.",
-          "Návrat zpět: přepněte na předchozí tag, obnovte zálohu <code>.env</code> a spusťte <code>docker compose up -d</code>. Stroj nebo Docker volumes pravidelně zálohujte: drží celou historii a bez volume <code>secrets</code> data nepřečtete."
+          "Návrat zpět: stejně rozbalte archiv předchozí verze, obnovte zálohu <code>.env</code> a spusťte <code>docker compose up -d</code>. Stroj nebo Docker volumes pravidelně zálohujte: drží celou historii a bez volume <code>secrets</code> data nepřečtete."
         ]
       },
       {
