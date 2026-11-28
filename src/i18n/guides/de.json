@@ -167,7 +167,7 @@
           "<b>Claude Desktop:</b> Klicke nach dem Ausstellen des Tokens auf <b>Für Claude Desktop herunterladen</b> (auch auf <b>Clients verbinden</b>), öffne <code>xomtra.mcpb</code>, füge den Token ein und installiere. Die Datei ist für deinen Server gemacht: Adresse und Zertifikat sind eingetragen und die Erweiterung vertraut nur diesem Zertifikat, daher muss nichts in den Computer importiert werden. Der Token ist nicht in der Datei, Claude Desktop speichert ihn als Geheimnis.",
           "<b>Claude Code</b> (ist das Zertifikat nicht im Zertifikatsspeicher, starte Claude Code mit <code>NODE_EXTRA_CA_CERTS=/pfad/zu/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
-          {"note": "Claude im Web und in den Handy-Apps verbindet sich von den Servern von Anthropic und erreicht dein LAN nicht. Dafür kann xomtra auf einer Maschine mit öffentlicher https://-Adresse laufen, an der du dich mit deinem Home-Assistant-Konto und Zwei-Faktor-Authentifizierung anmeldest; siehe die Dokumentation auf GitHub."}
+          {"note": "Claude im Web und in den Handy-Apps verbindet sich von den Servern von Anthropic und erreicht dein LAN nicht. Dafür stellst du die Installation auf <a href=\"{internet}\">Zugriff aus dem Internet</a> um: eine fortgeschrittene Einrichtung mit eigener Domain und Portweiterleitung, die die persönlichen Tokens ersetzt."}
         ]
       },
       {
@@ -201,6 +201,78 @@
           "Wenn du dem Zertifikat für den ganzen Computer vertraut hast, entferne es (es heißt <code>xomtra local CA - &lt;Jahr&gt; ECC Root</code>; lösche nur dieses) und lösche <code>xomtra-ca.crt</code>. Unter Debian oder Ubuntu löschst du die Datei in <code>/usr/local/share/ca-certificates/</code> und führst <code>sudo update-ca-certificates --fresh</code> aus.",
           {"code": "dk_untrust"},
           "<b>In Home Assistant:</b> Melde dich als Benutzer für xomtra an und lösche unter <b>Profil → Sicherheit</b> seinen langlebigen Zugriffstoken; bis dahin bleibt er gültig. Lösche danach diesen Benutzer unter <b>Einstellungen → Personen</b>. Die Anmeldung mit deinem eigenen Home Assistant Konto hinterlässt nichts. Wenn du die öffentliche Adresse für Claude im Web eingerichtet hast, entferne auch den Connector in claude.ai, die Portweiterleitung und den DNS-Eintrag."
+        ]
+      }
+    ]
+  },
+  "internet": {
+    "name": "Zugriff aus dem Internet",
+    "title": "Claude im Web: xomtra aus dem Internet",
+    "desc": "Fortgeschritten und optional: eine Docker-Installation von xomtra für Claude im Web und auf dem Handy erreichbar machen, mit eigener Domain, Let's-Encrypt-Zertifikat, den IP-Bereichen von Claude und Anmeldung mit deinem Home-Assistant-Konto.",
+    "lead": "Nur wenn du Claude im Web und auf dem Handy willst, auch unterwegs. Die meisten Haushalte brauchen das nicht: Für Claude Desktop und Claude Code reicht die Anleitung Docker Compose mit lokalem Zugriff. Diese Einrichtung ersetzt den lokalen Zugriff auf derselben Installation; beide laufen nicht nebeneinander.",
+    "facts": [["Dauer", "etwa 30 Minuten"], ["Voraussetzung", "eigene Domain bei Cloudflare, Port 443"], ["Zugriff", "claude.ai, Anmeldung mit Home Assistant"]],
+    "steps": [
+      {
+        "h": "Entscheide, ob du es brauchst",
+        "b": [
+          {"ul": [
+            "<b>Immer nur ein Zugriffsmodus.</b> xomtra läuft entweder mit lokalem Zugriff (persönliche Tokens, nur LAN) oder mit Zugriff aus dem Internet (claude.ai, OAuth-Anmeldung). Der MCP-Server prüft Aufrufer auf eine Art und Caddy hat eine Konfiguration, persönliche Tokens werden also nie aus dem Internet angenommen.",
+            "<b>Persönliche Tokens funktionieren nicht mehr.</b> Claude Desktop mit der Erweiterung und Claude Code verlieren die Verbindung; in Claude Desktop nimmst du dann den Connector von claude.ai. Ausgestellte Tokens bleiben gespeichert und gelten nach dem Zurückschalten wieder.",
+            "<b>Umgeschaltet wird in <code>.env</code></b>, nicht auf der Admin-Seite, danach <code>docker compose up -d --force-recreate</code>. Daten, Einstellungen und die Verbindung zu Home Assistant bleiben."
+          ]}
+        ]
+      },
+      {
+        "h": "Prüfe die Voraussetzungen",
+        "b": [
+          {"ul": [
+            "Eine funktionierende Installation nach der Anleitung <a href=\"{docker}\">Docker Compose</a> mit verbundenem Home Assistant. Starte lokal, prüfe, dass es läuft, und schalte dann um.",
+            "<b>Eine eigene Domain mit DNS bei Cloudflare</b> (der kostenlose Tarif reicht) und ein A-Record, z. B. <code>xomtra.example.org</code>, auf die öffentliche IPv4-Adresse deines Zuhauses, <b>DNS only</b> (graue Wolke). Eine dynamische Adresse braucht DDNS; CGNAT funktioniert nicht.",
+            "<b>Portweiterleitung</b> am Router: TCP 443 aus dem Internet auf diesen Server. Port 80 bleibt zu.",
+            "<b>Zwei-Faktor-Authentifizierung</b> für die Home-Assistant-Benutzer, die Claude verbinden.",
+            "Ein Claude-Tarif mit <b>eigenen Connectors</b>."
+          ]}
+        ]
+      },
+      {
+        "h": "Bereite Token und Claudes Adressen vor",
+        "b": [
+          "Erstelle in Cloudflare ein API-Token aus der Vorlage <b>Edit zone DNS</b>, beschränkt auf diese eine Zone. Caddy holt und erneuert damit das Let's-Encrypt-Zertifikat, also behalte es.",
+          "Die aktuellen ausgehenden IP-Bereiche von Claude stehen in der Dokumentation von Anthropic (API → IP addresses). Nur sie dürfen den MCP-Endpunkt aufrufen.",
+          "Die Admin-Seite zieht nach <code>https://xomtra.example.org/admin/</code> um und bleibt nur aus deinem privaten Netz offen. Damit dein Rechner zu Hause sie erreicht, lege einen lokalen DNS-Eintrag für den Namen auf die LAN-Adresse des Servers an (Router, Pi-hole) oder schalte NAT-Loopback im Router ein."
+        ]
+      },
+      {
+        "h": "Schalte auf Zugriff aus dem Internet um",
+        "b": [
+          "Ergänze in <code>xomtra/deploy/compose</code> diese Zeilen mit deinen Werten in <code>.env</code>. <code>XOMTRA_HA_URL</code> ist dieselbe Home-Assistant-URL wie auf der Admin-Seite; die Anmeldung des Connectors braucht sie hier:",
+          {"code": "net_env"},
+          "Starte alles neu und warte auf das Zertifikat:",
+          {"code": "net_up"},
+          {"note": "Fehlt ein Wert, stoppt Caddy mit <code>XOMTRA_ACCESS_MODE=public requires …</code> in <code>docker compose logs caddy</code>."}
+        ]
+      },
+      {
+        "h": "Prüfe von außen",
+        "b": [
+          "Vom Handy über mobile Daten (außerhalb deines Netzes und außerhalb von Claudes Bereichen): Der MCP-Endpunkt muss dich abweisen, die Anmeldeseite muss antworten:",
+          {"code": "net_check"}
+        ]
+      },
+      {
+        "h": "Füge den Connector in Claude hinzu",
+        "b": [
+          "Öffne auf <a href=\"https://claude.ai\">claude.ai</a> <b>Settings → Connectors → Add custom connector</b>, nenne ihn <code>xomtra</code> und gib <code>https://xomtra.example.org/mcp</code> ein. OAuth Client ID und Secret bleiben leer; Claude registriert sich selbst.",
+          "Klicke auf <b>Connect</b>: die Zustimmungsseite von xomtra, dann die Home-Assistant-Anmeldung mit Zwei-Faktor-Authentifizierung, dann zurück zu Claude. Dein Browser muss Home Assistant in dem Moment erreichen, verbinde also zu Hause oder über VPN; danach funktioniert der Connector überall.",
+          "Home-Assistant-Administratoren haben sofort Zugriff. Andere erscheinen nach ihrem ersten Versuch auf der Admin-Seite <b>Zugriff</b>, wo du ihnen eine Rolle gibst."
+        ]
+      },
+      {
+        "h": "Zurück zum lokalen Zugriff",
+        "b": [
+          "Stelle den Modus zurück und starte neu; die übrigen Werte in <code>.env</code> können bleiben:",
+          {"code": "net_back"},
+          "Entferne dann den Connector in claude.ai, die Portweiterleitung und, wenn du sie nicht mehr brauchst, den DNS-Eintrag und das Cloudflare-Token. Claude Desktop und Claude Code verbinden sich wieder mit persönlichen Tokens."
         ]
       }
     ]
