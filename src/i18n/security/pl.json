@@ -23,11 +23,13 @@
       "id": "access",
       "h": "Tylko ci, których wpuścisz",
       "b": [
-        "W sieci domowej każda osoba i każde urządzenie dostaje osobisty token ze strony administracji. Jest pokazywany raz; xomtra przechowuje tylko jego odcisk, nie sam token. Każdy token należy do osoby, która go wydała, i podąża za jej rolą: gdy rola się zmieni albo osoba straci dostęp, jej tokeny dostosują się w ciągu 30 sekund. Token może mieć datę ważności i można go w każdej chwili odwołać.",
-        "Z internetu logujesz się kontem Home Assistant; Microsoft Entra ID jest opcją. Domyślnie mogą się łączyć tylko administratorzy Home Assistant i tylko z uwierzytelnianiem dwuskładnikowym. Każdy inny wejdzie dopiero wtedy, gdy administrator przyzna mu rolę na stronie administracji <b>Dostęp</b>.",
-        "Zaraz po zalogowaniu xomtra odwołuje otrzymany token Home Assistant i prowadzi własną sesję o stałej ważności; klient AI dostaje tokeny dostępu ważne najwyżej 60 minut, odnawiane w ramach tej sesji. Strona <b>Dostęp</b> pokazuje wszystkich podłączonych klientów, a <b>Rozłącz</b> kończy dostęp w ciągu minuty.",
-        "Role decydują, co zobaczy AI. Czytelnik nigdy nie widzi osób, lokalizacji, kamer, zamków, alarmów ani wolnego tekstu atrybutów; są one odfiltrowywane już w bazie danych, zanim powstanie jakakolwiek odpowiedź. Co jeszcze czytelnik nie zobaczy, ustala administrator na stronie <b>Ukryte przed rolą Reader</b>.",
-        "Serwer MCP, czyli część, z którą rozmawia AI, nie ma żadnego tokenu Home Assistant, więc nawet przejęty serwer nie może sterować twoim domem. A xomtra wiąże swoje dane z jedną instancją Home Assistant: jeśli pod tym samym adresem odpowie inna, nic z niej nie zostanie zapisane, dopóki nie zdecyduje administrator."
+        "Home Assistant, a jeśli tak wybierzesz, Microsoft Entra ID, tylko potwierdza, kto się loguje. Rolę nadaje xomtra i przechowuje ją we własnej bazie danych: administratorzy Home Assistant zawsze mają <code>xomtra.Admin</code>, nowe konto nie ma żadnej roli, a każdy inny wejdzie dopiero wtedy, gdy administrator nada mu ją na stronie administracji <b>Dostęp</b>. xomtra rozpoznaje osoby po stałym ID ich konta, nigdy po nazwie czy adresie e-mail, które mogą się zmienić.",
+        "W sieci domowej każde urządzenie dostaje osobisty token ze strony administracji <b>Tokeny MCP</b>. Jest pokazywany raz; xomtra przechowuje tylko jego odcisk, nie sam token. Tak jak token długoterminowy w Home Assistant, token należy do osoby, która go wydała, i ma jej rolę; administrator może go ograniczyć do <code>xomtra.Reader</code>. Gdy rola się zmieni albo osoba straci dostęp, jej tokeny dostosują się w ciągu 30 sekund. Każdy może unieważnić swoje tokeny, a administrator dowolny.",
+        "Z internetu Claude łączy się przez twoje konto Home Assistant, domyślnie tylko z uwierzytelnianiem dwuskładnikowym. Przed zalogowaniem xomtra zawsze pokazuje stronę zgody z nazwą klienta, więc link od kogoś innego nie podłączy jego Claude do twojego domu.",
+        "Zaraz po zalogowaniu xomtra odwołuje otrzymany token Home Assistant i prowadzi własną sesję, domyślnie przez 180 dni. Claude dostaje tokeny dostępu ważne najwyżej 60 minut; każde odnowienie xomtra sprawdza względem tej sesji i roli osoby, nigdy przez Home Assistant. Na stronie <b>Dostęp</b> przycisk <b>Rozłącz</b> kończy logowanie w ciągu minuty, a <b>Rozłącz wszędzie</b> kończy wszystkie sesje osoby, także w administracji.",
+        "Jeśli xomtra czyta Home Assistant tokenem administratora, co 5 minut pobiera listę jego użytkowników: usunięty lub dezaktywowany użytkownik traci dostęp w ciągu kilku minut. Z tokenem bez uprawnień administratora, jak zaleca instrukcja dla Dockera, xomtra tej listy nie widzi. Gdy więc usuniesz kogoś w Home Assistant, kliknij przy nim w xomtrze także <b>Rozłącz wszędzie</b> i odbierz mu rolę.",
+        "Role decydują, co zobaczy AI. Czytelnik domyślnie nie widzi osób, lokalizacji, kamer, zamków, alarmów ani wolnego tekstu atrybutów; są one odfiltrowywane już w bazie danych, zanim powstanie jakakolwiek odpowiedź. Administrator zmienia tę listę na stronie <b>Ukryte przed rolą Reader</b>, a xomtra zapisuje, kto ją zmienił i dlaczego.",
+        "Serwer MCP, czyli część, z którą rozmawia AI, nie ma tokenu Home Assistant ani klucza do zapisanego tokenu, więc nawet ktoś, kto by go przejął, nie może sterować twoim domem. Z Home Assistant rozmawiają tylko import danych i administracja, i to tylko w trybie odczytu. Wyjątkiem jest dodatek, w którym wszystko dzieli jeden kontener i token Supervisora; dlatego jego port MCP jest przeznaczony tylko dla twojej własnej sieci."
       ]
     },
     {
@@ -42,7 +44,9 @@
       "id": "admin",
       "h": "Strona administracji",
       "b": [
-        "Logujesz się kontem administratora Home Assistant, a w dodatku prosto z Home Assistant. Po zalogowaniu xomtra odwołuje otrzymany token Home Assistant, więc nie zatrzymuje żadnego tokenu Home Assistant zalogowanej osoby.",
+        "Logujesz się kontem Home Assistant albo przez Microsoft Entra ID, a w dodatku prosto z Home Assistant. Po zalogowaniu xomtra odwołuje otrzymany token Home Assistant, więc nie zatrzymuje żadnego tokenu Home Assistant zalogowanej osoby. Sesja jest zapisana w bazie danych xomtry: wylogowanie ją kończy, a zmieniona rola obowiązuje od następnego kliknięcia.",
+        "Każda strona ma określone role, które mogą ją otworzyć, a serwer sprawdza to przy każdym żądaniu. Czytelnik widzi tylko swoje tokeny MCP i instrukcję podłączania klientów; wszystko inne serwer odrzuca i zapisuje w dzienniku audytu.",
+        "Nową instalację otwiera link konfiguracyjny, który działa tylko raz i najwyżej przez 24 godziny. Utworzyć go może tylko ten, kto może uruchomić polecenie na serwerze.",
         "Domyślnie strona administracji odpowiada tylko z sieci lokalnej, a w dodatku tylko przez Home Assistant. Niczego nie ładuje z obcych stron i chroni każdy formularz przed podrobionymi żądaniami."
       ]
     },
@@ -72,6 +76,7 @@
       "h": "Twoje dane i Twoja AI",
       "b": [
         "Historia zostaje na komputerze, na którym działa xomtra, a sama xomtra nigdzie jej nie wysyła. To, co Twój klient AI pobierze, aby Ci odpowiedzieć, trafia do jego dostawcy na Twoim własnym koncie i według jego warunków. Co może pobrać, decydują role i etykiety.",
+        "xomtra wiąże swoje dane z jedną instancją Home Assistant. Jeśli połączenie prowadzi do innej, na przykład po ponownej instalacji Home Assistant, xomtra nic z niej nie zapisze, dopóki administrator nie zdecyduje na stronie <b>Instancja HA</b>: zachować dane i poprawić połączenie albo je usunąć i zacząć od nowa z nową instancją.",
         "xomtra daje też AI zasady odpowiedzi. Zawsze obowiązuje stały rdzeń: tylko wartości pobrane z xomtry, żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że o to zapytasz, żadnych żartów o awariach i zagrożeniu życia i zdrowia oraz nic dyskryminującego, politycznego ani religijnego. Do tego dochodzi zestaw wskazówek do odpowiedzi, który wybierzesz na stronie administracji <b>Konfiguracja MCP</b>. Zestawy są zapisane na Twoim komputerze, zmieniać je mogą tylko administratorzy, a z xomtra.com nie przychodzi żaden tekst dla modelu. Zasady prowadzą model, ale nie są granicą bezpieczeństwa."
       ]
     }

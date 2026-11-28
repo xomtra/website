@@ -127,7 +127,7 @@
     ],
     [
      "Do I need Claude?",
-     "No, but it is the best fit. Any MCP client on a computer in your network works with every installation: Claude Desktop, Claude Code, VS Code or Cursor. Claude.ai needs xomtra on its own virtual machine with a public https:// address. ChatGPT and other cloud assistants are not supported yet. Your AI subscription is your own; xomtra never pays or sees it."
+     "No, but it is the best fit. Any MCP client on a computer in your network works with every installation: Claude Desktop, Claude Code, VS Code or Cursor. Claude.ai needs xomtra on its own server with a public https:// address (Docker with access from the internet). ChatGPT and other cloud assistants are not supported yet. Your AI subscription is your own; xomtra never pays or sees it."
     ],
     [
      "Does my data leave the house?",
@@ -135,7 +135,7 @@
     ],
     [
      "Can xomtra or the AI control my home?",
-     "No. xomtra only reads states, history and statistics from Home Assistant and never calls its services. Your AI assistant talks only to xomtra and gets read-only tools over xomtra's own copy of the data, never direct access to Home Assistant. Home Assistant itself has no read-only tokens, so this is guaranteed by xomtra's open source code, not by Home Assistant. With Docker, sign xomtra in as a separate Home Assistant user without admin rights, so you can revoke its access any time."
+     "No. xomtra only reads states, history and statistics from Home Assistant and never calls its services. Your AI assistant talks only to xomtra and gets read-only tools over xomtra's own copy of the data, never direct access to Home Assistant. Home Assistant itself has no read-only tokens, so this is guaranteed by xomtra's open source code, not by Home Assistant. With Docker, sign xomtra in as a separate Home Assistant user without admin rights, so you can revoke its access any time. Outside the add-on, the MCP server the AI talks to holds no Home Assistant token at all."
     ],
     [
      "How much disk does it need?",
@@ -276,7 +276,7 @@
     ],
     [
      "Brauche ich Claude?",
-     "Nein, aber es passt am besten. Jeder MCP-Client auf einem Rechner in deinem Netz funktioniert mit jeder Installation: Claude Desktop, Claude Code, VS Code oder Cursor. Claude.ai braucht xomtra auf einer eigenen virtuellen Maschine mit öffentlicher https://-Adresse. ChatGPT und andere Cloud-Assistenten werden noch nicht unterstützt. Dein KI-Abo gehört dir; xomtra bezahlt es nicht und sieht es nicht."
+     "Nein, aber es passt am besten. Jeder MCP-Client auf einem Rechner in deinem Netz funktioniert mit jeder Installation: Claude Desktop, Claude Code, VS Code oder Cursor. Claude.ai braucht xomtra auf einem eigenen Server mit öffentlicher https://-Adresse (Docker mit Zugriff aus dem Internet). ChatGPT und andere Cloud-Assistenten werden noch nicht unterstützt. Dein KI-Abo gehört dir; xomtra bezahlt es nicht und sieht es nicht."
     ],
     [
      "Verlassen meine Daten das Haus?",
@@ -284,7 +284,7 @@
     ],
     [
      "Kann xomtra oder die KI mein Zuhause steuern?",
-     "Nein. xomtra liest aus Home Assistant nur Zustände, Verlauf und Statistiken und ruft nie dessen Dienste auf. Dein KI-Assistent spricht nur mit xomtra und bekommt nur lesende Werkzeuge über xomtras eigene Kopie der Daten, nie direkten Zugriff auf Home Assistant. Home Assistant selbst kennt keine read-only-Tokens, das garantiert also der offene Quellcode von xomtra, nicht Home Assistant. Unter Docker meldest du xomtra als eigenen Home-Assistant-Benutzer ohne Administratorrechte an, damit du den Zugriff jederzeit entziehen kannst."
+     "Nein. xomtra liest aus Home Assistant nur Zustände, Verlauf und Statistiken und ruft nie dessen Dienste auf. Dein KI-Assistent spricht nur mit xomtra und bekommt nur lesende Werkzeuge über xomtras eigene Kopie der Daten, nie direkten Zugriff auf Home Assistant. Home Assistant selbst kennt keine read-only-Tokens, das garantiert also der offene Quellcode von xomtra, nicht Home Assistant. Unter Docker meldest du xomtra als eigenen Home-Assistant-Benutzer ohne Administratorrechte an, damit du den Zugriff jederzeit entziehen kannst. Außerhalb des Add-ons hat der MCP-Server, mit dem die KI spricht, überhaupt keinen Home-Assistant-Token."
     ],
     [
      "Wie viel Speicher braucht es?",
@@ -425,7 +425,7 @@
     ],
     [
      "Potřebuji Claude?",
-     "Ne, ale hodí se k němu nejlépe. S každou instalací funguje jakýkoli MCP klient na počítači ve vaší síti: Claude Desktop, Claude Code, VS Code nebo Cursor. Claude.ai potřebuje xomtru na samostatném virtuálním stroji s veřejnou adresou https://. ChatGPT a další cloudoví asistenti zatím podporovaní nejsou. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
+     "Ne, ale hodí se k němu nejlépe. S každou instalací funguje jakýkoli MCP klient na počítači ve vaší síti: Claude Desktop, Claude Code, VS Code nebo Cursor. Claude.ai potřebuje xomtru na vlastním serveru s veřejnou adresou https:// (Docker s přístupem z internetu). ChatGPT a další cloudoví asistenti zatím podporovaní nejsou. Předplatné AI je vaše, xomtra ho neplatí ani nevidí."
     ],
     [
      "Odcházejí moje data z domu?",
@@ -433,7 +433,7 @@
     ],
     [
      "Může xomtra nebo AI ovládat domácnost?",
-     "Ne. xomtra z Home Assistantu jen čte stavy, historii a statistiky a nikdy nevolá jeho služby. AI asistent komunikuje jen s xomtrou a dostává jen nástroje read only nad její vlastní kopií dat, nikdy přímý přístup k Home Assistantu. Home Assistant sám tokeny read only nemá, takže to zaručuje otevřený kód xomtry, ne Home Assistant. V Dockeru přihlaste xomtru jako samostatného uživatele Home Assistantu bez administrátorských práv, abyste jí mohli přístup kdykoli odebrat."
+     "Ne. xomtra z Home Assistantu jen čte stavy, historii a statistiky a nikdy nevolá jeho služby. AI asistent komunikuje jen s xomtrou a dostává jen nástroje read only nad její vlastní kopií dat, nikdy přímý přístup k Home Assistantu. Home Assistant sám tokeny read only nemá, takže to zaručuje otevřený kód xomtry, ne Home Assistant. V Dockeru přihlaste xomtru jako samostatného uživatele Home Assistantu bez administrátorských práv, abyste jí mohli přístup kdykoli odebrat. Mimo doplněk nemá MCP server, se kterým AI mluví, vůbec žádný token Home Assistantu."
     ],
     [
      "Kolik potřebuje místa na disku?",
@@ -574,7 +574,7 @@
     ],
     [
      "Czy potrzebuję Claude?",
-     "Nie, ale pasuje najlepiej. Każdy klient MCP na komputerze w Twojej sieci działa z każdą instalacją: Claude Desktop, Claude Code, VS Code lub Cursor. Claude.ai wymaga xomtry na osobnej maszynie wirtualnej z publicznym adresem https://. ChatGPT i inne asystenty w chmurze nie są jeszcze obsługiwane. Subskrypcja AI jest Twoja, xomtra za nią nie płaci i jej nie widzi."
+     "Nie, ale pasuje najlepiej. Każdy klient MCP na komputerze w Twojej sieci działa z każdą instalacją: Claude Desktop, Claude Code, VS Code lub Cursor. Claude.ai wymaga xomtry na własnym serwerze z publicznym adresem https:// (Docker z dostępem z internetu). ChatGPT i inne asystenty w chmurze nie są jeszcze obsługiwane. Subskrypcja AI jest Twoja, xomtra za nią nie płaci i jej nie widzi."
     ],
     [
      "Czy moje dane opuszczają dom?",
@@ -582,7 +582,7 @@
     ],
     [
      "Czy xomtra albo AI może sterować moim domem?",
-     "Nie. xomtra tylko czyta z Home Assistanta stany, historię i statystyki i nigdy nie wywołuje jego usług. Asystent AI rozmawia tylko z xomtrą i dostaje wyłącznie narzędzia do odczytu własnej kopii danych xomtry, nigdy bezpośredni dostęp do Home Assistanta. Sam Home Assistant nie ma tokenów tylko do odczytu, więc gwarantuje to otwarty kod xomtry, a nie Home Assistant. W Dockerze zaloguj xomtrę jako osobnego użytkownika Home Assistanta bez uprawnień administratora, aby w każdej chwili móc odebrać jej dostęp."
+     "Nie. xomtra tylko czyta z Home Assistanta stany, historię i statystyki i nigdy nie wywołuje jego usług. Asystent AI rozmawia tylko z xomtrą i dostaje wyłącznie narzędzia do odczytu własnej kopii danych xomtry, nigdy bezpośredni dostęp do Home Assistanta. Sam Home Assistant nie ma tokenów tylko do odczytu, więc gwarantuje to otwarty kod xomtry, a nie Home Assistant. W Dockerze zaloguj xomtrę jako osobnego użytkownika Home Assistanta bez uprawnień administratora, aby w każdej chwili móc odebrać jej dostęp. Poza dodatkiem serwer MCP, z którym rozmawia AI, nie ma w ogóle tokenu Home Assistanta."
     ],
     [
      "Ile miejsca na dysku potrzebuje?",
@@ -723,7 +723,7 @@
     ],
     [
      "Heb ik Claude nodig?",
-     "Nee, maar het past het best. Elke MCP-client op een computer in je netwerk werkt met elke installatie: Claude Desktop, Claude Code, VS Code of Cursor. Claude.ai heeft xomtra nodig op een eigen virtuele machine met een openbaar https://-adres. ChatGPT en andere cloudassistenten worden nog niet ondersteund. Je AI-abonnement is van jou; xomtra betaalt of ziet het niet."
+     "Nee, maar het past het best. Elke MCP-client op een computer in je netwerk werkt met elke installatie: Claude Desktop, Claude Code, VS Code of Cursor. Claude.ai heeft xomtra nodig op een eigen server met een openbaar https://-adres (Docker met toegang vanaf internet). ChatGPT en andere cloudassistenten worden nog niet ondersteund. Je AI-abonnement is van jou; xomtra betaalt of ziet het niet."
     ],
     [
      "Verlaat mijn data het huis?",
@@ -731,7 +731,7 @@
     ],
     [
      "Kan xomtra of de AI mijn huis bedienen?",
-     "Nee. xomtra leest uit Home Assistant alleen toestanden, geschiedenis en statistieken en roept nooit diensten aan. Je AI-assistent praat alleen met xomtra en krijgt alleen leestools over xomtra's eigen kopie van de data, nooit directe toegang tot Home Assistant. Home Assistant zelf kent geen alleen-lezen-tokens, dus dit garandeert de open broncode van xomtra, niet Home Assistant. Gebruik je Docker, meld xomtra dan aan als aparte Home Assistant-gebruiker zonder beheerdersrechten, zodat je de toegang altijd kunt intrekken."
+     "Nee. xomtra leest uit Home Assistant alleen toestanden, geschiedenis en statistieken en roept nooit diensten aan. Je AI-assistent praat alleen met xomtra en krijgt alleen leestools over xomtra's eigen kopie van de data, nooit directe toegang tot Home Assistant. Home Assistant zelf kent geen alleen-lezen-tokens, dus dit garandeert de open broncode van xomtra, niet Home Assistant. Gebruik je Docker, meld xomtra dan aan als aparte Home Assistant-gebruiker zonder beheerdersrechten, zodat je de toegang altijd kunt intrekken. Buiten de add-on heeft de MCP-server waarmee de AI praat helemaal geen Home Assistant-token."
     ],
     [
      "Hoeveel schijfruimte is nodig?",

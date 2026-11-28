@@ -52,12 +52,12 @@
       {
         "h": "Wystaw pierwszy token",
         "b": [
-          "Otwórz <b>xomtra</b> w panelu bocznym (widzą go tylko administratorzy Home Assistant) i przejdź do <b>Tokeny MCP</b>. Podaj urządzenie lub aplikację, rolę i ważność. Token jest twój: podąża za twoją rolą w xomtrze i przestaje działać, gdy stracisz dostęp.",
+          "Otwórz <b>xomtra</b> w panelu bocznym (widzą go tylko administratorzy Home Assistant) i przejdź do <b>Tokeny MCP</b>. Podaj urządzenie lub aplikację i ważność, a potem wybierz rolę:",
           {"ul": [
-            "<code>xomtra.Reader</code> czyta historię i wyniki, bez obecności, lokalizacji, kamer i zamków. Dobra dla większości osób. Co dokładnie jest ukryte, ustawiasz na stronie <b>Ukryte przed rolą Reader</b>.",
-            "<code>xomtra.Admin</code> widzi wszystkie encje, także te, oraz zmiany katalogu."
+            "<code>xomtra.Reader</code> czyta historię i wyniki, bez obecności, lokalizacji, kamer i zamków. Dobra dla większości urządzeń i wybrana domyślnie. Co dokładnie jest ukryte, ustawiasz na stronie <b>Ukryte przed rolą Reader</b>.",
+            "<code>xomtra.Admin</code> to twoja własna rola: widzi wszystkie encje, także te, oraz zmiany katalogu. Używaj jej tylko na własnym urządzeniu."
           ]},
-          "Token (<code>xmt_…</code>) jest pokazywany <b>tylko raz</b>. Wystaw osobny dla każdej osoby i urządzenia: możesz unieważnić jeden bez pozostałych, a audyt pokaże, kto o co pytał."
+          "Token (<code>xmt_…</code>) jest pokazywany <b>tylko raz</b>. Jest twój: tak jak token długoterminowy w Home Assistant ma twoją rolę w xomtrze i przestaje działać, gdy stracisz dostęp. Wystaw osobny dla każdego urządzenia: możesz unieważnić jeden bez pozostałych, a audyt pokaże, które o co pytało."
         ]
       },
       {
@@ -146,7 +146,7 @@
           "Dopóki Home Assistant nie jest podłączony, to polecenie wypisuje jednorazowy link do konfiguracji (jest też w logu usługi admin):",
           {"code": "dk_setup"},
           "Otwórz link w przeglądarce w twojej sieci LAN (przeglądarka ostrzega przed certyfikatem, to normalne; zobacz następny krok). Wpisz URL Home Assistant, pod którym widzi go ten serwer, na przykład <code>http://192.168.1.10:8123</code>, oraz token z poprzedniego kroku.",
-          "xomtra sprawdza połączenie przed zapisaniem i przechowuje token zaszyfrowany w swojej bazie danych, nie w pliku. Link przestaje wtedy działać, a historia z Home Assistant wczytuje się w tle. URL lub token możesz później zmienić na stronie administracyjnej w sekcji <b>Przegląd</b>."
+          "xomtra sprawdza połączenie przed zapisaniem i przechowuje token zaszyfrowany w swojej bazie danych, nie w pliku. Link działa tylko raz i najwyżej przez 24 godziny (nowy wypisze to samo polecenie); historia z Home Assistant wczytuje się potem w tle. URL lub token możesz później zmienić na stronie administracyjnej w sekcji <b>Przegląd</b>."
         ]
       },
       {
@@ -163,7 +163,7 @@
       {
         "h": "Wystaw token i podłącz Claude",
         "b": [
-          "Otwórz <code>https://&lt;server&gt;/admin/</code>, zaloguj się jako administrator Home Assistant i przejdź do <b>Tokeny MCP</b>. Wystaw osobny token dla każdej osoby i urządzenia (<code>xomtra.Reader</code> dla większości); jest pokazywany <b>tylko raz</b>.",
+          "Otwórz <code>https://&lt;server&gt;/admin/</code>, zaloguj się jako administrator Home Assistant i przejdź do <b>Tokeny MCP</b>. Wystaw osobny token dla każdego urządzenia (<code>xomtra.Reader</code> dla większości, token z twoją rolą <code>xomtra.Admin</code> tylko na własnym urządzeniu); jest pokazywany <b>tylko raz</b>. Inni domownicy mogą zalogować się własnym kontem Home Assistant, gdy nadasz im rolę na stronie <b>Dostęp</b>, i wystawić sobie własne tokeny.",
           "<b>Claude Desktop:</b> po wystawieniu tokenu kliknij <b>Pobierz dla Claude Desktop</b> (także na stronie <b>Podłączanie klientów</b>), otwórz <code>xomtra.mcpb</code>, wklej token i zainstaluj. Plik jest przygotowany dla twojego serwera: adres i certyfikat są wpisane, a rozszerzenie ufa tylko temu certyfikatowi, więc do komputera nie trzeba niczego importować. Tokenu nie ma w pliku, Claude Desktop przechowuje go jako sekret.",
           "<b>Claude Code</b> (jeśli certyfikatu nie ma w magazynie zaufanych certyfikatów, uruchamiaj Claude Code z <code>NODE_EXTRA_CA_CERTS=/sciezka/do/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
@@ -264,7 +264,7 @@
         "b": [
           "Na <a href=\"https://claude.ai\">claude.ai</a> otwórz <b>Settings → Connectors → Add custom connector</b>, nazwij go <code>xomtra</code> i wpisz <code>https://xomtra.example.org/mcp</code>. OAuth client ID i secret zostaw puste; Claude zarejestruje się sam.",
           "Kliknij <b>Connect</b>: strona zgody xomtry, potem logowanie do Home Assistant z uwierzytelnianiem dwuskładnikowym i powrót do Claude. Przeglądarka musi w tym momencie docierać do Home Assistant, więc podłącz konektor w domu albo przez VPN; potem działa z każdego miejsca.",
-          "Administratorzy Home Assistant mają dostęp od razu. Pozostałe osoby po pierwszej próbie pojawiają się na stronie administracji <b>Dostęp</b>, gdzie nadajesz im rolę."
+          "Administratorzy Home Assistant mają dostęp od razu, zawsze z rolą <code>xomtra.Admin</code>. Pozostałe osoby po pierwszej próbie pojawiają się na stronie administracji <b>Dostęp</b>, gdzie nadajesz im rolę. Jeśli token Home Assistant, którym czyta xomtra, nie ma uprawnień administratora, xomtra nie zauważy, że kogoś usunąłeś w Home Assistant: kliknij wtedy przy nim także <b>Rozłącz wszędzie</b> i odbierz mu rolę."
         ]
       },
       {
