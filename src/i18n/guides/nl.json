@@ -131,7 +131,7 @@
         "h": "Start xomtra",
         "b": [
           {"code": "dk_up"},
-          "Bij de eerste start maakt de eenmalige service <code>secrets-init</code> alle interne wachtwoorden en sleutels aan in het Docker-volume <code>secrets</code> en bepaalt het adres van deze server in je LAN; xomtra draait dan op <code>https://&lt;server&gt;/</code>. Binnen een paar minuten horen alle services <code>running</code> of <code>healthy</code> te zijn."
+          "Bij de eerste start maakt de eenmalige service <code>secrets-init</code> alle interne wachtwoorden en sleutels aan in het Docker-volume <code>secrets</code> en bepaalt het adres van deze server in je LAN; de beheerpagina staat dan op <code>https://&lt;server&gt;/admin/</code> (alleen <code>https://&lt;server&gt;/</code> is geen pagina). De eerste keer open je die via de installatielink in de stap <b>Koppel Home Assistant</b>. Binnen een paar minuten horen alle services <code>running</code> of <code>healthy</code> te zijn. <code>docker compose up -d</code> zelf toont de eenmalige installatielink niet; het laatste commando wel (je gebruikt hem in de stap <b>Koppel Home Assistant</b>)."
         ]
       },
       {

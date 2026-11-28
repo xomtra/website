@@ -131,7 +131,7 @@
         "h": "Uruchom xomtra",
         "b": [
           {"code": "dk_up"},
-          "Przy pierwszym uruchomieniu jednorazowa usługa <code>secrets-init</code> generuje wszystkie wewnętrzne hasła i klucze w wolumenie Dockera <code>secrets</code> i ustala adres tego serwera w twojej sieci LAN; xomtra działa wtedy pod <code>https://&lt;server&gt;/</code>. W ciągu kilku minut wszystkie usługi powinny być <code>running</code> lub <code>healthy</code>."
+          "Przy pierwszym uruchomieniu jednorazowa usługa <code>secrets-init</code> generuje wszystkie wewnętrzne hasła i klucze w wolumenie Dockera <code>secrets</code> i ustala adres tego serwera w twojej sieci LAN; panel administracyjny działa wtedy pod <code>https://&lt;server&gt;/admin/</code> (samo <code>https://&lt;server&gt;/</code> nie jest stroną). Za pierwszym razem otwierasz go linkiem konfiguracyjnym z kroku <b>Podłącz Home Assistant</b>. W ciągu kilku minut wszystkie usługi powinny być <code>running</code> lub <code>healthy</code>. Samo <code>docker compose up -d</code> nie wypisuje jednorazowego linku konfiguracyjnego; wypisuje go ostatnie polecenie (użyjesz go w kroku <b>Podłącz Home Assistant</b>)."
         ]
       },
       {
