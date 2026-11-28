@@ -23,7 +23,7 @@
             "<b>SSD, aspoň 4 GB RAM a 20 GB volného místa.</b> Home Assistant Green (32 GB eMMC) a SD karty nejsou podporované.",
             "<b>64bitový systém:</b> amd64 (Intel, AMD) nebo aarch64 (třeba Raspberry Pi 5 s SSD)."
           ]},
-          {"note": "Chcete historii stavů držet déle než rok nebo zálohovat celou historii? Spusťte xomtru na vlastním stroji přes <a href=\"{docker}\">Docker Compose</a>; obrazy pro Proxmox a VMware budou brzy."}
+          {"note": "Chcete historii stavů držet déle než rok nebo zálohovat celou historii? Spusťte xomtru na vlastním stroji přes <a href=\"{docker}\">Docker Compose</a>."}
         ]
       },
       {

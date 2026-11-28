@@ -19,8 +19,7 @@ export const GET: APIRoute = async () => {
     "| | Built-in HA MCP server | xomtra |", "|---|---|---|",
     ...en.c_rows.map((r) => `| ${r[0]} | ${r[1]} | ${r[2]} |`),
     "", "## Install", "",
-    // Proxmox and VMware (cards 2 and 3) have no guide yet.
-    ...en.inst.map((i, n) => `- **${i[0]}:** ${i[1]}${n === 2 || n === 3 ? " Coming soon." : ""}`),
+    ...en.inst.map((i, n) => `- **${i[0]}:** ${i[1]}`),
     "", "Step-by-step guides:", "",
     ...GUIDES.map((g) => `- [${G.en[g].title}](${SITE}${guidePath("en", g)})`),
     "", "## Get started", "",
