@@ -88,15 +88,15 @@
   "docker": {
     "name": "Docker Compose",
     "title": "Instalace xomtry přes Docker Compose",
-    "desc": "Postup instalace xomtry na vlastní linuxový server nebo NAS přes Docker Compose krok za krokem: ověřené vydání, spuštění jedním příkazem, připojení Home Assistantu v prohlížeči, první token, připojení Claude, aktualizace a odinstalace.",
-    "lead": "Pro Home Assistant Container nebo Core, nebo když chcete xomtru na vlastním linuxovém serveru či NAS. xomtra čte Home Assistant po síti; Claude Desktop a Claude Code se připojují osobními tokeny, jen z vaší LAN.",
+    "desc": "Postup instalace xomtry na vlastní linuxový server přes Docker Compose krok za krokem: ověřené vydání, spuštění jedním příkazem, připojení Home Assistantu v prohlížeči, první token, připojení Claude, aktualizace a odinstalace.",
+    "lead": "Pro Home Assistant Container nebo Core, nebo když chcete xomtru na vlastním linuxovém serveru. xomtra čte Home Assistant po síti; Claude Desktop a Claude Code se připojují osobními tokeny, jen z vaší LAN.",
     "facts": [["Čas", "asi 15 minut"], ["Potřebujete", "Linux, Docker s Compose v2"], ["Přístup", "LAN, osobní tokeny"]],
     "steps": [
       {
         "h": "Zkontrolujte požadavky",
         "b": [
           {"ul": [
-            "<b>Linux s Docker Engine a Compose v2</b>, amd64 (Intel, AMD; pro arm64 se obrazy zatím nesestavují). Nainstalujte ho podle <a href=\"https://docs.docker.com/engine/install/\">oficiálního návodu</a> a ověřte příkazem <code>docker compose version</code>. Funguje i NAS s Dockerem.",
+            "<b>Linux s Docker Engine a Compose v2</b>, amd64 (Intel, AMD; pro arm64 se obrazy zatím nesestavují). Nainstalujte ho podle <a href=\"https://docs.docker.com/engine/install/\">oficiálního návodu</a> a ověřte příkazem <code>docker compose version</code>.",
             "<b>SSD, aspoň 4 GB RAM (doporučeno 8 GB) a 20 GB volného místa</b> pro běžnou domácnost; pro roky historie stavů víc. Instalace přes Docker spouští celou xomtru a je určená pro stroj s dostatkem paměti, ne pro malý server; na malý stroj použijte doplněk Home Assistantu.",
             "<b>git a curl.</b>",
             "<b>Home Assistant dosažitelný z tohoto stroje</b>, obvykle na portu 8123 (URL ve tvaru <code>http://&lt;adresa&gt;:8123</code>)."

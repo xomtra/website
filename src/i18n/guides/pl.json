@@ -88,15 +88,15 @@
   "docker": {
     "name": "Docker Compose",
     "title": "Instalacja xomtra przez Docker Compose",
-    "desc": "Instalacja xomtra na własnym serwerze Linux lub NAS przez Docker Compose krok po kroku: zweryfikowane wydanie, uruchomienie jednym poleceniem, podłączenie Home Assistant w przeglądarce, pierwszy token, podłączenie Claude, aktualizacje i odinstalowanie.",
-    "lead": "Dla Home Assistant Container lub Core albo gdy chcesz mieć xomtra na własnym serwerze Linux lub NAS. xomtra czyta Home Assistant przez sieć; Claude Desktop i Claude Code łączą się tokenami osobistymi, tylko z twojej sieci LAN.",
+    "desc": "Instalacja xomtra na własnym serwerze Linux przez Docker Compose krok po kroku: zweryfikowane wydanie, uruchomienie jednym poleceniem, podłączenie Home Assistant w przeglądarce, pierwszy token, podłączenie Claude, aktualizacje i odinstalowanie.",
+    "lead": "Dla Home Assistant Container lub Core albo gdy chcesz mieć xomtra na własnym serwerze Linux. xomtra czyta Home Assistant przez sieć; Claude Desktop i Claude Code łączą się tokenami osobistymi, tylko z twojej sieci LAN.",
     "facts": [["Czas", "około 15 minut"], ["Wymaga", "Linux, Docker z Compose v2"], ["Dostęp", "LAN, tokeny osobiste"]],
     "steps": [
       {
         "h": "Sprawdź wymagania",
         "b": [
           {"ul": [
-            "<b>Linux z Docker Engine i Compose v2</b>, amd64 (Intel, AMD; obrazy dla arm64 nie są jeszcze budowane). Zainstaluj go według <a href=\"https://docs.docker.com/engine/install/\">oficjalnej instrukcji</a> i sprawdź poleceniem <code>docker compose version</code>. NAS z Dockerem też się nada.",
+            "<b>Linux z Docker Engine i Compose v2</b>, amd64 (Intel, AMD; obrazy dla arm64 nie są jeszcze budowane). Zainstaluj go według <a href=\"https://docs.docker.com/engine/install/\">oficjalnej instrukcji</a> i sprawdź poleceniem <code>docker compose version</code>.",
             "<b>Dysk SSD, co najmniej 4 GB RAM (zalecane 8 GB) i 20 GB wolnego miejsca</b> dla typowego domu; więcej dla lat historii stanów. Instalacja przez Dockera uruchamia całą xomtrę i jest przeznaczona dla maszyny z wystarczającą ilością pamięci, nie dla małego serwera; na małej maszynie użyj dodatku Home Assistant.",
             "<b>git i curl.</b>",
             "<b>Home Assistant osiągalny z tej maszyny</b>, zwykle na porcie 8123 (URL w postaci <code>http://&lt;adres&gt;:8123</code>)."

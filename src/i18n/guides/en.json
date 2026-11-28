@@ -88,15 +88,15 @@
   "docker": {
     "name": "Docker Compose",
     "title": "Install xomtra with Docker Compose",
-    "desc": "Step-by-step installation of xomtra on your own Linux server or NAS with Docker Compose: verified release, start with one command, connecting Home Assistant in the browser, first token, connecting Claude, upgrades and uninstalling.",
-    "lead": "For Home Assistant Container or Core, or when you want xomtra on its own Linux server or NAS. xomtra reads Home Assistant over your network; Claude Desktop and Claude Code connect with personal tokens, only from your LAN.",
+    "desc": "Step-by-step installation of xomtra on your own Linux server with Docker Compose: verified release, start with one command, connecting Home Assistant in the browser, first token, connecting Claude, upgrades and uninstalling.",
+    "lead": "For Home Assistant Container or Core, or when you want xomtra on its own Linux server. xomtra reads Home Assistant over your network; Claude Desktop and Claude Code connect with personal tokens, only from your LAN.",
     "facts": [["Time", "about 15 minutes"], ["Needs", "Linux, Docker with Compose v2"], ["Access", "LAN, personal tokens"]],
     "steps": [
       {
         "h": "Check the requirements",
         "b": [
           {"ul": [
-            "<b>Linux with Docker Engine and Compose v2</b>, amd64 (Intel, AMD; the images are not built for arm64 yet). Install it by the <a href=\"https://docs.docker.com/engine/install/\">official guide</a> and check it with <code>docker compose version</code>. A NAS with Docker works too.",
+            "<b>Linux with Docker Engine and Compose v2</b>, amd64 (Intel, AMD; the images are not built for arm64 yet). Install it by the <a href=\"https://docs.docker.com/engine/install/\">official guide</a> and check it with <code>docker compose version</code>.",
             "<b>SSD, at least 4 GB RAM (8 GB recommended) and 20 GB of free space</b> for a typical home; more for years of state history. The Docker installation runs the full xomtra stack and is meant for a machine with enough memory, not for a small server; on a small machine use the Home Assistant add-on.",
             "<b>git and curl.</b>",
             "<b>Home Assistant reachable from this machine</b>, usually on port 8123 (URL like <code>http://&lt;address&gt;:8123</code>)."

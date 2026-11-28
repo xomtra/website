@@ -72,7 +72,7 @@
     ],
     [
      "Docker Compose",
-     "For your own Linux server or NAS.",
+     "For your own Linux server.",
      "docker compose up -d"
     ],
     [
@@ -221,7 +221,7 @@
     ],
     [
      "Docker Compose",
-     "Für deinen eigenen Linux-Server oder NAS.",
+     "Für deinen eigenen Linux-Server.",
      "docker compose up -d"
     ],
     [
@@ -370,7 +370,7 @@
     ],
     [
      "Docker Compose",
-     "Pro vlastní linuxový server nebo NAS.",
+     "Pro vlastní linuxový server.",
      "docker compose up -d"
     ],
     [
@@ -519,7 +519,7 @@
     ],
     [
      "Docker Compose",
-     "Dla własnego serwera Linux lub NAS.",
+     "Dla własnego serwera Linux.",
      "docker compose up -d"
     ],
     [
@@ -668,7 +668,7 @@
     ],
     [
      "Docker Compose",
-     "Voor je eigen Linux-server of NAS.",
+     "Voor je eigen Linux-server.",
      "docker compose up -d"
     ],
     [

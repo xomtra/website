@@ -88,15 +88,15 @@
   "docker": {
     "name": "Docker Compose",
     "title": "xomtra installeren met Docker Compose",
-    "desc": "Stap voor stap xomtra installeren op je eigen Linux-server of NAS met Docker Compose: geverifieerde release, starten met één commando, Home Assistant koppelen in de browser, eerste token, Claude koppelen, upgrades en verwijderen.",
-    "lead": "Voor Home Assistant Container of Core, of als je xomtra op een eigen Linux-server of NAS wilt. xomtra leest Home Assistant via je netwerk; Claude Desktop en Claude Code verbinden met persoonlijke tokens, alleen vanuit je LAN.",
+    "desc": "Stap voor stap xomtra installeren op je eigen Linux-server met Docker Compose: geverifieerde release, starten met één commando, Home Assistant koppelen in de browser, eerste token, Claude koppelen, upgrades en verwijderen.",
+    "lead": "Voor Home Assistant Container of Core, of als je xomtra op een eigen Linux-server wilt. xomtra leest Home Assistant via je netwerk; Claude Desktop en Claude Code verbinden met persoonlijke tokens, alleen vanuit je LAN.",
     "facts": [["Tijd", "ongeveer 15 minuten"], ["Nodig", "Linux, Docker met Compose v2"], ["Toegang", "LAN, persoonlijke tokens"]],
     "steps": [
       {
         "h": "Controleer de vereisten",
         "b": [
           {"ul": [
-            "<b>Linux met Docker Engine en Compose v2</b>, amd64 (Intel, AMD; voor arm64 worden de images nog niet gebouwd). Installeer het volgens de <a href=\"https://docs.docker.com/engine/install/\">officiële handleiding</a> en controleer het met <code>docker compose version</code>. Een NAS met Docker werkt ook.",
+            "<b>Linux met Docker Engine en Compose v2</b>, amd64 (Intel, AMD; voor arm64 worden de images nog niet gebouwd). Installeer het volgens de <a href=\"https://docs.docker.com/engine/install/\">officiële handleiding</a> en controleer het met <code>docker compose version</code>.",
             "<b>SSD, minstens 4 GB RAM (8 GB aanbevolen) en 20 GB vrije ruimte</b> voor een gemiddeld huis; meer voor jaren statusgeschiedenis. De Docker-installatie draait de volledige xomtra en is bedoeld voor een machine met genoeg geheugen, niet voor een kleine server; gebruik op een kleine machine de Home Assistant-add-on.",
             "<b>git en curl.</b>",
             "<b>Home Assistant bereikbaar vanaf deze machine</b>, meestal op poort 8123 (URL zoals <code>http://&lt;adres&gt;:8123</code>)."
