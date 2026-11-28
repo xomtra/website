@@ -52,9 +52,9 @@
       {
         "h": "Vystavte první token",
         "b": [
-          "Otevřete <b>xomtra</b> v postranním panelu (vidí ho jen administrátoři Home Assistantu) a přejděte na <b>Tokeny</b>. Vyplňte, pro koho token je, zařízení nebo aplikaci, roli a platnost:",
+          "Otevřete <b>xomtra</b> v postranním panelu (vidí ho jen administrátoři Home Assistantu) a přejděte na <b>MCP Tokeny</b>. Vyplňte zařízení nebo aplikaci, roli a platnost. Token je váš: řídí se vaší rolí v xomtře a přestane fungovat, když přístup ztratíte.",
           {"ul": [
-            "<code>xomtra.Reader</code> čte historii a nálezy, bez přítomnosti osob, polohy, kamer a zámků. Vhodná pro většinu lidí.",
+            "<code>xomtra.Reader</code> čte historii a nálezy, bez přítomnosti osob, polohy, kamer a zámků. Vhodná pro většinu lidí. Co přesně nevidí, se nastavuje na stránce <b>Co Reader nevidí</b>.",
             "<code>xomtra.Admin</code> vidí všechny entity včetně těchto a změny katalogu."
           ]},
           "Token (<code>xmt_…</code>) se zobrazí <b>jen jednou</b>. Vystavte jeden pro každého člověka a zařízení: jeden pak zrušíte bez ostatních a audit ukáže, kdo se na co ptal."
@@ -73,7 +73,7 @@
       {
         "h": "Zvolte, jak xomtra odpovídá",
         "b": [
-          "Na stránce administrace <b>Odpovědi</b> zvolíte mantinely pro odpovědi vašeho asistenta. Sada <b>Výchozí</b> nejdřív hledá relevantní data, začíná odpovědí, kterou pak doloží grafem nebo tabulkou, a mluví přátelským tónem. <b>Věcná</b> odpovídá co nejstručněji a kteroukoli sadu můžete zkopírovat a napsat si vlastní. Nad každou sadou vždy platí pevné jádro: jen hodnoty načtené z xomtry, žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se nezeptáte, a žádné vtipy o haváriích a ohrožení života a zdraví. Změna platí do 30 sekund, bez restartu."
+          "Na stránce administrace <b>MCP Setup</b> zvolíte mantinely pro odpovědi vašeho asistenta. Sada <b>Výchozí</b> nejdřív hledá relevantní data, začíná odpovědí, kterou pak doloží grafem nebo tabulkou, a mluví přátelským tónem. <b>Věcná</b> odpovídá co nejstručněji a kteroukoli sadu můžete zkopírovat a napsat si vlastní. Nad každou sadou vždy platí pevné jádro: jen hodnoty načtené z xomtry, žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se nezeptáte, a žádné vtipy o haváriích a ohrožení života a zdraví. Změna platí do 30 sekund, bez restartu."
         ]
       },
       {
@@ -163,7 +163,7 @@
       {
         "h": "Vystavte token a připojte Claude",
         "b": [
-          "Otevřete <code>https://&lt;server&gt;/admin/</code>, přihlaste se jako administrátor Home Assistantu a přejděte na <b>Tokeny</b>. Vystavte jeden token pro každého člověka a zařízení (pro většinu lidí <code>xomtra.Reader</code>); zobrazí se <b>jen jednou</b>.",
+          "Otevřete <code>https://&lt;server&gt;/admin/</code>, přihlaste se jako administrátor Home Assistantu a přejděte na <b>MCP Tokeny</b>. Vystavte jeden token pro každého člověka a zařízení (pro většinu lidí <code>xomtra.Reader</code>); zobrazí se <b>jen jednou</b>.",
           "<b>Claude Desktop:</b> po vystavení tokenu klikněte na <b>Stáhnout pro Claude Desktop</b> (je i na stránce <b>Připojení klientů</b>), otevřete <code>xomtra.mcpb</code>, vložte token a nainstalujte. Soubor je udělaný pro váš server: adresa i certifikát jsou vyplněné a rozšíření důvěřuje jen tomuto certifikátu, takže do počítače není potřeba nic importovat. Token v souboru není, Claude Desktop si ho uloží jako tajný údaj.",
           "<b>Claude Code</b> (pokud certifikát není v úložišti důvěryhodných certifikátů, spouštějte Claude Code s <code>NODE_EXTRA_CA_CERTS=/cesta/k/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
@@ -173,7 +173,7 @@
       {
         "h": "Zvolte, jak xomtra odpovídá",
         "b": [
-          "Na stránce administrace <b>Odpovědi</b> zvolíte mantinely pro odpovědi vašeho asistenta. Sada <b>Výchozí</b> nejdřív hledá relevantní data, začíná odpovědí, kterou pak doloží grafem nebo tabulkou, a mluví přátelským tónem. <b>Věcná</b> odpovídá co nejstručněji a kteroukoli sadu můžete zkopírovat a napsat si vlastní. Nad každou sadou vždy platí pevné jádro: jen hodnoty načtené z xomtry, žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se nezeptáte, a žádné vtipy o haváriích a ohrožení života a zdraví. Změna platí do 30 sekund, bez restartu."
+          "Na stránce administrace <b>MCP Setup</b> zvolíte mantinely pro odpovědi vašeho asistenta. Sada <b>Výchozí</b> nejdřív hledá relevantní data, začíná odpovědí, kterou pak doloží grafem nebo tabulkou, a mluví přátelským tónem. <b>Věcná</b> odpovídá co nejstručněji a kteroukoli sadu můžete zkopírovat a napsat si vlastní. Nad každou sadou vždy platí pevné jádro: jen hodnoty načtené z xomtry, žádné závěry o přítomnosti, spánku nebo zdraví konkrétního člověka, pokud se nezeptáte, a žádné vtipy o haváriích a ohrožení života a zdraví. Změna platí do 30 sekund, bez restartu."
         ]
       },
       {

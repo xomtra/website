@@ -52,9 +52,9 @@
       {
         "h": "Ersten Token ausstellen",
         "b": [
-          "Öffne <b>xomtra</b> in der Seitenleiste (nur Home Assistant Administratoren sehen es) und gehe zu <b>Tokens</b>. Gib an, für wen der Token ist, Gerät oder App, Rolle und Ablauf:",
+          "Öffne <b>xomtra</b> in der Seitenleiste (nur Home Assistant Administratoren sehen es) und gehe zu <b>MCP-Tokens</b>. Gib Gerät oder App, Rolle und Ablauf an. Der Token gehört dir: Er folgt deiner Rolle in xomtra und funktioniert nicht mehr, wenn du den Zugriff verlierst.",
           {"ul": [
-            "<code>xomtra.Reader</code> liest Verlauf und Befunde, ohne Anwesenheit, Standorte, Kameras und Schlösser. Richtig für die meisten.",
+            "<code>xomtra.Reader</code> liest Verlauf und Befunde, ohne Anwesenheit, Standorte, Kameras und Schlösser. Richtig für die meisten. Was genau verborgen bleibt, legst du auf der Seite <b>Für Reader verborgen</b> fest.",
             "<code>xomtra.Admin</code> sieht alle Entitäten, auch diese, und die Änderungen des Katalogs."
           ]},
           "Der Token (<code>xmt_…</code>) wird <b>nur einmal</b> angezeigt. Stelle einen pro Person und Gerät aus: So kannst du einen widerrufen, ohne die anderen, und das Audit zeigt, wer was gefragt hat."
@@ -73,7 +73,7 @@
       {
         "h": "Wählen, wie xomtra antwortet",
         "b": [
-          "Auf der Admin-Seite <b>Antworten</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
+          "Auf der Admin-Seite <b>MCP-Setup</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
         ]
       },
       {
@@ -163,7 +163,7 @@
       {
         "h": "Token ausstellen und Claude verbinden",
         "b": [
-          "Öffne <code>https://&lt;server&gt;/admin/</code>, melde dich als Home Assistant Administrator an und gehe zu <b>Tokens</b>. Stelle einen Token pro Person und Gerät aus (<code>xomtra.Reader</code> für die meisten); er wird <b>nur einmal</b> angezeigt.",
+          "Öffne <code>https://&lt;server&gt;/admin/</code>, melde dich als Home Assistant Administrator an und gehe zu <b>MCP-Tokens</b>. Stelle einen Token pro Person und Gerät aus (<code>xomtra.Reader</code> für die meisten); er wird <b>nur einmal</b> angezeigt.",
           "<b>Claude Desktop:</b> Klicke nach dem Ausstellen des Tokens auf <b>Für Claude Desktop herunterladen</b> (auch auf <b>Clients verbinden</b>), öffne <code>xomtra.mcpb</code>, füge den Token ein und installiere. Die Datei ist für deinen Server gemacht: Adresse und Zertifikat sind eingetragen und die Erweiterung vertraut nur diesem Zertifikat, daher muss nichts in den Computer importiert werden. Der Token ist nicht in der Datei, Claude Desktop speichert ihn als Geheimnis.",
           "<b>Claude Code</b> (ist das Zertifikat nicht im Zertifikatsspeicher, starte Claude Code mit <code>NODE_EXTRA_CA_CERTS=/pfad/zu/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
@@ -173,7 +173,7 @@
       {
         "h": "Wählen, wie xomtra antwortet",
         "b": [
-          "Auf der Admin-Seite <b>Antworten</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
+          "Auf der Admin-Seite <b>MCP-Setup</b> wählst du die Leitplanken für die Antworten deines Assistenten. Das Set <b>Standard</b> sucht zuerst die relevanten Daten, gibt zuerst die Antwort und dann die Belege als Diagramm oder Tabelle, in freundlichem Ton. <b>Knapp</b> antwortet so knapp wie möglich, und du kannst jedes Set duplizieren und ein eigenes schreiben. Über jedem Set gilt immer ein fester Kern: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, und keine Witze über Unfälle oder Gefahren für Leben und Gesundheit. Eine Änderung gilt innerhalb von 30 Sekunden, ohne Neustart."
         ]
       },
       {

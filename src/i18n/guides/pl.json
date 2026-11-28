@@ -52,9 +52,9 @@
       {
         "h": "Wystaw pierwszy token",
         "b": [
-          "Otwórz <b>xomtra</b> w panelu bocznym (widzą go tylko administratorzy Home Assistant) i przejdź do <b>Tokeny</b>. Podaj, dla kogo jest token, urządzenie lub aplikację, rolę i ważność:",
+          "Otwórz <b>xomtra</b> w panelu bocznym (widzą go tylko administratorzy Home Assistant) i przejdź do <b>Tokeny MCP</b>. Podaj urządzenie lub aplikację, rolę i ważność. Token jest twój: podąża za twoją rolą w xomtrze i przestaje działać, gdy stracisz dostęp.",
           {"ul": [
-            "<code>xomtra.Reader</code> czyta historię i wyniki, bez obecności, lokalizacji, kamer i zamków. Dobra dla większości osób.",
+            "<code>xomtra.Reader</code> czyta historię i wyniki, bez obecności, lokalizacji, kamer i zamków. Dobra dla większości osób. Co dokładnie jest ukryte, ustawiasz na stronie <b>Ukryte przed rolą Reader</b>.",
             "<code>xomtra.Admin</code> widzi wszystkie encje, także te, oraz zmiany katalogu."
           ]},
           "Token (<code>xmt_…</code>) jest pokazywany <b>tylko raz</b>. Wystaw osobny dla każdej osoby i urządzenia: możesz unieważnić jeden bez pozostałych, a audyt pokaże, kto o co pytał."
@@ -73,7 +73,7 @@
       {
         "h": "Wybierz, jak xomtra odpowiada",
         "b": [
-          "Na stronie administracji <b>Odpowiedzi</b> wybierasz zasady dla odpowiedzi swojego asystenta. Zestaw <b>Domyślny</b> najpierw szuka istotnych danych, zaczyna od odpowiedzi, a potem pokazuje dowody na wykresie lub w tabeli, przyjaznym tonem. <b>Zwięzły</b> odpowiada możliwie najkrócej, a każdy zestaw możesz skopiować i napisać własny. Ponad każdym zestawem zawsze obowiązuje stały rdzeń: tylko wartości pobrane z xomtry, żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że zapytasz, i żadnych żartów o awariach i zagrożeniu życia i zdrowia. Zmiana obowiązuje w ciągu 30 sekund, bez restartu."
+          "Na stronie administracji <b>Konfiguracja MCP</b> wybierasz zasady dla odpowiedzi swojego asystenta. Zestaw <b>Domyślny</b> najpierw szuka istotnych danych, zaczyna od odpowiedzi, a potem pokazuje dowody na wykresie lub w tabeli, przyjaznym tonem. <b>Zwięzły</b> odpowiada możliwie najkrócej, a każdy zestaw możesz skopiować i napisać własny. Ponad każdym zestawem zawsze obowiązuje stały rdzeń: tylko wartości pobrane z xomtry, żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że zapytasz, i żadnych żartów o awariach i zagrożeniu życia i zdrowia. Zmiana obowiązuje w ciągu 30 sekund, bez restartu."
         ]
       },
       {
@@ -163,7 +163,7 @@
       {
         "h": "Wystaw token i podłącz Claude",
         "b": [
-          "Otwórz <code>https://&lt;server&gt;/admin/</code>, zaloguj się jako administrator Home Assistant i przejdź do <b>Tokeny</b>. Wystaw osobny token dla każdej osoby i urządzenia (<code>xomtra.Reader</code> dla większości); jest pokazywany <b>tylko raz</b>.",
+          "Otwórz <code>https://&lt;server&gt;/admin/</code>, zaloguj się jako administrator Home Assistant i przejdź do <b>Tokeny MCP</b>. Wystaw osobny token dla każdej osoby i urządzenia (<code>xomtra.Reader</code> dla większości); jest pokazywany <b>tylko raz</b>.",
           "<b>Claude Desktop:</b> po wystawieniu tokenu kliknij <b>Pobierz dla Claude Desktop</b> (także na stronie <b>Podłączanie klientów</b>), otwórz <code>xomtra.mcpb</code>, wklej token i zainstaluj. Plik jest przygotowany dla twojego serwera: adres i certyfikat są wpisane, a rozszerzenie ufa tylko temu certyfikatowi, więc do komputera nie trzeba niczego importować. Tokenu nie ma w pliku, Claude Desktop przechowuje go jako sekret.",
           "<b>Claude Code</b> (jeśli certyfikatu nie ma w magazynie zaufanych certyfikatów, uruchamiaj Claude Code z <code>NODE_EXTRA_CA_CERTS=/sciezka/do/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
@@ -173,7 +173,7 @@
       {
         "h": "Wybierz, jak xomtra odpowiada",
         "b": [
-          "Na stronie administracji <b>Odpowiedzi</b> wybierasz zasady dla odpowiedzi swojego asystenta. Zestaw <b>Domyślny</b> najpierw szuka istotnych danych, zaczyna od odpowiedzi, a potem pokazuje dowody na wykresie lub w tabeli, przyjaznym tonem. <b>Zwięzły</b> odpowiada możliwie najkrócej, a każdy zestaw możesz skopiować i napisać własny. Ponad każdym zestawem zawsze obowiązuje stały rdzeń: tylko wartości pobrane z xomtry, żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że zapytasz, i żadnych żartów o awariach i zagrożeniu życia i zdrowia. Zmiana obowiązuje w ciągu 30 sekund, bez restartu."
+          "Na stronie administracji <b>Konfiguracja MCP</b> wybierasz zasady dla odpowiedzi swojego asystenta. Zestaw <b>Domyślny</b> najpierw szuka istotnych danych, zaczyna od odpowiedzi, a potem pokazuje dowody na wykresie lub w tabeli, przyjaznym tonem. <b>Zwięzły</b> odpowiada możliwie najkrócej, a każdy zestaw możesz skopiować i napisać własny. Ponad każdym zestawem zawsze obowiązuje stały rdzeń: tylko wartości pobrane z xomtry, żadnych wniosków o obecności, śnie czy zdrowiu konkretnej osoby, chyba że zapytasz, i żadnych żartów o awariach i zagrożeniu życia i zdrowia. Zmiana obowiązuje w ciągu 30 sekund, bez restartu."
         ]
       },
       {

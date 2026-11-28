@@ -23,10 +23,11 @@
       "id": "access",
       "h": "Alleen wie jij binnenlaat",
       "b": [
-        "In je thuisnetwerk krijgt elke persoon en elk apparaat een persoonlijk token van de beheerpagina. Het wordt één keer getoond; xomtra bewaart alleen een vingerafdruk ervan, niet het token zelf. Elk token heeft een eigenaar, een rol en optioneel een vervaldatum, en je kunt het altijd intrekken.",
+        "In je thuisnetwerk krijgt elke persoon en elk apparaat een persoonlijk token van de beheerpagina. Het wordt één keer getoond; xomtra bewaart alleen een vingerafdruk ervan, niet het token zelf. Elk token hoort bij de persoon die het uitgaf en volgt diens rol: verandert de rol of verliest de persoon de toegang, dan volgen de tokens binnen 30 seconden. Een token kan een vervaldatum hebben, en je kunt het altijd intrekken.",
         "Vanaf internet meld je je aan met je Home Assistant-account; Microsoft Entra ID is een optie. Standaard mogen alleen Home Assistant-beheerders verbinden, en alleen met tweestapsverificatie. Anderen komen pas binnen als een beheerder ze een rol geeft op de beheerpagina <b>Toegang</b>.",
-        "Direct na het aanmelden trekt xomtra het ontvangen Home Assistant-token in en houdt het een eigen sessie met een vaste looptijd bij. De pagina <b>Toegang</b> toont alle verbonden clients, en <b>Ontkoppelen</b> beëindigt de toegang binnen een minuut.",
-        "Rollen bepalen wat de AI ziet. Een lezer ziet nooit personen, locaties, camera's, sloten, alarmen of de vrije tekst van attributen; die worden al in de database weggefilterd, voordat er een antwoord ontstaat."
+        "Direct na het aanmelden trekt xomtra het ontvangen Home Assistant-token in en houdt het een eigen sessie met een vaste looptijd bij; de AI-client krijgt toegangstokens die hoogstens 60 minuten geldig zijn en tegen die sessie worden vernieuwd. De pagina <b>Toegang</b> toont alle verbonden clients, en <b>Ontkoppelen</b> beëindigt de toegang binnen een minuut.",
+        "Rollen bepalen wat de AI ziet. Een lezer ziet nooit personen, locaties, camera's, sloten, alarmen of de vrije tekst van attributen; die worden al in de database weggefilterd, voordat er een antwoord ontstaat. Wat een lezer verder niet ziet, stelt een beheerder in op de beheerpagina <b>Verborgen voor Reader</b>.",
+        "De MCP-server, het deel waarmee de AI praat, heeft helemaal geen Home Assistant-token, dus ook een gecompromitteerde server kan je huis niet bedienen. En xomtra bindt zijn gegevens aan één Home Assistant-instantie: antwoordt er op hetzelfde adres een andere, dan wordt er niets van geschreven tot een beheerder beslist."
       ]
     },
     {
@@ -71,7 +72,7 @@
       "h": "Jouw gegevens en jouw AI",
       "b": [
         "De geschiedenis blijft op de machine waar xomtra draait, en xomtra zelf stuurt die nergens heen. Wat je AI-client ophaalt om je te antwoorden, gaat naar de aanbieder ervan, onder je eigen account en volgens diens voorwaarden. Rollen en labels bepalen wat hij kan ophalen.",
-        "xomtra geeft de AI ook vangrails voor zijn antwoorden. De vaste kern geldt altijd: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, geen grappen over ongelukken of gevaar voor leven en gezondheid, en niets discriminerends, politieks of religieus. Daarbovenop komt de set antwoordrichtlijnen die je kiest op de beheerpagina <b>Antwoorden</b>. De sets staan op je eigen machine, alleen beheerders kunnen ze wijzigen, en er komt geen tekst voor het model van xomtra.com. De vangrails sturen het model; ze zijn geen beveiligingsgrens."
+        "xomtra geeft de AI ook vangrails voor zijn antwoorden. De vaste kern geldt altijd: alleen waarden die uit xomtra zijn opgehaald, geen conclusies over iemands aanwezigheid, slaap of gezondheid tenzij je ernaar vraagt, geen grappen over ongelukken of gevaar voor leven en gezondheid, en niets discriminerends, politieks of religieus. Daarbovenop komt de set antwoordrichtlijnen die je kiest op de beheerpagina <b>MCP-setup</b>. De sets staan op je eigen machine, alleen beheerders kunnen ze wijzigen, en er komt geen tekst voor het model van xomtra.com. De vangrails sturen het model; ze zijn geen beveiligingsgrens."
       ]
     }
   ],

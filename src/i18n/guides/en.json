@@ -52,9 +52,9 @@
       {
         "h": "Issue your first token",
         "b": [
-          "Open <b>xomtra</b> in the sidebar (only Home Assistant administrators see it) and go to <b>Tokens</b>. Fill in who the token is for, the device or app, the role and the expiry:",
+          "Open <b>xomtra</b> in the sidebar (only Home Assistant administrators see it) and go to <b>MCP tokens</b>. Fill in the device or app, the role and the expiry. The token is yours: it follows your role in xomtra and stops working when you lose access.",
           {"ul": [
-            "<code>xomtra.Reader</code> reads the history and findings, without presence, locations, cameras and locks. Right for most people.",
+            "<code>xomtra.Reader</code> reads the history and findings, without presence, locations, cameras and locks. Right for most people. What exactly it does not see is set on the page <b>Hidden from Reader</b>.",
             "<code>xomtra.Admin</code> sees every entity, including those, and the drift of the catalog."
           ]},
           "The token (<code>xmt_…</code>) is shown <b>once</b>. Issue one per person and device: you can revoke one without the others, and the audit shows who asked what."
@@ -73,7 +73,7 @@
       {
         "h": "Choose how xomtra answers",
         "b": [
-          "On the admin page <b>Answers</b> you choose the guardrails for your assistant's answers. The set <b>Default</b> looks for the relevant data first, gives the answer first and then the evidence as a chart or a table, in a friendly tone. <b>Concise</b> answers as briefly as possible, and you can duplicate any set and write your own. A fixed core always applies on top of every set: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, and no jokes about accidents or threats to life and health. A change applies within 30 seconds, without a restart."
+          "On the admin page <b>MCP setup</b> you choose the guardrails for your assistant's answers. The set <b>Default</b> looks for the relevant data first, gives the answer first and then the evidence as a chart or a table, in a friendly tone. <b>Concise</b> answers as briefly as possible, and you can duplicate any set and write your own. A fixed core always applies on top of every set: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, and no jokes about accidents or threats to life and health. A change applies within 30 seconds, without a restart."
         ]
       },
       {
@@ -163,7 +163,7 @@
       {
         "h": "Issue a token and connect Claude",
         "b": [
-          "Open <code>https://&lt;server&gt;/admin/</code>, sign in as a Home Assistant administrator and go to <b>Tokens</b>. Issue one token per person and device (<code>xomtra.Reader</code> for most people); it is shown <b>once</b>.",
+          "Open <code>https://&lt;server&gt;/admin/</code>, sign in as a Home Assistant administrator and go to <b>MCP tokens</b>. Issue one token per person and device (<code>xomtra.Reader</code> for most people); it is shown <b>once</b>.",
           "<b>Claude Desktop:</b> after issuing the token, click <b>Download for Claude Desktop</b> (also on <b>Connect clients</b>), open <code>xomtra.mcpb</code>, paste the token and install. The file is made for your server: the address and the certificate are filled in and the extension trusts only this certificate, so nothing has to be imported into the computer. The token is not in the file, Claude Desktop keeps it as a secret.",
           "<b>Claude Code</b> (if the certificate is not in your trust store, start Claude Code with <code>NODE_EXTRA_CA_CERTS=/path/to/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
@@ -173,7 +173,7 @@
       {
         "h": "Choose how xomtra answers",
         "b": [
-          "On the admin page <b>Answers</b> you choose the guardrails for your assistant's answers. The set <b>Default</b> looks for the relevant data first, gives the answer first and then the evidence as a chart or a table, in a friendly tone. <b>Concise</b> answers as briefly as possible, and you can duplicate any set and write your own. A fixed core always applies on top of every set: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, and no jokes about accidents or threats to life and health. A change applies within 30 seconds, without a restart."
+          "On the admin page <b>MCP setup</b> you choose the guardrails for your assistant's answers. The set <b>Default</b> looks for the relevant data first, gives the answer first and then the evidence as a chart or a table, in a friendly tone. <b>Concise</b> answers as briefly as possible, and you can duplicate any set and write your own. A fixed core always applies on top of every set: only values fetched from xomtra, no conclusions about a person's presence, sleep or health unless you ask, and no jokes about accidents or threats to life and health. A change applies within 30 seconds, without a restart."
         ]
       },
       {

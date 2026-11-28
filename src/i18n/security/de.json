@@ -23,10 +23,11 @@
       "id": "access",
       "h": "Nur, wen du hereinlässt",
       "b": [
-        "Im Heimnetz bekommt jede Person und jedes Gerät einen persönlichen Token aus der Admin-Seite. Er wird einmal angezeigt; xomtra speichert nur seinen Fingerabdruck, nicht den Token selbst. Jeder Token hat einen Besitzer, eine Rolle und optional ein Ablaufdatum und lässt sich jederzeit widerrufen.",
+        "Im Heimnetz bekommt jede Person und jedes Gerät einen persönlichen Token aus der Admin-Seite. Er wird einmal angezeigt; xomtra speichert nur seinen Fingerabdruck, nicht den Token selbst. Jeder Token gehört der Person, die ihn ausgestellt hat, und folgt ihrer Rolle: Ändert sich die Rolle oder verliert die Person den Zugriff, folgen ihre Tokens innerhalb von 30 Sekunden. Ein Token kann ein Ablaufdatum haben und lässt sich jederzeit widerrufen.",
         "Aus dem Internet meldest du dich mit deinem Home-Assistant-Konto an; Microsoft Entra ID ist eine Option. Standardmäßig dürfen sich nur Home-Assistant-Administratoren verbinden, und nur mit Zwei-Faktor-Authentifizierung. Alle anderen kommen nur hinein, wenn ein Administrator ihnen auf der Admin-Seite <b>Zugriff</b> eine Rolle gibt.",
-        "Direkt nach der Anmeldung widerruft xomtra den erhaltenen Home-Assistant-Token und führt eine eigene Sitzung mit fester Laufzeit. Die Seite <b>Zugriff</b> listet alle verbundenen Clients auf, und <b>Trennen</b> beendet den Zugriff innerhalb einer Minute.",
-        "Rollen bestimmen, was die KI sieht. Ein Leser sieht nie Personen, Standorte, Kameras, Schlösser, Alarmanlagen oder den Freitext von Attributen; diese werden schon in der Datenbank herausgefiltert, bevor eine Antwort entsteht."
+        "Direkt nach der Anmeldung widerruft xomtra den erhaltenen Home-Assistant-Token und führt eine eigene Sitzung mit fester Laufzeit; der KI-Client bekommt Zugriffstokens, die höchstens 60 Minuten gelten und gegen diese Sitzung erneuert werden. Die Seite <b>Zugriff</b> listet alle verbundenen Clients auf, und <b>Trennen</b> beendet den Zugriff innerhalb einer Minute.",
+        "Rollen bestimmen, was die KI sieht. Ein Leser sieht nie Personen, Standorte, Kameras, Schlösser, Alarmanlagen oder den Freitext von Attributen; diese werden schon in der Datenbank herausgefiltert, bevor eine Antwort entsteht. Was ein Leser sonst nicht sieht, legt ein Administrator auf der Admin-Seite <b>Für Reader verborgen</b> fest.",
+        "Der MCP-Server, also der Teil, mit dem die KI spricht, hat überhaupt keinen Home-Assistant-Token. Selbst ein kompromittierter Server kann dein Zuhause also nicht steuern. Und xomtra bindet seine Daten an eine Home-Assistant-Instanz: Antwortet unter derselben Adresse eine andere, wird nichts von ihr geschrieben, bis ein Administrator entscheidet."
       ]
     },
     {
@@ -71,7 +72,7 @@
       "h": "Deine Daten und deine KI",
       "b": [
         "Der Verlauf bleibt auf dem Rechner, auf dem xomtra läuft, und xomtra selbst schickt ihn nirgendwohin. Was dein KI-Client für eine Antwort abruft, geht unter deinem eigenen Konto und nach dessen Bedingungen an seinen Anbieter. Was er abrufen kann, bestimmen Rollen und Labels.",
-        "xomtra gibt der KI außerdem Leitplanken für ihre Antworten. Der feste Kern gilt immer: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, keine Witze über Unfälle oder Gefahren für Leben und Gesundheit und nichts Diskriminierendes, Politisches oder Religiöses. Dazu kommt das Set von Antwortrichtlinien, das du auf der Admin-Seite <b>Antworten</b> wählst. Die Sets liegen auf deinem Rechner, nur Administratoren können sie ändern, und kein Text für das Modell kommt von xomtra.com. Die Leitplanken leiten das Modell, sie sind keine Sicherheitsgrenze."
+        "xomtra gibt der KI außerdem Leitplanken für ihre Antworten. Der feste Kern gilt immer: nur Werte, die aus xomtra abgerufen wurden, keine Schlüsse über Anwesenheit, Schlaf oder Gesundheit einer Person, wenn du nicht danach fragst, keine Witze über Unfälle oder Gefahren für Leben und Gesundheit und nichts Diskriminierendes, Politisches oder Religiöses. Dazu kommt das Set von Antwortrichtlinien, das du auf der Admin-Seite <b>MCP-Setup</b> wählst. Die Sets liegen auf deinem Rechner, nur Administratoren können sie ändern, und kein Text für das Modell kommt von xomtra.com. Die Leitplanken leiten das Modell, sie sind keine Sicherheitsgrenze."
       ]
     }
   ],
