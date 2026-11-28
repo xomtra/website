@@ -167,7 +167,7 @@
           "<b>Claude Desktop:</b> po vystavení tokenu klikněte na <b>Stáhnout pro Claude Desktop</b> (je i na stránce <b>Připojení klientů</b>), otevřete <code>xomtra.mcpb</code>, vložte token a nainstalujte. Soubor je udělaný pro váš server: adresa i certifikát jsou vyplněné a rozšíření důvěřuje jen tomuto certifikátu, takže do počítače není potřeba nic importovat. Token v souboru není, Claude Desktop si ho uloží jako tajný údaj.",
           "<b>Claude Code</b> (pokud certifikát není v úložišti důvěryhodných certifikátů, spouštějte Claude Code s <code>NODE_EXTRA_CA_CERTS=/cesta/k/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
-          {"note": "Claude na webu a v mobilních aplikacích se připojuje ze serverů Anthropicu a do vaší LAN nedosáhne. Pro něj může xomtra běžet na stroji s veřejnou adresou https://, kde se přihlásíte účtem Home Assistantu s dvoufázovým ověřením; viz dokumentace na GitHubu."}
+          {"note": "Claude na webu a v mobilních aplikacích se připojuje ze serverů Anthropicu a do vaší LAN nedosáhne. Pro něj přepněte instalaci na <a href=\"{internet}\">přístup z internetu</a>: pokročilé nastavení s vlastní doménou a přesměrováním portu, které nahradí osobní tokeny."}
         ]
       },
       {
@@ -201,6 +201,78 @@
           "Pokud jste certifikátu důvěřovali pro celý počítač, odeberte ho (jmenuje se <code>xomtra local CA - &lt;rok&gt; ECC Root</code>; smažte jen tento) a smažte <code>xomtra-ca.crt</code>. Na Debianu nebo Ubuntu smažte soubor v <code>/usr/local/share/ca-certificates/</code> a spusťte <code>sudo update-ca-certificates --fresh</code>.",
           {"code": "dk_untrust"},
           "<b>V Home Assistantu:</b> přihlaste se jako uživatel pro xomtru a v <b>Profil → Zabezpečení</b> smažte jeho dlouhodobý přístupový token; do té doby zůstává platný. Pak tohoto uživatele smažte v <b>Nastavení → Lidé</b>. Přihlašování vlastním účtem Home Assistantu nic nezanechává. Pokud jste nastavili veřejnou adresu pro Claude na webu, odeberte i konektor v claude.ai, přesměrování portu a DNS záznam."
+        ]
+      }
+    ]
+  },
+  "internet": {
+    "name": "Přístup z internetu",
+    "title": "Claude na webu: xomtra z internetu",
+    "desc": "Pokročilé a volitelné: zpřístupnění instalace xomtry v Dockeru pro Claude na webu a v mobilu, s vlastní doménou, certifikátem Let's Encrypt, IP rozsahy Claude a přihlášením účtem Home Assistantu.",
+    "lead": "Jen pokud chcete Claude na webu a v mobilu, i mimo domov. Většina domácností to nepotřebuje: pro Claude Desktop a Claude Code stačí návod Docker Compose s lokálním přístupem. Toto nastavení lokální přístup na téže instalaci nahrazuje; oba neběží vedle sebe.",
+    "facts": [["Čas", "asi 30 minut"], ["Potřebujete", "vlastní doménu v Cloudflare, port 443"], ["Přístup", "claude.ai, přihlášení přes Home Assistant"]],
+    "steps": [
+      {
+        "h": "Rozhodněte, jestli ho potřebujete",
+        "b": [
+          {"ul": [
+            "<b>Vždy jen jeden režim přístupu.</b> xomtra běží buď s lokálním přístupem (osobní tokeny, jen LAN), nebo s přístupem z internetu (claude.ai, přihlášení OAuth). MCP server ověřuje volající jedním způsobem a Caddy má jednu konfiguraci, takže osobní tokeny z internetu nikdy neprojdou.",
+            "<b>Osobní tokeny přestanou fungovat.</b> Claude Desktop s rozšířením a Claude Code ztratí spojení; v Claude Desktop pak použijte konektor z claude.ai. Vystavené tokeny zůstanou uložené a po návratu zase fungují.",
+            "<b>Přepíná se v <code>.env</code></b>, ne v administraci, a pak <code>docker compose up -d --force-recreate</code>. Data, nastavení i připojení k Home Assistantu zůstanou."
+          ]}
+        ]
+      },
+      {
+        "h": "Zkontrolujte požadavky",
+        "b": [
+          {"ul": [
+            "Funkční instalace podle návodu <a href=\"{docker}\">Docker Compose</a> s připojeným Home Assistantem. Začněte lokálně, ověřte, že funguje, a pak přepněte.",
+            "<b>Vlastní doména s DNS v Cloudflare</b> (stačí bezplatný tarif) a záznam A, např. <code>xomtra.example.org</code>, na veřejnou IPv4 adresu vaší domácnosti, <b>DNS only</b> (šedý mráček). Dynamická adresa potřebuje DDNS; CGNAT nefunguje.",
+            "<b>Přesměrování portu</b> na routeru: TCP 443 z internetu na tento server. Port 80 zůstane zavřený.",
+            "<b>Dvoufázové ověření</b> u uživatelů Home Assistantu, kteří budou Claude připojovat.",
+            "Tarif Claude s <b>vlastními konektory</b>."
+          ]}
+        ]
+      },
+      {
+        "h": "Připravte token a adresy Claude",
+        "b": [
+          "V Cloudflare vytvořte API token ze šablony <b>Edit zone DNS</b>, omezený jen na tuto zónu. Caddy s ním získává a obnovuje certifikát Let's Encrypt, proto ho nemažte.",
+          "Aktuální odchozí IP rozsahy Claude najdete v dokumentaci Anthropicu (API → IP addresses). Jen z nich smí přijít volání MCP.",
+          "Administrace se přesune na <code>https://xomtra.example.org/admin/</code> a zůstane otevřená jen z vaší privátní sítě. Aby na ni počítač doma dosáhl, přidejte lokální DNS záznam pro to jméno na LAN adresu serveru (router, Pi-hole), nebo na routeru zapněte NAT loopback."
+        ]
+      },
+      {
+        "h": "Přepněte na přístup z internetu",
+        "b": [
+          "V <code>xomtra/deploy/compose</code> přidejte do <code>.env</code> tyto řádky se svými hodnotami. <code>XOMTRA_HA_URL</code> je stejná adresa Home Assistantu jako v administraci; přihlášení konektoru ji potřebuje tady:",
+          {"code": "net_env"},
+          "Restartujte vše a počkejte na certifikát:",
+          {"code": "net_up"},
+          {"note": "Když nějaká hodnota chybí, Caddy skončí s hláškou <code>XOMTRA_ACCESS_MODE=public requires …</code> v <code>docker compose logs caddy</code>."}
+        ]
+      },
+      {
+        "h": "Ověřte zvenku",
+        "b": [
+          "Z telefonu na mobilních datech (mimo vaši síť i mimo rozsahy Claude): MCP endpoint vás musí odmítnout, přihlašovací stránka musí odpovědět:",
+          {"code": "net_check"}
+        ]
+      },
+      {
+        "h": "Přidejte konektor v Claude",
+        "b": [
+          "Na <a href=\"https://claude.ai\">claude.ai</a> otevřete <b>Settings → Connectors → Add custom connector</b>, pojmenujte ho <code>xomtra</code> a zadejte <code>https://xomtra.example.org/mcp</code>. OAuth client ID a secret nechte prázdné; Claude se zaregistruje sám.",
+          "Klikněte na <b>Connect</b>: souhlasová stránka xomtry, pak přihlášení do Home Assistantu s dvoufázovým ověřením a návrat do Claude. Prohlížeč musí v tu chvíli dosáhnout na Home Assistant, takže konektor připojte doma nebo přes VPN; potom funguje odkudkoli.",
+          "Administrátoři Home Assistantu mají přístup hned. Ostatní se po prvním pokusu objeví v administraci na stránce <b>Přístup</b>, kde jim přidělíte roli."
+        ]
+      },
+      {
+        "h": "Zpět na lokální přístup",
+        "b": [
+          "Vraťte režim a restartujte; ostatní hodnoty v <code>.env</code> mohou zůstat:",
+          {"code": "net_back"},
+          "Pak odeberte konektor v claude.ai, přesměrování portu a pokud je už nepotřebujete, i DNS záznam a token v Cloudflare. Claude Desktop a Claude Code se zase připojují osobními tokeny."
         ]
       }
     ]
