@@ -18,7 +18,7 @@ import pl from "./guides/pl.json";
 import nl from "./guides/nl.json";
 import code from "./code.json";
 
-export const GUIDES = ["home-assistant", "docker"] as const;
+export const GUIDES = ["home-assistant", "docker", "internet"] as const;
 export type GuideSlug = (typeof GUIDES)[number];
 export type Block = string | { code: string } | { ul: string[] } | { note: string } | { myha: number };
 export type Guide = { name: string; title: string; desc: string; lead: string; facts: string[][]; steps: { h: string; b: Block[] }[] };

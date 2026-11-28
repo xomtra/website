@@ -167,7 +167,7 @@
           "<b>Claude Desktop:</b> klik na het uitgeven van het token op <b>Downloaden voor Claude Desktop</b> (ook op <b>Clients verbinden</b>), open <code>xomtra.mcpb</code>, plak het token en installeer. Het bestand is gemaakt voor jouw server: adres en certificaat zijn ingevuld en de extensie vertrouwt alleen dit certificaat, dus er hoeft niets in de computer te worden geïmporteerd. Het token zit niet in het bestand, Claude Desktop bewaart het als geheim.",
           "<b>Claude Code</b> (staat het certificaat niet in je certificaatopslag, start Claude Code dan met <code>NODE_EXTRA_CA_CERTS=/pad/naar/xomtra-ca.crt</code>):",
           {"code": "dk_claude_code"},
-          {"note": "Claude op het web en in de telefoonapps verbindt vanaf de servers van Anthropic en kan je LAN niet bereiken. Daarvoor kan xomtra draaien op een machine met een openbaar https://-adres, waar je je aanmeldt met je Home Assistant-account en tweestapsverificatie; zie de documentatie op GitHub."}
+          {"note": "Claude op het web en in de telefoonapps verbindt vanaf de servers van Anthropic en kan je LAN niet bereiken. Zet de installatie daarvoor om naar <a href=\"{internet}\">toegang vanaf internet</a>: een gevorderde inrichting met een eigen domein en port forwarding, die de persoonlijke tokens vervangt."}
         ]
       },
       {
@@ -201,6 +201,78 @@
           "Als je het certificaat voor de hele computer vertrouwde, verwijder het dan (het heet <code>xomtra local CA - &lt;jaar&gt; ECC Root</code>; verwijder alleen dit) en verwijder <code>xomtra-ca.crt</code>. Op Debian of Ubuntu verwijder je het bestand in <code>/usr/local/share/ca-certificates/</code> en voer je <code>sudo update-ca-certificates --fresh</code> uit.",
           {"code": "dk_untrust"},
           "<b>In Home Assistant:</b> log in als de gebruiker voor xomtra en verwijder bij <b>Profiel → Beveiliging</b> het langdurige toegangstoken; tot dan blijft het geldig. Verwijder daarna die gebruiker bij <b>Instellingen → Personen</b>. Inloggen met je eigen Home Assistant account laat niets achter. Heb je het publieke adres voor Claude op het web ingesteld, verwijder dan ook de connector in claude.ai, de port forwarding en het DNS-record."
+        ]
+      }
+    ]
+  },
+  "internet": {
+    "name": "Toegang vanaf internet",
+    "title": "Claude op het web: xomtra vanaf internet",
+    "desc": "Gevorderd en optioneel: maak een Docker-installatie van xomtra bereikbaar voor Claude op het web en op de telefoon, met een eigen domein, een Let's Encrypt-certificaat, de IP-bereiken van Claude en aanmelden met je Home Assistant-account.",
+    "lead": "Alleen als je Claude op het web en op de telefoon wilt, ook buiten de deur. De meeste huishoudens hebben dit niet nodig: voor Claude Desktop en Claude Code is de handleiding Docker Compose met lokale toegang genoeg. Deze inrichting vervangt de lokale toegang op dezelfde installatie; de twee draaien niet naast elkaar.",
+    "facts": [["Tijd", "ongeveer 30 minuten"], ["Nodig", "eigen domein bij Cloudflare, poort 443"], ["Toegang", "claude.ai, aanmelden met Home Assistant"]],
+    "steps": [
+      {
+        "h": "Bepaal of je het nodig hebt",
+        "b": [
+          {"ul": [
+            "<b>Altijd één toegangsmodus.</b> xomtra draait óf met lokale toegang (persoonlijke tokens, alleen LAN) óf met toegang vanaf internet (claude.ai, OAuth-aanmelding). De MCP-server controleert aanroepers op één manier en Caddy heeft één configuratie, dus persoonlijke tokens worden nooit vanaf internet geaccepteerd.",
+            "<b>Persoonlijke tokens werken niet meer.</b> Claude Desktop met de extensie en Claude Code verliezen de verbinding; gebruik in Claude Desktop dan de connector van claude.ai. Uitgegeven tokens blijven bewaard en werken weer als je terugschakelt.",
+            "<b>Je schakelt om in <code>.env</code></b>, niet op de beheerpagina, gevolgd door <code>docker compose up -d --force-recreate</code>. Gegevens, instellingen en de verbinding met Home Assistant blijven."
+          ]}
+        ]
+      },
+      {
+        "h": "Controleer de vereisten",
+        "b": [
+          {"ul": [
+            "Een werkende installatie volgens de handleiding <a href=\"{docker}\">Docker Compose</a> met Home Assistant gekoppeld. Begin lokaal, controleer dat het werkt en schakel dan om.",
+            "<b>Een eigen domein met DNS bij Cloudflare</b> (het gratis abonnement is genoeg) en een A-record, bijv. <code>xomtra.example.org</code>, naar het openbare IPv4-adres van je huis, <b>DNS only</b> (grijze wolk). Een dynamisch adres heeft DDNS nodig; CGNAT werkt niet.",
+            "<b>Port forwarding</b> op de router: TCP 443 vanaf internet naar deze server. Poort 80 blijft dicht.",
+            "<b>Tweestapsverificatie</b> voor de Home Assistant-gebruikers die Claude koppelen.",
+            "Een Claude-abonnement met <b>eigen connectors</b>."
+          ]}
+        ]
+      },
+      {
+        "h": "Bereid het token en de adressen van Claude voor",
+        "b": [
+          "Maak in Cloudflare een API-token van het sjabloon <b>Edit zone DNS</b>, beperkt tot deze ene zone. Caddy haalt en vernieuwt er het Let's Encrypt-certificaat mee, dus bewaar het.",
+          "De actuele uitgaande IP-bereiken van Claude staan in de documentatie van Anthropic (API → IP addresses). Alleen die mogen het MCP-endpoint aanroepen.",
+          "De beheerpagina verhuist naar <code>https://xomtra.example.org/admin/</code> en blijft alleen open vanuit je privénetwerk. Zodat je computer thuis haar bereikt, maak je een lokaal DNS-record voor de naam naar het LAN-adres van de server (router, Pi-hole), of zet je NAT-loopback aan in de router."
+        ]
+      },
+      {
+        "h": "Schakel om naar toegang vanaf internet",
+        "b": [
+          "Voeg in <code>xomtra/deploy/compose</code> deze regels met jouw waarden toe aan <code>.env</code>. <code>XOMTRA_HA_URL</code> is dezelfde Home Assistant-URL als op de beheerpagina; de aanmelding van de connector heeft hem hier nodig:",
+          {"code": "net_env"},
+          "Start alles opnieuw en wacht op het certificaat:",
+          {"code": "net_up"},
+          {"note": "Ontbreekt er een waarde, dan stopt Caddy met <code>XOMTRA_ACCESS_MODE=public requires …</code> in <code>docker compose logs caddy</code>."}
+        ]
+      },
+      {
+        "h": "Controleer van buitenaf",
+        "b": [
+          "Vanaf een telefoon op mobiele data (buiten je netwerk en buiten de bereiken van Claude): het MCP-endpoint moet je weigeren, de aanmeldpagina moet antwoorden:",
+          {"code": "net_check"}
+        ]
+      },
+      {
+        "h": "Voeg de connector toe in Claude",
+        "b": [
+          "Open op <a href=\"https://claude.ai\">claude.ai</a> <b>Settings → Connectors → Add custom connector</b>, noem hem <code>xomtra</code> en vul <code>https://xomtra.example.org/mcp</code> in. Laat OAuth client ID en secret leeg; Claude registreert zichzelf.",
+          "Klik op <b>Connect</b>: de toestemmingspagina van xomtra, dan de Home Assistant-aanmelding met tweestapsverificatie, dan terug in Claude. Je browser moet Home Assistant op dat moment bereiken, dus koppel thuis of via VPN; daarna werkt de connector overal.",
+          "Home Assistant-beheerders hebben meteen toegang. Anderen verschijnen na hun eerste poging op de beheerpagina <b>Toegang</b>, waar je ze een rol geeft."
+        ]
+      },
+      {
+        "h": "Terug naar lokale toegang",
+        "b": [
+          "Zet de modus terug en start opnieuw; de andere waarden in <code>.env</code> mogen blijven:",
+          {"code": "net_back"},
+          "Verwijder daarna de connector in claude.ai, de port forwarding en, als je ze niet meer nodig hebt, het DNS-record en het Cloudflare-token. Claude Desktop en Claude Code verbinden weer met persoonlijke tokens."
         ]
       }
     ]

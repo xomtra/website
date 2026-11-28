@@ -13,9 +13,10 @@ const g: Guide = G[lang][slug];
 const DOCS: Record<GuideSlug, string> = {
   "home-assistant": `${REPO}/blob/main/docs/setup/home-assistant-addon.md`,
   docker: `${REPO}/blob/main/docs/setup/local-access.md`,
+  internet: `${REPO}/blob/main/docs/setup/claude-connector.md`,
 };
-// Links between guides are written as {docker} / {home-assistant} in the texts.
-const html = (s: string) => s.replace(/\{(docker|home-assistant)\}/g, (_, k) => guidePath(lang, k));
+// Links between guides are written as {docker} / {home-assistant} / {internet} in the texts.
+const html = (s: string) => s.replace(/\{(docker|home-assistant|internet)\}/g, (_, k) => guidePath(lang, k));
 const kind = (b: Block) => (typeof b === "string" ? "p" : Object.keys(b)[0]);
 const others = GUIDES.filter((s) => s !== slug);
 
